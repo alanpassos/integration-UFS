@@ -1,0 +1,11 @@
+<!DOCTYPE note
+[
+<!ELEMENT clientes(cliente)>
+<!ELEMENT cliente(first_name, last_name, birthdate, phone_number, adress, email)>
+<!ELEMENT first_name(#PCDATA)>
+<!ELEMENT last_name(#PCDATA)>
+<!ELEMENT birthdate(#PCDATA)>
+<!ELEMENT phone_number(#PCDATA)>
+<!ELEMENT adress(#PCDATA)>
+<!ELEMENT email(#PCDATA)>
+]>
