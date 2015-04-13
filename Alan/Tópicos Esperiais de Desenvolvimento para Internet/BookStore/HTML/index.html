@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<meta charset="utf8">
-<h1>BookStore</h1>
-<h2>Livros:</h2>
+<head>
+  <meta charset="utf8">
+  <link rel="stylesheet" type="text/css" href="CSS/tabela.css"/>
+  </head>
+<div class=container>
+  <div class="header"><h1 class="header">BookStore</h1></div>
+  <div class="content">
 
 <!-- INICIO DO PRIMEIRO MENU DE LIVROS-->
 <hr>
 
-<table>
+<table id="tabela">
   <tr>
     <td>
     It: A Coisa<br>  
@@ -35,7 +38,7 @@
            <img src= "img/imagem4.jpg" alt="Livro 1" width="170" height="170">
         </a>
 	</td>
-	<td></td>
+	
 	<td>
       Os Três<br>
         <a href="detalhe5.html">
@@ -54,12 +57,6 @@
            <img src= "img/imagem7.jpg" alt="Livro 1" width="170" height="170">
         </a>
 	</td>
-	<td>
-      O Ladrão de Raios<br>
-        <a href="detalhe8.html">
-           <img src= "img/imagem8.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
 	
   </tr>
   <tr>
@@ -67,11 +64,10 @@
     <td>R$ 27,81</td>
     <td>R$ 31,90</td>
 	<td>R$ 36,90</td>
-	<td></td>
 	<td>R$ 30,90</td>
 	<td>R$ 23,90</td>
 	<td>R$ 30,51</td>
-	<td>R$ 17,90</td>
+	
   </tr>
 </table>
 
@@ -81,7 +77,8 @@
 
 <hr>
 
-<table>
+<table id="tabela">
+  
   <tr>
     <td>
     Somente Sua<br>  
@@ -107,7 +104,6 @@
            <img src= "img/imagem12.jpg" alt="Livro 1" width="170" height="170">
         </a>
 	</td>
-	<td></td>
 	<td>
       Quatro<br>
         <a href="detalhe13.html">
@@ -115,23 +111,18 @@
         </a>
 	</td>
 	<td>
-      Os Segredos de Colin Bridgerton<br>
+      Os Segredos de <br> Colin Bridgerton<br>
         <a href="detalhe14.html">
            <img src= "img/imagem14.jpg" alt="Livro 1" width="170" height="170">
         </a>
 	</td>
 	<td>
-      Outlander, A Libélula no Âmbar<br>
+      Outlander<br>
         <a href="detalhe15.html">
            <img src= "img/imagem15.jpg" alt="Livro 1" width="170" height="170">
         </a>
 	</td>
-	<td>
-      Diário da Seleção<br>
-        <a href="detalhe16.html">
-           <img src= "img/imagem16.jpg" alt="Livro 1" width="128" height="170">
-        </a>
-	</td>
+	
 	
   </tr>
   <tr>
@@ -139,21 +130,25 @@
     <td>R$ 17,91</td>
     <td>R$ 21,51</td>
 	<td>R$ 20,61</td>
-	<td></td>
 	<td>R$ 22,86</td>
 	<td>R$ 22,32</td>
 	<td>R$ 46,90</td>
-	<td>R$ 18,40</td>
+	
   </tr>
 </table>
+<hr>
 
-
+ <a href="comentario.html">
+	<i><b>Comentário</b></i>
+	</a>
+  </div>
+  <div class="footer">© Copyright by Refsnes Data.</div>
+	
+</div>
 <!--FIM DO SEGUNDO MENU DE LIVROS-->
 
-<hr>
-<a href="comentario.html">
-			<input type="submit" value="Comentar">
-			</a>
+
+
 
 </body>
 </html>
