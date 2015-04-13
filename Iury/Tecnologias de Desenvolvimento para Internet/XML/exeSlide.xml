@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Se o documento referenciar um arquido DTD -->
+<!DOCTYPE exeSlide SYSTEM "exeSlide.dtd">
+
+
+<!--   Se o documento referenciar um arquivo xsd -->
+<catalog
+  xmlns="exeSlide"
+  xmlns:xsi="exeSlide"
+  xsi:schemaLocation="exeSlide.xsd exeSlide.xsd">
+  <cd>
+    <title>Empire Burlesque</title>
+    <artist>Bob Dylan</artist>
+    <country>USA</country>
+    <company>Columbia</company>
+    <price>10.90</price>
+    <year>1985</year>
+  </cd>
+</catalog>
+
