@@ -1,0 +1,9 @@
+<!-- Estrutura de comentários. Criação basica de documento em XML com tags -->
+<clientes>
+  <firstName lang='pt'>Jóse</firstName>
+  <lastName lang= 'pt'>Silva</lastName>
+  <birthdate>04/06/1987</birthdate>
+  <phoneNumber>52364587</phoneNumber>
+  <adress lang='pt'>Rua Novo Endereço </adress>
+  <email>cliente1@email.com</email>
+</clientes>

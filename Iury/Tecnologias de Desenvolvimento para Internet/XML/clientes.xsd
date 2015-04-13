@@ -1,0 +1,13 @@
+<xs:element name="clientes" type="cliente">
+  
+  <xs:complexType name="cliente">
+    <xs:sequence>
+      <xs:element name="first_name" type="xs:string"/>
+	<xs:element name="last_name" type="xs:string"/>
+	<xs:element name="birthdate" type="xs:date"/>
+	<xs:element name="phone_number" type="xs:string"/>
+	<xs:element name="adress" type="xs:string"/>
+	<xs:element name="email" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+ 

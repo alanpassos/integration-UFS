@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UFT-8"?>
+<!DOCTYPE note SYSTEM "note.dtd">
+
+<!-- Estrutura de comentários. Criação basica de documento em XML com tags -->
+
+<clientes
+  xmlns="clientes"
+  xmlns:xsi="clientes"
+  xsi:schemaLocation="clientes.xsd clientes.xsd">
+    
+  <cliente civil_state = "Casado">
+    <first_name lang='pt'>Jóse</first_name>
+    <last_name lang= 'pt'>Silva</last_name>
+    <birthdate>04/06/1987</birthdate>
+    <phone_number>52364587</phone_number>
+    <adress lang='pt'>Rua Novo Endereço </adress>
+    <email>cliente1@email.com</email>
+  </cliente>
+  <cliente civil_state = "Solteira">
+    <first_name lang='pt'>Maria</first_name>
+    <last_name lang= 'pt'>dos Santos</last_name>
+    <birthdate>15/08/1961</birthdate>
+    <phone_number>74523698</phone_number>
+    <adress lang='pt'>Rua Outro Endereço </adress>
+    <email>cliente2@email.com</email>
+  </cliente>
+</clientes>
