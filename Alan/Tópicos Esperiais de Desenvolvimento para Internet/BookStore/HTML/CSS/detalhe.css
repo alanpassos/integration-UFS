@@ -11,7 +11,7 @@ div.container {
 div.header, div.footer {
     padding: 0.5em;
     color: white;
-    background-color:#000033;
+    /*background-color:#000033;*/
     clear: left;
 }
 /*conteudo que comeca com h1*/
@@ -40,13 +40,13 @@ div.content {
    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     width: 100%;
     border-collapse: collapse;
-   
+   text-align: center;
 }
 
 
 #tabela td{
    
-   border: 2px solid #FFFFFF;
+   /*border: 2px solid #FFFFFF;*/
    color: #FFFFFF;
    padding: 3px 7px 2px 7px;
 }
@@ -56,10 +56,10 @@ div.content {
 }
 hr{
    
-   border: 2px solid #ffffff;
+   border: 0px solid #ffffff;
    
 }
 body {
-   background-image:url('fundo2.jpg');
+   background-image:url('fundo5.jpg');
 }
 </style>

@@ -11,7 +11,7 @@ div.container {
 div.header, div.footer {
     padding: 0.5em;
     color: white;
-    background-color:#000033;
+    /*background-color:#000033;*/
     clear: left;
 }
 /*conteudo que comeca com h1*/
@@ -20,6 +20,7 @@ h1.header {
    text-align: center;
     padding: 0;
     margin: 0;
+    color: #ffffff;
 }
 /*conteúdo onde vai ao lado esquerdo*/
 
@@ -46,20 +47,26 @@ div.content {
 
 #tabela td{
    text-align: center;
-   border: 2px solid #FFFFFF;
+   /*border: 2px solid #FFFFFF;*/
    color: #FFFFFF;
    padding: 3px 7px 2px 7px;
 }
 
 #tabela tr.alt td{
-    color: #EAF2D3;
+    /*color: #EAF2D3;*/
 }
+/* Linha a qual se encontra em todas as separações entre as tabelas*/
 hr{
-   
-   border: 2px solid #ffffff;
-   
+   border: 0px solid #ffffff;
 }
+
 body {
-   background-image:url('fundo2.jpg');
+   background-image:url('fundo5.jpg');
+}
+
+h5{
+ color: #ffffff;
+    text-align: center;
+    
 }
 </style>
