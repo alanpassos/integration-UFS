@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <body>
-
+<head>
 <meta charset="utf8">
-<h1>BookStore</h1>
+<link rel="stylesheet" type="text/css" href="CSS/detalhe.css"/>
 
-
+</head>
+<div class="container">
+   <div class="header"><h1 class="header">BookStore</h1></div>
 <h1> Comentários:</h1>
 <hr>
 
-<table>
+<table id="tabela">
   <tr>
   <td>
     <form action="MAILTO:alanpassossi@gmail.com" method="post" enctype="text/plain">
@@ -17,9 +19,7 @@
 		 Nome:<br>
 		 <input type="text" name="nome"><br>
 		 <br>
-		 Comentário:<br>
-		  <textarea rows="5" cols="60" name="comentario"></textarea><br><br>
-		 Sexo:<br>
+		  Sexo:<br>
 			<input type="radio" name="sex" value="M" checked> Masculino <br>
 			<input type="radio" name="sex" value="F" > Feminino <br><br>
 			Nota:
@@ -36,15 +36,21 @@
 				<option value="9" >  9
 				<option value="10">  10
 			</select><br><br><br>
+		 Comentário:<br>
+		  <textarea rows="5" cols="60" name="comentario"></textarea><br><br>
+		
 			<input type="submit" value="Comentar">
 	 </form>
 	 </td>
   </tr>
 </table>
 <hr>
+</div>
+</div>
 	<a href="index.html">
-				<input type="submit" value="voltar">
-			</a>
-
+				<input type="submit" value="voltar"><bs>
+	</a>
+	
+<div class="footer">© Copyright by Refsnes Data.</div>
 </body>
 </html>
