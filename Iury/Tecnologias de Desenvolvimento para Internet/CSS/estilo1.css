@@ -1,0 +1,23 @@
+/*criação de um documento básico de CSS*/
+/* #f5f5f5 */
+<style>
+
+body
+{
+  background-color:#f5f5f5;
+/*  color:black;
+  text-align:justify;
+  font-family:"Times New Roman", Times, serif;
+  font-style:normal;
+  font-size:1em;*/
+}
+
+/*table, th, td
+{
+  background-color:green;
+  color:red;
+  border:1px solid gray;
+  text-align:center;
+  padding:15px;
+}*/
+</style>
