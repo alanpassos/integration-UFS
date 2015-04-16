@@ -1,0 +1,60 @@
+Assunto: Declaração de váriavéis
+Anotação:
+Sempre utilziar um @ antes do uso ou declaração da variável
+
+Estrutura básica
+
+DECLARE @ANO INT
+------------------
+SET @ANO = 1
+-------------------
+SELECT @ANO = 1
+
+=================================
+Assunto: Estrutura de controle
+Anotação:
+Begin e End
+
+Estrutura básica
+
+DECLARE @SUPER VARCHAR(50)
+
+BEGIN
+	SET @SUPER = ( SELECT
+			NM_FUNCIONARIO
+			FROM TB_FUNCIONARIO
+			WHERE
+			MATRICULA = 1)
+	PRINT @SUPER
+END
+
+========================================
+Assunto: IF ELSE
+Anotação:
+
+Estrutura básica
+
+IF (@TOTAL_VENDAS = 5)
+BEGIN
+	[INSTRUÇÃO]
+END
+ELSE
+BEGIN
+	[INSTRUÇÃO]
+END
+
+==================
+Assunto:While
+Anotação:
+
+WHILE (@VALOR < 10)
+BEGIN
+	PRINT @VALOR
+END
+
+========================
+Assunto: Cursores
+Anotação:
+
+Cria-se variáveis para cada elemento que se deseja trabalhar
+Declara o cursor DECLARE C_VENDAS CURSOR 
