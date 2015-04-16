@@ -8,56 +8,62 @@
     </head>
 
   <body>
-	<hr>
-	<hr>
+	<div id = "container">
 		<div id="cabecalho">
 		<h1>BOOKSTORE</h1>
 		</div>	
-	<hr>
-	<h2>Detalhes do Livro</h2>  
+	<hr id = "linhaHorizontalShadow">
 	
-	<br><br>
+
+	<div id="menu">
+		<div id="logo"><a href="BookStore.html"><img src="logoBook.png"></a></div>
+		<div id = "caixa"> Menu </div>
+		<a id="botao" href="Comentario.html">Comentários »</a>
+		<a id="botao" href ="" onClick = "history.go(-1)">Voltar »</a>
+	</div>
 	
-	<div id="divTabela">
-	
-		
+	<div id="secaoL">
+		<div id="divTabela">	
 			<div id="divTabelaColuna">
-			<div id="divTabelaLinha">
-				<div class="titulo"></div>
-				<a href="Detalhes1.html"><img src="loader_img_livros.jpg"/></a> 		 
+				<div id="divTabelaLinha">
+					<div class="titulo"></div>
+					<a href="Detalhes1.html"><img class ="livro" src="loader_img_livros.jpg"/></a> 		 
 				</div>
 			</div>
 			
 			<div id="divTabelaColuna">
-			<div id="divTabelaLinha">
-			<div class="titulo">Fotografia digital na prática, volume 4</div>
-			<p>Eis como Scott descreve sua obra: "Se você e eu saíssemos para tirar umas fotos 
-				e você me perguntasse: ´Kelby, quero que a luz pareça bem suave e favorável para
-				o tema. A que distância devo posicionar esta softbox?, eu não lhe daria uma aula sobre 
-				técnicas de iluminação ou modificadores de flash...</p>
-			<p>Por: R$ 94,18</p>
-			</div>
+				<div id="divTabelaLinha">
+					<div class="titulo">Fotografia digital na prática, volume 4</div>
+					<p class = "negritoSb">Descrição do Livro:</p>
+					<p>Eis como Scott descreve sua obra: "Se você e eu saíssemos para tirar umas fotos 
+						e você me perguntasse: Kelby, quero que a luz pareça bem suave e favorável para
+						o tema. A que distância devo posicionar esta softbox?, eu não lhe daria uma aula sobre 
+						técnicas de iluminação ou modificadores de flash...</p>
+				</div>
 			
 			</div>
 			<div id="divTabelaColuna">
-			<div id="divTabelaLinha">
-			<div class="titulo"></div>
-				<TABLE BORDER=1 CELLPADDING=5>
-					<TR><TD>1ª edição</TD></TR><TR> <TD>Autor: SCOTT KELBY</TD>
-					</TR><TR><TD>ISBN:	9788581431727</TD>
-					</TR><TR><TD>Páginas:	240</TD>
-					</TR><TR><TD><p>Por: R$ 94,18</p></TD>
-						</TR>
-				</TABLE>
-			</div>
-			</div>
-		
-
-			
-			
+				<div id="divTabelaLinha">
+					<div class="titulo"></div>
+						
+					<p class= "negrito">1ª edição</p>
+					<hr id = "linhaHorizontalTracejada">
+					<p class= "negrito">Autor: SCOTT KELBY</p>							
+					<hr id = "linhaHorizontalTracejada">
+					<p class= "negrito">ISBN:	9788581431727</p>
+					<hr id = "linhaHorizontalTracejada">
+					<p class= "negrito">Páginas:	240</p>
+					<hr id = "linhaHorizontalTracejada">
+					<p class= "negrito">Por: R$ 94,18</p>
+					<hr id = "linhaHorizontalTracejada">
+							
+				</div>
+			</div>	
+		</div>
 	</div>
-<br><br>
-	<a id="botao" onClick = "history.go(-1)">Voltar </a>
-
+	<div id="rodape">
+			<p>BookStore &#169, 2015 </p>
+	</div>
+	</div>
 </body>
 </html>
