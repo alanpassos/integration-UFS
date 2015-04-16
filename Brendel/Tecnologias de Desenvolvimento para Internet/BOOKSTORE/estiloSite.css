@@ -1,0 +1,146 @@
+a#botao:hover, a:focus, a:active  
+{ 
+	text-decoration: underline; 
+	color: #9685BA;
+}
+
+p
+{
+	font-size:1.000em;
+	font-style:bold;
+	color: black;
+}
+
+p.centro
+{
+	font-size:1.000em;
+	font-style:bold;
+	color: black;
+	text-align:center;
+}
+
+h1 {
+	
+    text-align: center;
+	text-decoration: underline;
+	color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+h2 {
+	font-size:1.875em;
+	font-style:bold;
+    text-align: center;
+    color: black;
+}
+img
+{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 130px;
+	height: 157px;
+} 
+div.titulo {
+    text-align: center;
+    font-weight: bold;
+	font-size: 1.100em;
+    width: 180px;
+	height: 110px;
+    margin: 5px;
+	color: black;
+    text-shadow: 2px 2px 4px #000000;
+	
+}
+
+#botao
+{
+	-webkit-border-radius: 18;
+	-moz-border-radius: 18;
+	border-radius: 18px;
+	font-family: Courier New;
+	color: #ffffff;
+	font-size: 16px;
+	padding: 4px;
+	background: #74838c;
+	text-decoration: none;
+	bottom: 0;
+	
+}
+
+body { 
+	background: url(bg.jpg) no-repeat top left; 
+  
+	margin: 0; 
+}
+
+#cabecalho {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#menu {
+    line-height:30px;
+    background-color:#ffffff;
+    height:300px;
+    width:150px;
+    float:left;
+    padding:5px; 
+	border: 1px solid black;
+	opacity:0.6;
+	box-shadow: 10px 10px 5px #888888;
+}
+#secaoL {
+    
+    float:left;
+    padding:10px; 
+}
+
+#secaoR {
+    
+    float:left;
+    padding:10px; 
+}
+#rodape {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+
+#caixa{
+	-webkit-border-radius: 18;
+	-moz-border-radius: 18;
+	border-radius: 18px;
+    background-color: lightblue;
+    width: 130px;
+    padding: 4px;
+	text-align:center;
+	font-family: Courier New;
+	color: Black
+	font-size: 16px;
+}
+
+#divTabela{
+  display:table;         
+  width:auto;           
+  border:1px solid  #666666;         
+  border-spacing:5px;
+  box-shadow: 10px 10px 5px #888888;
+}
+#divTabelaLinha{
+  display:table-row;
+  width:auto;
+  clear:both;
+}
+#divTabelaColuna{
+  float:left;
+  display:table-column;         
+  width:200px;         
+}
+
+
+
+	
