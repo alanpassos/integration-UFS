@@ -215,3 +215,6 @@ body {
 	padding: 10px 30px 0 10px;
 
 }
+textarea {
+   resize: none;
+}
