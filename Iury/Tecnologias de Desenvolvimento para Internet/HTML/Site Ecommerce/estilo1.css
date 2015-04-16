@@ -19,7 +19,8 @@ h4
 
 h3.detalhe
 {
-  font-size:20px;
+    margin-left: 200px;
+  font-size:40px;
   font-family:"Droid Sans";
 }
 
@@ -84,61 +85,6 @@ td
   vertical-align: middle;
 }
 
-td
-{
-  background-color:white;
-  border:2px solid gray;
-  text-align:center;
-  padding:10px;
-  height:30px;
-  vertical-align: middle;
-}
-
-table.detalhe
-{
-  background-color:#4c4c4c;
-  border:6px solid gray;
-  text-align:left;
-  padding:2px;
-  width:97%;  
-  border-collapse: collapse;
-}
-th.detalhe
-{
-  color:#4c4c4c;
-  background-color:#f5f5f5;
-  text-align:center;
-  height: 50%;
-}
-tl.detalhe
-{
-  background-color:white;
-  border:2px solid gray;
-  text-align:left;
-  padding:5px;
-/* height:20px;   */
-}
-
-td.detalhe
-{
-  background-color:white;
-  border:2px solid gray;
-  text-align:left;
-  padding:10px;
-  height:30px;
-  vertical-align: middle;
-}
-
-td.detalhe
-{
-  background-color:white;
-  border:2px solid gray;
-  text-align:left;
-  padding:10px;
-  height:30px;
-  vertical-align: middle;
-}
-
 p
 {
   margin-left:30px;
@@ -159,8 +105,8 @@ h1.titulo
 {
   color:#4c4c4c;
   background-color:#f5f5f5;
-  width:40%;
-  height:130%;
+  width:30%;
+  height:10%;
 }
 
 

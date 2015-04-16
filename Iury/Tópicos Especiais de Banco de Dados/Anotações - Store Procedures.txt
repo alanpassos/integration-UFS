@@ -1,0 +1,34 @@
+========================
+Assunto: Cenários interessantes para se utilizar Stored Procedures
+Anotação:
+Em momentos onde o programa possui processamentos onde se trabalha transformando dados para o banco de dados ou no próprio banco de dados, sem interação com a aplicaçao
+
+
+========================
+Assunto: Criando procedimento
+Anotação:
+
+CREATE PROCEDURE P_FUNCAO AS
+SELECT * FROM TB_EXEMPLO
+========================
+Assunto: Executar procedure
+Anotação:
+
+EXEC P_FUNCAO
+========================
+Assunto: Procedimentos com parametros
+Anotação:
+
+CREATE PROCEDURE SP_FUNCIONARIO (@MATRICULA INT, ...)
+AS
+SELECT ......
+========================
+Assunto: Execucao de procedimento com parametros
+Anotação:
+
+EXEC SP_FUNCIONARIO 10, .....
+========================
+Assunto: Parametros (saida)
+Anotação:
+
+CREATE PROCEDURE SP_FUNCIONARIO (@MATRICULA INT, @MENSAGEM VARCHAR(40) OUTPUT)
