@@ -2,35 +2,49 @@ class Graph
    {
    private final int MAX_VERTS = 8;
    private Vertex vertexList[]; 
-   private int adjMat[][];   
-   private int nVerts;  
+   private int matrizAdjacencia[][];   
+   private int numeroVerts;
    private Queue theQueue;
+   private int posicaoFinal;
+   private int posicaoInicial;
 // ------------------------------------------------------------
    public Graph()   
       {
       vertexList = new Vertex[MAX_VERTS];
                                        
-      adjMat = new int[MAX_VERTS][MAX_VERTS];
-      nVerts = 0;
+      matrizAdjacencia = new int[MAX_VERTS][MAX_VERTS];
+      numeroVerts = 0;
       for(int y=0; y<MAX_VERTS; y++)   
          for(int x=0; x<MAX_VERTS; x++)  
-            adjMat[x][y] = 0;
+            matrizAdjacencia[x][y] = 0;
       
       theQueue = new Queue();
       
       } 
 // ------------------------------------------------------------
-   public void addVertex(char lab)
+   public void addVertex(char lab, boolean salaEsquerdaSuja, boolean salaDireitaSuja, char posicaoAspirador)
       {
-      vertexList[nVerts++] = new Vertex(lab);
+      vertexList[numeroVerts++] = new Vertex(lab, salaEsquerdaSuja, salaDireitaSuja, posicaoAspirador);
       }
 // ------------------------------------------------------------
-   public void addEdge(int start, int end)
+   public void addEdge(int inicio, int destino)
       {
-      adjMat[start][end] = 1;
-      adjMat[end][start] = 1;
+      matrizAdjacencia[inicio][destino] = 1;
       }
 // ------------------------------------------------------------
+   public void setInicioFim(char posicaoInicial)
+   	{    
+	   	this.posicaoInicial = searchPos(posicaoInicial);
+	}
+// ------------------------------------------------------------
+   public int searchPos(char lab)
+   	{
+	    for (int i=0;i<numeroVerts;i++)
+	        if(vertexList[i].label==lab)
+	            return i;
+	    return -1;
+	}
+// ------------------------------------------------------------  
    public void displayVertex(int v)
       {
       System.out.print(vertexList[v].label);
@@ -38,35 +52,57 @@ class Graph
 // -------------------------------------------------------------
    public void bfs()                   
       {                               
-      vertexList[0].wasVisited = true; 
-      displayVertex(0);               
-      theQueue.insert(0);              
+      vertexList[posicaoInicial].wasVisited = true;               
+      theQueue.insert(posicaoInicial);              
       int v2;
+      int v1 = 0; 
 
-      while( !theQueue.isEmpty() )    
+      while((!vertexList[v1].estadoFinal()) && !theQueue.isEmpty() )    
          {
-         int v1 = theQueue.remove();   
+         v1 = theQueue.remove();   
 
-         while( (v2=getAdjUnvisitedVertex(v1)) != -1 )
-            {                            
+         while( (v2=getAdjUnvisitedVertex(v1)) != -1  )
+            {                      
+        	
             vertexList[v2].wasVisited = true;  
-            displayVertex(v2);                 
+            vertexList[v2].pai = v1;         
             theQueue.insert(v2);              
             }   
          }  
 
- 
-      for(int j=0; j<nVerts; j++)            
+      this.posicaoFinal = v1;
+      for(int j=0; j<numeroVerts; j++)            
          vertexList[j].wasVisited = false;
       }  
 // ------------------------------------------------------------
-   // ------------------------------------------------------------- 
    public int getAdjUnvisitedVertex(int v)
       {
-      for(int j=0; j<nVerts; j++)
-         if(adjMat[v][j]==1 && vertexList[j].wasVisited==false)
+      for(int j=0; j<numeroVerts; j++)
+         if(matrizAdjacencia[v][j]==1 && vertexList[j].wasVisited==false)
             return j;
       return -1;
       } 
 // ------------------------------------------------------------
+ 	public void geraCaminho()
+ 	{	
+ 		System.out.println("Caminho:\n");
+ 		int[] caminhoInverso = new int[numeroVerts];
+ 		int j = this.posicaoFinal;
+ 		int indiceArray = 0;
+ 		caminhoInverso[indiceArray] = j;
+ 		indiceArray++;
+ 		while(j != posicaoInicial)
+ 		{	
+ 			
+ 			caminhoInverso[indiceArray] = vertexList[j].pai;
+ 			j = vertexList[j].pai;
+ 			indiceArray++;
+ 		}
+ 		for (int i = (indiceArray-1); i >= 0; i--) {
+			displayVertex(caminhoInverso[i]);
+		}
+ 	}
+ //------------------------------------------------------------
+
    } 
+

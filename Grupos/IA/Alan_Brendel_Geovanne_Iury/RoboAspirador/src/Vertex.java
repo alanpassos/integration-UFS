@@ -1,16 +1,30 @@
 
 class Vertex
    {
-   public char label;
-	boolean salaEsquerda;
-	boolean salaDireita;
-   public boolean wasVisited;
+	
+	public char label;
+	char posicaoAspirador;
+	boolean salaEsquerdaSuja;
+	boolean salaDireitaSuja;
+	public boolean wasVisited;
+	int pai;
 
-   public Vertex(char lab, boolean salaEsquerda, boolean salaDireita) 
+   public Vertex(char lab, boolean salaEsquerdaSuja, boolean salaDireitaSuja, char posicaoAspirador) 
       {
       label = lab;
-      this.salaDireita = salaDireita;
-      this.salaEsquerda = salaEsquerda;
+      this.posicaoAspirador = posicaoAspirador;
+      this.salaDireitaSuja = salaDireitaSuja;
+      this.salaEsquerdaSuja = salaEsquerdaSuja;
       wasVisited = false;
+      pai =  -1 ;
       }
-   } 
+   public boolean estadoFinal()
+   {
+	   if((!salaDireitaSuja) && (!salaEsquerdaSuja))
+	   {
+		   return true;
+	   }
+	   return false;
+   }
+   
+   }
