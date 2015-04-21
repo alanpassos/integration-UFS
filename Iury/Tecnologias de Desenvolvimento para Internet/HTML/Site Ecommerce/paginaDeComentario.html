@@ -3,12 +3,11 @@
   <head>
     <meta charset="utf-8">
          <link rel="stylesheet" type="text/css" href="estilo1.css"/>
-
     <title>Página de Comentários</title>
   </head>
   
   <body>
-    <form action="MAILTO:iurybas@gmail.com" method="post" enctype="text/plain">
+    <form id="form" action="MAILTO:iurybas@gmail.com" method="post" enctype="text/plain">
       <h3>Faça seu comentário</h3>
       Nome:
       <input type="text" name="nome" value="Insira o seu nome">
@@ -24,10 +23,13 @@
       </textarea>
       <br>
       <br>
+        <input type="button" onclick=document.write(email.value) value="pressione">
       <input type="submit" value="Enviar Comentário">
       <input type="reset" value="Limpar">
       <br>
       <br>
+        
+    
       <a href="siteEcommerce.html">Retonar a página Inicial</a>
     </form> 
   </body>
