@@ -4,7 +4,17 @@
     <title>BookStore</title>
 
 	<link rel="stylesheet" type="text/css" href="estiloSite.css" />
-	
+	<script type = "text/javascript" src = "jquery-1.11.2.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".btn1").click(function(){
+				$(".tabelaLivros").hide(1500);
+			});
+			$(".btn2").click(function(){
+				$(".tabelaLivros").show(1500);
+			});
+		});
+	</script>
     </head>
 
   <body>
@@ -20,7 +30,7 @@
 			<a id="botao" href="Comentario.html">Comentários »</a>
 		</div>
 		<div id="secaoL">
-			<div id="divTabela">
+			<div id="divTabela" class = "tabelaLivros">
 		
 				<div id="divTabelaLinha">
 					<div id="divTabelaColuna">
@@ -47,6 +57,8 @@
 			</div>
 		</div>
 		<div id="rodape">
+			<button class="btn1">Ocultar Livros</button>
+			<button class="btn2">Mostrar Livros</button>
 			<p class = "negrito">BookStore &#169, 2015 </p>
 		</div>
 	</div>
