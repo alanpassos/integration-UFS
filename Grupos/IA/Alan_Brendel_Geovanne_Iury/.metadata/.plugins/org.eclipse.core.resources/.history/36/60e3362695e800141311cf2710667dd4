@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 
 public class RoboAspirador {
 
@@ -51,15 +49,11 @@ public class RoboAspirador {
 	
 	public static void main(String[] args) 
 	{
-		Scanner lerNome = new Scanner(System.in);
+		// TODO Auto-generated method stub
 		RoboAspirador roboAspirador = new RoboAspirador();
 		roboAspirador.adicionaVertex();
 		roboAspirador.adicionaEdge();
-		roboAspirador.theGraph.displayTodosVertex();
-		System.out.println("\nPor Favor, Informe o Estado Inicial:");
-		char estadoInicial = lerNome.next().toUpperCase().charAt(0);
-		
-		roboAspirador.theGraph.setInicioFim(estadoInicial);
+		roboAspirador.theGraph.setInicioFim('A');
 		roboAspirador.theGraph.bfs();
 		roboAspirador.theGraph.geraCaminho();
 		

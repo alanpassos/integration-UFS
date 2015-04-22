@@ -47,7 +47,43 @@ class Graph
 // ------------------------------------------------------------  
    public void displayVertex(int v)
       {
-      System.out.print(vertexList[v].label);
+	  String condicaoSalaDireita = "limpa";
+	  String condicaoSalaEsquerda = "limpa";
+	  String posicaoAspirador = "Sala direita";
+	  if(vertexList[v].salaDireitaSuja){
+		  condicaoSalaDireita = "suja";
+	  }
+	  if(vertexList[v].salaEsquerdaSuja){
+		  condicaoSalaEsquerda = "suja";
+	  }
+	  if(vertexList[v].posicaoAspirador == 'E'){
+		  posicaoAspirador = "Sala esquerda";
+	  }
+      System.out.print(vertexList[v].label+" - Está na "+posicaoAspirador+" - Sala Direita: "+condicaoSalaDireita+
+    		  " - Sala Esquerda: "+condicaoSalaEsquerda+"\n");
+      }
+// -------------------------------------------------------------
+   public void displayTodosVertex()
+      {
+	  for (int i = 0; i < vertexList.length; i++) {
+		
+			String condicaoSalaDireita = "limpa";
+			String condicaoSalaEsquerda = "limpa";
+			String posicaoAspirador = "Sala direita";
+			if (vertexList[i].salaDireitaSuja) {
+				condicaoSalaDireita = "suja";
+			}
+			if (vertexList[i].salaEsquerdaSuja) {
+				condicaoSalaEsquerda = "suja";
+			}
+			if (vertexList[i].posicaoAspirador == 'E') {
+				posicaoAspirador = "Sala esquerda";
+			}
+			System.out.print(vertexList[i].label + " - Está na "
+					+ posicaoAspirador + " - Sala Direita: "
+					+ condicaoSalaDireita + " - Sala Esquerda: "
+					+ condicaoSalaEsquerda + "\n");
+		}
       }
 // -------------------------------------------------------------
    public void bfs()                   
@@ -85,7 +121,7 @@ class Graph
 // ------------------------------------------------------------
  	public void geraCaminho()
  	{	
- 		System.out.println("Caminho:\n");
+ 		System.out.println("Caminho:");
  		int[] caminhoInverso = new int[numeroVerts];
  		int j = this.posicaoFinal;
  		int indiceArray = 0;

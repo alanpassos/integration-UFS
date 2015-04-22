@@ -56,7 +56,7 @@ public class RoboAspirador {
 		roboAspirador.adicionaVertex();
 		roboAspirador.adicionaEdge();
 		roboAspirador.theGraph.displayTodosVertex();
-		System.out.println("\nPor Favor, Informe o Estado Inicial:");
+		System.out.println("Por Favor, Informe o Estado Inicial");
 		char estadoInicial = lerNome.next().toUpperCase().charAt(0);
 		
 		roboAspirador.theGraph.setInicioFim(estadoInicial);

@@ -8,9 +8,9 @@ INDEX VERSION 1.126+C:\Users\Brendel Santos\GIT\integration_UFS\Grupos\IA\Alan_B
 4108727661.index
 4238084851.index
 1697886153.index
-4155206848.index
-163172794.index
 4041092966.index
-1299022128.index
+163172794.index
+4155206848.index
 1115467115.index
+1299022128.index
 3133528496.index
