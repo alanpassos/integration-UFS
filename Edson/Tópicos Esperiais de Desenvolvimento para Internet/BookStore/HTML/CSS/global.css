@@ -24,7 +24,7 @@ div.nav {
 }
 div.section {
     width:auto;
-    float:left;
+    float:center;
     padding:10px;	 	 
 }
 div.footer {
@@ -32,6 +32,14 @@ div.footer {
     color:white;
     clear:both;
     text-align:center;
+   padding:5px;	 	 
+}
+
+div.footer2 {
+    background-color:white;
+    color:black;
+    clear:both;
+    text-align:justify;
    padding:5px;	 	 
 }
 /*body {

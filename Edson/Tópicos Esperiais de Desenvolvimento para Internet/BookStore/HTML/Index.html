@@ -3,6 +3,20 @@
 <head>
 <meta charset="utf-8">
     <link rel="stylesheet"type="text/css"href="CSS/tabela.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("text1").click(function()
+            {
+                $("esc1").toggle();
+            });
+            $("text2").click(function()
+            {
+                $("esc2").toggle();
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -11,12 +25,39 @@
     <h1>BookStore</h1>
     </div>
 
-    <div class="nav"><a href="comentario.html">Comentario</a></div>
+    <div class="nav">
+        
+        <a href="comentario.html">Comentario</a>
+        <br><br><br><br>
+        
+        <table id="construtor2">
+            <tr2>
+                <th2>
+                    <text1><b>Destaque></b></text1>
+                        <esc1><a target="_blank" href="">Lançamentos</a></esc1>
+                        <esc1><a target="_parent" href="">Pré-vendas</a></esc1>
+                        <esc1><a target="_self" href="">Mais Vendidos</a></esc1>
+                    <br>
+                    <text2><b>Categoria></b></text2>
+                        <esc2><a target="_top" href="">Administração</a></esc2>
+                        <esc2><a target="_top" href="">Curso e Idiomas</a></esc2>
+                        <esc2><a target="_top" href="">Sexologia</a></esc2>
+                        <esc2><a target="_top" href="">Romance</a></esc2>
+                        <esc2><a target="_top" href="">Literatura Juvenil</a></esc2>
+                </th2>
+            </tr2>
+        </table>
+        
+        
+        
+        
+        
+    </div>
 
 <div class="section">
 
 <table id="construtor">
-        
+     
   <tr>
     <th>Brunner e Suddarth -<br> 
         Tratado de Enfermagem <br> 
@@ -46,6 +87,7 @@
       <td><i>R$ 38,90</i></td> 
   </tr>
     
+    
     <tr>
         <th>Combo Nicholas Sparks:<br>Um Porto Seguro<br>Um Amor Para Recordar<br>Querido John <br>
             <a href="detalhe6.html">
@@ -61,18 +103,22 @@
         
         <th>Kit Livros - Coleção Como<br>
             Treinar o Seu Dragão<br><br><br>
-            <a href="detalhe4.html">
-                <img src= "img/Livro4.jpg" alt="Livro 4" width="170" height="170">
+            <a 
+              href="detalhe4.html"><img src= "img/Livro4.jpg" alt="Livro 4" width="170" height="170">  
             </a>
         </th>
 
     </tr>
     
     <tr>
+        <esc></esc>
+        
         <td><i>R$ 26,01</i></td>
         <td><i>R$ 99,90</i></td>
         <td><i>R$ 119,90</i></td>
     </tr>
+    
+    
     
 </table>
     </div>
