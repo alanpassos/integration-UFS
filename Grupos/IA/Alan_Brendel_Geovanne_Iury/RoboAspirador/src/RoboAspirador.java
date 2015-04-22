@@ -51,6 +51,7 @@ public class RoboAspirador {
 	
 	public static void main(String[] args) 
 	{
+		//Testando commit
 		Scanner lerNome = new Scanner(System.in);
 		RoboAspirador roboAspirador = new RoboAspirador();
 		roboAspirador.adicionaVertex();
