@@ -49,11 +49,12 @@ div.content {
    text-align: center;
    /*border: 2px solid #FFFFFF;*/
    color: #FFFFFF;
-   padding: 3px 7px 2px 7px;
+   padding: 2px 7px 2px 7px;
 }
 
 #tabela tr.alt td{
     /*color: #EAF2D3;*/
+	 
 }
 /* Linha a qual se encontra em todas as separações entre as tabelas*/
 hr{

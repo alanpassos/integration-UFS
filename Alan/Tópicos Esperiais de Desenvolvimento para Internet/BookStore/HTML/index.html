@@ -3,15 +3,44 @@
 <body>
 <head>
   <meta charset="utf8">
-  <link rel="stylesheet" type="text/css" href="CSS/tabela.css"/>
-      
+  <link rel="stylesheet" type="text/css" href="CSS/principal.css"/>
+      <script src="JQ/JQuery.js"></script>
+<script>
+$(document).ready(function(){
+    $("#navFlip").mouseleave(function(){
+         $("#panel").slideToggle("slow");
+    });
+});
+</script>
+	<style> 
+#panel, #navFlip {
+    padding: 5px;
+    text-align: center;
+    background-color: #000000;
+    border: solid 1px #c3c3c3;
+	color: #ffffff;
+}
+
+#panel {
+    padding: 10px;
+    display: none;
+	color: white;
+}
+</style>
 </head>
 <div class=container>
   <div class="header"><h1 class="header">BookStore</h1></div>
+    <!-- parte onde tem um slid no qual aparece e desaparece ao passar o mouse por cima-->
+    <div class="nav">
+		<div id= "navFlip">Menu</div>
+		<div id="panel">
+			<a style="color: #ffffff" href="comentario.html" >
+				<i><b >Comentário</b></i>
+			</a>
+		</div>
+	</div>
     
-    
-    
-  <div class="content"img/icon      
+  <div class="section"
 <!-- INICIO DO PRIMEIRO MENU DE LIVROS-->
 <hr>
 
@@ -20,7 +49,7 @@
     <td>
     It: A Coisa<br>  
       <a href="detalhe1.html" >
-         <img src= "img/imagem1.jpg" alt="Livro 1" width="128" height="170">
+         <img src= "img/imagem1.jpg" alt="Livro 1" width="170" height="170">
       </a>
     </td>
     <td>
@@ -35,6 +64,26 @@
            <img src= "img/imagem3.jpg" alt="Livro 1" width="170" height="170">
         </a>
 	</td>
+	
+  </tr>
+  <tr>
+    <td>R$ 52,90</td>
+    <td>R$ 27,81</td>
+    <td>R$ 31,90</td>
+	
+	
+  </tr>
+</table>
+
+
+<!--FIM DO PRIMEIRO MENU DE LIVROS-->
+<!--INICIO DO SEGUNDO MENU DE LIVROS-->
+
+<hr>
+
+<table id="tabela">
+  
+  <tr>
 	<td>
       The Walking Dead<br>
         <a href="detalhe4.html">
@@ -54,98 +103,21 @@
            <img src= "img/imagem6.jpg" alt="Livro 1" width="170" height="170">
         </a>
 	</td>
-	<td>
-      Mares de Sangue<br>
-        <a href="detalhe7.html">
-           <img src= "img/imagem7.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
+	
 	
   </tr>
   <tr>
-    <td>R$ 52,90</td>
-    <td>R$ 27,81</td>
-    <td>R$ 31,90</td>
-	<td>R$ 36,90</td>
+    <td>R$ 36,90</td>
 	<td>R$ 30,90</td>
 	<td>R$ 23,90</td>
-	<td>R$ 30,51</td>
-	
-  </tr>
-</table>
-
-
-<!--FIM DO PRIMEIRO MENU DE LIVROS-->
-<!--INICIO DO SEGUNDO MENU DE LIVROS-->
-
-<hr>
-
-<table id="tabela">
-  
-  <tr>
-    <td>
-    Somente Sua<br>  
-      <a href="detalhe9.html" >
-         <img src= "img/imagem9.jpg" alt="Livro 1" width="128" height="170">
-      </a>
-    </td>
-    <td>
-      After<br>
-        <a href="detalhe10.html" >
-           <img src= "img/imagem10.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-      </td>
-    <td>
-      Garota Exemplar<br>
-        <a href="detalhe11.html">
-           <img src= "img/imagem11.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	<td>
-      Misery<br>
-        <a href="detalhe12.html">
-           <img src= "img/imagem12.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	<td>
-      Quatro<br>
-        <a href="detalhe13.html">
-           <img src= "img/imagem13.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	<td>
-      Os Segredos de <br> Colin Bridgerton<br>
-        <a href="detalhe14.html">
-           <img src= "img/imagem14.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	<td>
-      Outlander<br>
-        <a href="detalhe15.html">
-           <img src= "img/imagem15.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	
-	
-  </tr>
-  <tr>
-    <td>R$ 17,01</td>
-    <td>R$ 17,91</td>
-    <td>R$ 21,51</td>
-	<td>R$ 20,61</td>
-	<td>R$ 22,86</td>
-	<td>R$ 22,32</td>
-	<td>R$ 46,90</td>
 	
   </tr>
 </table>
 <hr>
-
- <a style="color: #000000" href="comentario.html" >
-	<i><b >Comentário</b></i>
-	</a>
+</div>
+ 
   </div>
-  <div class="footer"><h5>Levando sua Imaginação além dos livros.</h5></div>
+  <div class="footer">Levando sua Imaginação além dos livros.</div>
 	
 </div>
 <!--FIM DO SEGUNDO MENU DE LIVROS-->
