@@ -4,13 +4,36 @@
     <title>Comentarios</title>
 	<meta charset="Latin1"/>
 	<link rel="stylesheet" type="text/css" href="estiloSite.css" />
-	<script type = "text/javascript" src = "jquery-1.11.2.js"></script>
 	
 	<script>
-		function IsEmail() {
-			var email=document.forms["formulario"]["email"].value
-			var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-			return regex.test(email);
+		function validateForm(form) {
+			
+			var x = form.nome.value;
+			if (x == null || x == "") 
+			{
+				alert("Nome Deve Ser Preenchido!");
+				return false;
+			}
+			
+			var letras = /^[A-Za-z]+$/;  
+			if(!form.nome.value.match(letras))  
+			{  
+				alert('Nome Deve Conter Apenas Letras'); 
+				return false;   
+			}  
+						
+			var email = form.email.value;
+			if (email == null || email == "") 
+			{
+				alert("Email Deve Der Preenchido!");
+				return false;
+			}
+			var formatoEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+			if(!form.email.value.match(formatoEmail))  
+			{  
+				alert("Endereço de Email Inválido");   
+				return false;
+			}  			
 		}
 	</script>
   </head>
@@ -42,12 +65,12 @@
 			<div id="divTabelaColuna">
 				<div id="divTabelaLinha">
 					<div class="titulo">Comentários:</div>
-					<form id = "formulario" action="MAILTO:brendelsantos@gmail.com" method="post">
-					<label for="nome">Nome:</label><br>
-					<input type="text" name="nome" id="nome"><br><br>
-					<label for="email" >Email:</label><br>
-					<input type="text" id="email" name="email"><br><br>
-					<label for="comentario">Comentários:</label>
+					<form method="post" action="MAILTO:brendelsantos@gmail.com" onsubmit="return validateForm(this)" name = "formulario" >
+					Nome:
+					<input type="text" name="nome" ><br><br>
+					Email:
+					<input type="text" name="email"><br><br>
+					Comentários:
 					<TEXTAREA NAME="comentario" COLS=18 ROWS=6></TEXTAREA><br><br>
 					<input type="submit" value="Enviar" name = "enviar" class = "enviar">
 					<input type="reset" value="Reset">

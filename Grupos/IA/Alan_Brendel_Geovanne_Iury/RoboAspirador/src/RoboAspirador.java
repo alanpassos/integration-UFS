@@ -51,7 +51,7 @@ public class RoboAspirador {
 	
 	public static void main(String[] args) 
 	{
-		//Testando commit
+		
 		Scanner lerNome = new Scanner(System.in);
 		RoboAspirador roboAspirador = new RoboAspirador();
 		roboAspirador.adicionaVertex();
@@ -63,6 +63,8 @@ public class RoboAspirador {
 		roboAspirador.theGraph.setInicioFim(estadoInicial);
 		roboAspirador.theGraph.bfs();
 		roboAspirador.theGraph.geraCaminho();
+		
+		System.out.println("Estado Final: As Duas Salas Limpas");
 		
 	}
 
