@@ -3,23 +3,70 @@
   <head>
     <title>Comentarios</title>
 	<meta charset="Latin1"/>
+	<link rel="stylesheet" type="text/css" href="estiloSite.css" />
+	<script type = "text/javascript" src = "jquery-1.11.2.js"></script>
+	
+	<script>
+		function IsEmail() {
+			var email=document.forms["formulario"]["email"].value
+			var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			return regex.test(email);
+		}
+	</script>
   </head>
   <body>
-	<hr>
-	<h1>BOOKSTORE</h1><br>
-	<h2>Comentários:</h2>
-	<form action="MAILTO:brendelsantos@gmail.com" method="post">
-	<label for="nome">Nome:</label>
-	<input type="text" name="nome" id="nome"><br><br>
-	<label for="email">Email:</label>
-	<input type="text" name="mail"><br><br>
-	<label for="comentario">Comentários:</label>
-	<input type="text" name="comentario"><br><br>
-	<input type="submit" value="Enviar">
-	<input type="reset" value="Reset">
-	<hr>
-	<br><br>
-	<input type="button" value="Voltar" onClick="history.go(-1)">
-</form>
+
+	
+	<div id = "container">
+		<div id="cabecalho">
+		<h1>BOOKSTORE</h1>
+		</div>	
+	<hr id = "linhaHorizontalShadow">
+	
+
+	<div id="menu">
+		<div id="logo"><a href="BookStore.html"><img src="logoBook.png"></a></div>
+		<div id = "caixa"> Menu </div>
+		<a id="botao" href="Comentario.html">Comentários »</a>
+		<a id="botao" href ="" onClick = "history.go(-1)">Voltar »</a>
+	</div>
+	
+	<div id="secaoL">
+		<div id="divTabela">	
+			<div id="divTabelaColuna">
+				<div id="divTabelaLinha">	
+					<div class="titulo"></div>				
+				</div>
+			</div>
+			
+			<div id="divTabelaColuna">
+				<div id="divTabelaLinha">
+					<div class="titulo">Comentários:</div>
+					<form id = "formulario" action="MAILTO:brendelsantos@gmail.com" method="post">
+					<label for="nome">Nome:</label><br>
+					<input type="text" name="nome" id="nome"><br><br>
+					<label for="email" >Email:</label><br>
+					<input type="text" id="email" name="email"><br><br>
+					<label for="comentario">Comentários:</label>
+					<TEXTAREA NAME="comentario" COLS=18 ROWS=6></TEXTAREA><br><br>
+					<input type="submit" value="Enviar" name = "enviar" class = "enviar">
+					<input type="reset" value="Reset">
+					</form>
+				</div>
+			
+			</div>
+			<div id="divTabelaColuna">
+				<div id="divTabelaLinha">					 
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div id="rodape">
+			<p>BookStore &#169, 2015 </p>
+	</div>
+	</div>
+	
+
   </body>
 </html>

@@ -40,7 +40,7 @@ div.content {
    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     width: 100%;
     border-collapse: collapse;
-   text-align: center;
+   
 }
 
 
@@ -62,4 +62,13 @@ hr{
 body {
    background-image:url('fundo5.jpg');
 }
+h5{
+ color: #ffffff;
+    text-align: center;
+    
+}
+h2{
+ color: #ffffff;
+}
+
 </style>

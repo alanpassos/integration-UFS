@@ -1,0 +1,33 @@
+Assunto: Visões
+Anotação: Não armazenam os dados, apenas os scripts daquela visão.
+===============================================
+Assunto: Vantagens e objetivos de uma visão
+Anotação: 
+1) Ocultar informações que não são necessárias para um usuário, aumentando assim a segurança do sistema. 
+
+2) Permitir que alterações no banco possam ser realizadas posteriormente, permitindo que se possa alterar tabelas, pois não é fornecida as tabelas bases para os sistemas, estes ficando dependente apenas das visões. Sendo assim, o poder de alteração fica com você.
+
+4) Simplicidade. É preciso avaliar se a visão não faz mais do que você precisa, diminuindo a eficiência do banco
+
+5) Mudanças nas visões serão refletidas para todos aqueles que usam aquela mesma visão.
+======================================
+
+Assunto: Alterações na visão
+Anotação: Deve-se sempre utilizar o ALTER VIEW ao invés de realizar um DROP seguido de CREATE VIEW. Isso porque ao ALTERAR não se perde dados de permissões já existentes naquela visão
+
+==============================================
+Assunto: Visões Materializadas
+Anotação: Cria uma nova tabela provinda do resultado de uma visão. Utilizada para aumentar a eficiência. Deve-se, porém, esporadicamente, atualizar essa tabela, de maneira inteligente, notando-se modificações.
+
+=================================================
+Problematica: Tabelas muito grandes (Milhões de registros) e com grandes movimentações de consultas, inserts etc,  bytes comrrompidos.
+
+Solução: Particionar essa única tabela em várias tabelas menores e a criação de visões particionadas
+------------------
+Assunto: Visões Particionadas
+Anotação: Para se criar uma tabela particionada é necessário inserir algumas restrições. Algumas delas são restrições de data usando, por exemplo, DATETIME CHECK <intervalo de tempo> para o atributo ATR_X. Também é necessário incluir o campo cujo qual sofre a restrição na PRIMARY KEY. 
+É por meio de tal restrição que o SQL saberá identificar qual tabela deverá ser consultada.
+Também é necessário que os SELECTs da visão particionada sejam unidas por meio de um UNION ALL, também é necesário que as datas da tabela sigam uma cronologia
+
+
+

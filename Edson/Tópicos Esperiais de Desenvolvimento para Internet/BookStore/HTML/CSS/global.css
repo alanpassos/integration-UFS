@@ -1,0 +1,69 @@
+
+<style type="text/css">
+
+div.container{
+    width: 100%;
+    margin: 0px;
+    border: 1px solid DimGrey;
+    line-height: 150%
+}
+
+div.header {
+    background-color:DimGrey;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+div.nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:auto;
+    width:100px;
+    float:left;
+    padding:5px;	      
+}
+div.section {
+    width:auto;
+    float:center;
+    padding:10px;	 	 
+}
+div.footer {
+    background-color:DimGrey;
+    color:white;
+    clear:both;
+    text-align:center;
+   padding:5px;	 	 
+}
+
+div.footer2 {
+    background-color:white;
+    color:black;
+    clear:both;
+    text-align:justify;
+   padding:5px;	 	 
+}
+/*body {
+    background-image: url(biblioteca.png)
+}*/
+
+#construtor {
+    font-family: "Trebuchet MS", Arial, Helvertica, sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    /*primeira linha*/
+    /*border: 2px solid black;*/
+}
+
+#construtor td {
+    /*demais linhas*/
+    /*border: 2px solid black;*/
+    text-align: justify;
+    padding: 3px 7px 2px 7px;
+}
+
+
+
+</style>

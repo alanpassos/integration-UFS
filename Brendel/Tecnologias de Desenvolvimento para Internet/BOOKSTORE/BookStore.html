@@ -1,48 +1,66 @@
 <!DOCTYPE html>
-<html><head>
+<html><head>	
     <meta charset="utf-8"/>
     <title>BookStore</title>
 
 	<link rel="stylesheet" type="text/css" href="estiloSite.css" />
-	
+	<script type = "text/javascript" src = "jquery-1.11.2.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".btn1").click(function(){
+				$(".tabelaLivros").hide(1500);
+			});
+			$(".btn2").click(function(){
+				$(".tabelaLivros").show(1500);
+			});
+		});
+	</script>
     </head>
 
   <body>
-	<hr>
+	<div id = "container">
 		<div id="cabecalho">
-		<h1>BOOKSTORE</h1>
+			<h1>BOOKSTORE</h1>
 		</div>	
-	<hr>
-	<div id="menu">
-		<div id = "caixa"> Menu </div>
-		<a id="botao" href="Comentario.html">Comentários »</a>
-	</div>
-	<div id="secaoL">
-	<div id="divTabela">
-	
-		<div id="divTabelaLinha">
-			<div id="divTabelaColuna">
-				<div class="titulo">Fotografia digital na prática, volume 4</div>
-				<a href="Detalhes1.html"><img src="loader_img_livros.jpg"/></a> 		 
-				<p>Por: R$ 94,18</p>
-				<a id="botao" href="Detalhes1.html">Ver detalhes »</a>
-			</div>
-			
-			<div id="divTabelaColuna">
-				<div class="titulo">Adobe photoshop cs5 para fotógrafos digitais</div></h3>
-				<a href="Detalhes2.html" ><img src="loader_img_livro1.jpg"/></a> 
-				<p> Por: R$ 251,14</p>
-				<a id="botao" href="Detalhes2.html">Ver detalhes »</a> 
-			</div>
-			
-			<div id="divTabelaColuna">
-				<div class="titulo">Java como programar 8ª edição</div>
-				<a href="Detalhes3.html" ><img src="loader_img_livro2.jpg"/></a> 
-				<p>Por: R$ 328,54</p>
-				<a id="botao" href="Detalhes3.html">Ver detalhes »</a>
+		<hr id = "linhaHorizontalShadow">
+		
+		<div id="menu">
+			<div id="logo"><a href="BookStore.html"><img src="logoBook.png"></a></div>
+			<div id = "caixa"> Menu </div>
+			<a id="botao" href="Comentario.html">Comentários »</a>
+		</div>
+		<div id="secaoL">
+			<div id="divTabela" class = "tabelaLivros">
+		
+				<div id="divTabelaLinha">
+					<div id="divTabelaColuna">
+						<div class="titulo">Fotografia digital na prática, volume 4</div>
+						<a href="Detalhes1.html"><img class ="livro" src="loader_img_livros.jpg"/></a> 		 
+						<p>Por: R$ 94,18</p>
+						<a id="botao" href="Detalhes1.html">Ver detalhes »</a>
+					</div>
+					
+					<div id="divTabelaColuna">
+						<div class="titulo">Adobe photoshop cs5 para fotógrafos digitais</div></h3>
+						<a href="Detalhes2.html" ><img class ="livro" src="loader_img_livro1.jpg"/></a> 
+						<p> Por: R$ 251,14</p>
+						<a id="botao" href="Detalhes2.html">Ver detalhes »</a> 
+					</div>
+					
+					<div id="divTabelaColuna">
+						<div class="titulo">Java como programar 8ª edição</div>
+						<a href="Detalhes3.html" ><img class ="livro" src="loader_img_livro2.jpg"/></a> 
+						<p>Por: R$ 328,54</p>
+						<a id="botao" href="Detalhes3.html">Ver detalhes »</a>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+		<div id="rodape">
+			<button class="btn1">Ocultar Livros</button>
+			<button class="btn2">Mostrar Livros</button>
+			<p class = "negrito">BookStore &#169, 2015 </p>
+		</div>
 	</div>
 
 

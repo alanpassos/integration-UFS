@@ -3,25 +3,71 @@
     
     <title>Detalhes JAVA COMO PROGRAMAR 8ª EDIÇÃO</title>
 	<meta charset="Latin1"/>
+	<link rel="stylesheet" type="text/css" href="estiloSite.css" />
     </head>
 
   <body>
     
-	<hr>
-	<h1>BOOKSTORE</h1><br>
-	<h2>JAVA COMO PROGRAMAR 8ª EDIÇÃO</h2> 	 
-	<TABLE BORDER=5 CELLPADDING=5>
-	<TR>
-	<TD ROWSPAN=5><img src="loader_img_livro2.jpg"/></a</TD>
-	<TD>8ª edição</TD></TR><TR> <TD>Autor: PAUL DEITEL E HARVEY DEITEL</TD>
-	</TR><TR><TD>ISBN:	9788576055631</TD>
-	</TR><TR><TD>Páginas:	1176</TD>
-	</TR><TR><TD><p>Por: R$ 328,54</p></TD>
-	</TR>
-	</TABLE>
-    <hr>
-	<br><br>
-	<input type="button" value="Voltar" onClick="history.go(-1)">
+	<div id = "container">
+		<div id="cabecalho">
+		<h1>BOOKSTORE</h1>
+		</div>	
+	<hr id = "linhaHorizontalShadow">
+	
 
+	<div id="menu">
+		<div id="logo"><a href="BookStore.html"><img src="logoBook.png"></a></div>
+		<div id = "caixa"> Menu </div>
+		<a id="botao" href="Comentario.html">Comentários »</a>
+		<a id="botao" href ="" onClick = "history.go(-1)">Voltar »</a>
+	</div>
+	
+	<div id="secaoL">
+		<div id="divTabela">	
+			<div id="divTabelaColuna">
+				<div id="divTabelaLinha">
+					<div class="titulo"></div>
+					<a href="Detalhes1.html"><img class ="livro" src="loader_img_livro2.jpg"/></a> 		 
+				</div>
+			</div>
+			
+			<div id="divTabelaColuna">
+				<div id="divTabelaLinha">
+					<div class="titulo">Java como programar 8ª edição</div>
+					<p class = "negritoSb">Descrição do Livro:</p>
+					<p>Você tem em mãos a mais consagrada obra de introdução à programação 
+					orientada a objetos que se baseia no DEITEL® live-code para ensinar 
+					tudo o que você precisa saber sobre o Java Standard Edition 6, JDBC 4, 
+					desenvolvimento de aplicativos Web e Web Services! O Java é atualmente a 
+					mais popular lin guagem de programação. Esta nova edição completamente atualizada 
+					utiliza uma abordagem agradável e cuidadosamente compassada para o estudante desenvolver 
+					aplicativos baseados na Web e desktop. </p>
+				</div>
+			
+			</div>
+			<div id="divTabelaColuna">
+				<div id="divTabelaLinha">
+					<div class="titulo"></div>
+						
+					<p class= "negrito">8ª edição</p>
+					<hr id = "linhaHorizontalTracejada">
+					<p class= "negrito">Autor: PAUL DEITEL E HARVEY DEITEL</p>							
+					<hr id = "linhaHorizontalTracejada">
+					<p class= "negrito">ISBN:	9788576055631</p>
+					<hr id = "linhaHorizontalTracejada">
+					<p class= "negrito">Páginas:	1176</p>
+					<hr id = "linhaHorizontalTracejada">
+					<p class= "negrito">Por: R$ 328,54</p>
+					<hr id = "linhaHorizontalTracejada">
+							
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div id="rodape">
+			<p>BookStore &#169, 2015 </p>
+	</div>
+	</div>
+	
 </body>
 </html>

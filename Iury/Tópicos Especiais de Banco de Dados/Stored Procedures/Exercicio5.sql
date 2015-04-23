@@ -1,11 +1,10 @@
---1.Criar um procedimento para calcular o IMPOSTO DE RENDA a ser pago em  função de 
---uma  determinada  Renda.  O  procedimento  deve  apresentar  como  parâmetro  de  entrada  a 
---Renda,  e  como  parâmetro  de  saída  o  imposto  a  ser  pago.  Considere  as  seguintes
---informações para cálculo do imposto
---:
---Rendimentos do Trabalho
---: 15% e 27,5% conforme tabela progressiva mensal abaixo 
---reproduzida: 
+/*1.Criar um procedimento para calcular o IMPOSTO DE RENDA a ser pago em  função de uma  determinada  Renda.  O  procedimento  deve  
+apresentar  como  parâmetro  de  entrada  a Renda,  e  como  parâmetro  de  saída  o  imposto  a  ser  pago.  Considere  as  seguintes
+informações para cálculo do imposto:
+
+Rendimentos do Trabalho: 15% e 27,5% conforme tabela progressiva mensal abaixo reproduzida: 
+*/
+
 
 ALTER PROCEDURE SP_CALCULAR_IMPOSTO_RENDA (@RENDA NUMERIC(10,2), @PAGAMENTO NUMERIC(10,2) OUTPUT) AS
 IF (@RENDA < 1372.82) 
