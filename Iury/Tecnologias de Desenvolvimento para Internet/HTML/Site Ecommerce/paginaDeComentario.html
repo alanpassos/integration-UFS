@@ -3,11 +3,34 @@
   <head>
     <meta charset="utf-8">
          <link rel="stylesheet" type="text/css" href="estilo1.css"/>
+    <script type="text/javascript" src="jQuery/jquery-1.11.2.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+   $("#formComentario").pressione(function(){
+      var email = $("#email").val();
+      if(email != "")
+      {
+         var filtro = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+         if(filtro.test(email))
+         {
+	   alert("Este endereço de email é válido!");
+	   return true;
+         } else {
+           alert("Este endereço de email não é válido!");
+           return false;
+         }
+      } else {
+	 alert('Digite um email!'); return false;
+      }
+   });
+});
+</script>
     <title>Página de Comentários</title>
   </head>
   
   <body>
-    <form id="form" action="MAILTO:iurybas@gmail.com" method="post" enctype="text/plain">
+      <div>
+    <form id="formComentario" action="MAILTO:iurybas@gmail.com" method="post" enctype="text/plain">
       <h3>Faça seu comentário</h3>
       Nome:
       <input type="text" name="nome" value="Insira o seu nome">
@@ -23,12 +46,12 @@
       </textarea>
       <br>
       <br>
-        <input type="button" onclick=document.write(email.value) value="pressione">
+        <input id="pressione" type="button" value="pressione">
       <input type="submit" value="Enviar Comentário">
       <input type="reset" value="Limpar">
       <br>
       <br>
-        
+        </div>
     
       <a href="siteEcommerce.html">Retonar a página Inicial</a>
     </form> 
