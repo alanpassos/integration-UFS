@@ -3,13 +3,13 @@
 
 <head>
 	<meta charset="utf8">
-  	<link rel="stylesheet" type="text/css" href="CSS/principal.css"/>
+  	<link rel="stylesheet" type="text/css" href="CSS/detalhe.css"/>
 	<script src="JQ/JQuery.js"></script>
 
 	<script> 
 		$(document).ready(function(){
 			$("#flip").click(function(){
-				$("#panel").slideToggle("slow");
+				$("#panel").toggle("slow");
 			});
 		});
 		
@@ -76,7 +76,17 @@
 <body>
 <div class="container">
   <div class="header"><h1 class="header"> BookStore<h1></div>
-
+ <div id="panel" class="nav">
+					<div >
+						<a style="color: gray" href="index.html" >
+							<i><b ><h3>Voltar</h3></b></i>
+						</a>
+					</div>
+				</div>
+				<div id= "flip">
+					<img src= "img/seta.gif" alt="Livro 1" width="25" height="25">
+				</div>
+				<div class="section">
 <table id="tabela">
   <tr>
     <td><img src= "img/imagem3.jpg" alt="Livro 1" width="370" height="450"></td>
@@ -107,15 +117,12 @@
     
   </tr>
 </table>
+	</div>
 	
-<a href="index.html">
-			<input type="reset" value="Voltar">
-			</a>
-
+</div>
 <div class="footer">
   
   <h5>Levando sua Imaginação além dos livros.</h5>
-</div>
 </div>
 
 </body>
