@@ -1,8 +1,78 @@
 <!DOCTYPE html>
 <html>
 
-<meta charset="utf8">
-<link rel="stylesheet" type="text/css" href="CSS/detalhe.css"/>
+<head>
+	<meta charset="utf8">
+  	<link rel="stylesheet" type="text/css" href="CSS/principal.css"/>
+	<script src="JQ/JQuery.js"></script>
+
+	<script> 
+		$(document).ready(function(){
+			$("#flip").click(function(){
+				$("#panel").slideToggle("slow");
+			});
+		});
+		
+		
+	
+	
+	</script>
+	<script>
+	function validarFormulario(form)
+		{
+		var x = form.nome.value;			
+		if (x == null || x=="")
+		  {
+			  alert("O campo nome deve ser preenchido");
+			  return false;
+		  }
+			
+			var email = form.email.value;
+			var atpos=email.indexOf("@");
+			var dotpos= email.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length)
+			  {
+			  alert("Email não valido");
+			  return false;
+		  }
+					
+			var y = form.comentario.value;
+			if(y == null || y == "")
+			{
+				alert("campo comentario não foi preenchido");
+				  return false;
+				
+			}
+			
+		}
+
+		
+
+	</script>
+	<style> 
+		#panel {
+			padding: 5px;
+			text-align: center;
+			background-color: #e5eecc;
+			border: solid 1px #c3c3c3;
+			float:left;
+		}
+		#flip {
+			padding: 5px;
+			text-align: center;
+		
+			border: solid 0px #c3c3c3;
+			float:left;
+		}
+		#panel {
+			padding: 10px;
+			display: none;
+			background-color:white;
+		}
+	</style>
+	
+	
+</head>
 <body>
 <div class="container">
   <div class="header"><h1 class="header"> BookStore<h1></div>

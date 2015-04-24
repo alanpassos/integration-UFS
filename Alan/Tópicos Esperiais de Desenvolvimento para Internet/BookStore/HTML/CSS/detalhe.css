@@ -7,33 +7,34 @@ div.container {
     border: 1px solid gray;
     line-height: 150%;
 }
-/*conteúdo para o rodape */
-div.header, div.footer {
-    padding: 0.5em;
-    color: white;
-    /*background-color:#000033;*/
-    clear: left;
+div.header {
+    background-color: white;
+    color:gray;
+    text-align:center;
+    padding:1px;	 
 }
-/*conteudo que comeca com h1*/
-h1.header {
-   
-   text-align: center;
-    padding: 0;
-    margin: 0;
-}
-/*conteúdo onde vai ao lado esquerdo*/
-
-/*confiurando o  conteúdo*/
-div.content {
-    /*margin-left: 190px;*/
-    text-align: center;
-     /*borda esquerda e direita a especura*/
-    border-left: 3px solid #ffffff;
-    border-right: 3px solid #ffffff;
+div.nav {
+    line-height:30px;
     
-    padding: 1em;
+    height:500px;
+    width:100px;
+    float:left;
+    padding:5px;
+	
 }
-
+div.section {
+    width:75%;
+    float:left;
+    padding:10px;	 	 
+	
+}
+div.footer {
+    background-color:white;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
 
 
 #tabela {
@@ -47,7 +48,7 @@ div.content {
 #tabela td{
    
    /*border: 2px solid #FFFFFF;*/
-   color: #FFFFFF;
+   color: #000000;
    padding: 3px 7px 2px 7px;
 }
 
@@ -60,15 +61,15 @@ hr{
    
 }
 body {
-   background-image:url('fundo5.jpg');
+   background-image:url('branco.jpg');
 }
 h5{
- color: #ffffff;
+ color: #000000;
     text-align: center;
     
 }
 h2{
- color: #ffffff;
+ color: #000000;
 }
 
 </style>

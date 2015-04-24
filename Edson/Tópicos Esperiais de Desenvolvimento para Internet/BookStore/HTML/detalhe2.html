@@ -3,6 +3,37 @@
 <head>
 <meta charset="utf-8">
     <link rel="stylesheet"type="text/css"href="CSS/global.css">
+	<script src="jquery-2.1.3.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("#flip").click(function()
+            {
+                $("#panel").toggle();
+            });
+        });
+    </script>
+        
+        <style> 
+			#panel {
+				padding: 5px;
+				text-align: justify;
+				background-color: #e5eecc;
+				border: solid 0px #c3c3c3;
+				float:left;
+			}
+			#flip {
+				padding: 10px;
+				text-align: center;
+				border: solid 0px #c3c3c3;
+				float:left;
+			}
+			#panel {
+				padding: 20px;
+				display: none;
+				background-color:white;
+			}
+		</style>
 </head>
 <body>
 
@@ -33,9 +64,12 @@
     
   <tr>
       <td>
-          <b>Informações do produto  </b><br><br>
+		  <div id="flip">
+                            <font face="Caladea" size="4"><h4>Informações do produto</h4></font>
+                        </div>
+          <b>  </b><br> <div id="panel">
           Livro ilustrado com desenhos explícitos e didáticos, é uma obra para todos aqueles que desejam conhecer as posturas mais prazerosas, as técnicas mais seguras e inovadoras e os truques mais eficazes para proporcionar as melhores felações e cunnilingus a seu(sua) companheiro(a) sexual. Esta profunda investigação, baseada em textos rigorosos desprovidos de falsos tabus, tem um único propósito: transmitir as numerosas variantes do sexo oral - uma das práticas mais excitantes e desejadas por homens e mulheres -, para levar o(a) amante aos ápices do êxtase.
-        </td>
+		  </div></td>
   </tr>
   
 </table>

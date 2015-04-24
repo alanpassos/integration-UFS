@@ -1,49 +1,92 @@
 <!DOCTYPE html>
 <html>
 
-<meta charset="utf8">
-<link rel="stylesheet" type="text/css" href="CSS/detalhe.css"/>
+	
+<head>
+	<meta charset="utf8">
+		<link rel="stylesheet" type="text/css" href="CSS/detalhe.css"/>
+		<script src="JQ/JQuery.js"></script>
+
+		<script> 
+			$(document).ready(function(){
+				$("#flip").click(function(){
+					$("#panel").slideToggle("slow");
+				});
+			});
+
+
+
+
+		</script>
+		<style> 
+			#panel {
+				padding: 5px;
+				text-align: center;
+				background-color: #e5eecc;
+				border: solid 1px #c3c3c3;
+				float:left;
+			}
+			#flip {
+				padding: 5px;
+				text-align: center;
+
+				border: solid 0px #c3c3c3;
+				float:left;
+			}
+			#panel {
+				padding: 10px;
+				display: none;
+				background-color:white;
+			}
+		</style>	
+
+
+</head>
 <body>
-<div class="container">
-  <div class="header"><h1 class="header"> BookStore<h1></div>
-<table id="tabela">
- 
-  <tr>
-    <td><img src= "img/imagem1.jpg" alt="Livro 1" width="300" height="450"></td>
-    <td>
-      
-      <h1> It: A Coisa</h1>
-      <p><i> Durante as férias escolares de 1958,em Derry, pacata cidadezinha do Maine, <br>
-	  Bill, Richie, Stan, Mike, Eddie, Ben e Beverly aprenderam o real sentido da <br>
-	  amizade, do amor, da confiança e... do medo. O mais profundo e tenebroso medo. <br>
-	  Naquele verão, eles enfrentaram pela primeira vez a Coisa, um ser sobrenatural <br>
-	  e maligno que deixou terríveis marcas desangue em Derry.<br>
-		Quase trinta anos depois, os amigos voltam a se encontrar. Uma nova onda <br>
-		de terror tomou a pequena cidade. Mike Hanlon, o único que permanece <br>
-		em Derry, dá o sinal. Precisam unir forças novamente. A Coisa volta a atacar <br>
-		e eles devem cumprir a promessa selada com sangue que fizeram quando crianças. <br>
-		Só eles têm a chave do enigma. Só eles sabem o que se esconde nas entranhas de Derry. <br>
-		O tempo é curto, mas somente eles podem vencer a Coisa. Em It : A Coisa, clássico <br>
-		de Stephen King em nova edição, os amigos irão até o fim, mesmo que isso signifique <br>
-		ultrapassar os próprios limites.<i>
-                </p>
-                
-</td>		
-    <td><h1 >Valor: R$ 52,90</h1></td>
-  </tr>
-  <tr>
-    
-  </tr>
-</table>
-<a href="index.html">
-			<input type="reset" value="Voltar">
-			</a>
+	<div class="container">
+		  <div class="header"><h1 class="header"> BookStore<h1></div>
+			  <div id="panel" class="nav">
+					<div >
+						<a style="color: gray" href="index.html" >
+							<i><b ><h3>Voltar</h3></b></i>
+						</a>
+					</div>
+				</div>
+				<div id= "flip">
+					<img src= "img/seta.gif" alt="Livro 1" width="25" height="25">
+				</div>
+				<div class="section">
+					<table id="tabela">
 
-<div class="footer">
-  
-  <h5>Levando sua Imaginação além dos livros.</h5>
-</div>
-</div>
+					  <tr>
+							<td><img src= "img/imagem1.jpg" alt="Livro 1" width="300" height="450"></td>
+							<td>
 
+								  <h1> It: A Coisa</h1>
+								  <p><i> Durante as férias escolares de 1958,em Derry, pacata cidadezinha do Maine, <br>
+								  Bill, Richie, Stan, Mike, Eddie, Ben e Beverly aprenderam o real sentido da <br>
+								  amizade, do amor, da confiança e... do medo. O mais profundo e tenebroso medo. <br>
+								  Naquele verão, eles enfrentaram pela primeira vez a Coisa, um ser sobrenatural <br>
+								  e maligno que deixou terríveis marcas desangue em Derry.<br>
+									Quase trinta anos depois, os amigos voltam a se encontrar. Uma nova onda <br>
+									de terror tomou a pequena cidade. Mike Hanlon, o único que permanece <br>
+									em Derry, dá o sinal. Precisam unir forças novamente. A Coisa volta a atacar <br>
+									e eles devem cumprir a promessa selada com sangue que fizeram quando crianças. <br>
+									Só eles têm a chave do enigma. Só eles sabem o que se esconde nas entranhas de Derry. <br>
+									O tempo é curto, mas somente eles podem vencer a Coisa. Em It : A Coisa, clássico <br>
+									de Stephen King em nova edição, os amigos irão até o fim, mesmo que isso signifique <br>
+									ultrapassar os próprios limites.<i>
+											</p>
+
+							</td>		
+							<td><h1 >Valor: R$ 52,90</h1></td>
+					  </tr>
+
+					</table>
+				</div>
+				<div class="footer">
+					<h5>Levando sua Imaginação além dos livros.</h5>
+				</div>
+	</div>
 </body>
 </html>
