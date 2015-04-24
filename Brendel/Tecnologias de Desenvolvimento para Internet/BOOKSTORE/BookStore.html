@@ -4,16 +4,17 @@
     <title>BookStore</title>
 
 	<link rel="stylesheet" type="text/css" href="estiloSite.css" />
-	<script type = "text/javascript" src = "jquery-1.11.2.js"></script>
+	<script type = "text/javascript" src = "jquery-1.11.2.min.js"></script>
 	<script>
 		$(document).ready(function(){
 			$(".btn1").click(function(){
-				$(".tabelaLivros").hide(1500);
+				$(".tabelaLivros1").hide(1500);
 			});
 			$(".btn2").click(function(){
-				$(".tabelaLivros").show(1500);
+				$(".tabelaLivros1").show(1500);
 			});
 		});
+		
 	</script>
     </head>
 
@@ -24,14 +25,13 @@
 		</div>	
 		<hr id = "linhaHorizontalShadow">
 		
-		<div id="menu">
+		<div id="menu" class = "caixa_menu">
 			<div id="logo"><a href="BookStore.html"><img src="logoBook.png"></a></div>
-			<div id = "caixa"> Menu </div>
-			<a id="botao" href="Comentario.html">Comentários »</a>
+			<div id = "caixa" class = "menu"> Menu </div>
+			<a id="botao" class = "botaoC" href="Comentario.html">Comentários »</a>
 		</div>
 		<div id="secaoL">
-			<div id="divTabela" class = "tabelaLivros">
-		
+			<div id="divTabela" class = "tabelaLivros1">
 				<div id="divTabelaLinha">
 					<div id="divTabelaColuna">
 						<div class="titulo">Fotografia digital na prática, volume 4</div>
@@ -55,7 +55,9 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
+	
 		<div id="rodape">
 			<button class="btn1">Ocultar Livros</button>
 			<button class="btn2">Mostrar Livros</button>

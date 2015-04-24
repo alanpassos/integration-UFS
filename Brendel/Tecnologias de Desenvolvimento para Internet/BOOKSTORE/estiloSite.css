@@ -84,9 +84,9 @@ div.titulo {
 	background: #74838c;
 	text-decoration: none;
 	bottom: 0;
-
 	
 }
+
 
 body { 
 	background: url(bg.jpg) no-repeat top left; 
@@ -170,6 +170,8 @@ body {
   display:table-column;         
   width:200px;         
 }
+
+
 
 #linhaHorizontalShadow{
 	height: 12px;
