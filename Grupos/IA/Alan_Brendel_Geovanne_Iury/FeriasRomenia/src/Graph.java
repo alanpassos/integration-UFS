@@ -1,6 +1,6 @@
 class Graph
    {
-   private final int MAX_VERTS = 8;
+   private final int MAX_VERTS = 20;
    private Vertex vertexList[]; 
    private CelulaAdjacencia matrizAdjacencia[][];   
    private int numeroVerts;
@@ -16,7 +16,7 @@ class Graph
       numeroVerts = 0;
       for(int y=0; y<MAX_VERTS; y++)   
          for(int x=0; x<MAX_VERTS; x++)  
-            matrizAdjacencia[x][y].edge = 0;
+            matrizAdjacencia[x][y] = new CelulaAdjacencia(0, 0);
       
       theQueue = new Queue();
       
@@ -27,14 +27,18 @@ class Graph
       vertexList[numeroVerts++] = new Vertex(lab);
       }
 // ------------------------------------------------------------
-   public void addEdge(int inicio, int destino)
+   public void addEdge(int inicio, int destino, int custo)
       {
 	  matrizAdjacencia[inicio][destino].edge = 1;
+	  matrizAdjacencia[destino][inicio].edge = 1;
+	  matrizAdjacencia[inicio][destino].custo = custo;
+	  matrizAdjacencia[destino][inicio].custo = custo;
       }
 // ------------------------------------------------------------
-   public void setInicioFim(char posicaoInicial)
+   public void setInicioFim(char posicaoInicial, char posicaoFinal)
    	{    
 	   	this.posicaoInicial = searchPos(posicaoInicial);
+	   	this.posicaoFinal = searchPos(posicaoFinal);
 	}
 // ------------------------------------------------------------
    public int searchPos(char lab)
@@ -60,21 +64,31 @@ class Graph
 // -------------------------------------------------------------
    public void custoUniforme()                   
       {                               
-      vertexList[posicaoInicial].wasVisited = true;               
+      vertexList[posicaoInicial].wasVisited = true;
+      theQueue.setSomaCusto(0, true, 0);
       theQueue.insert(posicaoInicial);              
       int v2;
       int v1 = 0; 
 
       while((v1 != posicaoFinal) && !theQueue.isEmpty() )    
          {
-         v1 = theQueue.remove();   
+    	 theQueue.ordenaLista();
+    	 theQueue.exibeLista();
+    	 //System.out.println("---"+theQueue.remove());
+         v1 = theQueue.remove();
+        
 
          while( (v2=getAdjUnvisitedVertex(v1)) != -1  )
             {                      
+        	displayVertex(v2);
+        	System.out.println();
         	
             vertexList[v2].wasVisited = true;  
-            vertexList[v2].pai = v1;         
+            vertexList[v2].pai = v1; 
+            
+            //System.out.println(matrizAdjacencia[v1][v2].custo);
             theQueue.insert(v2);              
+            theQueue.setSomaCusto(theQueue.getSomaCusto(v1)+matrizAdjacencia[v1][v2].custo, true, v2);
             }   
          }  
 
