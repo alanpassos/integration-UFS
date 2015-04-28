@@ -36,7 +36,7 @@ public class Principal {
 		theGraph.addEdge(0, 1, 71);
 		theGraph.addEdge(0, 7, 51);
 		
-		theGraph.addEdge(1, 2, 75);
+		theGraph.addEdge(2, 1, 75);
 		theGraph.addEdge(2, 7, 140);
 		theGraph.addEdge(2, 3, 118);
 		

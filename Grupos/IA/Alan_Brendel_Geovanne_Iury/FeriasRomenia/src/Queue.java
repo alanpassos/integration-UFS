@@ -13,6 +13,7 @@ public Queue()            // constructor
    queArray = new CelulaAdjacencia[SIZE];
    for (int i = 0; i < SIZE; i++) {
 	   queArray[i] = new CelulaAdjacencia(0, 0);
+	   queArray[i].setSomaCusto(0, true);
    }
    front = 0;
    rear = -1;
@@ -28,7 +29,6 @@ public void insert(int j) // put item at rear of queue
 public int remove()       // take item from front of queue
    {
    int temp = queArray[front++].edge;
-   System.out.println("front "+front);
    if(front == SIZE)
       front = 0;
    return temp;
@@ -65,6 +65,10 @@ public void quick(int inicio, int fim) {
 			aux = queArray[i].getSomaCusto();
 			queArray[i].setSomaCusto(queArray[j].getSomaCusto());
 			queArray[j].setSomaCusto(aux);
+			
+			aux = queArray[i].edge;
+			queArray[i].edge = queArray[j].edge;
+			queArray[j].edge = (aux);
 			i++;
 			j--;
 		}
@@ -95,5 +99,6 @@ public int buscaIndice(int indice){
 	}
 	return -1;
 }
+
 
 }  // end class Queue

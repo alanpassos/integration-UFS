@@ -1,17 +1,21 @@
+import java.util.ArrayList;
+
 class Graph
    {
    private final int MAX_VERTS = 20;
    private Vertex vertexList[]; 
-   private CelulaAdjacencia matrizAdjacencia[][];   
+   private CelulaAdjacencia matrizAdjacencia[][]; 
+   private ArrayList<Caminho> caminhos; 
    private int numeroVerts;
    private Queue theQueue;
    private int posicaoFinal;
    private int posicaoInicial;
+   int indiceCaminho;
 // ------------------------------------------------------------
    public Graph()   
       {
       vertexList = new Vertex[MAX_VERTS];
-                                       
+      caminhos = new ArrayList<Caminho>();                               
       matrizAdjacencia = new CelulaAdjacencia[MAX_VERTS][MAX_VERTS];
       numeroVerts = 0;
       for(int y=0; y<MAX_VERTS; y++)   
@@ -19,7 +23,7 @@ class Graph
             matrizAdjacencia[x][y] = new CelulaAdjacencia(0, 0);
       
       theQueue = new Queue();
-      
+      indiceCaminho = 0;
       } 
 // ------------------------------------------------------------
    public void addVertex(char lab)
@@ -30,9 +34,7 @@ class Graph
    public void addEdge(int inicio, int destino, int custo)
       {
 	  matrizAdjacencia[inicio][destino].edge = 1;
-	  matrizAdjacencia[destino][inicio].edge = 1;
 	  matrizAdjacencia[inicio][destino].custo = custo;
-	  matrizAdjacencia[destino][inicio].custo = custo;
       }
 // ------------------------------------------------------------
    public void setInicioFim(char posicaoInicial, char posicaoFinal)
@@ -67,32 +69,37 @@ class Graph
       vertexList[posicaoInicial].wasVisited = true;
       theQueue.setSomaCusto(0, true, 0);
       theQueue.insert(posicaoInicial);              
-      int v2;
+      int v2 = 0;
       int v1 = 0; 
 
-      while((v1 != posicaoFinal) && !theQueue.isEmpty() )    
+      while( !theQueue.isEmpty() )    
          {
     	 theQueue.ordenaLista();
-    	 theQueue.exibeLista();
-    	 //System.out.println("---"+theQueue.remove());
          v1 = theQueue.remove();
-        
 
          while( (v2=getAdjUnvisitedVertex(v1)) != -1  )
             {                      
-        	displayVertex(v2);
-        	System.out.println();
         	
-            vertexList[v2].wasVisited = true;  
+        	vertexList[v2].wasVisited = true;
+        
+        	
             vertexList[v2].pai = v1; 
             
-            //System.out.println(matrizAdjacencia[v1][v2].custo);
-            theQueue.insert(v2);              
-            theQueue.setSomaCusto(theQueue.getSomaCusto(v1)+matrizAdjacencia[v1][v2].custo, true, v2);
-            }   
+            theQueue.insert(v2); 
+            int somaTotal = theQueue.getSomaCusto(v1)+matrizAdjacencia[v1][v2].custo;
+            theQueue.setSomaCusto(somaTotal, true, v2);
+            
+			if (v2 == posicaoFinal) {
+				caminhos.add(new Caminho(somaTotal, v1));
+			}
+
+			}
+       
+         	vertexList[posicaoFinal].wasVisited = false;
+         	         	
          }  
 
-      this.posicaoFinal = v1;
+
       for(int j=0; j<numeroVerts; j++)            
          vertexList[j].wasVisited = false;
       }  
@@ -107,15 +114,24 @@ class Graph
 // ------------------------------------------------------------
  	public void geraCaminho()
  	{	
+ 		int menor = caminhos.get(0).custoCaminho;
+ 		int pai = caminhos.get(0).pai;
+ 		for (int i = 0; i < caminhos.size(); i++) {
+			if(menor > caminhos.get(i).custoCaminho){
+				menor = caminhos.get(i).custoCaminho;
+				pai = caminhos.get(i).pai;
+			}
+		}
  		System.out.println("Caminho:");
  		int[] caminhoInverso = new int[numeroVerts];
- 		int j = this.posicaoFinal;
+ 		int j = pai;
  		int indiceArray = 0;
+ 		caminhoInverso[indiceArray] = posicaoFinal;
+ 		indiceArray++;
  		caminhoInverso[indiceArray] = j;
  		indiceArray++;
  		while(j != posicaoInicial)
  		{	
- 			
  			caminhoInverso[indiceArray] = vertexList[j].pai;
  			j = vertexList[j].pai;
  			indiceArray++;
