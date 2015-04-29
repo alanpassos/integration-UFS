@@ -18,16 +18,21 @@ namespace Exercicio2
             numero2 = Convert.ToInt32(Console.ReadLine());
 
 
-            Console.WriteLine("Soma: " + (numero1 + numero2));
-            Console.WriteLine("Subtração: " + (numero1 - numero2));
-            Console.WriteLine("Multiplicação: " + (numero1 * numero2));
-            Console.WriteLine("Divisão: " + (numero1 / numero2));
-            Console.WriteLine("Resto: " + (numero1 % numero2));
+            PrintValue(numero1, numero2);
             Console.ReadKey();
 
 
 
 
+        }
+
+        private static void PrintValue(int numero1, int numero2)
+        {
+            Console.WriteLine("Soma: " + (numero1 + numero2));
+            Console.WriteLine("Subtração: " + (numero1 - numero2));
+            Console.WriteLine("Multiplicação: " + (numero1 * numero2));
+            Console.WriteLine("Divisão: " + (numero1 / numero2));
+            Console.WriteLine("Resto: " + (numero1 % numero2));
         }
     }
 }
