@@ -2,54 +2,125 @@
 <html>
 <body>
 <head>
-<meta charset="utf8">
-<link rel="stylesheet" type="text/css" href="CSS/detalhe.css"/>
+	<meta charset="utf8">
+  	<link rel="stylesheet" type="text/css" href="CSS/principal.css"/>
+	<script src="JQ/JQuery.js"></script>
 
+	<script> 
+		$(document).ready(function(){
+			$("#flip").click(function(){
+				$("#panel").slideToggle("slow");
+			});
+		});
+		
+		
+	
+	
+	</script>
+	<script>
+	function validarFormulario(form)
+		{
+		var x = form.nome.value;			
+		if (x == null || x=="")
+		  {
+			  alert("O campo nome deve ser preenchido");
+			  return false;
+		  }
+			
+			var email = form.email.value;
+			var atpos=email.indexOf("@");
+			var dotpos= email.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length)
+			  {
+			  alert("Email não valido");
+			  return false;
+		  }
+					
+			var y = form.comentario.value;
+			if(y == null || y == "")
+			{
+				alert("campo comentario não foi preenchido");
+				  return false;
+				
+			}
+			
+		}
+
+		
+
+	</script>
+	<style> 
+		#panel {
+			padding: 5px;
+			text-align: center;
+			background-color: #e5eecc;
+			border: solid 1px #c3c3c3;
+			float:left;
+		}
+		#flip {
+			padding: 5px;
+			text-align: center;
+		
+			border: solid 0px #c3c3c3;
+			float:left;
+		}
+		#panel {
+			padding: 10px;
+			display: none;
+			background-color:white;
+		}
+	</style>
+	
+	
 </head>
 <div class="container">
-   <div class="header"><h1 class="header">BookStore</h1></div>
-<h2> Comentários:</h2>
-<hr>
+	   <div class="header"><h1 class="header">BookStore</h1></div>
+			<div id="panel" class="nav">
 
-<table id="tabela">
-  <tr>
-  <td>
-    <form action="MAILTO:alanpassossi@gmail.com" method="post" enctype="text/plain">
-	 
-		 Nome:<br>
-		 <input type="text" name="nome"><br>
-		 <br>
-		  Sexo:<br>
-			<input type="radio" name="sex" value="M" checked> Masculino <br>
-			<input type="radio" name="sex" value="F" > Feminino <br><br>
-			Nota:
-			<select name="NotaSelect">
-				<option value="0" >  0
-				<option value="1" >  1
-				<option value="2" >  2
-				<option value="3" >  3
-				<option value="4" >  4
-				<option value="5" selected>  5
-				<option value="6" >  6
-				<option value="7" >  7
-				<option value="8" >  8
-				<option value="9" >  9
-				<option value="10">  10
-			</select><br><br><br>
-		 Comentário:<br>
-		  <textarea rows="5" cols="60" name="comentario"></textarea><br><br>
-		
-			<input type="submit" value="Comentar">
-	 </form>
-	 </td>
-  </tr>
-</table>
-<hr>
+					<div >
+						<a style="color: gray" href="index.html" >
+							<i><b ><h3>Voltar</h3></b></i>
+						</a>
+					</div>
+			</div>
+			<div id= "flip">
+				<img src= "img/seta.gif" alt="Livro 1" width="25" height="25">
+			</div>
+			<div class="section"
+
+				<hr>
+
+				<table id="tabela">
+				  <tr>
+				  <td>
+					  <div id="form1">
+					<form method="post" action="MAILTO:alanpassossi@gmail.com" onsubmit="return  validarFormulario(this)"  enctype="text/plain" 								name="formulario">
+
+						 Nome:<br>
+						 <input type="text" name="nome"><br>
+						
+						 <br>
+						Email:<br>
+						 <input type="text" name="email"><br>
+						
+						 <br>
+						
+						 Comentário:<br>
+						  <textarea rows="5" cols="60" name="comentario"></textarea><br><br>
+
+							<input type="submit" value="Comentar" >
+					 </form>
+						  </div>
+					 </td>
+				  </tr>
+				</table>
+				<hr>
+			</div>
 </div>
-</div>
-	<a href="index.html">
-				<input type="submit" value="voltar"><bs>
-	</a>
+
+	
+
+	
 	
 <div class="footer"><h5>Levando sua Imaginação além dos livros.</h5></div>
 </body>

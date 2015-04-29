@@ -1,0 +1,26 @@
+
+<style type="text/css">
+
+#construtor2 {
+    font-family: "Trebuchet MS", Arial, Helvertica, sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th2 {
+    /*primeira linha*/
+    /*border: 2px solid black;*/
+    text-align: center;
+    padding: 3px 7px 2px 7px;
+}
+
+#construtor2 td2 {
+    /*demais linhas*/
+    /*border: 2px solid black;*/
+    text-align: center;
+    padding: 3px 7px 2px 7px;
+}
+
+
+
+</style>

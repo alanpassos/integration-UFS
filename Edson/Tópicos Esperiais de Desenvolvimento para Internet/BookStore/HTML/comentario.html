@@ -3,6 +3,40 @@
 <head>
 <meta charset="utf-8">
     <link rel="stylesheet"type="text/css"href="CSS/global.css">
+	
+	<script type="text/javascript">
+	function validateForm(form)
+	{
+		
+	var a=form.nome.value;
+	if (a==null || a=="")
+	  {
+	  alert("O campo nome deve ser preenchido");
+	  return false;
+	  }
+	
+	var b=form.email.value;
+	var atpos=b.indexOf("@");
+	var dotpos=b.lastIndexOf(".");
+	if (atpos<1 || dotpos<atpos+2 || dotpos+2>=b.length)
+	{
+		alert("Not a valid e-mail address");
+		return false;
+  	}
+		
+	var c=form.comentario.value;
+	if (c==null || c=="")
+	  {
+	  alert("O campo comentario deve ser preenchido");
+	  return false;
+	  }
+		
+	
+
+	}
+	</script>
+
+	
 </head>
 <body>
 
@@ -11,38 +45,26 @@
     <h1>BookStore</h1>
     </div>
 
-    <div class="nav"><a href="Index.html">Voltar</a></div>
+    <div class="nav"><a href="Index.html">Voltar</a></div><br><br>		
 
 <div class="section">
-<form action="MAILTO:edsonbl.1990@gmail.com" method="post" enctype="text/plain">
+<form action="MAILTO:edsonbl.1990@gmail.com" method="post" onsubmit="return validateForm(this)"  enctype="text/plain">
 	 
  Nome:<br>
  <input type="text" name="nome"><br>
  <br>
-  Sexo:<br>
-    <input type="radio" name="sex" value="M" checked> Masculino <br>
-    <input type="radio" name="sex" value="F" > Feminino <br><br>
-    Nota:
-    <select name="NotaSelect">
-        <option value="0" >  0
-        <option value="1" >  1
-        <option value="2" >  2
-        <option value="3" >  3
-        <option value="4" >  4
-        <option value="5" selected>  5
-        <option value="6" >  6
-        <option value="7" >  7
-        <option value="8" >  8
-        <option value="9" >  9
-        <option value="10">  10
-    </select><br><br><br>
+e-mail:<br>
+ <input type="text" name="email"><br>
+ <br>
+
  Comentário:<br>
   <textarea rows="5" cols="60" name="comentario"></textarea><br><br>
 
     <input type="submit" value="Comentar">
 </form>
         </div>
-    <div class="footer">Mostrando que cada livro tem seu sabor.</div>
+    
 </div>
+	<div class="footer">Mostrando que cada livro tem seu sabor.</div>
 </body>
 </html>

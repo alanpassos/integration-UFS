@@ -2,123 +2,133 @@
 <html>
 <body>
 <head>
-  <meta charset="utf8">
-  <link rel="stylesheet" type="text/css" href="CSS/principal.css"/>
-      <script src="JQ/JQuery.js"></script>
-<script>
-$(document).ready(function(){
-    $("#navFlip").mouseleave(function(){
-         $("#panel").slideToggle("slow");
-    });
-});
-</script>
-	<style> 
-#panel, #navFlip {
-    padding: 5px;
-    text-align: center;
-    background-color: #000000;
-    border: solid 1px #c3c3c3;
-	color: #ffffff;
-}
+  	<meta charset="utf8">
+  	<link rel="stylesheet" type="text/css" href="CSS/principal.css"/>
+	<script src="JQ/JQuery.js"></script>
 
-#panel {
-    padding: 10px;
-    display: none;
-	color: white;
-}
-</style>
+	<script> 
+		$(document).ready(function(){
+			$("#flip").click(function(){
+				$("#panel").toggle("slow");
+			});
+		});
+	</script>
+	<style> 
+		#panel {
+			padding: 5px;
+			text-align: center;
+			background-color: #e5eecc;
+			border: solid 1px #c3c3c3;
+			float:left;
+		}
+		#flip {
+			padding: 5px;
+			text-align: center;
+		
+			border: solid 0px #c3c3c3;
+			float:left;
+		}
+		#panel {
+			padding: 10px;
+			display: none;
+			background-color:white;
+		}
+	</style>
 </head>
 <div class=container>
-  <div class="header"><h1 class="header">BookStore</h1></div>
-    <!-- parte onde tem um slid no qual aparece e desaparece ao passar o mouse por cima-->
-    <div class="nav">
-		<div id= "navFlip">Menu</div>
-		<div id="panel">
-			<a style="color: #ffffff" href="comentario.html" >
-				<i><b >Comentário</b></i>
-			</a>
-		</div>
+	  <div class="header"><h1 class="header">BookStore</h1></div>
+		<!-- parte onde tem um slid no qual aparece e desaparece ao passar o mouse por cima-->
+	
+			<div id="panel" class="nav">
+				
+				<div >
+					<a style="color: gray" href="comentario.html" >
+						<i><b >Comentário</b></i>
+					</a>
+				</div>
+			</div>
+	<div id= "flip">
+		<img src= "img/seta.gif" alt="Livro 1" width="25" height="25">
 	</div>
-    
-  <div class="section"
-<!-- INICIO DO PRIMEIRO MENU DE LIVROS-->
-<hr>
+	  <div class="section"
+	<!-- INICIO DO PRIMEIRO MENU DE LIVROS-->
+	<hr>
 
-<table id="tabela">
-  <tr>
-    <td>
-    It: A Coisa<br>  
-      <a href="detalhe1.html" >
-         <img src= "img/imagem1.jpg" alt="Livro 1" width="170" height="170">
-      </a>
-    </td>
-    <td>
-      A Teoria de Tudo<br>
-        <a href="detalhe2.html" >
-           <img src= "img/imagem2.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-      </td>
-    <td>
-      Doutor Sono<br>
-        <a href="detalhe3.html">
-           <img src= "img/imagem3.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	
-  </tr>
-  <tr>
-    <td>R$ 52,90</td>
-    <td>R$ 27,81</td>
-    <td>R$ 31,90</td>
-	
-	
-  </tr>
-</table>
+	<table id="tabela">
+	  <tr>
+		<td>
+		It: A Coisa<br>  
+		  <a href="detalhe1.html" >
+			 <img src= "img/imagem1.jpg" alt="Livro 1" width="290" height="290">
+		  </a>
+		</td>
+		<td>
+		  A Teoria de Tudo<br>
+			<a href="detalhe2.html" >
+			   <img src= "img/imagem2.jpg" alt="Livro 1" width="290" height="290">
+			</a>
+		  </td>
+		<td>
+		  Doutor Sono<br>
+			<a href="detalhe3.html">
+			   <img src= "img/imagem3.jpg" alt="Livro 1" width="290" height="290">
+			</a>
+		</td>
+
+	  </tr>
+	  <tr>
+		<td>R$ 52,90</td>
+		<td>R$ 27,81</td>
+		<td>R$ 31,90</td>
 
 
-<!--FIM DO PRIMEIRO MENU DE LIVROS-->
-<!--INICIO DO SEGUNDO MENU DE LIVROS-->
+	  </tr>
+	</table>
 
-<hr>
 
-<table id="tabela">
-  
-  <tr>
-	<td>
-      The Walking Dead<br>
-        <a href="detalhe4.html">
-           <img src= "img/imagem4.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	
-	<td>
-      Os Três<br>
-        <a href="detalhe5.html">
-           <img src= "img/imagem5.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	<td>
-      Não se Apega Não<br>
-        <a href="detalhe6.html">
-           <img src= "img/imagem6.jpg" alt="Livro 1" width="170" height="170">
-        </a>
-	</td>
-	
-	
-  </tr>
-  <tr>
-    <td>R$ 36,90</td>
-	<td>R$ 30,90</td>
-	<td>R$ 23,90</td>
-	
-  </tr>
-</table>
-<hr>
-</div>
- 
-  </div>
-  <div class="footer">Levando sua Imaginação além dos livros.</div>
-	
+	<!--FIM DO PRIMEIRO MENU DE LIVROS-->
+	<!--INICIO DO SEGUNDO MENU DE LIVROS-->
+
+	<hr>
+
+	<table id="tabela">
+
+	  <tr>
+		<td>
+		  The Walking Dead<br>
+			<a href="detalhe4.html">
+			   <img src= "img/imagem4.jpg" alt="Livro 1" width="290" height="290">
+			</a>
+		</td>
+
+		<td>
+		  Os Três<br>
+			<a href="detalhe5.html">
+			   <img src= "img/imagem5.jpg" alt="Livro 1" width="290" height="290">
+			</a>
+		</td>
+		<td>
+		  Não se Apega Não<br>
+			<a href="detalhe6.html">
+			   <img src= "img/imagem6.jpg" alt="Livro 1" width="290" height="290">
+			</a>
+		</td>
+
+
+	  </tr>
+	  <tr>
+		<td>R$ 36,90</td>
+		<td>R$ 30,90</td>
+		<td>R$ 23,90</td>
+
+	  </tr>
+	</table>
+	<hr>
+	</div>
+
+	  </div>
+	  <div class="footer">Levando sua Imaginação além dos livros.</div>
+
 </div>
 <!--FIM DO SEGUNDO MENU DE LIVROS-->
 

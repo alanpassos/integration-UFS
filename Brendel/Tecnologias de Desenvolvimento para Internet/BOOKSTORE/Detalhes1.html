@@ -4,7 +4,18 @@
     <title>Detalhes Fotografia digital na prática</title>
 	<meta charset="Latin1"/>
 	<link rel="stylesheet" type="text/css" href="estiloSite.css" />
-	
+	<script type = "text/javascript" src = "jquery-1.11.2.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(".btn1").click(function(){
+				$(".tabelaLivros1").hide(1500);
+			});
+			$(".btn2").click(function(){
+				$(".tabelaLivros1").show(1500);
+			});
+		});
+		
+	</script>
     </head>
 
   <body>
@@ -23,7 +34,7 @@
 	</div>
 	
 	<div id="secaoL">
-		<div id="divTabela">	
+		<div id="divTabela" class = "tabelaLivros1">	
 			<div id="divTabelaColuna">
 				<div id="divTabelaLinha">
 					<div class="titulo"></div>
@@ -62,6 +73,8 @@
 		</div>
 	</div>
 	<div id="rodape">
+			<button class="btn1">Ocultar Livro</button>
+			<button class="btn2">Mostrar Livro</button>
 			<p>BookStore &#169, 2015 </p>
 	</div>
 	</div>

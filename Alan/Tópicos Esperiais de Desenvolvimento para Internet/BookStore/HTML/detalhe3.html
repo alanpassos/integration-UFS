@@ -1,12 +1,92 @@
 <!DOCTYPE html>
 <html>
 
-<meta charset="utf8">
-<link rel="stylesheet" type="text/css" href="CSS/detalhe.css"/>
+<head>
+	<meta charset="utf8">
+  	<link rel="stylesheet" type="text/css" href="CSS/detalhe.css"/>
+	<script src="JQ/JQuery.js"></script>
+
+	<script> 
+		$(document).ready(function(){
+			$("#flip").click(function(){
+				$("#panel").toggle("slow");
+			});
+		});
+		
+		
+	
+	
+	</script>
+	<script>
+	function validarFormulario(form)
+		{
+		var x = form.nome.value;			
+		if (x == null || x=="")
+		  {
+			  alert("O campo nome deve ser preenchido");
+			  return false;
+		  }
+			
+			var email = form.email.value;
+			var atpos=email.indexOf("@");
+			var dotpos= email.lastIndexOf(".");
+		if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length)
+			  {
+			  alert("Email não valido");
+			  return false;
+		  }
+					
+			var y = form.comentario.value;
+			if(y == null || y == "")
+			{
+				alert("campo comentario não foi preenchido");
+				  return false;
+				
+			}
+			
+		}
+
+		
+
+	</script>
+	<style> 
+		#panel {
+			padding: 5px;
+			text-align: center;
+			background-color: #e5eecc;
+			border: solid 1px #c3c3c3;
+			float:left;
+		}
+		#flip {
+			padding: 5px;
+			text-align: center;
+		
+			border: solid 0px #c3c3c3;
+			float:left;
+		}
+		#panel {
+			padding: 10px;
+			display: none;
+			background-color:white;
+		}
+	</style>
+	
+	
+</head>
 <body>
 <div class="container">
   <div class="header"><h1 class="header"> BookStore<h1></div>
-
+ <div id="panel" class="nav">
+					<div >
+						<a style="color: gray" href="index.html" >
+							<i><b ><h3>Voltar</h3></b></i>
+						</a>
+					</div>
+				</div>
+				<div id= "flip">
+					<img src= "img/seta.gif" alt="Livro 1" width="25" height="25">
+				</div>
+				<div class="section">
 <table id="tabela">
   <tr>
     <td><img src= "img/imagem3.jpg" alt="Livro 1" width="370" height="450"></td>
@@ -37,15 +117,12 @@
     
   </tr>
 </table>
+	</div>
 	
-<a href="index.html">
-			<input type="reset" value="Voltar">
-			</a>
-
+</div>
 <div class="footer">
   
   <h5>Levando sua Imaginação além dos livros.</h5>
-</div>
 </div>
 
 </body>

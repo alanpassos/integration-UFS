@@ -3,6 +3,37 @@
 <head>
 <meta charset="utf-8">
     <link rel="stylesheet"type="text/css"href="CSS/global.css">
+	<script src="jquery-2.1.3.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $("#flip").click(function()
+            {
+                $("#panel").toggle();
+            });
+        });
+    </script>
+        
+        <style> 
+			#panel {
+				padding: 5px;
+				text-align: justify;
+				background-color: #e5eecc;
+				border: solid 0px #c3c3c3;
+				float:left;
+			}
+			#flip {
+				padding: 10px;
+				text-align: center;
+				border: solid 0px #c3c3c3;
+				float:left;
+			}
+			#panel {
+				padding: 20px;
+				display: none;
+				background-color:white;
+			}
+		</style>
 </head>
 <body>
 
@@ -33,7 +64,11 @@
     
   <tr>
       <td>
-          <b>Informações do produto  </b><br><br>
+          <div id="flip">
+                            <font face="Caladea" size="4"><h4>Informações do produto</h4></font>
+                        </div>
+          <br>
+		  <div id="panel">
          <b><i>Livro - Combo Nicholas Sparks: Um Porto Seguro / Um Amor Para Recordar / Querido John</i></b><br><br>
 Três grandes sucessos do autor Nicholas Sparks estão reunidos neste combo que a Editora Novo Conceito fez especialmente para você. São histórias para guardar para sempre!<br><br>
 
@@ -53,7 +88,8 @@ Nenhum menino havia a convidado para sair. Nem Landon havia sonhado com isso. Em
 
 Querido John narra a história de um jovem soldado americano, John, que se apaixona por Savannah uma estudante conservadora. Quando Savannah Lynn Curtis entra em sua vida, John Tyree sabe que está pronto para começar de novo. Ele, um jovem rebelde, se alista no exército logo após terminar a escola, sem saber o que faria de sua vida. Então, durante sua licença, ele conhece Savannah, a garota de seus sonhos.<br>
 A atração mútua cresce rapidamente e logo transforma-se em um tipo de amor que faz com que Savannah jure esperá-lo concluir seus deveres militares. Mas ninguém pôde prever que os atentados de 11 de Setembro pudessem mudar o mundo todo. E como muitos homens e mulheres corajosos, John deveria escolher entre seu amor por Savannah e seu país. Agora, quando ele finalmente retorna para Carolina do Norte, John descobre como o amor pode nos transformar de uma forma que jamais poderíamos imaginar.<br>
-        </td>
+		  </div>
+	  </td>
   </tr>
   
 </table>
