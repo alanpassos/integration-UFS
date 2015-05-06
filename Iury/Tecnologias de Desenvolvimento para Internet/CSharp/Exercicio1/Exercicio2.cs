@@ -21,6 +21,7 @@ namespace ConsoleApplication2
             Console.WriteLine("Subtração de número A e número B: {0}", numeroA - numeroB);
             Console.WriteLine("Multiplicação do número B pelo número A: {0}", numeroA * numeroB);
             Console.WriteLine("Divisão entre número A e número B: {0}", numeroA - numeroB);
+            Console.ReadKey();
         }
     }
 }
