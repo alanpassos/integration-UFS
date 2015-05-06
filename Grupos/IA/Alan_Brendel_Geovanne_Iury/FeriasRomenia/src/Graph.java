@@ -85,10 +85,11 @@ class Graph
         	
             vertexList[v2].pai = v1; 
             
-            theQueue.insert(v2); 
+           
             int somaTotal = theQueue.getSomaCusto(v1)+matrizAdjacencia[v1][v2].custo;
-            theQueue.setSomaCusto(somaTotal, true, v2);
             
+            theQueue.insert(v2); 
+            theQueue.setSomaCusto(somaTotal, true, v2);
 			if (v2 == posicaoFinal) {
 				caminhos.add(new Caminho(somaTotal, v1));
 			}
