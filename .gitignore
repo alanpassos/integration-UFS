@@ -192,3 +192,6 @@ ModelManifest.xml
 /Alan/Redes/Conexao/*.classpath
 /Alan/Redes/Conexao/*.project
 /Alan/Redes/Conexao/*
+/Alan/Redes/NewConect/*.project
+/Alan/Redes/NewConect/*
+/Alan/Redes/NewConect/*.classpath
