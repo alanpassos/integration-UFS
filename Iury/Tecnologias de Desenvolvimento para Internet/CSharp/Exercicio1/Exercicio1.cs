@@ -10,10 +10,10 @@ namespace ConsoleApplication2
     {
         static void Main(string[] args)
         {
-            Console.Write("Informe o seu nome: ");
+            Console.Write("Por favor, informe o seu nome: ");
             string nome = Console.ReadLine();
 
-            Console.WriteLine("Seu nome: {0}\n", nome);
+            Console.WriteLine("Seu nome é {0}", nome);
             Console.ReadKey();
         }
     }
