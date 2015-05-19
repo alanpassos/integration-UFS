@@ -9,15 +9,20 @@ public class Vertice {
 	private int heuristica;
 	private int funcaoF;
 	private boolean expandido;
+	private boolean visitado;
+	
 	private ArrayList<Aresta> aresta;
+	private int indice;
 	
 	public Vertice(char label) {
+		this.indice = 0;
 		this.label = label;
 		this.heuristica = 0;
 		this.funcaoF = 0;
 		this.pai = null;
 		this.custoMinimo = 0;
 		this.expandido = false;
+		this.visitado = false;
 		this.aresta = new ArrayList<Aresta>();
 	}
 
@@ -80,4 +85,21 @@ public class Vertice {
 	public void setHeuristica(int heuristica) {
 		this.heuristica = heuristica;
 	}
+	public boolean isVisitado() {
+		return visitado;
+	}
+
+	public void setVisitado(boolean visitado) {
+		this.visitado = visitado;
+	}
+	
+	public int getIndice() {
+		return indice;
+	}
+
+	public void setIndice(int indice) {
+		this.indice = indice;
+	}
+
+
 }

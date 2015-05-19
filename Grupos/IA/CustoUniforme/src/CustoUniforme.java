@@ -2,10 +2,56 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 
 public class CustoUniforme {
 
+	public void largura(Vertice inicial){
+		Comparator<Vertice> custoComparator = new CustoComparator();
+		PriorityQueue<Vertice> filaVertice = new PriorityQueue<Vertice>(10, custoComparator);
+		filaVertice.add(inicial);
+		inicial.setVisitado(true);
+
+		while (!filaVertice.isEmpty()) {
+			Vertice atual = filaVertice.poll();
+
+			System.out.println("Raiz " + atual.getLabel());
+			for (Aresta aresta : atual.getAresta()) {
+				if (!aresta.getDestino().isVisitado()) {
+					Vertice expandido = aresta.getDestino();
+					expandido.setVisitado(true);
+					expandido.setPai(atual);
+					filaVertice.add(expandido);
+				}
+			}
+		}
+
+	}
+	
+	public void profundidade(Vertice inicial){
+		Stack<Vertice> pilhaVertice = new Stack<Vertice>();
+		pilhaVertice.push(inicial);
+		inicial.setVisitado(true);
+		int[] indice = new int[20];
+		while ( !pilhaVertice.isEmpty() ){
+			Vertice atual = pilhaVertice.peek();
+			if(indice[atual.getIndice()] >= atual.getAresta().size()){
+				indice[atual.getIndice()] = 0;
+				pilhaVertice.pop();
+			}
+			else{
+				if(!atual.getAresta().get(indice[atual.getIndice()]).getDestino().isVisitado()){
+					atual.getAresta().get(indice[atual.getIndice()]).getDestino().setVisitado(true);
+					atual.getAresta().get(indice[atual.getIndice()]).getDestino().setPai(pilhaVertice.peek());
+					pilhaVertice.push(atual.getAresta().get(indice[atual.getIndice()]).getDestino());
+				}
+				indice[atual.getIndice()]++;
+			}
+	
+		}
+	}
+	
 	public void custoUniforme(Vertice inicial){
 		Comparator<Vertice> custoComparator = new CustoComparator();
 		PriorityQueue<Vertice> filaVertice = new PriorityQueue<Vertice>(10, custoComparator);
@@ -62,6 +108,43 @@ public class CustoUniforme {
 		}
 	}
 	
+	public void Guloso(Vertice inicial, Vertice finalVertice){	
+		Vertice atual = inicial;
+		while(atual != finalVertice ){
+			int heuristicaMenor = atual.getAresta(0).getDestino().getHeuristica();
+			Vertice noMelhor = null;
+			for(Aresta aresta : atual.getAresta()){
+				if(heuristicaMenor >= aresta.getDestino().getHeuristica()){
+					heuristicaMenor = aresta.getDestino().getHeuristica();
+					noMelhor = aresta.getDestino();
+				}
+			}
+			noMelhor.setPai(atual);
+			atual = noMelhor;
+		}
+	
+	}
+	
+	public void hillClimbing(Vertice inicial, Vertice finalVertice){
+		Vertice atual = inicial;
+		while(inicial != finalVertice){
+			int heuristicaMenor = atual.getAresta(0).getDestino().getHeuristica();
+			Vertice noMelhor = null;
+			System.out.println(atual.getLabel());	
+			for(Aresta aresta : atual.getAresta()){
+				if(heuristicaMenor >= aresta.getDestino().getHeuristica()){
+					heuristicaMenor = aresta.getDestino().getHeuristica();
+					noMelhor = aresta.getDestino();
+				}
+			}
+			if(noMelhor.getHeuristica() > atual.getHeuristica()){
+				return;
+			}
+			atual = noMelhor;
+		}
+		
+	}
+	
 	public ArrayList<Vertice> geraCaminho(Vertice verticeFinal){
 		ArrayList<Vertice> caminho = new ArrayList<Vertice>();
 		while(verticeFinal != null){
@@ -116,9 +199,30 @@ public class CustoUniforme {
 		v18.setHeuristica(151);
 		v19.setHeuristica(161);
 
-		v0.setAresta(new Aresta(v1, 75));
+		v0.setIndice(0);
+		v1.setIndice(1);
+		v2.setIndice(2);
+		v3.setIndice(3);
+		v4.setIndice(4); 
+		v5.setIndice(5);
+		v6.setIndice(6);
+		v7.setIndice(7);
+		v8.setIndice(8);
+		v9.setIndice(9);
+		v10.setIndice(10);
+		v11.setIndice(11);
+		v12.setIndice(12);
+		v13.setIndice(13);
+		v14.setIndice(14);
+		v15.setIndice(15);
+		v16.setIndice(16);
+		v17.setIndice(17);
+		v18.setIndice(18);
+		v19.setIndice(19);
+		
 		v0.setAresta(new Aresta(v2, 118));
 		v0.setAresta( new Aresta(v3, 140));
+		v0.setAresta(new Aresta(v1, 75));
 		v1.setAresta(new Aresta(v4, 71));
 		v4.setAresta(new Aresta(v3, 151));
 		v3.setAresta( new Aresta(v10, 99));
@@ -141,7 +245,11 @@ public class CustoUniforme {
 		v18.setAresta( new Aresta(v19, 86));
 
 		//c.custoUniforme(v0);
-		c.AStar(v0, v12);
+		//c.AStar(v0, v12);
+		//c.hillClimbing(v0, v12);
+		//c.Guloso(v0, v12);
+		//c.largura(v0);
+		c.profundidade(v0);
 		for (Vertice vertice : c.geraCaminho(v12)) {
 			System.out.print(vertice.getLabel());
 		}
