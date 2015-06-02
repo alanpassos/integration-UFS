@@ -1,0 +1,66 @@
+---------------------------------------------------------------------------------------------
+-- CRIAÇÃO DE TABELAS COM CHAVES DE UNICIDADES
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+-- DA PARA TER UNIQUE EM CPF MAS ELE SÓ PODE ASSUMIR UM VALOR NULL
+---------------------------------------------------------------------------------------------
+
+CREATE DATABASE TRIGGER_AULA3
+USE TRIGGER_AULA3
+
+DROP TABLE TB_FUNCIONARIO
+CREATE TABLE TB_FUNCIONARIO(
+MATRICULA INT NOT NULL, 
+NOME VARCHAR(45), 
+TELEFONE INT NOT NULL,
+CPF VARCHAR(15) NULL
+)
+
+ALTER TABLE TB_FUNCIONARIO ADD CONSTRAINT PK_TB_FUNCIONARIO PRIMARY KEY (MATRICULA)
+
+---------------------------------------------------------------------------------------------
+----------------------------------/TRIGGER/--------------------------------------------------
+ALTER TRIGGER TG_VALIDAR_CPF ON TB_FUNCIONARIO
+AFTER INSERT, UPDATE
+AS
+	DECLARE @MATRICULA INT,@CPF INT
+	DECLARE C_VALIDAR CURSOR FOR
+	 SELECT MATRICULA,CPF FROM inserted 
+
+
+	OPEN C_VALIDAR
+	FETCH C_VALIDAR INTO @MATRICULA,@CPF
+	WHILE(@@FETCH_STATUS = 0)
+		BEGIN			
+		DECLARE @MENSAGEM_ERRO VARCHAR(50)
+				IF((SELECT MATRICULA FROM TB_FUNCIONARIO WHERE CPF = @CPF AND MATRICULA <> @MATRICULA) IS NOT NULL)
+					BEGIN
+						SET @MENSAGEM_ERRO='FUNCIONARIO : '+ CONVERT(VARCHAR,(@MATRICULA))+' JA ESTA CADASTRADO NO SISTEMA';
+							RAISERROR(@MENSAGEM_ERRO,1,1)
+								ROLLBACK
+					END
+		
+			FETCH C_VALIDAR INTO @MATRICULA,@CPF
+		END
+	CLOSE C_VALIDAR
+	DEALLOCATE C_VALIDAR
+------------------------------------------
+
+-- INSERT'S
+------------------------------------------
+INSERT INTO TB_FUNCIONARIO VALUES(1,'ALAN',123456,123)
+INSERT INTO TB_FUNCIONARIO VALUES(5,'BRENDEL',123456,123)
+INSERT INTO TB_FUNCIONARIO VALUES(3,'BRENDEL',123456,null)
+INSERT INTO TB_FUNCIONARIO VALUES(4,'BRENDEL',123456,null)
+
+TRUNCATE TABLE TB_FUNCIONARIO
+
+TRUNCATE TABLE TB_FUNCIONARIO
+SELECT * FROM TB_FUNCIONARIO
+
+
+
+
+
+
+
