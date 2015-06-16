@@ -1,10 +1,11 @@
-
+CREATE DATABASE TDI
+USE TDI
 
 
 -- -----------------------------------------------------
 -- Table TipoQuarto
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS TipoQuarto 
+DROP TABLE  TipoQuarto 
 GO
 CREATE TABLE TipoQuarto (
   idTipoQuarto INT NOT NULL,
@@ -19,7 +20,7 @@ GO
 -- -----------------------------------------------------
 -- Table Quarto
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Quarto 
+DROP TABLE  Quarto 
 GO
 CREATE TABLE Quarto (
   idQuarto INT IDENTITY(1,1) NOT NULL,
@@ -52,7 +53,7 @@ go
 -- -----------------------------------------------------
 -- Table Cargo
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Cargo 
+DROP TABLE  Cargo 
 GO
 CREATE TABLE  Cargo (
   idCargo INT NOT NULL,
@@ -67,7 +68,7 @@ go
 -- -----------------------------------------------------
 -- Table Pessoa
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Pessoa 
+DROP TABLE  Pessoa 
 GO
 CREATE TABLE Pessoa (
   idPessoa INT IDENTITY(1,1) NOT NULL,
@@ -110,7 +111,7 @@ go
 -- -----------------------------------------------------
 -- Table Usuario
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Usuario 
+DROP TABLE  Usuario 
 GO
 CREATE TABLE Usuario (
   idUsuario INT IDENTITY(1,1) NOT NULL,
@@ -139,7 +140,7 @@ go
 -- -----------------------------------------------------
 -- Table PacoteHospedagem
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS PacoteHospedagem 
+DROP TABLE  PacoteHospedagem 
 go
 CREATE TABLE PacoteHospedagem (
   idPacoteHospedagem INT IDENTITY(1,1) NOT NULL,
@@ -159,7 +160,7 @@ GO
 -- -----------------------------------------------------
 -- Table Pendencia
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Pendencia 
+DROP TABLE  Pendencia 
 GO
 CREATE TABLE  Pendencia (
   idPendencia INT IDENTITY(1,1) NOT NULL,
@@ -188,7 +189,7 @@ go
 -- -----------------------------------------------------
 -- Table FormaPagamento
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS FormaPagamento 
+DROP TABLE  FormaPagamento 
 go
 CREATE TABLE FormaPagamento (
   idFormaPagamento INT NOT NULL,
@@ -204,7 +205,7 @@ go
 -- -----------------------------------------------------
 -- Table Produto
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Produto 
+DROP TABLE  Produto 
 go
 CREATE TABLE Produto (
   idProduto INT IDENTITY(1,1) NOT NULL,
@@ -221,7 +222,7 @@ CREATE TABLE Produto (
 -- -----------------------------------------------------
 -- Table Hospedagem
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Hospedagem 
+DROP TABLE  Hospedagem 
 
 CREATE TABLE Hospedagem (
   idHospedagem INT IDENTITY(1,1) NOT NULL,
@@ -254,7 +255,7 @@ create index idx_fk_quarto on Hospedagem (idQuarto)
 -- -----------------------------------------------------
 -- Table Item
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Item 
+DROP TABLE  Item 
 go
 CREATE TABLE Item (
   idItem INT IDENTITY(1,1) NOT NULL,
@@ -285,7 +286,7 @@ go
 -- -----------------------------------------------------
 -- Table Servico
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Servico 
+DROP TABLE  Servico 
 go
 CREATE TABLE Servico (
   idServico INT IDENTITY(1,1) NOT NULL,
@@ -300,7 +301,7 @@ go
 -- -----------------------------------------------------
 -- Table ControleServico
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS ControleServico 
+DROP TABLE  ControleServico 
 go
 CREATE TABLE ControleServico (
   idHospedagem INT NOT NULL,
@@ -335,7 +336,7 @@ go
 -- -----------------------------------------------------
 -- Table Pagamento
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Pagamento 
+DROP TABLE  Pagamento 
 GO
 CREATE TABLE Pagamento (
   numeroParcela INT IDENTITY(1,1) NOT NULL,
@@ -372,7 +373,7 @@ go
 -- -----------------------------------------------------
 -- Table HistoricoAcesso
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS HistoricoAcesso 
+DROP TABLE  HistoricoAcesso 
 GO
 CREATE TABLE HistoricoAcesso (
   idHistoricoAcesso INT IDENTITY(1,1) NOT NULL,
@@ -403,7 +404,7 @@ go
 -- -----------------------------------------------------
 -- Table ControleCliente
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS ControleCliente 
+DROP TABLE  ControleCliente 
 GO
 CREATE TABLE ControleCliente (
   idCliente INT NOT NULL,
@@ -428,7 +429,7 @@ alter table ControleCliente add constraint pk_controle_cliente primary key (idHo
 -- -----------------------------------------------------
 -- Table Historico
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS Historico 
+DROP TABLE  Historico 
 
 CREATE TABLE Historico (
   idHistorico INT IDENTITY(1,1) NOT NULL,
