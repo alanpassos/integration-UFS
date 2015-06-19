@@ -1,6 +1,6 @@
 alan
 *controle servico
-*servico
+*servico falta controller e view
 *pessoa
 
 edson

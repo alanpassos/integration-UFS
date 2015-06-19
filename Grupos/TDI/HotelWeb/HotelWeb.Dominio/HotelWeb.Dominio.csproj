@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Pessoa.cs" />
+    <Compile Include="Classes\Servico.cs" />
     <Compile Include="Interfaces\IPessoas.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
+    <Compile Include="Interfaces\IServico.cs" />
     <Compile Include="Interfaces\IUnidadeTrabalho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

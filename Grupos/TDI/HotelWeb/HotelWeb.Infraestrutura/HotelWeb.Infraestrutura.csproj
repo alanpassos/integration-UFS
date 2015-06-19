@@ -63,10 +63,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\Exemplo.cs" />
-    <Compile Include="Database\IExemplo.cs" />
+    <Compile Include="Database\HotelWeb.cs" />
+    <Compile Include="Database\IHotelWeb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio\Pessoas.cs" />
+    <Compile Include="Repositorio\Servicos.cs" />
     <Compile Include="UnidadeTrabalho.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,15 +75,6 @@
       <Project>{0be4325b-f0c6-4032-8ef2-1e551ff7f266}</Project>
       <Name>HotelWeb.Dominio</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="HotelWebBD.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HotelWebBD_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>HotelWebBD.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -105,8 +97,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <EntityDeploy Include="Database\HotelWebEDM.edmx">
-      <LastGenOutput>HotelWebEDM.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>HotelWeb.Dominio</CustomToolNamespace>
+      <CustomToolNamespace>HotelWeb.Dominio.Classes</CustomToolNamespace>
     </EntityDeploy>
     <None Include="Database\HotelWebEDM.edmx.diagram">
       <DependentUpon>HotelWebEDM.edmx</DependentUpon>

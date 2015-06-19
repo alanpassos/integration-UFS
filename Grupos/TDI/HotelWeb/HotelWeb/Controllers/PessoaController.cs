@@ -11,7 +11,7 @@ namespace HotelWeb.Controllers
 {
     public class PessoaController : Controller
     {
-        public IExemplo IExemplo { get; set; }
+        public IHotelWeb IHotelWeb { get; set; }
         public IPessoas pessoas { get; set; }
 
         // GET: Pessoa
@@ -25,14 +25,6 @@ namespace HotelWeb.Controllers
             return View();
         }
 
-        public ActionResult Inserir3()
-        {
-            return View();
-        }
-        public ActionResult Inserir2()
-        {
-            return View();
-        }
 
         // GET: Usuario/Details/5
         public ActionResult Detalhar(int id)

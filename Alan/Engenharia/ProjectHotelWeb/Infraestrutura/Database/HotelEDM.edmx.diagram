@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8b38cb17a4274b389629e9ebb9691755" Name="Diagram1">
+        <EntityTypeShape EntityType="dbtdihotelModel.Cargo" Width="1.5" PointX="1.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.ControleCliente" Width="1.5" PointX="2.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.FormaPagamento" Width="1.5" PointX="5.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Historico" Width="1.5" PointX="8.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.HistoricoAcesso" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Hospedagem" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Item" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Pagamento" Width="1.5" PointX="8" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Pessoa" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Produto" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Quarto" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Servico" Width="1.5" PointX="3.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.TipoQuarto" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.Usuario" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbtdihotelModel.ControleServico" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="dbtdihotelModel.fk_cargo" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_forma_pagamento" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_hospedagem" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_hospedagemquarto" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_produto" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_funcionario" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_Pessoa" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_tipo_quarto" ManuallyRouted="false" />
+        <AssociationConnector Association="dbtdihotelModel.fk_servico" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="aima-core" modificationStamp="8632" version="1.2">
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.max"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.theories.suppliers"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.manipulation"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.manipulation(Filterable.class[Filterable" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.manipulation(Filter.class[Filter" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.manipulation(Sortable.class[Sortable" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.manipulation(Sorter.class[Sorter" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(RuleChain.class[RuleChain" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(TestWatcher.class[TestWatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(Verifier.class[Verifier" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(ExternalResource.class[ExternalResource" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(TestWatchman.class[TestWatchman" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(TestRule.class[TestRule" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(TestName.class[TestName" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(MethodRule.class[MethodRule" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(Timeout.class[Timeout" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(ExpectedException.class[ExpectedException" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(ErrorCollector.class[ErrorCollector" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.rules(TemporaryFolder.class[TemporaryFolder" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(Protectable.class[Protectable" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(Test.class[Test" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(JUnit4TestAdapter.class[JUnit4TestAdapter" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(TestFailure.class[TestFailure" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(AssertionFailedError.class[AssertionFailedError" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(JUnit4TestCaseFacade.class[JUnit4TestCaseFacade" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(TestSuite.class[TestSuite" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(JUnit4TestAdapterCache.class[JUnit4TestAdapterCache" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(Assert.class[Assert" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(TestListener.class[TestListener" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(TestResult.class[TestResult" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(ComparisonFailure.class[ComparisonFailure" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.framework(TestCase.class[TestCase" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.internal"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners.rules"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.results"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners.model"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.builders"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.builders(JUnit4Builder.class[JUnit4Builder" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.builders(JUnit3Builder.class[JUnit3Builder" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.builders(IgnoredBuilder.class[IgnoredBuilder" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.builders(AnnotatedBuilder.class[AnnotatedBuilder" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.builders(AllDefaultPossibilitiesBuilder.class[AllDefaultPossibilitiesBuilder" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.textui"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.textui(TestRunner.class[TestRunner" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.textui(ResultPrinter.class[ResultPrinter" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.extensions"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.extensions(TestDecorator.class[TestDecorator" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.extensions(RepeatedTest.class[RepeatedTest" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.extensions(TestSetup.class[TestSetup" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners.statements"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.notification"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.notification(Failure.class[Failure" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.notification(RunListener.class[RunListener" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner.notification(RunNotifier.class[RunNotifier" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners.model"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners.model(FrameworkMember.class[FrameworkMember" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners.model(FrameworkField.class[FrameworkField" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners.model(FrameworkMethod.class[FrameworkMethod" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal(InexactComparisonCriteria.class[InexactComparisonCriteria" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal(ExactComparisonCriteria.class[ExactComparisonCriteria" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal(RealSystem.class[RealSystem" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal(JUnitSystem.class[JUnitSystem" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal(TextListener.class[TextListener" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal(ComparisonCriteria.class[ComparisonCriteria" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;junit.runner"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(BaseDescription.class[BaseDescription" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(CoreMatchers.class[CoreMatchers" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(Description.class[Description" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(StringDescription.class[StringDescription" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(Condition.class[Condition" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(CustomMatcher.class[CustomMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(CustomTypeSafeMatcher.class[CustomTypeSafeMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(TypeSafeMatcher.class[TypeSafeMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(FeatureMatcher.class[FeatureMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(TypeSafeDiagnosingMatcher.class[TypeSafeDiagnosingMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(BaseMatcher.class[BaseMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(Matcher.class[Matcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(SelfDescribing.class[SelfDescribing" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest(DiagnosingMatcher.class[DiagnosingMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.theories"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.theories(ParameterSupplier.class[ParameterSupplier" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.theories(ParameterSignature.class[ParameterSignature" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.requests"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.categories"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners(ClassRoadie.class[ClassRoadie" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners(TestMethod.class[TestMethod" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners(JUnit4ClassRunner.class[JUnit4ClassRunner" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners(SuiteMethod.class[SuiteMethod" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners(MethodRoadie.class[MethodRoadie" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners(MethodValidator.class[MethodValidator" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners(JUnit38ClassRunner.class[JUnit38ClassRunner" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.runners(TestClass.class[TestClass" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners(BlockJUnit4ClassRunner.class[BlockJUnit4ClassRunner" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners(ParentRunner.class[ParentRunner" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners(JUnit4.class[JUnit4" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners(Parameterized.class[Parameterized" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runners(Suite.class[Suite" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.theories.internal"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.matchers"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.internal.matchers"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.experimental.runners"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.core"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.core(StringStartsWith.class[StringStartsWith" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.core(SubstringMatcher.class[SubstringMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.core(AnyOf.class[AnyOf" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.core(StringContains.class[StringContains" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.core(ShortcutCombination.class[ShortcutCombination" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.core(CombinableMatcher.class[CombinableMatcher" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/hamcrest-core-1.3.jar&lt;org.hamcrest.core(StringEndsWith.class[StringEndsWith" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner(JUnitCore.class[JUnitCore" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner(Result.class[Result" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner(Describable.class[Describable" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner(Request.class[Request" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner(Runner.class[Runner" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner(Computer.class[Computer" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aima-core/lib\/junit\/junit-4.11.jar&lt;org.junit.runner(Description.class[Description" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+</component>

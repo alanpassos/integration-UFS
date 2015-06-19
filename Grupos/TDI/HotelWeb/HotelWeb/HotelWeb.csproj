@@ -46,7 +46,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="StructureMap">
-      <HintPath>..\..\Solution3\Dll\StructureMap.dll</HintPath>
+      <HintPath>..\..\..\..\..\web-projetoExemplo\ExemploWEB\Properties\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -89,10 +89,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\HotelWebBD.mdf" />
-    <Content Include="App_Data\HotelWebBD_log.ldf">
-      <DependentUpon>HotelWebBD.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\materialize.css" />
@@ -116,10 +112,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Pessoa\Editar.cshtml" />
-    <Content Include="Views\Pessoa\Inserir.cshtml" />
-    <Content Include="Views\Pessoa\Remover.cshtml" />
-    <Content Include="Views\Pessoa\Detalhar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AppConfig.cs" />
@@ -136,6 +128,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Pessoa\Index.cshtml" />
+    <Content Include="Views\Pessoa\Editar.cshtml" />
+    <Content Include="Views\Pessoa\Inserir.cshtml" />
+    <Content Include="Views\Pessoa\Detalhar.cshtml" />
+    <Content Include="Views\Pessoa\Remover.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -12,16 +12,16 @@ namespace HotelWeb.Infraestrutura.Repositorio
     public class Pessoas : IPessoas
     {
         private IQueryable<Pessoa> pessoas;
-        private IExemplo unidadeTrabalho;
+        private IHotelWeb unidadeTrabalho;
 
-        private Pessoas(IQueryable<Pessoa> pessoas, IExemplo unidadeTrabalho)
+        private Pessoas(IQueryable<Pessoa> pessoas, IHotelWeb unidadeTrabalho)
         {
             this.pessoas = pessoas;
             this.unidadeTrabalho = unidadeTrabalho;
         }
 
-        public Pessoas(IExemplo iExemplo, IExemplo unidadeTrabalho) : 
-               this(iExemplo.Pessoas, unidadeTrabalho) { }
+        public Pessoas(IHotelWeb iHotelWeb, IHotelWeb unidadeTrabalho) :
+            this(iHotelWeb.Pessoas, unidadeTrabalho) { }
 
         public void Cadastrar(Pessoa pessoa)
         {
@@ -43,7 +43,7 @@ namespace HotelWeb.Infraestrutura.Repositorio
 
         public Pessoa ResultadoUnico(int idPessoa)
         {
-            return pessoas.SingleOrDefault(f => f.id == idPessoa);
+            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa);
         }
 
         public ICollection<Pessoa> Listar()

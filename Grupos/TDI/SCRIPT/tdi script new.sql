@@ -1,6 +1,7 @@
-CREATE DATABASE TDI
-USE TDI
-
+CREATE drop DATABASE tdinew
+go
+USE tdinew
+go
 
 -- -----------------------------------------------------
 -- Table TipoQuarto
@@ -410,7 +411,7 @@ CREATE TABLE ControleCliente (
   idCliente INT NOT NULL,
   idHospedagem INT NOT NULL)
 go
-alter table ControleCliente add constraint pk_controle_cliente primary key (idHospedagem)
+alter table ControleCliente add constraint pk_controle_cliente primary key (idHospedagem,idCliente)
 
  create index idx_fk_hospedagem on ControleCliente (idHospedagem )
  create index idx_fkcliente on ControleCliente(idCliente )

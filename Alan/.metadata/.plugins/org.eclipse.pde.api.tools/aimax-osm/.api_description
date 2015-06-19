@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="aimax-osm" modificationStamp="9754" version="1.2">
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors(CompressorInputStream.class[CompressorInputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors(CompressorOutputStream.class[CompressorOutputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors(CompressorStreamFactory.class[CompressorStreamFactory" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.cpio"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.cpio(CpioArchiveEntry.class[CpioArchiveEntry" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.cpio(CpioArchiveInputStream.class[CpioArchiveInputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.cpio(CpioArchiveOutputStream.class[CpioArchiveOutputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.cpio(CpioConstants.class[CpioConstants" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.tar"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.tar(TarArchiveOutputStream.class[TarArchiveOutputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.tar(TarArchiveEntry.class[TarArchiveEntry" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.tar(TarArchiveInputStream.class[TarArchiveInputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.tar(TarConstants.class[TarConstants" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.tar(TarBuffer.class[TarBuffer" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ZipArchiveEntry.class[ZipArchiveEntry" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(AbstractUnicodeExtraField.class[AbstractUnicodeExtraField" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(UnicodePathExtraField.class[UnicodePathExtraField" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ZipLong.class[ZipLong" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ZipArchiveInputStream.class[ZipArchiveInputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ZipFile.class[ZipFile" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(AsiExtraField.class[AsiExtraField" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(UnrecognizedExtraField.class[UnrecognizedExtraField" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ZipExtraField.class[ZipExtraField" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ZipShort.class[ZipShort" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ExtraFieldUtils.class[ExtraFieldUtils" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ZipArchiveOutputStream.class[ZipArchiveOutputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(ZipUtil.class[ZipUtil" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(GeneralPurposeBit.class[GeneralPurposeBit" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(UnicodeCommentExtraField.class[UnicodeCommentExtraField" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(UnsupportedZipFeatureException.class[UnsupportedZipFeatureException" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(UnixStat.class[UnixStat" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(JarMarker.class[JarMarker" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.zip(UnparseableExtraFieldData.class[UnparseableExtraFieldData" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.jar"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.jar(JarArchiveEntry.class[JarArchiveEntry" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.jar(JarArchiveInputStream.class[JarArchiveInputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors.bzip2"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors.bzip2(BZip2CompressorInputStream.class[BZip2CompressorInputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors.bzip2(BZip2Constants.class[BZip2Constants" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors.bzip2(BZip2CompressorOutputStream.class[BZip2CompressorOutputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers(ArchiveOutputStream.class[ArchiveOutputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers(ArchiveInputStream.class[ArchiveInputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers(ArchiveStreamFactory.class[ArchiveStreamFactory" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers(ArchiveEntry.class[ArchiveEntry" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.changes"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.changes(ChangeSetResults.class[ChangeSetResults" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.changes(ChangeSetPerformer.class[ChangeSetPerformer" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.changes(ChangeSet.class[ChangeSet" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.compressors.gzip"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.utils"/>
+    </package>
+    <package visibility="1">
+        <fragment handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.ar"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.ar(ArArchiveInputStream.class[ArArchiveInputStream" modificationStamp="-1" restrictions="0" visibility="0"/>
+        <type handle="=aimax-osm/lib\/commons-compress-1.1.jar&lt;org.apache.commons.compress.archivers.ar(ArArchiveEntry.class[ArArchiveEntry" modificationStamp="-1" restrictions="0" visibility="0"/>
+    </package>
+</component>
