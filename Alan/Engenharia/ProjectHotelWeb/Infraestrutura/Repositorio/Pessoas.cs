@@ -23,7 +23,7 @@ namespace Infraestrutura.Repositorio
         }
 
         public Pessoas(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
-            this(iHotelWeb.Pessoas, unidadeTrabalho) { }
+            this(iHotelWeb.Funcionarios, unidadeTrabalho) { }
 
         public void Cadastrar(Pessoa pessoa)
         {
@@ -45,12 +45,21 @@ namespace Infraestrutura.Repositorio
 
         public Pessoa ResultadoUnico(int idPessoa)
         {
-            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa);
+            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa && p.isFuncionario == false);
         }
-
         public ICollection<Pessoa> Listar()
         {
-            return pessoas.OrderBy(p => p.nome).ToList();
+            return pessoas.Where(p => p.isFuncionario ==false).ToList();
+                //OrderBy(p => p.nome).ToList();
+        }
+
+        public Pessoa ResultadoUnicoFuncionario(int idPessoa)
+        {
+            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa && p.isFuncionario);
+        }
+        public ICollection<Pessoa> ListarFuncionario()
+        {
+            return pessoas.Where(p => p.isFuncionario == true).ToList();
         }
 
         public bool ContemRegistro()

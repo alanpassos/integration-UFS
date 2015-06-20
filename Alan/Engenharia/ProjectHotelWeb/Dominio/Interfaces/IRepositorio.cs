@@ -11,6 +11,7 @@ namespace Dominio.Interfaces
     public interface IRepositorio<T> : IRepositorio where T : class
     {
         ICollection<T> Listar();
+        
         bool ContemRegistro();
         int TotalRegistros();
     }
