@@ -47,6 +47,7 @@
     <Compile Include="Classes\HistoricoAcesso.cs" />
     <Compile Include="Classes\Hospedagem.cs" />
     <Compile Include="Classes\Item.cs" />
+    <Compile Include="Classes\PacoteHospedagem.cs" />
     <Compile Include="Classes\Pagamento.cs" />
     <Compile Include="Classes\Pessoa.cs" />
     <Compile Include="Classes\Produto.cs" />
@@ -55,13 +56,14 @@
     <Compile Include="Classes\TipoQuarto.cs" />
     <Compile Include="Classes\Usuario.cs" />
     <Compile Include="Interfaces\ICargos.cs" />
-    <Compile Include="Interfaces\IControleCLiente.cs" />
+    <Compile Include="Interfaces\IControleClientes.cs" />
     <Compile Include="Interfaces\IControleServicos.cs" />
     <Compile Include="Interfaces\IFormaPagamentos.cs" />
     <Compile Include="Interfaces\IHistoricoAcessos.cs" />
     <Compile Include="Interfaces\IHistoricos.cs" />
     <Compile Include="Interfaces\IHospedagens.cs" />
     <Compile Include="Interfaces\IItens.cs" />
+    <Compile Include="Interfaces\IPacoteHospedagens.cs" />
     <Compile Include="Interfaces\IPagamentos.cs" />
     <Compile Include="Interfaces\IPessoas.cs" />
     <Compile Include="Interfaces\IProdutos.cs" />

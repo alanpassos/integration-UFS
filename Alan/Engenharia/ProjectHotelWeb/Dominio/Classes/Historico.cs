@@ -13,5 +13,8 @@ namespace Dominio.Classes
        public string descricao { get; set; }
        public string observacao { get; set; }
        public DateTime dataCadastro { get; set; }
+
+       public virtual Pessoa Usuario { get; set; }
+
     }
 }

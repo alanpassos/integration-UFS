@@ -21,7 +21,7 @@ namespace Infraestrutura.Database
         DbSet<Cargo> Cargos { get; }
 
         DbSet<Hospedagem> Hospedagens { get; }
-        DbSet<ControleCliente> ControleCLientes { get;  }
+        DbSet<ControleCliente> ControleClientes { get;  }
         DbSet<Usuario> Usuarios { get; }
 
         DbSet<Pagamento> Pagamentos { get; }
@@ -31,5 +31,7 @@ namespace Infraestrutura.Database
         DbSet<TipoQuarto> TipoQuartos { get; }
         DbSet<Item> Itens { get; }
         DbSet<HistoricoAcesso> HistoricoAcessos { get; }
+
+        DbSet<PacoteHospedagem> PacoteHospedagens { get;  }
     }
 }

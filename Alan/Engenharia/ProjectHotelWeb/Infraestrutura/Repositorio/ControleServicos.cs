@@ -43,7 +43,7 @@ namespace Infraestrutura.Repositorio
 
         public ControleServico ResultadoUnico(int idServico)
         {
-            return controleServicos.SingleOrDefault(c => c.idServido== idServico);
+            return controleServicos.SingleOrDefault(c => c.idServico== idServico);
         }
 
         public ICollection<ControleServico> Listar()

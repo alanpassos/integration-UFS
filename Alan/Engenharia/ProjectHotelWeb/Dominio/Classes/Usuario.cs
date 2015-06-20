@@ -15,5 +15,13 @@ namespace Dominio.Classes
        public DateTime dataCadastro { get; set; }
        public bool ativo { get; set; }
        public string nivelAcesso { get; set; }
+
+
+       public virtual List<Historico> Historico { get; set; }
+       public virtual List<HistoricoAcesso> HistoricoAcesso { get; set; }
+       public virtual Pessoa Pessoa { get; set; }
+
+       
+
     }
 }

@@ -12,7 +12,7 @@ namespace Infraestrutura.Database
   public  class ProjectHotel: UnidadeTrabalho, IProjectHotel
     {
       public ProjectHotel()
-          : base("name=dbtdihotelEntities")
+          : base("name=dbtdinewhotelEntities")
         {
 
         }
@@ -25,7 +25,7 @@ namespace Infraestrutura.Database
         public DbSet<Cargo> Cargos { get; set; }
 
         public DbSet<Hospedagem> Hospedagens { get; set; }
-        public DbSet<ControleCliente> ControleCLientes { get; set; }
+        public DbSet<ControleCliente> ControleClientes { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
         public DbSet<Pagamento> Pagamentos { get; set; }
@@ -35,6 +35,8 @@ namespace Infraestrutura.Database
         public DbSet<TipoQuarto> TipoQuartos { get; set; }
         public DbSet<Item> Itens { get; set; }
         public DbSet<HistoricoAcesso> HistoricoAcessos { get; set; }
+
+        public DbSet<PacoteHospedagem> PacoteHospedagens { get; set; }
 
     }
 }

@@ -9,10 +9,12 @@ namespace Dominio.Classes
    public class Produto
     {
        public int idProduto { get; set; }
-       public double tamanho { get; set; }
+       public decimal tamanho { get; set; }
        public int quantidade { get; set; }
        public string descricao { get; set; }
        public string observacao { get; set; }
-       public double valor { get; set; }
+       public decimal valor { get; set; }
+
+       public virtual List<Item> Item { get; set; }
     }
 }

@@ -11,7 +11,9 @@ namespace Dominio.Classes
        public int idServico { get; set; }
        public string descricao { get; set; }
        public string observacao { get; set; }
-       public double valor { get; set; }
+       public decimal valor { get; set; }
        public bool ativo { get; set; }
+
+       public virtual List<ControleServico> ControleServico { get; set; }
     }
 }

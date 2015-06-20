@@ -14,7 +14,12 @@ namespace Dominio.Classes
        public DateTime dataCadastro { get; set; }
        public DateTime dataPrevista { get; set; }
        public DateTime dataPagamento { get; set; }
-       public double valorParcela{ get; set; }
+       public decimal valorParcela{ get; set; }
        public string status { get; set; }
+
+
+       public virtual FormaPagamento FormaPagamento { get; set; }
+
+       public virtual PacoteHospedagem PacoteHospedagem{ get; set; }
     }
 }

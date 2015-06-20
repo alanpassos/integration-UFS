@@ -15,8 +15,22 @@ namespace Dominio.Classes
        public DateTime dataLiberacao { get; set; }
        public string placaVeiculo { get; set; }
        public string observacao { get; set; }
-       public double valorHospedagem { get; set; }
+       public decimal valorHospedagem { get; set; }
        public bool aberto { get; set; }
+
+
+       public virtual List<ControleCliente> ControleCliente { get; set; }
+       public virtual List<Item> Item { get; set; }
+       public virtual List<ControleServico> ControleServico { get; set; }
+       
+       
+       
+       
+       public virtual PacoteHospedagem PacoteHospedagem { get; set; }
+       public virtual Quarto Quarto { get; set; }
+
+       
+
 
     }
 }

@@ -14,6 +14,6 @@ public    class Cargo
     public string observacao { get; set; }
     public bool ativo { get; set; }
 
-    public virtual Pessoa pessoa { get; set; }
+    public virtual List<Pessoa> Pessoa { get; set; }
     }
 }

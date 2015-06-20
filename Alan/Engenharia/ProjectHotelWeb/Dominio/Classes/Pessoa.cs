@@ -29,9 +29,10 @@ namespace Dominio.Classes
         public bool ativo { get; set; }
         public bool isFuncionario { get; set; }
 
-        public virtual List<Cargo> cargos { get; set; }
-        public virtual ControleServico controleServico{ get; set; }
-        public virtual Usuario usuario { get; set; }
+        public virtual Cargo Cargo { get; set; }
+        public virtual List<ControleCliente> ControleCliente{ get; set; }
+        public virtual List<Usuario> Usuario { get; set; }
+        public virtual List<ControleServico> ControleServico { get; set; }
 
     }
 }
