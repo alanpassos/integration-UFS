@@ -5,6 +5,7 @@ using Dominio.Interfaces;
 using Infraestrutura.Database;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,8 +50,8 @@ namespace Infraestrutura.Repositorio
         }
         public ICollection<Pessoa> Listar()
         {
-            return pessoas.Where(p => p.isFuncionario ==false).ToList();
-                //OrderBy(p => p.nome).ToList();
+            return pessoas.Where(p => p.isFuncionario == false && p.ativo == true).OrderBy(p=> p.nome).ToList();
+            //OrderBy(p => p.nome).ToList();
         }
 
         public Pessoa ResultadoUnicoFuncionario(int idPessoa)
@@ -59,7 +60,8 @@ namespace Infraestrutura.Repositorio
         }
         public ICollection<Pessoa> ListarFuncionario()
         {
-            return pessoas.Where(p => p.isFuncionario == true).ToList();
+
+            return   pessoas.Where(p => p.isFuncionario == true && p.ativo == true).OrderBy(p => p.nome).ToList();
         }
 
         public bool ContemRegistro()

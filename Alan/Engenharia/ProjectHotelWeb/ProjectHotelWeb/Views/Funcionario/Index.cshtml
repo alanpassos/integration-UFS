@@ -7,24 +7,29 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Insert")
 </p>
 <table class="table">
     <tr>
 
         <th>
-            Cargo
+            #
         </th>
+
+        
         <th>
             Nome
         </th>
-        
+
 
         <th>
-         Celular
+            Celular
         </th>
         <th>
             E-mail
+        </th>
+        <th>
+            Cargo
         </th>
         <th>
             CEP
@@ -34,13 +39,15 @@
         </th>
         <th></th>
     </tr>
-
+    
     @foreach (var item in Model)
     {
         <tr>
+
             <td>
-                @Html.DisplayFor(modelItem => item.idCargo)
+                @Html.DisplayFor(modelItem => item.idPessoa)
             </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.nome)
             </td>
@@ -50,13 +57,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.emailPimario)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo.descricao)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cep)
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "Update", new { id = item.idPessoa }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>

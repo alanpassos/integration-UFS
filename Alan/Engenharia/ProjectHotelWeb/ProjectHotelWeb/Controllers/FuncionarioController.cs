@@ -14,11 +14,29 @@ namespace ProjectHotelWeb.Controllers
         // GET: Funcionario
         public IProjectHotel IAcademic { get; set; }
         public IPessoas iFuncionarios { get; set; }
-        public ICargos cargos { get; set; }
+        public ICargos iCargos { get; set; }
         // GET: Pessoa
         public ActionResult Index()
         {
+
             List<Pessoa> funcionarios = iFuncionarios.ListarFuncionario().ToList<Pessoa>();
+            List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
+
+            foreach (var item in funcionarios)
+            {
+                foreach (var car in cargos)
+                {
+                    if (item.idCargo == car.idCargo)
+                    {
+
+                        item.Cargo = car;
+
+                    }
+                }
+            }
+
+
+
             return View(funcionarios);
         }
 
@@ -31,12 +49,15 @@ namespace ProjectHotelWeb.Controllers
         {
             funcionario.dataCadastro = DateTime.Now;
             funcionario.ativo = true;
+            funcionario.isFuncionario = true;
+
             iFuncionarios.Cadastrar(funcionario);
             return RedirectToAction("Index");
         }
-        public ActionResult Update(int idFuncionario)
+        public ActionResult Update(int id)
         {
-            Pessoa funcionario = iFuncionarios.ResultadoUnico(idFuncionario);
+            Pessoa funcionario = iFuncionarios.ResultadoUnicoFuncionario(id);
+            funcionario.Cargo = iCargos.ResultadoUnico(funcionario.idCargo);
             return View(funcionario);
         }
         public ActionResult Edit(Pessoa funcionario)
