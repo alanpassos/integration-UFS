@@ -22,18 +22,7 @@ namespace ProjectHotelWeb.Controllers
             List<Pessoa> funcionarios = iFuncionarios.ListarFuncionario().ToList<Pessoa>();
             List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
 
-            foreach (var item in funcionarios)
-            {
-                foreach (var car in cargos)
-                {
-                    if (item.idCargo == car.idCargo)
-                    {
-
-                        item.Cargo = car;
-
-                    }
-                }
-            }
+           
 
 
 
