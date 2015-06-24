@@ -195,3 +195,6 @@ ModelManifest.xml
 /Alan/Redes/NewConect/*.project
 /Alan/Redes/NewConect/*
 /Alan/Redes/NewConect/*.classpath
+/Grupos/TDI/ProjectHotelWeb/ProjectHotelWeb/_bin_deployableAssemblies
+/Grupos/TDI/ProjectHotelWeb/Infraestrutura/Database/*.diagram
+/Grupos/TDI/ProjectHotelWeb/Infraestrutura/Database/*.edmx
