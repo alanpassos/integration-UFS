@@ -58,7 +58,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.dataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.dataNascimento, new { htmlAttributes = new { @class = "datepicker" } })
                 @Html.ValidationMessageFor(model => model.dataNascimento, "", new { @class = "text-danger" })
             </div>
         </div>
