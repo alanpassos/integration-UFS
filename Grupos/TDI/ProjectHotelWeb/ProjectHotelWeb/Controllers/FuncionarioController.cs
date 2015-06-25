@@ -22,10 +22,6 @@ namespace ProjectHotelWeb.Controllers
             List<Pessoa> funcionarios = iFuncionarios.ListarFuncionario().ToList<Pessoa>();
             List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
 
-           
-
-
-
             return View(funcionarios);
         }
 
@@ -55,6 +51,22 @@ namespace ProjectHotelWeb.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Delete(int id)
+        {
+            Pessoa funcionario = iFuncionarios.ResultadoUnicoFuncionario(id);
+
+            return View(funcionario);
+        }
+
+        public ActionResult Excluir(Pessoa funcionario)
+        {
+            funcionario.ativo = false;
+            iFuncionarios.Atualizar(funcionario);
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
