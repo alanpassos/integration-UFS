@@ -3,6 +3,7 @@ alan
 *servico falta controller e view
 *pessoa
 
+
 edson
 *produto
 *cargo
@@ -12,6 +13,7 @@ brendel
 *historicoAcesso
 *item
 *tipoQuarto
+*pacoteHospedagem
 
 geovane
 *pagamento
