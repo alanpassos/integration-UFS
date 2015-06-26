@@ -1,7 +1,4 @@
-Drop database dbtdinewhotel
-go
-create database dbtdinewhotel
-go
+
 use dbtdinewhotel
 -- -----------------------------------------------------
 -- Table TipoQuarto
@@ -169,12 +166,13 @@ CREATE TABLE FormaPagamento (
   descricao VARCHAR(45) NOT NULL,
   observacao VARCHAR(45) NULL,
   numeroMaximoParcela INT NOT NULL,
+  tipo varchar(30) not null,
   ativo BIT NOT NULL DEFAULT 1)
 
 go 
 alter table FormaPagamento add constraint pk_forma_pagamento primary key (idFormaPagamento)
 go
-
+ 
 -- -----------------------------------------------------
 -- Table Produto
 -- -----------------------------------------------------
