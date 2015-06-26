@@ -40,9 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Cargo.cs" />
+    <Compile Include="Classes\Cliente.cs" />
     <Compile Include="Classes\ControleCliente.cs" />
     <Compile Include="Classes\ControleServico.cs" />
     <Compile Include="Classes\FormaPagamento.cs" />
+    <Compile Include="Classes\Funcionario.cs" />
     <Compile Include="Classes\Historico.cs" />
     <Compile Include="Classes\HistoricoAcesso.cs" />
     <Compile Include="Classes\Hospedagem.cs" />

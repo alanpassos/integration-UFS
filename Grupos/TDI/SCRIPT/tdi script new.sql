@@ -4,16 +4,16 @@ USE
 [master]
 GO
 ALTER
-DATABASE dbtdinewhotel SET multi_USER WITH ROLLBACK IMMEDIATE
+DATABASE dbtdihotel SET multi_USER WITH ROLLBACK IMMEDIATE
 GO
 ALTER
-DATABASE dbtdinewhotel SET multi_USER
+DATABASE dbtdihotel SET multi_USER
 go
 --- deletando banco e criando um novo
 
-Drop database dbtdinewhotel
+Drop database dbtdihotel
 go
-create database dbtdinewhotel
+create database dbtdihotel
 go
 use dbtdinewhotel
 -- -----------------------------------------------------
@@ -437,3 +437,47 @@ alter table Historico
 add constraint fk_usuario_hitorico
 foreign key (idUsuario)
 references   Usuario (idUsuario)
+go
+
+drop view Cliente
+go
+CREATE VIEW Cliente AS
+ SELECT idPessoa,nome, 
+  cpfCnpj,
+  rg ,
+  dataNascimento ,
+  estadoCivil ,
+  telefoneFixo ,
+  telefoneMovel ,
+  emailPimario ,
+  emailSecundario ,
+  bairro ,
+  cidade ,
+  rua ,
+  numero ,
+  cep ,
+  dataCadastro ,
+  ativo  FROM Pessoa WHERE isFuncionario = 0 
+GO
+drop view Funcionario
+go
+CREATE VIEW Funcionario AS
+ SELECT idPessoa,idCargo,
+ nome, 
+  cpfCnpj,
+  rg ,
+  dataNascimento ,
+  estadoCivil ,
+  telefoneFixo ,
+  telefoneMovel ,
+  emailPimario ,
+  emailSecundario ,
+  salario,
+  bairro ,
+  cidade ,
+  rua ,
+  numero ,
+  cep ,
+  dataCadastro ,
+  ativo,
+  isFuncionario  FROM Pessoa WHERE isFuncionario = 1 
