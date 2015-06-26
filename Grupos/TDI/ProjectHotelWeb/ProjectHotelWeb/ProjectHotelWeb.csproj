@@ -151,6 +151,11 @@
     <Content Include="Views\Funcionario\Insert.cshtml" />
     <Content Include="Views\Funcionario\Update.cshtml" />
     <Content Include="Views\Funcionario\Delete.cshtml" />
+    <Content Include="Views\TipoQuarto\Atualizar.cshtml" />
+    <Content Include="Views\TipoQuarto\Cadastrar.cshtml" />
+    <Content Include="Views\TipoQuarto\Detalhar.cshtml" />
+    <Content Include="Views\TipoQuarto\Excluir.cshtml" />
+    <Content Include="Views\TipoQuarto\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -175,6 +180,7 @@
     <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
+    <Compile Include="Controllers\TipoQuartoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
