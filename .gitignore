@@ -198,4 +198,10 @@ ModelManifest.xml
 /Grupos/TDI/ProjectHotelWeb/ProjectHotelWeb/_bin_deployableAssemblies
 /Grupos/TDI/ProjectHotelWeb/Infraestrutura/Database/*.diagram
 /Grupos/TDI/ProjectHotelWeb/Infraestrutura/Database/*.edmx
+<<<<<<< HEAD
+=======
+/Grupos/TDI/ProjectHotelWeb/Infraestrutura/App.config
+/Grupos/TDI/ProjectHotelWeb/ProjectHotelWeb/Web.Release.config
+/Grupos/TDI/ProjectHotelWeb/ProjectHotelWeb/Web.Debug.config
+>>>>>>> 9dc70a130ade2d381a85de6f2aa9488c933cd44f
 
