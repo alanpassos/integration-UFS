@@ -13,6 +13,7 @@ namespace Dominio.Classes
       public string observacao {get;set;}
       public int numeroMaximoParcela { get; set; }
       public bool ativo { get; set; }
+      public string tipo { get; set; }
 
       public virtual List<Pagamento> Pagamento { get; set; }
     }

@@ -1,4 +1,20 @@
+-- fechando conexão
 
+USE
+[master]
+GO
+ALTER
+DATABASE dbtdinewhotel SET multi_USER WITH ROLLBACK IMMEDIATE
+GO
+ALTER
+DATABASE dbtdinewhotel SET multi_USER
+go
+--- deletando banco e criando um novo
+
+Drop database dbtdinewhotel
+go
+create database dbtdinewhotel
+go
 use dbtdinewhotel
 -- -----------------------------------------------------
 -- Table TipoQuarto
