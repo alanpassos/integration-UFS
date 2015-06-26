@@ -1,0 +1,50 @@
+﻿@model Dominio.Classes.TipoQuarto
+
+@{
+    ViewBag.Title = "Detalhar";
+}
+
+<h2>Detalhar</h2>
+
+<div>
+    <h4>TipoQuarto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idTipoQuarto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idTipoQuarto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Atualizar", new { id = Model.idTipoQuarto }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>
