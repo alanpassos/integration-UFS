@@ -12,7 +12,11 @@ namespace Infraestrutura.Database
   public  class ProjectHotel: UnidadeTrabalho, IProjectHotel
     {
       public ProjectHotel()
+<<<<<<< HEAD
           : base("name=projeto_hotel_tdiEntities")
+=======
+          : base("name=dbtdihotelEntities")
+>>>>>>> b8d12d7882209921e8fd76e5ddb118787fce835c
         {
 
         }
