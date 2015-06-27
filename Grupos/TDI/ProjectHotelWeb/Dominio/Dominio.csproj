@@ -58,9 +58,11 @@
     <Compile Include="Classes\TipoQuarto.cs" />
     <Compile Include="Classes\Usuario.cs" />
     <Compile Include="Interfaces\ICargos.cs" />
+    <Compile Include="Interfaces\IClientes.cs" />
     <Compile Include="Interfaces\IControleClientes.cs" />
     <Compile Include="Interfaces\IControleServicos.cs" />
     <Compile Include="Interfaces\IFormaPagamentos.cs" />
+    <Compile Include="Interfaces\IFuncionarios.cs" />
     <Compile Include="Interfaces\IHistoricoAcessos.cs" />
     <Compile Include="Interfaces\IHistoricos.cs" />
     <Compile Include="Interfaces\IHospedagens.cs" />

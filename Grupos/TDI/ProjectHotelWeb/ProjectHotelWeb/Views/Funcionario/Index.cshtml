@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dominio.Classes.Pessoa>
+﻿@model IEnumerable<Dominio.Classes.Funcionario>
 
 @{
     ViewBag.Title = "Index";
@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.emailPimario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cargo.descricao)
+                @Html.DisplayFor(modelItem => item.idCargo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cep)

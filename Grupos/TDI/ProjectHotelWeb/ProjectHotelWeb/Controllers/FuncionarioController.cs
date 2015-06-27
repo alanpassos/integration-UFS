@@ -13,13 +13,14 @@ namespace ProjectHotelWeb.Controllers
     {
         // GET: Funcionario
         public IProjectHotel IAcademic { get; set; }
-        public IPessoas iFuncionarios { get; set; }
+        public IFuncionarios iFuncionarios { get; set; }
+        
         public ICargos iCargos { get; set; }
         // GET: Pessoa
         public ActionResult Index()
         {
 
-            List<Pessoa> funcionarios = iFuncionarios.ListarFuncionario().ToList<Pessoa>();
+            List<Funcionario> funcionarios = iFuncionarios.Listar().ToList<Funcionario>();
             List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
 
             return View(funcionarios);
@@ -30,7 +31,7 @@ namespace ProjectHotelWeb.Controllers
             return View();
         }
 
-        public ActionResult Create(Pessoa funcionario)
+        public ActionResult Create(Funcionario funcionario)
         {
             funcionario.dataCadastro = DateTime.Now;
             funcionario.ativo = true;
@@ -41,11 +42,11 @@ namespace ProjectHotelWeb.Controllers
         }
         public ActionResult Update(int id)
         {
-            Pessoa funcionario = iFuncionarios.ResultadoUnicoFuncionario(id);
+            Funcionario funcionario = iFuncionarios.ResultadoUnico(id);
             funcionario.Cargo = iCargos.ResultadoUnico(funcionario.idCargo);
             return View(funcionario);
         }
-        public ActionResult Edit(Pessoa funcionario)
+        public ActionResult Edit(Funcionario funcionario)
         {
             iFuncionarios.Atualizar(funcionario);
 
@@ -54,12 +55,12 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Delete(int id)
         {
-            Pessoa funcionario = iFuncionarios.ResultadoUnicoFuncionario(id);
+            Funcionario funcionario = iFuncionarios.ResultadoUnico(id);
 
             return View(funcionario);
         }
 
-        public ActionResult Excluir(Pessoa funcionario)
+        public ActionResult Excluir(Funcionario funcionario)
         {
             funcionario.ativo = false;
             iFuncionarios.Atualizar(funcionario);

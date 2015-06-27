@@ -54,15 +54,7 @@ namespace Infraestrutura.Repositorio
             //OrderBy(p => p.nome).ToList();
         }
 
-        public Pessoa ResultadoUnicoFuncionario(int idPessoa)
-        {
-            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa && p.isFuncionario);
-        }
-        public ICollection<Pessoa> ListarFuncionario()
-        {
-
-            return   pessoas.Where(p => p.isFuncionario == true && p.ativo == true).OrderBy(p => p.nome).ToList();
-        }
+      
 
         public bool ContemRegistro()
         {
