@@ -14,13 +14,13 @@ namespace Infraestrutura.Database
       public ProjectHotel()
 
 
-          : base("name=projeto_hotel_tdiEntities")
+          : base("name=dbtdinewhotelEntities")
 
         {
 
         }
-        public DbSet<Pessoa> Funcionarios { get; set; }
-        public DbSet<Pessoa> Clientes { get; set; }
+        public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<ControleServico> ControleServicos { get; set; }
 

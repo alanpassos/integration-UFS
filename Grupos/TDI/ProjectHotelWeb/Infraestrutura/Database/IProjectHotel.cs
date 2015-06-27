@@ -12,8 +12,8 @@ namespace Infraestrutura.Database
 {
     public interface IProjectHotel : IUnidadeTrabalho
     {
-        DbSet<Pessoa> Funcionarios { get; }
-        DbSet<Pessoa> Clientes { get; set; }
+        DbSet<Funcionario> Funcionarios { get; }
+        DbSet<Cliente> Clientes { get; set; }
         DbSet<Servico> Servicos { get; }
         DbSet<ControleServico> ControleServicos { get; }
 

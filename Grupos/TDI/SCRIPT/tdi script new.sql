@@ -4,16 +4,16 @@ USE
 [master]
 GO
 ALTER
-DATABASE dbtdihotel SET multi_USER WITH ROLLBACK IMMEDIATE
+DATABASE dbtdinewhotel SET multi_USER WITH ROLLBACK IMMEDIATE
 GO
 ALTER
-DATABASE dbtdihotel SET multi_USER
+DATABASE dbtdinewhotel SET multi_USER
 go
 --- deletando banco e criando um novo
 
-Drop database dbtdihotel
+Drop database dbtdinewhotel
 go
-create database dbtdihotel
+create database dbtdinewhotel
 go
 use dbtdinewhotel
 -- -----------------------------------------------------
@@ -442,7 +442,7 @@ go
 drop view Cliente
 go
 CREATE VIEW Cliente AS
- SELECT idPessoa,nome, 
+ SELECT nome, 
   cpfCnpj,
   rg ,
   dataNascimento ,
@@ -462,7 +462,7 @@ GO
 drop view Funcionario
 go
 CREATE VIEW Funcionario AS
- SELECT idPessoa,idCargo,
+ SELECT idCargo,
  nome, 
   cpfCnpj,
   rg ,
@@ -481,3 +481,10 @@ CREATE VIEW Funcionario AS
   dataCadastro ,
   ativo,
   isFuncionario  FROM Pessoa WHERE isFuncionario = 1 
+  go
+  SELECT * FROM cARGO
+  go
+  insert into Cargo values(1,'gerente',NULL,1)
+  go
+  insert into Funcionario 
+  values(1,'alan','12345678909',NULL,getdate(),NULL,NULL,'79 99511871',NULL,NULL,700,'CENTRO','ITABAIANA','PROJETADA',356,'49500000',GETDATE(),1,1)
