@@ -12,6 +12,9 @@ namespace Dominio.Interfaces
         void Cadastrar(PacoteHospedagem pacoteHospedagem);
         void Atualizar(PacoteHospedagem pacoteHospedagem);
         void Remover(PacoteHospedagem pacoteHospedagem);
+        ICollection<PacoteHospedagem> ListarReserva();
         PacoteHospedagem ResultadoUnico(int idPacoteHospedagem);
+        PacoteHospedagem ResultadoUnicoReserva(int idReserva);
+
     }
 }

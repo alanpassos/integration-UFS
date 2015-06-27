@@ -46,10 +46,21 @@ namespace Infraestrutura.Repositorio
             return pacoteHospedagens.SingleOrDefault(c => c.idPacoteHospedagem == idPacoteHospedagem);
         }
 
+        public PacoteHospedagem ResultadoUnicoReserva(int idReserva)
+        {
+            return pacoteHospedagens.SingleOrDefault(c => c.idPacoteHospedagem == idReserva && c.tipoPacote.Equals("R"));
+        }
+
         public ICollection<PacoteHospedagem> Listar()
         {
             return pacoteHospedagens.OrderBy(p => p.tipoPacote).ToList();
         }
+
+        public ICollection<PacoteHospedagem> ListarReserva()
+        {
+            return pacoteHospedagens.Where(p => p.tipoPacote.Equals("R") && p.ativo == true).OrderBy(p => p.tipoPacote).ToList();
+        }
+
 
         public bool ContemRegistro()
         {
