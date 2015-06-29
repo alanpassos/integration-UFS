@@ -7,7 +7,7 @@
 <h2>Detalhar</h2>
 
 <div>
-    <h4>Reserva</h4>
+    <h4>Check-In</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -74,9 +74,25 @@
             @Html.DisplayFor(model => model.dataCadastro)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoPacote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoPacote)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Atualizar", new { id = Model.idPacoteHospedagem }) |
+    @Html.ActionLink("Editar", "Atualizar", new { id=Model.idPacoteHospedagem }) |
     @Html.ActionLink("Voltar", "Index")
 </p>
