@@ -102,7 +102,6 @@
     <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\font\material-design-icons\LICENSE.txt" />
     <Content Include="Content\font\material-design-icons\Material-Design-Icons.svg" />
-    <Content Include="Content\js\jquery-2.1.4.min.js" />
     <Content Include="Content\js\materialize.js" />
     <Content Include="Content\js\materialize.min.js" />
     <Content Include="Content\Site.css" />
@@ -149,8 +148,6 @@
     <Content Include="Views\Cargo\Insert.cshtml" />
     <Content Include="Views\Funcionario\Index.cshtml" />
     <Content Include="Views\Funcionario\Insert.cshtml" />
-    <Content Include="Views\Funcionario\Update.cshtml" />
-    <Content Include="Views\Funcionario\Delete.cshtml" />
     <Content Include="Views\TipoQuarto\Index.cshtml" />
     <Content Include="Views\TipoQuarto\Cadastrar.cshtml" />
     <Content Include="Views\TipoQuarto\Atualizar.cshtml" />
@@ -162,6 +159,7 @@
     <Content Include="Views\Reserva\Detalhar.cshtml" />
     <Content Include="Views\Reserva\Excluir.cshtml" />
     <Content Include="Views\Reserva\Index.cshtml" />
+    <Content Include="Views\Funcionario\Update.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -183,6 +181,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AppConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ClassesEspeciais\Entidade.cs" />
     <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />

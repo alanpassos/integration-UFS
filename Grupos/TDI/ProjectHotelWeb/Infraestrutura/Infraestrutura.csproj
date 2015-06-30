@@ -59,11 +59,9 @@
     <Compile Include="Database\ProjectHotel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio\Cargos.cs" />
-    <Compile Include="Repositorio\Clientes.cs" />
     <Compile Include="Repositorio\ControleClientes.cs" />
     <Compile Include="Repositorio\ControleServicos.cs" />
     <Compile Include="Repositorio\FormaPagamentos.cs" />
-    <Compile Include="Repositorio\Funcionarios.cs" />
     <Compile Include="Repositorio\HistoricoAcessos.cs" />
     <Compile Include="Repositorio\Historicos.cs" />
     <Compile Include="Repositorio\Hospedagens.cs" />
