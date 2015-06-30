@@ -51,6 +51,16 @@ namespace Infraestrutura.Repositorio
             return pacoteHospedagens.SingleOrDefault(c => c.idPacoteHospedagem == idReserva && c.tipoPacote.Equals("R"));
         }
 
+        public PacoteHospedagem ResultadoUnicoCheckin(int idReserva)
+        {
+            return pacoteHospedagens.SingleOrDefault(c => c.idPacoteHospedagem == idReserva && c.tipoPacote.Equals("C"));
+        }
+
+        public PacoteHospedagem ResultadoUnicoCheckout(int idReserva)
+        {
+            return pacoteHospedagens.SingleOrDefault(c => c.idPacoteHospedagem == idReserva && c.tipoPacote.Equals("K"));
+        }
+
         public ICollection<PacoteHospedagem> Listar()
         {
             return pacoteHospedagens.OrderBy(p => p.tipoPacote).ToList();
@@ -61,6 +71,15 @@ namespace Infraestrutura.Repositorio
             return pacoteHospedagens.Where(p => p.tipoPacote.Equals("R") && p.ativo == true).OrderBy(p => p.tipoPacote).ToList();
         }
 
+        public ICollection<PacoteHospedagem> ListarCheckin()
+        {
+            return pacoteHospedagens.Where(p => p.tipoPacote.Equals("C") && p.ativo == true).OrderBy(p => p.tipoPacote).ToList();
+        }
+
+        public ICollection<PacoteHospedagem> ListarCheckout()
+        {
+            return pacoteHospedagens.Where(p => p.tipoPacote.Equals("K") && p.ativo == true).OrderBy(p => p.tipoPacote).ToList();
+        }
 
         public bool ContemRegistro()
         {
