@@ -55,8 +55,71 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Cargo.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ControleCliente.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ControleServico.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\FormaPagamento.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Historico.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\HistoricoAcesso.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Hospedagem.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\HotelWeb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelWeb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\HotelWeb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\HotelWeb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelWeb.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Database\IProjectHotel.cs" />
+    <Compile Include="Database\Item.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PacoteHospedagem.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Pagamento.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Pessoa.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Produto.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\ProjectHotel.cs" />
+    <Compile Include="Database\Quarto.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Servico.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TipoQuarto.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Usuario.cs">
+      <DependentUpon>HotelWeb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio\Cargos.cs" />
     <Compile Include="Repositorio\Clientes.cs" />
@@ -85,11 +148,22 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="Database\HotelEDM.edmx">
-      <CustomToolNamespace>Dominio.Classes</CustomToolNamespace>
+    <EntityDeploy Include="Database\HotelWeb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HotelWeb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Database\HotelEDM.edmx.diagram">
-      <DependentUpon>HotelEDM.edmx</DependentUpon>
+    <None Include="Database\HotelWeb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HotelWeb.edmx</DependentUpon>
+      <LastGenOutput>HotelWeb.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Database\HotelWeb.edmx.diagram">
+      <DependentUpon>HotelWeb.edmx</DependentUpon>
+    </None>
+    <None Include="Database\HotelWeb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HotelWeb.edmx</DependentUpon>
+      <LastGenOutput>HotelWeb.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
