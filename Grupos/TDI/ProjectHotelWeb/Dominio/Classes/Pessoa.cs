@@ -8,8 +8,9 @@ namespace Dominio.Classes
 {
     public class Pessoa
     {
+       
         public int idPessoa { get; set; }
-        public int idCargo { get; set; }
+        public int? idCargo { get; set; }
         public string nome { get; set; }
         public string cpfCnpj { get; set; }
         public string rg { get; set; }
@@ -19,7 +20,7 @@ namespace Dominio.Classes
         public string telefoneMovel { get; set; }
         public string emailPimario { get; set; }
         public string emailSecundario { get; set; }
-        public decimal salario { get; set; }
+        public decimal? salario { get; set; }
         public string bairro { get; set; }
         public string cidade { get; set; }
         public string rua { get; set; }
@@ -34,5 +35,8 @@ namespace Dominio.Classes
         public virtual List<Usuario> Usuario { get; set; }
         public virtual List<ControleServico> ControleServico { get; set; }
 
+        
+       
+         
     }
 }

@@ -21,6 +21,12 @@
             <li><a href="~/TipoQuarto/Index"><h6>Tipo De Quarto</h6></a></li>
             <li class="divider"></li>
             <li><a href="~/Cargo/Index"><h6>Cargo</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="~/Reserva/Index"><h6>Reserva</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="~/CheckIn/Index"><h6>Check-In</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="~/CheckOut/Index"><h6>Check-Out</h6></a></li>
         </ul>
         <nav>
             <div class="nav-wrapper">
@@ -53,51 +59,41 @@
         <div class="footer-copyright">
             <div class="container">
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-               
+
             </div>
         </div>
     </footer>
+    <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+
+    <script>
+        $('.datepicker').pickadate({
+            format: 'dd/mm/yyyy',
+            selectMonths: true,
+            labelMonthNext: 'Póximo Mês',
+            selectYear: true,
+            selectYears: 15,
+            labelMonthPrev: 'Mês Anterior',
+            labelMonthSelect: 'Selecione um Mês',
+            labelYearSelect: 'Selecione um Ano',
+            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Close'
+        });
+
+        $(".dropdown-button").dropdown();
 
 
+     
 
-
-
-
-
-
-
-
-
-
+    </script>
 
     
-        <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
-        <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
-
-        <script>
-            $('.datepicker').pickadate({
-                format: 'dd/mm/yyyy',
-                selectMonths: true,
-                labelMonthNext: 'Póximo Mês',
-                selectYear: true,
-                selectYears: 15,
-                labelMonthPrev: 'Mês Anterior',
-                labelMonthSelect: 'Selecione um Mês',
-                labelYearSelect: 'Selecione um Ano',
-                monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dez'],
-                weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-                weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-                today: 'Today',
-                clear: 'Clear',
-                close: 'Close'
-            });
-
-            $(".dropdown-button").dropdown();
-
-
-        </script>
 
 </body>
 </html>

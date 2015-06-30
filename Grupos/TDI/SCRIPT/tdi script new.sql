@@ -98,6 +98,7 @@ CREATE TABLE Pessoa (
   bairro VARCHAR(45) NOT NULL,
   cidade VARCHAR(45) NOT NULL,
   rua VARCHAR(45) NOT NULL,
+  complemento VARCHAR(45) NULL,
   numero INT NOT NULL,
   cep VARCHAR(9) NOT NULL,
   dataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
@@ -437,54 +438,3 @@ alter table Historico
 add constraint fk_usuario_hitorico
 foreign key (idUsuario)
 references   Usuario (idUsuario)
-go
-
-drop view Cliente
-go
-CREATE VIEW Cliente AS
- SELECT nome, 
-  cpfCnpj,
-  rg ,
-  dataNascimento ,
-  estadoCivil ,
-  telefoneFixo ,
-  telefoneMovel ,
-  emailPimario ,
-  emailSecundario ,
-  bairro ,
-  cidade ,
-  rua ,
-  numero ,
-  cep ,
-  dataCadastro ,
-  ativo  FROM Pessoa WHERE isFuncionario = 0 
-GO
-drop view Funcionario
-go
-CREATE VIEW Funcionario AS
- SELECT idCargo,
- nome, 
-  cpfCnpj,
-  rg ,
-  dataNascimento ,
-  estadoCivil ,
-  telefoneFixo ,
-  telefoneMovel ,
-  emailPimario ,
-  emailSecundario ,
-  salario,
-  bairro ,
-  cidade ,
-  rua ,
-  numero ,
-  cep ,
-  dataCadastro ,
-  ativo,
-  isFuncionario  FROM Pessoa WHERE isFuncionario = 1 
-  go
-  SELECT * FROM cARGO
-  go
-  insert into Cargo values(1,'gerente',NULL,1)
-  go
-  insert into Funcionario 
-  values(1,'alan','12345678909',NULL,getdate(),NULL,NULL,'79 99511871',NULL,NULL,700,'CENTRO','ITABAIANA','PROJETADA',356,'49500000',GETDATE(),1,1)

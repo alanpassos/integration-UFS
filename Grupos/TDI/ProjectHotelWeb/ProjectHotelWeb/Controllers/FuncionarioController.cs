@@ -13,17 +13,18 @@ namespace ProjectHotelWeb.Controllers
     {
         // GET: Funcionario
         public IProjectHotel IAcademic { get; set; }
-        public IFuncionarios iFuncionarios { get; set; }
-        
+
+        public IPessoas iPessoas { get; set; }
+
         public ICargos iCargos { get; set; }
         // GET: Pessoa
         public ActionResult Index()
         {
 
-            List<Funcionario> funcionarios = iFuncionarios.Listar().ToList<Funcionario>();
+            List<Pessoa> pessoas = iPessoas.ListarFuncionario().ToList<Pessoa>();
             List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
 
-            return View(funcionarios);
+            return View(pessoas);
         }
 
         public ActionResult Insert()
@@ -31,43 +32,51 @@ namespace ProjectHotelWeb.Controllers
             return View();
         }
 
-        public ActionResult Create(Funcionario funcionario)
-        {
-            funcionario.dataCadastro = DateTime.Now;
-            funcionario.ativo = true;
-            funcionario.isFuncionario = true;
 
-            iFuncionarios.Cadastrar(funcionario);
+
+        public ActionResult Create(Pessoa pessoa)
+        {
+
+            pessoa.isFuncionario = true;
+            pessoa.dataCadastro = DateTime.Now;
+            pessoa.ativo = true;
+            iPessoas.Cadastrar(pessoa);
+
             return RedirectToAction("Index");
         }
         public ActionResult Update(int id)
         {
-            Funcionario funcionario = iFuncionarios.ResultadoUnico(id);
-            funcionario.Cargo = iCargos.ResultadoUnico(funcionario.idCargo);
-            return View(funcionario);
+
+            
+            Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
+            ViewBag.Cargos = iCargos.Listar();
+            return View(pessoa);
         }
-        public ActionResult Edit(Funcionario funcionario)
+        public ActionResult Edit(Pessoa pessoa)
         {
-            iFuncionarios.Atualizar(funcionario);
+            
+            pessoa.ativo =Convert.ToBoolean( Request.Params.Get("ativo"));
+            pessoa.isFuncionario = Convert.ToBoolean(Request.Params.Get("funcionario"));
+            iPessoas.Atualizar(pessoa);
 
             return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
         {
-            Funcionario funcionario = iFuncionarios.ResultadoUnico(id);
-
-            return View(funcionario);
-        }
-
-        public ActionResult Excluir(Funcionario funcionario)
-        {
-            funcionario.ativo = false;
-            iFuncionarios.Atualizar(funcionario);
+            Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
+            if (pessoa != null)
+            {
+                pessoa.ativo = false;
+                iPessoas.Atualizar(pessoa);
+            }
+            else
+                return null;
 
             return RedirectToAction("Index");
         }
 
+      
 
     }
 }
