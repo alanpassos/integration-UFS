@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbtdihotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="dbtdinewhotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cargo">
           <Key>
             <PropertyRef Name="idCargo" />
@@ -24,7 +24,7 @@
           <Property Name="dataCadastro" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'dbtdinewhotel.dbo.ControleServico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ControleServico">
           <Key>
             <PropertyRef Name="idHospedagem" />
@@ -49,6 +49,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
           <Property Name="descricao" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="observacao" Type="varchar" MaxLength="45" />
           <Property Name="numeroMaximoParcela" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="ativo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Historico">
@@ -412,7 +413,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbtdihotelModelStoreContainer">
+        <EntityContainer Name="dbtdinewhotelModelStoreContainer">
           <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ControleCliente" EntityType="Self.ControleCliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormaPagamento" EntityType="Self.FormaPagamento" Schema="dbo" store:Type="Tables" />
@@ -512,7 +513,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="dbtdihotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="dbtdinewhotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Cargo">
           <Key>
             <PropertyRef Name="idCargo" />
@@ -542,6 +543,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
           <Property Name="descricao" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="observacao" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="numeroMaximoParcela" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Pagamento" Relationship="Self.fk_forma_pagamento" FromRole="FormaPagamento" ToRole="Pagamento" />
         </EntityType>
@@ -952,7 +954,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbtdihotelEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dbtdinewhotelEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cargo" EntityType="Self.Cargo" />
           <EntitySet Name="ControleCliente" EntityType="Self.ControleCliente" />
           <EntitySet Name="FormaPagamento" EntityType="Self.FormaPagamento" />
@@ -1043,9 +1045,9 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbtdihotelModelStoreContainer" CdmEntityContainer="dbtdihotelEntities">
+        <EntityContainerMapping StorageEntityContainer="dbtdinewhotelModelStoreContainer" CdmEntityContainer="dbtdinewhotelEntities">
           <EntitySetMapping Name="Cargo">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Cargo">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Cargo">
               <MappingFragment StoreEntitySet="Cargo">
                 <ScalarProperty Name="idCargo" ColumnName="idCargo" />
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
@@ -1055,7 +1057,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ControleCliente">
-            <EntityTypeMapping TypeName="dbtdihotelModel.ControleCliente">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.ControleCliente">
               <MappingFragment StoreEntitySet="ControleCliente">
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="idHospedagem" ColumnName="idHospedagem" />
@@ -1064,18 +1066,19 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FormaPagamento">
-            <EntityTypeMapping TypeName="dbtdihotelModel.FormaPagamento">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.FormaPagamento">
               <MappingFragment StoreEntitySet="FormaPagamento">
                 <ScalarProperty Name="idFormaPagamento" ColumnName="idFormaPagamento" />
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
                 <ScalarProperty Name="observacao" ColumnName="observacao" />
                 <ScalarProperty Name="numeroMaximoParcela" ColumnName="numeroMaximoParcela" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="ativo" ColumnName="ativo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Historico">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Historico">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Historico">
               <MappingFragment StoreEntitySet="Historico">
                 <ScalarProperty Name="idHistorico" ColumnName="idHistorico" />
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
@@ -1086,7 +1089,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HistoricoAcesso">
-            <EntityTypeMapping TypeName="dbtdihotelModel.HistoricoAcesso">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.HistoricoAcesso">
               <MappingFragment StoreEntitySet="HistoricoAcesso">
                 <ScalarProperty Name="idHistoricoAcesso" ColumnName="idHistoricoAcesso" />
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
@@ -1097,7 +1100,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hospedagem">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Hospedagem">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Hospedagem">
               <MappingFragment StoreEntitySet="Hospedagem">
                 <ScalarProperty Name="idHospedagem" ColumnName="idHospedagem" />
                 <ScalarProperty Name="idPacoteHospedagem" ColumnName="idPacoteHospedagem" />
@@ -1112,7 +1115,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Item">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Item">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Item">
               <MappingFragment StoreEntitySet="Item">
                 <ScalarProperty Name="idItem" ColumnName="idItem" />
                 <ScalarProperty Name="idHospedagem" ColumnName="idHospedagem" />
@@ -1125,7 +1128,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PacoteHospedagem">
-            <EntityTypeMapping TypeName="dbtdihotelModel.PacoteHospedagem">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.PacoteHospedagem">
               <MappingFragment StoreEntitySet="PacoteHospedagem">
                 <ScalarProperty Name="idPacoteHospedagem" ColumnName="idPacoteHospedagem" />
                 <ScalarProperty Name="valorTotal" ColumnName="valorTotal" />
@@ -1141,7 +1144,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pagamento">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Pagamento">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Pagamento">
               <MappingFragment StoreEntitySet="Pagamento">
                 <ScalarProperty Name="numeroParcela" ColumnName="numeroParcela" />
                 <ScalarProperty Name="idFormaPagamento" ColumnName="idFormaPagamento" />
@@ -1155,7 +1158,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pessoa">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Pessoa">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Pessoa">
               <MappingFragment StoreEntitySet="Pessoa">
                 <ScalarProperty Name="idPessoa" ColumnName="idPessoa" />
                 <ScalarProperty Name="idCargo" ColumnName="idCargo" />
@@ -1181,7 +1184,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Produto">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Produto">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Produto">
               <MappingFragment StoreEntitySet="Produto">
                 <ScalarProperty Name="idProduto" ColumnName="idProduto" />
                 <ScalarProperty Name="tamanho" ColumnName="tamanho" />
@@ -1193,7 +1196,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Quarto">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Quarto">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Quarto">
               <MappingFragment StoreEntitySet="Quarto">
                 <ScalarProperty Name="idQuarto" ColumnName="idQuarto" />
                 <ScalarProperty Name="idTipoQuarto" ColumnName="idTipoQuarto" />
@@ -1205,7 +1208,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Servico">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Servico">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Servico">
               <MappingFragment StoreEntitySet="Servico">
                 <ScalarProperty Name="idServico" ColumnName="idServico" />
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
@@ -1216,7 +1219,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoQuarto">
-            <EntityTypeMapping TypeName="dbtdihotelModel.TipoQuarto">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.TipoQuarto">
               <MappingFragment StoreEntitySet="TipoQuarto">
                 <ScalarProperty Name="idTipoQuarto" ColumnName="idTipoQuarto" />
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
@@ -1226,7 +1229,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="dbtdihotelModel.Usuario">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="idFuncionario" ColumnName="idFuncionario" />
@@ -1239,7 +1242,7 @@ warning 6002: The table/view 'dbtdihotel.dbo.ControleServico' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ControleServico">
-            <EntityTypeMapping TypeName="dbtdihotelModel.ControleServico">
+            <EntityTypeMapping TypeName="dbtdinewhotelModel.ControleServico">
               <MappingFragment StoreEntitySet="ControleServico">
                 <ScalarProperty Name="idHospedagem" ColumnName="idHospedagem" />
                 <ScalarProperty Name="idServico" ColumnName="idServico" />

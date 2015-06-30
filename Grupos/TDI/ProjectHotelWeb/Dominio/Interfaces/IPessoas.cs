@@ -15,6 +15,7 @@ namespace Dominio.Interfaces
         void Atualizar(Pessoa pessoa);
         void Remover(Pessoa pessoa);
         Pessoa ResultadoUnico(int idPessoa);
-       
+        ICollection<Pessoa> ListarFuncionario();
+        Pessoa ResultadoUnicoFuncionario(int idPessoa);
     }
 }
