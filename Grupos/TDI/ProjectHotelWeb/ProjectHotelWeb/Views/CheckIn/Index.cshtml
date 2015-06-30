@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Reserva</h2>
+<h2>Check-In</h2>
 
 <p>
     @Html.ActionLink("Cadastrar", "Cadastrar")
@@ -63,9 +63,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dataCadastro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ativo)
         </td>
         <td>
             @Html.ActionLink("Editar", "Atualizar", new { id=item.idPacoteHospedagem }) |
