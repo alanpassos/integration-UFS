@@ -147,7 +147,6 @@
     <Content Include="Views\Cargo\Index.cshtml" />
     <Content Include="Views\Cargo\Insert.cshtml" />
     <Content Include="Views\Funcionario\Index.cshtml" />
-    <Content Include="Views\Funcionario\Insert.cshtml" />
     <Content Include="Views\TipoQuarto\Index.cshtml" />
     <Content Include="Views\TipoQuarto\Cadastrar.cshtml" />
     <Content Include="Views\TipoQuarto\Atualizar.cshtml" />
@@ -160,6 +159,15 @@
     <Content Include="Views\Reserva\Excluir.cshtml" />
     <Content Include="Views\Reserva\Index.cshtml" />
     <Content Include="Views\Funcionario\Update.cshtml" />
+    <Content Include="Views\CheckIn\Atualizar.cshtml" />
+    <Content Include="Views\CheckIn\Cadastrar.cshtml" />
+    <Content Include="Views\CheckIn\Detalhar.cshtml" />
+    <Content Include="Views\CheckIn\Index.cshtml" />
+    <Content Include="Views\CheckOut\Atualizar.cshtml" />
+    <Content Include="Views\CheckOut\Cadastrar.cshtml" />
+    <Content Include="Views\CheckOut\Detalhar.cshtml" />
+    <Content Include="Views\CheckOut\Index.cshtml" />
+    <Content Include="Views\Funcionario\Insert.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -183,6 +191,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="ClassesEspeciais\Entidade.cs" />
     <Compile Include="Controllers\CargoController.cs" />
+    <Compile Include="Controllers\CheckInController.cs" />
+    <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HistoricoAcessoController.cs" />
