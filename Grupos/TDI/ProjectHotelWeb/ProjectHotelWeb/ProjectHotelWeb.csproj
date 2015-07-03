@@ -160,6 +160,18 @@
     <Content Include="Views\Reserva\Excluir.cshtml" />
     <Content Include="Views\Reserva\Index.cshtml" />
     <Content Include="Views\Funcionario\Update.cshtml" />
+    <Content Include="Views\CheckIn\Atualizar.cshtml" />
+    <Content Include="Views\CheckIn\Cadastrar.cshtml" />
+    <Content Include="Views\CheckIn\Detalhar.cshtml" />
+    <Content Include="Views\CheckIn\Index.cshtml" />
+    <Content Include="Views\CheckOut\Atualizar.cshtml" />
+    <Content Include="Views\CheckOut\Cadastrar.cshtml" />
+    <Content Include="Views\CheckOut\Detalhar.cshtml" />
+    <Content Include="Views\CheckOut\Index.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Detalhar.cshtml" />
+    <Content Include="Views\Usuario\Editar.cshtml" />
+    <Content Include="Views\Usuario\Cadastrar.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -183,11 +195,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="ClassesEspeciais\Entidade.cs" />
     <Compile Include="Controllers\CargoController.cs" />
+    <Compile Include="Controllers\CheckInController.cs" />
+    <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HistoricoAcessoController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Controllers\TipoQuartoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
