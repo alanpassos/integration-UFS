@@ -55,6 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\HotelEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelEDM.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Database\IProjectHotel.cs" />
     <Compile Include="Database\ProjectHotel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,7 +89,8 @@
       <SubType>Designer</SubType>
     </None>
     <EntityDeploy Include="Database\HotelEDM.edmx">
-      <CustomToolNamespace>Dominio.Classes</CustomToolNamespace>
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HotelEDM.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Database\HotelEDM.edmx.diagram">
       <DependentUpon>HotelEDM.edmx</DependentUpon>
