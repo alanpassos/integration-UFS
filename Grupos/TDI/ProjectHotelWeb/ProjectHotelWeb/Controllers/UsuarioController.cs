@@ -14,6 +14,7 @@ namespace ProjectHotelWeb.Controllers
     {
         public IProjectHotel IProjectHotel { get; set; }
         public IUsuarios IUsuarios { get; set; }
+        public IPessoas IPessoas { get; set; }
         // GET: Usuario
         public ActionResult Index()
         {
@@ -23,6 +24,7 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Cadastrar()
         {
+            ViewBag.Funcionarios = IPessoas.ListarFuncionario().ToList<Pessoa>();
             return View();
         }
          
@@ -32,6 +34,7 @@ namespace ProjectHotelWeb.Controllers
             usuario.ativo = true;
             usuario.dataCadastro = DateTime.Now;
             usuario.nivelAcesso = Request.Params.Get("nivel");
+            usuario.idFuncionario = Convert.ToInt32 (Request.Params.Get("funcionario"));
             IUsuarios.Cadastrar(usuario);
             return RedirectToAction("Index");
 

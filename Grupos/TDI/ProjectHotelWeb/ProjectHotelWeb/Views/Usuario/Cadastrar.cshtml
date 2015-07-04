@@ -4,11 +4,13 @@
     ViewBag.Title = "Cadastro de Usuário";
 }
 
-<h2>Cadastrar</h2>
-
+<h2 class="center">Cadastro de Usuário</h2>
+<hr />
+<br>
 
 @using (Html.BeginForm("CadastrarUsuario", "Usuario"))
 {
+    
     @Html.AntiForgeryToken()
 
     <form class=" col s12">
@@ -25,19 +27,29 @@
 
             </div>
 
-            <div class="input-field col s6">
+            <div class="input-field col s0" style="display:none">
                 <label for="first_name">Funcionário</label>
                 @Html.EditorFor(model => model.idFuncionario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.idFuncionario, "", new { @class = "text-danger" })
             </div>
+            <div class="input-field col s6">
+                <select name="funcionario">
+                    <option value="" disabled selected>Selecione a opção</option>
+                    @foreach (var f in @ViewBag.Funcionarios)
+                    {
+                        <option value="@f.idPessoa">@f.nome / @f.cpfCnpj</option>
+                    }
 
-            
+                </select>
+                <label>Funcionário</label>
+            </div>
+
 
         </div>
         <div class="row">
             <div class="input-field col s7">
-              <label for="input_text">Nome de Usuário</label>
-               
+                <label for="input_text">Nome de Usuário</label>
+
 
                 @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
@@ -53,55 +65,28 @@
         </div>
 
         <div class="row">
-            <div class="input-field s5">
-                <label>Nível de Acesso</label>
+            <div class="input-field col 5 ">
+               
                 <select name="nivel">
+                    <option value="" disabled selected>Selecione a opção</option>
                     <option value="A">Alto</option>
                     <option value="M">Médio</option>
                     <option value="B">Baixo</option>
                     <option value="L">Limitado</option>
                 </select>
+                <label>Nível de Acesso</label>
 
             </div>
         </div>
+        <div class="row">
+            <div class="input-field s5">
+                @Html.ActionLink("Voltar para a lista", "Index")
+                <input type="submit" value="Salvar" class="btn btn-default" />
+                
+            </div>
+        </div>
     </form>
-    <div class="form-horizontal">
-        <h4>Usuario</h4>
-        <hr />
-
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-10">
-
-        </div>
-    </div>
-
-    <div class="form-group">
-
-    </div>
-
-
-    <div class="form-group">
-
-    </div>
-
-
-    <div class="input-field col s6">
-       
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Salvar" class="btn btn-default" />
-        </div>
-    </div>
 }
-
-<div>
-    @Html.ActionLink("Voltar para a lista", "Index")
-</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

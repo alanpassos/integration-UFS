@@ -147,7 +147,6 @@
     <Content Include="Views\Cargo\Index.cshtml" />
     <Content Include="Views\Cargo\Insert.cshtml" />
     <Content Include="Views\Funcionario\Index.cshtml" />
-    <Content Include="Views\Funcionario\Insert.cshtml" />
     <Content Include="Views\TipoQuarto\Index.cshtml" />
     <Content Include="Views\TipoQuarto\Cadastrar.cshtml" />
     <Content Include="Views\TipoQuarto\Atualizar.cshtml" />

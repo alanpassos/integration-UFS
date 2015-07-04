@@ -29,6 +29,9 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Insert()
         {
+
+            List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
+            ViewBag.Cargos = cargos;
             return View();
         }
 
@@ -40,6 +43,10 @@ namespace ProjectHotelWeb.Controllers
             pessoa.isFuncionario = true;
             pessoa.dataCadastro = DateTime.Now;
             pessoa.ativo = true;
+            
+
+            pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
+           
             iPessoas.Cadastrar(pessoa);
 
             return RedirectToAction("Index");
@@ -47,16 +54,17 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult Update(int id)
         {
 
-            
+
             Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
             ViewBag.Cargos = iCargos.Listar();
             return View(pessoa);
         }
         public ActionResult Edit(Pessoa pessoa)
         {
-            
-            pessoa.ativo =Convert.ToBoolean( Request.Params.Get("ativo"));
-            pessoa.isFuncionario = Convert.ToBoolean(Request.Params.Get("funcionario"));
+            pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
+            pessoa.ativo = Convert.ToBoolean(Request.Params.Get("ativo"));
+            pessoa.isFuncionario = Convert.ToBoolean(Request.Params.Get("Funcionario"));
+           
             iPessoas.Atualizar(pessoa);
 
             return RedirectToAction("Index");
@@ -76,7 +84,7 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Index");
         }
 
-      
+
 
     }
 }

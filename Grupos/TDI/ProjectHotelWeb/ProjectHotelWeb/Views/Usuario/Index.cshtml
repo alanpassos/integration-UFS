@@ -12,23 +12,18 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idUsuario)
+            Código
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.idFuncionario)
+            Funcionário
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nome)
+            Nome de Usuário
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dataCadastro)
+            Nível
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ativo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nivelAcesso)
-        </th>
+        <th>Opções</th>
         <th></th>
     </tr>
 
@@ -38,16 +33,10 @@
             @Html.DisplayFor(modelItem => item.idUsuario)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.idFuncionario)
+            @Html.DisplayFor(modelItem => item.Pessoa.nome)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataCadastro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ativo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.nivelAcesso)

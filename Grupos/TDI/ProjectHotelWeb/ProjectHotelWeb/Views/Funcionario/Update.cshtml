@@ -39,11 +39,18 @@
                 </div>
                 <div class="input-field col s6">
 
+                    <select name="cargo">
+                        
+                        @foreach (var i in @ViewBag.Cargos)
+                        {
+                            <option value="@i.idCargo"   @(Model.idCargo == i.idCargo ? "selected=\"selected\"" : "")>
+                                @i.descricao
+                            </option>
 
 
-
-
-
+                        }
+                    </select>
+                    <label>Cargo</label>
                 </div>
             </div>
 
@@ -199,7 +206,7 @@
 
 
 
-                <div class="input-field col s4" style="display:none">
+                <div class="input-field col s0" style="display:none">
                     <label for="first_name">Data Cadastro</label>
 
                     @Html.EditorFor(model => model.dataCadastro, new { htmlAttributes = new { @class = "form-control" } })
@@ -210,7 +217,7 @@
                 <div class="input-field col s2">
                     <form action="#">
                         <p>
-                            <input id="ativo" type="checkbox" value="true" @(Model.ativo ? "checked=\"checked\"" : "") />
+                            <input type="checkbox" class="filled-in" name="ativo" id="ativo" checked="checked" value="true" @(Model.ativo ? "checked=\"checked\"" : "") />
                             <label for="ativo">&nbsp;Ativo</label>
                         </p>
                     </form>
@@ -219,15 +226,20 @@
                     <form action="#">
                         <p>
 
-                            <input id="funcionario" type="checkbox" value="true" @(Model.isFuncionario ? "checked=\"checked\"" : "") />
-                            <label for="funcionario">&nbsp;Funcionario</label>
+                            <input type="checkbox" class="filled-in" name="Funcionario" id="Funcionario" checked="checked" value="true" @(Model.isFuncionario ? "checked=\"checked\"" : "") />
+
+                            <label for="Funcionario">&nbsp;Funcionario</label>
 
                         </p>
                     </form>
                 </div>
+
             </div>
+
+
             <div class="row">
-<br>
+
+                <br>
 
                 <button class="btn waves-effect waves-light" type="submit" name="action">
                     Salvar
@@ -253,9 +265,7 @@
 
 }
 
-<div>
 
-</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
