@@ -27,18 +27,19 @@ namespace ProjectHotelWeb.Controllers
             ViewBag.Funcionarios = IPessoas.ListarFuncionario().ToList<Pessoa>();
             return View();
         }
-         
+
         [ActionName("CadastrarUsuario")]
         public ActionResult Cadastrar(Usuario usuario)
         {
             usuario.ativo = true;
             usuario.dataCadastro = DateTime.Now;
             usuario.nivelAcesso = Request.Params.Get("nivel");
-            usuario.idFuncionario = Convert.ToInt32 (Request.Params.Get("funcionario"));
+            usuario.idFuncionario = Convert.ToInt32(Request.Params.Get("funcionario"));
             IUsuarios.Cadastrar(usuario);
             return RedirectToAction("Index");
 
         }
+
 
         public ActionResult Detalhar(int id)
         {
@@ -46,11 +47,33 @@ namespace ProjectHotelWeb.Controllers
             return View(usuario);
         }
 
+        public ActionResult Editar(int id)
+        {
+            Usuario usuario = IUsuarios.ResultadoUnico(id);
+            return View(usuario);
+        }
+
+        [ActionName("EditarUsuario")]
         public ActionResult Editar(Usuario usuario)
         {
-            IUsuarios.Atualizar(usuario);
-            return RedirectToAction("index");
 
+            usuario.nivelAcesso = Request.Params.Get("nivel");
+            IUsuarios.Atualizar(usuario);
+            return RedirectToAction("Index");
+
+        }
+
+        public ActionResult Excluir(int id)
+        {
+            Usuario usuario = IUsuarios.ResultadoUnico(id);
+            return View(usuario);
+        }
+
+        [ActionName("ExcluirUsuario")]
+        public ActionResult Excluir(Usuario usuario)
+        {
+            IUsuarios.Remover(usuario);
+            return RedirectToAction("Index");
         }
 
 
