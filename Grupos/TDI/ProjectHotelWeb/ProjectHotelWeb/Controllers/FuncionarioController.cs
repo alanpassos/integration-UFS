@@ -56,6 +56,7 @@ namespace ProjectHotelWeb.Controllers
 
 
             Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
+          //  pessoa.salario = Convert.ToDecimal( pessoa.salario.ToString().Replace(',', '.'));
             ViewBag.Cargos = iCargos.Listar();
             return View(pessoa);
         }
@@ -63,8 +64,8 @@ namespace ProjectHotelWeb.Controllers
         {
             pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
             pessoa.ativo = Convert.ToBoolean(Request.Params.Get("ativo"));
-            pessoa.isFuncionario = Convert.ToBoolean(Request.Params.Get("Funcionario"));
-           
+            pessoa.isFuncionario = Convert.ToBoolean(Request.Params.Get("funcionario"));
+            pessoa.dataNascimento = Convert.ToDateTime(Request.Params.Get("Nascimento"));
             iPessoas.Atualizar(pessoa);
 
             return RedirectToAction("Index");

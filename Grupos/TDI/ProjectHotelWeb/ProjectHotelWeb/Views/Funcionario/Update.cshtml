@@ -40,10 +40,10 @@
                 <div class="input-field col s6">
 
                     <select name="cargo">
-                        
+
                         @foreach (var i in @ViewBag.Cargos)
                         {
-                            <option value="@i.idCargo"   @(Model.idCargo == i.idCargo ? "selected=\"selected\"" : "")>
+                            <option value="@i.idCargo" @(Model.idCargo == i.idCargo ? "selected=\"selected\"" : "")>
                                 @i.descricao
                             </option>
 
@@ -82,9 +82,9 @@
             <div class="row">
                 <div class="input-field col s6">
                     <label for="first_name">Data Nascimento</label>
+                    <br />
+                    <input id="Nascimento" name="Nascimento" value="@Model.dataNascimento" type="date" class="datepicker">
 
-                    @Html.EditorFor(model => model.dataNascimento, new { htmlAttributes = new { @class = "datepicker" } })
-                    @Html.ValidationMessageFor(model => model.dataNascimento, "", new { @class = "date" })
 
                 </div>
                 <div class="input-field col s6">
@@ -214,43 +214,41 @@
 
 
                 </div>
-                <div class="input-field col s2">
-                    <form action="#">
-                        <p>
+
+                <form action="#">
+                    <p>
+                        <div class="input-field col s2">
                             <input type="checkbox" class="filled-in" name="ativo" id="ativo" checked="checked" value="true" @(Model.ativo ? "checked=\"checked\"" : "") />
                             <label for="ativo">&nbsp;Ativo</label>
-                        </p>
-                    </form>
-                </div>
-                <div class="input-field col s2">
-                    <form action="#">
-                        <p>
-
-                            <input type="checkbox" class="filled-in" name="Funcionario" id="Funcionario" checked="checked" value="true" @(Model.isFuncionario ? "checked=\"checked\"" : "") />
+                        </div>
+                        <div class="input-field col s2">
+                            <input type="checkbox" class="filled-in" id="funcionario" name="funcionario" checked="checked" value="true" @(Model.isFuncionario ? "checked=\"checked\"" : "") />
 
                             <label for="Funcionario">&nbsp;Funcionario</label>
 
-                        </p>
-                    </form>
-                </div>
+                        </div>
+                    </p>
+        </form>
 
-            </div>
+       
 
-
-            <div class="row">
-
-                <br>
-
-                <button class="btn waves-effect waves-light" type="submit" name="action">
-                    Salvar
-
-                </button>
+    </div>
 
 
+    <div class="row">
 
-                @Html.ActionLink("Back to List", "Index")
+        <br>
 
-            </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+            Salvar
+
+        </button>
+
+
+
+        @Html.ActionLink("Back to List", "Index")
+
+    </div>
 
         </form>
 
