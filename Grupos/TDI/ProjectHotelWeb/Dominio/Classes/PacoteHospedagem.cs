@@ -23,6 +23,7 @@ namespace Dominio.Classes
         public virtual List<HistoricoAcesso> HistoricoAcesso { get; set; }
         public virtual List<Hospedagem> Hospedagem { get; set; }
         public virtual List<Pagamento> Pagamento { get; set; }
+        public virtual List<TipoQuarto> TipoQuarto { get; set; }
 
     }
 }
