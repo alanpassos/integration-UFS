@@ -114,7 +114,7 @@ CREATE TABLE Pessoa (
   emailPimario VARCHAR(45) NULL,
   emailSecundario VARCHAR(45) NULL,
   salario NUMERIC(10,2) NULL ,
-  estado VARCHAR(45) NOT NULL,
+  estado char(2) NOT NULL,
   cidade VARCHAR(45) NOT NULL,
   bairro VARCHAR(45) NOT NULL,
   rua VARCHAR(45) NOT NULL,
