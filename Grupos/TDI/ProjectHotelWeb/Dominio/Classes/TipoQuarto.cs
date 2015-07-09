@@ -15,7 +15,8 @@ namespace Dominio.Classes
         public decimal valor { get; set; }
         public int? quantidadeReservada { get; set; }
 
-        public virtual PacoteHospedagem PacoteHospedagem { get; set; }
+        
         public virtual List<Quarto> Quarto { get; set; }
+        public virtual PacoteHospedagem PacoteHospedagem { get; set; }
     }
 }
