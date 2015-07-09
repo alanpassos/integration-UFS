@@ -109,6 +109,7 @@ CREATE TABLE Pessoa (
   rg VARCHAR(14) NULL,
   dataNascimento DATE NOT NULL,
   estadoCivil VARCHAR(20) NULL,
+  sexo CHAR(1) NULL,
   telefoneFixo VARCHAR(14) NULL,
   telefoneMovel VARCHAR(14) NOT NULL,
   emailPimario VARCHAR(45) NULL,

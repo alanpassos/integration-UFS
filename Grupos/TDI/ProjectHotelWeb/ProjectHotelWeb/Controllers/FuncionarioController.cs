@@ -55,6 +55,7 @@ namespace ProjectHotelWeb.Controllers
             pessoa.estadoCivil = Request.Params.Get("estadoCivil");
             pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
             pessoa.estado = Request.Params.Get("Estado");
+            pessoa.sexo = Request.Params.Get("sexo");
             iPessoas.Cadastrar(pessoa);
 
             return RedirectToAction("Index");
@@ -74,6 +75,9 @@ namespace ProjectHotelWeb.Controllers
             pessoa.ativo = Convert.ToBoolean(Request.Params.Get("ativo"));
             pessoa.isFuncionario = Convert.ToBoolean(Request.Params.Get("funcionario"));
             pessoa.dataNascimento = Convert.ToDateTime(Request.Params.Get("Nascimento"));
+            pessoa.estadoCivil = Request.Params.Get("estadoCivil");
+            pessoa.estado = Request.Params.Get("Estado");
+            pessoa.sexo = Request.Params.Get("sexo");
             iPessoas.Atualizar(pessoa);
 
             return RedirectToAction("Index");

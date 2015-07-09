@@ -16,6 +16,7 @@ namespace Dominio.Classes
         public string rg { get; set; }
         public DateTime dataNascimento { get; set; }
         public string estadoCivil { get; set; }
+        public string sexo { get; set; }
         public string telefoneFixo { get; set; }
         public string telefoneMovel { get; set; }
         public string emailPimario { get; set; }
