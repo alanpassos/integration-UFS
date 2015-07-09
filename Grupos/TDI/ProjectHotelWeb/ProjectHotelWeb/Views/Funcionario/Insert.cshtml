@@ -174,7 +174,7 @@
 
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s4">
                         <label for="first_name">Complemento</label>
                         @Html.EditorFor(model => model.complemento, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.complemento, "", new { @class = "text-danger" })
@@ -186,7 +186,7 @@
                         @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
 
                     </div>
-                    <div class="input-field col s4">
+                    <div class="input-field col s3">
 
                         <label for="first_name">CEP</label>
 
@@ -194,42 +194,44 @@
                         @Html.ValidationMessageFor(model => model.cep, "", new { @class = "text-danger" })
 
                     </div>
+                    <div class="input-field col s3">
+                        <select name="Estado" style="display:ruby-base-group">
+                            <option value="" disabled selected>Selecione a opção</option>
+                            <option value="ac">Acre</option>
+                            <option value="al">Alagoas</option>
+                            <option value="ap">Amapá</option>
+                            <option value="am">Amazonas</option>
+                            <option value="ba">Bahia</option>
+                            <option value="ce">Ceará</option>
+                            <option value="df">Distrito Federal</option>
+                            <option value="es">Espirito Santo</option>
+                            <option value="go">Goiás</option>
+                            <option value="ma">Maranhão</option>
+                            <option value="ms">Mato Grosso do Sul</option>
+                            <option value="mt">Mato Grosso</option>
+                            <option value="mg">Minas Gerais</option>
+                            <option value="pa">Pará</option>
+                            <option value="pb">Paraíba</option>
+                            <option value="pr">Paraná</option>
+                            <option value="pe">Pernambuco</option>
+                            <option value="pi">Piauí</option>
+                            <option value="rj">Rio de Janeiro</option>
+                            <option value="rn">Rio Grande do Norte</option>
+                            <option value="rs">Rio Grande do Sul</option>
+                            <option value="ro">Rondônia</option>
+                            <option value="rr">Roraima</option>
+                            <option value="sc">Santa Catarina</option>
+                            <option value="sp">São Paulo</option>
+                            <option value="se">Sergipe</option>
+                            <option value="to">Tocantins</option>
+                        </select>
+                        <label for="first_name">Estado</label>
+                    </div>
                 </div>
-                <div class="row">
 
 
 
-
-                    <div class="input-field col s4" style="display:none">
-                        <label for="first_name">Data Cadastro</label>
-
-                        @Html.EditorFor(model => model.dataCadastro, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.dataCadastro, "", new { @class = "text-danger" })
-
-
-                    </div>
-                    <div class="input-field col s2">
-                        <form action="#">
-                            <p>
-                                <input type="checkbox" class="filled-in" id="ativo" />
-                                <label for="ativo">&nbsp;Ativo</label>
-                            </p>
-                        </form>
-                    </div>
-                    <div class="input-field col s2">
-                        <form action="#">
-                            <p>
-
-                                <input type="checkbox" class="filled-in" id="funcionario" />
-
-                                <label for="funcionario">&nbsp;Funcionario</label>
-
-                            </p>
-                        </form>
-                    </div>
-
-                </div>
-
+                
 
                 <div class="row">
 

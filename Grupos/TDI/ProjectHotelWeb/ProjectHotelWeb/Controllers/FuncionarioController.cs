@@ -54,7 +54,7 @@ namespace ProjectHotelWeb.Controllers
             pessoa.dataNascimento = Convert.ToDateTime(Request.Params.Get("Nascimento"));
             pessoa.estadoCivil = Request.Params.Get("estadoCivil");
             pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
-           
+            pessoa.estado = Request.Params.Get("Estado");
             iPessoas.Cadastrar(pessoa);
 
             return RedirectToAction("Index");
