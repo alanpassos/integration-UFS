@@ -1,0 +1,61 @@
+﻿@model Dominio.Classes.Usuario
+
+@{
+    ViewBag.Title = "Excluir Usuário";
+}
+
+<h4 class="center">Excluir Usuário</h4>
+<hr />
+<br>
+
+<form class="col s12">
+    <div class="row">
+        <div class="input-field col s4">
+            <b>Nome de usuário: </b>  @Html.DisplayFor(model => model.nome)
+        </div>
+        <div class="input-field col s0">
+            <b>Nome do funcionário: </b>  @Html.DisplayFor(model => model.Pessoa.nome)
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s4">
+            <b>Nível de acesso: </b>  @Html.DisplayFor(model => model.nivelAcesso)
+        </div>
+
+        <div class="input-field col s0">
+            <b>Data de cadastro: </b>  @Html.DisplayFor(model => model.dataCadastro)
+        </div>
+    </div>
+
+
+</form>
+
+@using (Html.BeginForm("ExcluirUsuario", "Usuario"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.idUsuario)
+    <p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <form class="col s12">
+
+
+            <div class="row">
+                <div class="input-field col s10">
+                    <input type="submit" value="Excluir" class="btn btn-default" />
+                </div>
+                <div class="input-field col s0">
+                    @Html.ActionLink("Voltar para a lista", "Index")
+                </div>
+            </div>
+
+        </form>
+
+    </p>
+}
