@@ -32,7 +32,15 @@ namespace ProjectHotelWeb.Controllers
 
             List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
             ViewBag.Cargos = cargos;
-            return View();
+            if (cargos.Count > 0)
+            {
+                return View();
+            }
+            else
+            {
+                ModelState.AddModelError("", "Não exite cargos cadastrados no sistema");
+            }
+            return RedirectToAction("Insert", "Cargo");
         }
 
 
@@ -43,8 +51,8 @@ namespace ProjectHotelWeb.Controllers
             pessoa.isFuncionario = true;
             pessoa.dataCadastro = DateTime.Now;
             pessoa.ativo = true;
-            
-
+            pessoa.dataNascimento = Convert.ToDateTime(Request.Params.Get("Nascimento"));
+            pessoa.estadoCivil = Request.Params.Get("estadoCivil");
             pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
            
             iPessoas.Cadastrar(pessoa);
