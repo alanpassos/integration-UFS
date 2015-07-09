@@ -394,7 +394,8 @@ GO
 CREATE TABLE ControleCliente (
   idCliente INT NOT NULL,
   idHospedagem INT NOT NULL,
-  dataCadastro DATETIME NOT NULL)
+  dataCadastro DATETIME NOT NULL,
+  isResponsavel BIT NULL)
 go
 
 
