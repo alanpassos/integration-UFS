@@ -13,60 +13,90 @@ namespace ProjectHotelWeb.Controllers
     {
         // GET: Funcionario
         public IProjectHotel IAcademic { get; set; }
-        public IFuncionarios iFuncionarios { get; set; }
-        
+
+        public IPessoas iPessoas { get; set; }
+
         public ICargos iCargos { get; set; }
         // GET: Pessoa
         public ActionResult Index()
         {
 
-            List<Funcionario> funcionarios = iFuncionarios.Listar().ToList<Funcionario>();
+            List<Pessoa> pessoas = iPessoas.ListarFuncionario().ToList<Pessoa>();
             List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
 
-            return View(funcionarios);
+            return View(pessoas);
         }
 
         public ActionResult Insert()
         {
-            return View();
+
+            List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
+            ViewBag.Cargos = cargos;
+            if (cargos.Count > 0)
+            {
+                return View();
+            }
+            else
+            {
+                ModelState.AddModelError("", "Não exite cargos cadastrados no sistema");
+            }
+            return RedirectToAction("Insert", "Cargo");
         }
 
-        public ActionResult Create(Funcionario funcionario)
-        {
-            funcionario.dataCadastro = DateTime.Now;
-            funcionario.ativo = true;
-            funcionario.isFuncionario = true;
 
-            iFuncionarios.Cadastrar(funcionario);
+
+        public ActionResult Create(Pessoa pessoa)
+        {
+
+            pessoa.isFuncionario = true;
+            pessoa.dataCadastro = DateTime.Now;
+            pessoa.ativo = true;
+            pessoa.dataNascimento = Convert.ToDateTime(Request.Params.Get("Nascimento"));
+            pessoa.estadoCivil = Request.Params.Get("estadoCivil");
+            pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
+            pessoa.estado = Request.Params.Get("Estado");
+            pessoa.sexo = Request.Params.Get("sexo");
+            iPessoas.Cadastrar(pessoa);
+
             return RedirectToAction("Index");
         }
         public ActionResult Update(int id)
         {
-            Funcionario funcionario = iFuncionarios.ResultadoUnico(id);
-            funcionario.Cargo = iCargos.ResultadoUnico(funcionario.idCargo);
-            return View(funcionario);
+
+
+            Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
+          //  pessoa.salario = Convert.ToDecimal( pessoa.salario.ToString().Replace(',', '.'));
+            ViewBag.Cargos = iCargos.Listar();
+            return View(pessoa);
         }
-        public ActionResult Edit(Funcionario funcionario)
+        public ActionResult Edit(Pessoa pessoa)
         {
-            iFuncionarios.Atualizar(funcionario);
+            pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
+            pessoa.ativo = Convert.ToBoolean(Request.Params.Get("ativo"));
+            pessoa.isFuncionario = Convert.ToBoolean(Request.Params.Get("funcionario"));
+            pessoa.dataNascimento = Convert.ToDateTime(Request.Params.Get("Nascimento"));
+            pessoa.estadoCivil = Request.Params.Get("estadoCivil");
+            pessoa.estado = Request.Params.Get("Estado");
+            pessoa.sexo = Request.Params.Get("sexo");
+            iPessoas.Atualizar(pessoa);
 
             return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
         {
-            Funcionario funcionario = iFuncionarios.ResultadoUnico(id);
-
-            return View(funcionario);
-        }
-
-        public ActionResult Excluir(Funcionario funcionario)
-        {
-            funcionario.ativo = false;
-            iFuncionarios.Atualizar(funcionario);
+            Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
+            if (pessoa != null)
+            {
+                pessoa.ativo = false;
+                iPessoas.Atualizar(pessoa);
+            }
+            else
+                return null;
 
             return RedirectToAction("Index");
         }
+
 
 
     }

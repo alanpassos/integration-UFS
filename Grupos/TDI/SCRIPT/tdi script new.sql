@@ -1,21 +1,32 @@
--- fechando conexão
-
-USE
-[master]
-GO
-ALTER
-DATABASE dbtdinewhotel SET multi_USER WITH ROLLBACK IMMEDIATE
-GO
-ALTER
-DATABASE dbtdinewhotel SET multi_USER
-go
---- deletando banco e criando um novo
-
+      
 Drop database dbtdinewhotel
 go
 create database dbtdinewhotel
 go
 use dbtdinewhotel
+
+-- -----------------------------------------------------
+-- Table PacoteHospedagem
+-- -----------------------------------------------------
+DROP TABLE  PacoteHospedagem 
+go
+CREATE TABLE PacoteHospedagem (
+  idPacoteHospedagem INT IDENTITY(1,1) NOT NULL,
+  valorTotal NUMERIC(10,2) NOT NULL,
+  subTotal NUMERIC(10,2) NOT NULL,
+  observacao VARCHAR(45) NULL,
+  dataLiberacao DATETIME NULL,
+  dataEntrada DATE NOT NULL,
+  dataSaida DATE NULL,
+  dataCadastro DATETIME NOT NULL,
+  ativo BIT NOT NULL DEFAULT 1,
+  tipoPacote CHAR(1) CHECK(tipoPacote IN ('R','C','K')))
+  GO
+alter table PacoteHospedagem add constraint pk_pacote_hospedagem primary key (idPacoteHospedagem)
+go
+create index idx_tipo_pacote_hospedagem on PacoteHospedagem (tipoPacote)
+GO
+
 -- -----------------------------------------------------
 -- Table TipoQuarto
 -- -----------------------------------------------------
@@ -23,14 +34,22 @@ DROP TABLE  TipoQuarto
 GO
 CREATE TABLE TipoQuarto (
   idTipoQuarto INT NOT NULL,
+  idPacoteHospedagem INT NULL,
   descricao VARCHAR(45) NOT NULL,
   observacao VARCHAR(500) NULL,
-  valor NUMERIC(10,2) NOT NULL)
+  valor NUMERIC(10,2) NOT NULL,
+  quantidadeReservada INT NULL)
+  
 GO
  alter table TipoQuarto add constraint pk_tipo_quarto primary key (idTipoQuarto)
  go
  create index idx_descricao on TipoQuarto (descricao)
  GO
+ alter table TipoQuarto 
+  add constraint fk_pacote_hospedagem_tipo_quarto
+  foreign key (idPacoteHospedagem)
+  references   PacoteHospedagem (idPacoteHospedagem)
+  go
 -- -----------------------------------------------------
 -- Table Quarto
 -- -----------------------------------------------------
@@ -90,14 +109,17 @@ CREATE TABLE Pessoa (
   rg VARCHAR(14) NULL,
   dataNascimento DATE NOT NULL,
   estadoCivil VARCHAR(20) NULL,
+  sexo CHAR(1) NULL,
   telefoneFixo VARCHAR(14) NULL,
   telefoneMovel VARCHAR(14) NOT NULL,
   emailPimario VARCHAR(45) NULL,
   emailSecundario VARCHAR(45) NULL,
   salario NUMERIC(10,2) NULL ,
-  bairro VARCHAR(45) NOT NULL,
+  estado char(2) NOT NULL,
   cidade VARCHAR(45) NOT NULL,
+  bairro VARCHAR(45) NOT NULL,
   rua VARCHAR(45) NOT NULL,
+  complemento VARCHAR(45) NULL,
   numero INT NOT NULL,
   cep VARCHAR(9) NOT NULL,
   dataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
@@ -148,28 +170,6 @@ create index fk_idx_funcionario on Usuario (idFuncionario)
 create index idex_nivel_acesso on Usuario (nivelAcesso)
 
 go
-
--- -----------------------------------------------------
--- Table PacoteHospedagem
--- -----------------------------------------------------
-DROP TABLE  PacoteHospedagem 
-go
-CREATE TABLE PacoteHospedagem (
-  idPacoteHospedagem INT IDENTITY(1,1) NOT NULL,
-  valorTotal NUMERIC(10,2) NOT NULL,
-  subTotal NUMERIC(10,2) NOT NULL,
-  observacao VARCHAR(45) NULL,
-  dataLiberacao DATETIME NULL,
-  dataEntrada DATE NOT NULL,
-  dataSaida DATE NULL,
-  dataCadastro DATETIME NOT NULL,
-  ativo BIT NOT NULL DEFAULT 1,
-  tipoPacote CHAR(1) CHECK(tipoPacote IN ('R','C','K')))
-  GO
-alter table PacoteHospedagem add constraint pk_pacote_hospedagem primary key (idPacoteHospedagem)
-go
-create index idx_tipo_pacote_hospedagem on PacoteHospedagem (tipoPacote)
-GO
 
 
 -- -----------------------------------------------------
@@ -396,7 +396,8 @@ GO
 CREATE TABLE ControleCliente (
   idCliente INT NOT NULL,
   idHospedagem INT NOT NULL,
-  dataCadastro DATETIME NOT NULL)
+  dataCadastro DATETIME NOT NULL,
+  isResponsavel BIT NULL)
 go
 
 
@@ -437,54 +438,3 @@ alter table Historico
 add constraint fk_usuario_hitorico
 foreign key (idUsuario)
 references   Usuario (idUsuario)
-go
-
-drop view Cliente
-go
-CREATE VIEW Cliente AS
- SELECT nome, 
-  cpfCnpj,
-  rg ,
-  dataNascimento ,
-  estadoCivil ,
-  telefoneFixo ,
-  telefoneMovel ,
-  emailPimario ,
-  emailSecundario ,
-  bairro ,
-  cidade ,
-  rua ,
-  numero ,
-  cep ,
-  dataCadastro ,
-  ativo  FROM Pessoa WHERE isFuncionario = 0 
-GO
-drop view Funcionario
-go
-CREATE VIEW Funcionario AS
- SELECT idCargo,
- nome, 
-  cpfCnpj,
-  rg ,
-  dataNascimento ,
-  estadoCivil ,
-  telefoneFixo ,
-  telefoneMovel ,
-  emailPimario ,
-  emailSecundario ,
-  salario,
-  bairro ,
-  cidade ,
-  rua ,
-  numero ,
-  cep ,
-  dataCadastro ,
-  ativo,
-  isFuncionario  FROM Pessoa WHERE isFuncionario = 1 
-  go
-  SELECT * FROM cARGO
-  go
-  insert into Cargo values(1,'gerente',NULL,1)
-  go
-  insert into Funcionario 
-  values(1,'alan','12345678909',NULL,getdate(),NULL,NULL,'79 99511871',NULL,NULL,700,'CENTRO','ITABAIANA','PROJETADA',356,'49500000',GETDATE(),1,1)

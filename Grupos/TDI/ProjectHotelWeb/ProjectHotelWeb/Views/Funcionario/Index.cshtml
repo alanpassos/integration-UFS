@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Dominio.Classes.Funcionario>
+﻿@model IEnumerable<Dominio.Classes.Pessoa>
 
 @{
     ViewBag.Title = "Index";
@@ -15,13 +15,9 @@
         <th>
             #
         </th>
-
-
         <th>
             Nome
         </th>
-
-
         <th>
             Celular
         </th>
@@ -58,18 +54,21 @@
                 @Html.DisplayFor(modelItem => item.emailPimario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.idCargo)
+                @Html.DisplayFor(modelItem => item.Cargo.descricao)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cep)
             </td>
 
             <td>
+
                 @Html.ActionLink("Edit", "Update", new { id = item.idPessoa }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.idPessoa })
+                @Html.ActionLink("Delete", "Delete", new { id = item.idPessoa }, new { onclick = "return confirm('Deseja Realmente Excluir o Funcionario?');" })
+
+                
             </td>
         </tr>
     }
-
+   
 </table>

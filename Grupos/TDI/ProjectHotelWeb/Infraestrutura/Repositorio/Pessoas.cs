@@ -46,7 +46,7 @@ namespace Infraestrutura.Repositorio
 
         public Pessoa ResultadoUnico(int idPessoa)
         {
-            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa && p.isFuncionario == false);
+            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa && p.isFuncionario == false && p.ativo == true);
         }
         public ICollection<Pessoa> Listar()
         {
@@ -54,8 +54,15 @@ namespace Infraestrutura.Repositorio
             //OrderBy(p => p.nome).ToList();
         }
 
-      
-
+        public ICollection<Pessoa> ListarFuncionario()
+        {
+            return pessoas.Where(p => p.isFuncionario == true && p.ativo == true).OrderBy(p => p.nome).ToList();
+            //OrderBy(p => p.nome).ToList();
+        }
+        public Pessoa ResultadoUnicoFuncionario(int idPessoa)
+        {
+            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa  && p.ativo == true);
+        }
         public bool ContemRegistro()
         {
             throw new NotImplementedException();

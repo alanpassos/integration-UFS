@@ -19,8 +19,8 @@ namespace Infraestrutura.Database
         {
 
         }
-        public DbSet<Funcionario> Funcionarios { get; set; }
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Pessoa> Funcionarios { get; set; }
+        public DbSet<Pessoa> Clientes { get; set; }
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<ControleServico> ControleServicos { get; set; }
 
