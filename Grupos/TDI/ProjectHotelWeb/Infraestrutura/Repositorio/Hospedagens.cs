@@ -48,7 +48,7 @@ namespace Infraestrutura.Repositorio
 
         public ICollection<Hospedagem> Listar()
         {
-            return hospedagens.OrderBy(p => p.dataLiberacao).ToList();
+            return hospedagens.OrderBy(p => p.dataAbertura).ToList();
         }
 
         public bool ContemRegistro()

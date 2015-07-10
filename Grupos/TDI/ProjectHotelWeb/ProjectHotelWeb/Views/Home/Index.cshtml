@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Icones Ex.</h2>
+<hr />
+<div class="row">
+
+    @foreach (var quarto in ViewBag.Quartos)
+    {
+
+        if (quarto.status.Equals("L"))
+        {
+
+            <div class="input-fields col s2">
+                <div class="card small">
+                    <div class="card green">
+
+                        <div class="card-content white-text">
+                            <span class="card-title">@quarto.descricao</span>
+                            <p>Total: @quarto.TipoQuarto.valor</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Check-in</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    @foreach (var h in ViewBag.Hospedagens)
+    {
+        <div class="input-fields col s2">
+            <div class="card small">
+                <div class="card red">
+
+                    <div class="card-content white-text">
+                        <span class="card-title">@h.Quarto.descricao</span>
+                        @foreach (var cc in h.ControleCliente)
+                        {
+                            foreach (var c in ViewBag.Clientes)
+                            {
+                                <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
+                            }
+                        }
+
+                        <p>Total:   @h.valorHospedagem</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">Check-out</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>

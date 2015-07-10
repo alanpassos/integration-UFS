@@ -41,9 +41,9 @@ namespace Infraestrutura.Repositorio
             unidadeTrabalho.Salvar();
         }
 
-        public PacoteHospedagem ResultadoUnico(int idPacoteHospedagem)
+        public PacoteHospedagem ResultadoUnico(int id)
         {
-            return pacoteHospedagens.SingleOrDefault(c => c.idPacoteHospedagem == idPacoteHospedagem);
+            return pacoteHospedagens.SingleOrDefault(c => c.idPacoteHospedagem == id);
         }
 
         public PacoteHospedagem ResultadoUnicoReserva(int idReserva)
