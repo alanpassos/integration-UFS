@@ -8,16 +8,12 @@ using System.Web.Mvc;
 
 
 
-
 namespace ExemploWEB.App_Start
 {
     public class AppConfig : DefaultControllerFactory
     {
-        
         public AppConfig()
         {
-
-            
             ObjectFactory.Initialize(i =>
             {
                 i.For<IUnidadeTrabalho>().HttpContextScoped();

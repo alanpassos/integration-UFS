@@ -14,7 +14,7 @@ namespace Infraestrutura.Database
       public ProjectHotel()
 
 
-          : base("name=projeto_hotel_tdiEntities")
+          : base("name=dbtdinewhotelEntities")
 
         {
 

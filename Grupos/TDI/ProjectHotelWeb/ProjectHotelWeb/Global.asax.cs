@@ -14,7 +14,7 @@ namespace ProjectHotelWeb
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ControllerBuilder.Current.SetControllerFactory( new AppConfig());
+            ControllerBuilder.Current.SetControllerFactory(new AppConfig());
         }
     }
 }
