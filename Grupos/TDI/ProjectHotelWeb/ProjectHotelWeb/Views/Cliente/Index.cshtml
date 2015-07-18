@@ -24,9 +24,7 @@
         <th>
             E-mail
         </th>
-        <th>
-            Cargo
-        </th>
+        
         <th>
             CEP
         </th>
@@ -53,9 +51,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.emailPimario)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cargo.descricao)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.cep)
             </td>
@@ -63,11 +59,12 @@
             <td>
                 @Html.ActionLink("Atualizar", "Atualizar", new { id = item.idPessoa }) |
                 @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idPessoa }) |
-                @Html.ActionLink("Demitir", "Excluir", new { id = item.idPessoa } )
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.idPessoa })
 
-                
+
             </td>
         </tr>
     }
-   
+
 </table>
+

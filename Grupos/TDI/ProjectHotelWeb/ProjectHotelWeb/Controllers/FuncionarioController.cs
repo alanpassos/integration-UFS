@@ -27,7 +27,7 @@ namespace ProjectHotelWeb.Controllers
             return View(pessoas);
         }
 
-        public ActionResult Insert()
+        public ActionResult Cadastrar()
         {
 
             List<Cargo> cargos = iCargos.Listar().ToList<Cargo>();
@@ -44,8 +44,8 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-
-        public ActionResult Create(Pessoa pessoa)
+        [ActionName("CadastrarFuncionario")]
+        public ActionResult Cadastrar(Pessoa pessoa)
         {
 
             pessoa.isFuncionario = true;
@@ -60,16 +60,17 @@ namespace ProjectHotelWeb.Controllers
 
             return RedirectToAction("Index");
         }
-        public ActionResult Update(int id)
+        public ActionResult Atualizar(int id)
         {
 
 
             Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
-          //  pessoa.salario = Convert.ToDecimal( pessoa.salario.ToString().Replace(',', '.'));
+            //  pessoa.salario = Convert.ToDecimal( pessoa.salario.ToString().Replace(',', '.'));
             ViewBag.Cargos = iCargos.Listar();
             return View(pessoa);
         }
-        public ActionResult Edit(Pessoa pessoa)
+        [ActionName("AtualizarFuncionario")]
+        public ActionResult Atualizar(Pessoa pessoa)
         {
             pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
             pessoa.ativo = Convert.ToBoolean(Request.Params.Get("ativo"));
@@ -82,20 +83,40 @@ namespace ProjectHotelWeb.Controllers
 
             return RedirectToAction("Index");
         }
-
-        public ActionResult Delete(int id)
+        public ActionResult Excluir(int id)
         {
             Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
-            if (pessoa != null)
+            return View(pessoa);
+        }
+
+
+
+        [ActionName("ExcluirFuncionario")]
+        public ActionResult Excluir(Pessoa pessoa)
+        {
+            Pessoa newPessoa = iPessoas.ResultadoUnicoFuncionario(pessoa.idPessoa);
+            if (newPessoa != null)
             {
-                pessoa.ativo = false;
-                iPessoas.Atualizar(pessoa);
+                newPessoa.isFuncionario = false;
+                iPessoas.Atualizar(newPessoa);
             }
             else
                 return null;
 
             return RedirectToAction("Index");
         }
+
+
+
+        public ActionResult Detalhar(int id)
+        {
+            Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
+
+
+            return View(pessoa);
+        }
+
+
 
 
 
