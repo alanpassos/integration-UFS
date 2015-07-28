@@ -235,10 +235,10 @@
                             <input type="checkbox" class="filled-in" name="ativo" id="ativo" checked="checked" value="true" @(Model.ativo ? "checked=\"checked\"" : "") />
                             <label for="ativo">&nbsp;Ativo</label>
                         </div>
-                        <div class="input-field col s2">
-                            <input type="checkbox" class="filled-in" id="funcionario" name="funcionario" checked="checked" value="true" @(Model.isFuncionario ? "checked=\"checked\"" : "") />
+                        <div class="input-field col s2" style="display:none">
+                            <input type="checkbox" class="filled-in" id="funcionario" name="funcionario" checked="checked" value="true" @(Model.isFuncionario ? "checked=\"checked\"" : "") disabled="disabled" />
 
-                            <label for="Funcionario">&nbsp;Funcionario</label>
+                            <label for="funcionario">&nbsp;Funcionario</label>
 
                         </div>
                     </p>

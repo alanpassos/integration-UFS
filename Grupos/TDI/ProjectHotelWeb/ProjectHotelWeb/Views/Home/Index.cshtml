@@ -17,6 +17,8 @@
                     <div class="card green">
 
                         <div class="card-content white-text">
+                            <input type="checkbox" class="filled-in" id="@quarto.idQuarto" checked="checked" />
+                            <label for="@quarto.idQuarto"></label>
                             <span class="card-title">@quarto.descricao</span>
                             <p>Total: @quarto.TipoQuarto.valor</p>
                         </div>
@@ -36,6 +38,8 @@
                 <div class="card red">
 
                     <div class="card-content white-text">
+                        <input type="checkbox" class="filled-in" id="@h.Quarto.idQuarto" checked="checked" />
+                        <label for="@h.Quarto.idQuarto"></label>
                         <span class="card-title">@h.Quarto.descricao</span>
                         @foreach (var cc in h.ControleCliente)
                         {

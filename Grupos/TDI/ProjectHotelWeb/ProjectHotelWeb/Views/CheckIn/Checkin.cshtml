@@ -1,0 +1,39 @@
+﻿@model Dominio.Classes.PacoteHospedagem
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Check-in</h2>
+
+<form class="col s12">
+    <div class="row">
+        <div class="input-field col s2">
+            <select name="Filtro">
+                <option value="" disabled selected>Filtro</option>
+                <option value="1">CPF</option>
+                <option value="2">CNPJ</option>
+                <option value="3">Nome</option>
+                <option value="4">Telefone</option>
+            </select>
+            <label></label>
+        </div>
+
+        <div class="input-field col s8">
+
+            <input type="text" id="cpf" name="cpf" onkeypress="javascript: mascara(this, cpf_mask);" maxlength="18" required>
+            <label for="search"><i class="material-icons">search</i></label>
+        </div>
+
+        <div class="input-field col s2">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                <i class="material-icons">search</i>
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

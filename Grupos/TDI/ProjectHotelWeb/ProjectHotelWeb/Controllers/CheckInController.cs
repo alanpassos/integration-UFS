@@ -55,6 +55,10 @@ namespace ProjectHotelWeb.Controllers
             IPacoteHospedagens.Atualizar(pacoteHospedagem);
             return RedirectToAction("Index");
         }
-
+        public ActionResult Checkin()
+        {
+            
+            return View();
+        }
     }
 }

@@ -26,40 +26,40 @@
             </div>
         </nav>
         <br>
-        
+
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    
+
 
                     <li class="tab col s2"><a class="active" href="~/Funcionario/Index"><h6>Funcionário</h6></a></li>
-                    
+
                     <li class="tab col s2"><a href="~/TipoQuarto/Index"><h6>Tipo De Quarto</h6></a></li>
-                    
+
                     <li class="tab col s2"><a href="~/Cargo/Index"><h6>Cargo</h6></a></li>
-                    
+
                     <li class="tab col s2"><a href="~/Reserva/Index"><h6>Reserva</h6></a></li>
-                    
+
                     <li class="tab col s2"><a href="~/CheckIn/Index"><h6>Check-In</h6></a></li>
-                    
+
                     <li class="tab col s2"><a href="~/CheckOut/Index"><h6>Check-Out</h6></a></li>
 
                     <li class="tab col s2"><a href="~/Usuario/Index"><h6>Usuário</h6></a></li>
                 </ul>
             </div>
         </div>
-            <div class="container">
-                <!-- Note that "m4 l3" was added -->
-                <!-- Grey navigation panel
+        <div class="container">
+            <!-- Note that "m4 l3" was added -->
+            <!-- Grey navigation panel
 
-                    This content will be:
-                3-columns-wide on large screens,
-                4-columns-wide on medium screens,
-                12-columns-wide on small screens  -->
-                @RenderBody()
-            </div>
+                This content will be:
+            3-columns-wide on large screens,
+            4-columns-wide on medium screens,
+            12-columns-wide on small screens  -->
+            @RenderBody()
+        </div>
 
-        
+
     </main>
     <footer class="page-footer">
 
@@ -69,7 +69,7 @@
 
             </div>
         </div>
-    </footer>    
+    </footer>
     <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
 
@@ -88,7 +88,7 @@
             weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
             weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
             weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-            
+
             clear: 'Limpar',
             today: 'Hoje',
             close: 'Fechar'
@@ -117,13 +117,59 @@
             $('input#input_text, textarea#textarea1').characterCounter();
         });
 
-       
+
+        /**
+           * MASCARA ( mascara(o,f) e execmascara() ) CRIADAS POR ELCIO LUIZ
+           * elcio.com.br
+           */
+        function mascara(o, f) {
+            v_obj = o
+            v_fun = f
+            setTimeout("execmascara()", 1)
+        }
+
+        function execmascara() {
+            v_obj.value = v_fun(v_obj.value)
+        }
+
+        function cpf_mask(v) {
+            v = v.replace(/\D/g, "")                 //Remove tudo o que não é dígito
+            v = v.replace(/(\d{3})(\d)/, "$1.$2")    //Coloca ponto entre o terceiro e o quarto dígitos
+            v = v.replace(/(\d{3})(\d)/, "$1.$2")    //Coloca ponto entre o setimo e o oitava dígitos
+            v = v.replace(/(\d{3})(\d)/, "$1-$2")   //Coloca ponto entre o decimoprimeiro e o decimosegundo dígitos
+            return v
+        }
+
+        function cnpj_mask(v) {
+            v = v.replace(/^(\d{2})(\d)/, "$1.$2")  
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3") 
+            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2") 
+            v = v.replace(/(\d{4})(\d)/, "$1-$2")   
+            return v
+        }
+        function telefone_mask(v) {
+            v = v.replace(/\D/g, "")                
+            v = v.replace(/(\d{2})(\d)/, "($1) $2") 
+            v = v.replace(/(\d{4})(\d)/, "$1-$2")   
+            return v
+        }
+
+        function cep_mask(v) {
+            v = v.replace(/\D/g, "")                 
+            v = v.replace(/(\d{5})(\d)/, "$1-$2")    
+            return v
+        }
+        function date_mask(v) {
+            v = v.replace(/\D/g, "")                
+            v = v.replace(/(\d{2})(\d)/, "$1/$2")   
+            v = v.replace(/(\d{2})(\d)/, "$1/$2")   
 
 
-       
-
+            return v
+        }
     </script>
-    
+
+
 
 </body>
 </html>

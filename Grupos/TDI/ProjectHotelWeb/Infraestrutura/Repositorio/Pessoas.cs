@@ -46,11 +46,11 @@ namespace Infraestrutura.Repositorio
 
         public Pessoa ResultadoUnico(int idPessoa)
         {
-            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa && p.isFuncionario == false && p.ativo == true);
+            return pessoas.SingleOrDefault(p => p.idPessoa == idPessoa && p.ativo == true);
         }
         public ICollection<Pessoa> Listar()
         {
-            return pessoas.Where(p => p.isFuncionario == false && p.ativo == true).OrderBy(p=> p.nome).ToList();
+            return pessoas.Where(p =>p.ativo == true).OrderBy(p=> p.nome).ToList();
             //OrderBy(p => p.nome).ToList();
         }
 
