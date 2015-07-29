@@ -18,7 +18,7 @@ namespace ExemploWEB.App_Start
             {
                 i.For<IUnidadeTrabalho>().HttpContextScoped();
                 i.For<IRepositorio>().HttpContextScoped();
-
+                
                 i.Scan(s =>
                 {
                     s.Assembly("Infraestrutura");

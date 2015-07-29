@@ -117,6 +117,16 @@
             $('input#input_text, textarea#textarea1').characterCounter();
         });
 
+        $(function () {
+
+            $("#pesquisar").click(function () {
+                var valor = $("#Consulta").val();
+
+                
+
+            });
+
+        });
 
         /**
            * MASCARA ( mascara(o,f) e execmascara() ) CRIADAS POR ELCIO LUIZ
@@ -141,28 +151,28 @@
         }
 
         function cnpj_mask(v) {
-            v = v.replace(/^(\d{2})(\d)/, "$1.$2")  
-            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3") 
-            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2") 
-            v = v.replace(/(\d{4})(\d)/, "$1-$2")   
+            v = v.replace(/^(\d{2})(\d)/, "$1.$2")
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2")
+            v = v.replace(/(\d{4})(\d)/, "$1-$2")
             return v
         }
         function telefone_mask(v) {
-            v = v.replace(/\D/g, "")                
-            v = v.replace(/(\d{2})(\d)/, "($1) $2") 
-            v = v.replace(/(\d{4})(\d)/, "$1-$2")   
+            v = v.replace(/\D/g, "")
+            v = v.replace(/(\d{2})(\d)/, "($1) $2")
+            v = v.replace(/(\d{4})(\d)/, "$1-$2")
             return v
         }
 
         function cep_mask(v) {
-            v = v.replace(/\D/g, "")                 
-            v = v.replace(/(\d{5})(\d)/, "$1-$2")    
+            v = v.replace(/\D/g, "")
+            v = v.replace(/(\d{5})(\d)/, "$1-$2")
             return v
         }
         function date_mask(v) {
-            v = v.replace(/\D/g, "")                
-            v = v.replace(/(\d{2})(\d)/, "$1/$2")   
-            v = v.replace(/(\d{2})(\d)/, "$1/$2")   
+            v = v.replace(/\D/g, "")
+            v = v.replace(/(\d{2})(\d)/, "$1/$2")
+            v = v.replace(/(\d{2})(\d)/, "$1/$2")
 
 
             return v
