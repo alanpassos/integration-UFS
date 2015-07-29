@@ -7,6 +7,7 @@ using Dominio.Classes;
 using Dominio.Interfaces;
 
 
+
 namespace Dominio.Interfaces
 {
     public interface IPessoas : IRepositorio<Pessoa>
@@ -16,6 +17,11 @@ namespace Dominio.Interfaces
         void Remover(Pessoa pessoa);
         Pessoa ResultadoUnico(int idPessoa);
         ICollection<Pessoa> ListarFuncionario();
+        ICollection<Pessoa> ListarPorCpfCnpj(string cpfCnpj);
+        ICollection<Pessoa> ListarPorNome(string nome);
+        Pessoa ListarPorTelefone(string telefone);
         Pessoa ResultadoUnicoFuncionario(int idPessoa);
+        
+        
     }
 }

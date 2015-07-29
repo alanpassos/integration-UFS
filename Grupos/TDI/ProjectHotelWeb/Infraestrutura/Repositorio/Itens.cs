@@ -51,6 +51,11 @@ namespace Infraestrutura.Repositorio
             return itens.OrderBy(p => p.quantidade).ToList();
         }
 
+        public ICollection<Item> ListarItemPorHspedagem(int idHospedagem)
+        {
+            return itens.Where(p => p.cancelado == false && p.idHospedagem == idHospedagem).OrderBy(p => p.quantidade).ToList();
+        }
+
         public bool ContemRegistro()
         {
             throw new NotImplementedException();

@@ -13,5 +13,7 @@ namespace Dominio.Interfaces
         void Atualizar(Item item);
         void Remover(Item item);
         Item ResultadoUnico(int idItem);
+        ICollection<Item> ListarItemPorHspedagem(int idHospedagem);
+
     }
 }

@@ -54,6 +54,22 @@ namespace Infraestrutura.Repositorio
             //OrderBy(p => p.nome).ToList();
         }
 
+        public ICollection<Pessoa> ListarPorCpfCnpj(string cpfCnpj)
+        {
+            return pessoas.Where(p => p.ativo == true && p.cpfCnpj == cpfCnpj).OrderBy(p => p.nome).ToList();
+            //OrderBy(p => p.nome).ToList();
+        }
+
+        public ICollection<Pessoa> ListarPorNome(string nome)
+        {
+            return pessoas.Where(p => p.ativo == true && p.nome == nome).OrderBy(p => p.nome).ToList();
+            //OrderBy(p => p.nome).ToList();
+        }
+        public Pessoa ListarPorTelefone(string telefone)
+        {
+            return pessoas.SingleOrDefault(p => p.telefoneMovel == telefone && p.ativo == true);
+        }
+
         public ICollection<Pessoa> ListarFuncionario()
         {
             return pessoas.Where(p => p.isFuncionario == true && p.ativo == true).OrderBy(p => p.nome).ToList();

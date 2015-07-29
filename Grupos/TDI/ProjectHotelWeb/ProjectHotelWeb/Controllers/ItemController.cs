@@ -26,7 +26,10 @@ namespace ProjectHotelWeb.Controllers
         {
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
             ViewBag.Produto = produtos;
-
+            
+            List<Item> itens = IItem.ListarItemPorHspedagem(2).ToList<Item>();
+            ViewBag.Item = itens;          
+            
             return View();
         }
 
@@ -38,16 +41,16 @@ namespace ProjectHotelWeb.Controllers
 
             Produto produto = IProduto.ResultadoUnico(Convert.ToInt32(id));
             Item item = new Item();
-            item.valorTotal = Convert.ToInt32(quantidade) * produto.valor;
+            item.valorTotal = Convert.ToInt32(quantidade ) * produto.valor;
             item.idProduto = produto.idProduto;
             item.cancelado = false;
             item.dataCadastro = DateTime.Now;
             item.idHospedagem = 2;
 
-            //IItem.Cadastrar(item);
+            IItem.Cadastrar(item);
 
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
-            List<Item> itens = IItem.Listar().ToList<Item>();
+            List<Item> itens = IItem.ListarItemPorHspedagem(2).ToList<Item>();
 
 
 
