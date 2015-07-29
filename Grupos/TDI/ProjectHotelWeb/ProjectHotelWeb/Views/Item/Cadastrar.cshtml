@@ -1,0 +1,131 @@
+﻿@model Dominio.Classes.Item
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+
+@using (Html.BeginForm("CadastrarItem", "Item"))
+{
+    @Html.AntiForgeryToken()
+    <h4>Item</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+
+
+
+        <div class="row">
+            <div class="input-field col s4" style="height: 400px; overflow: auto;">
+                <ul class="collection">
+                    @foreach (var i in @ViewBag.Produto)
+                    {
+                        <li class="collection-item">
+
+                            <input name="group1" type="radio" id=@i.idProduto value=@i.idProduto />
+                            <label for=@i.idProduto></label>
+
+                            <span class="title">Descrição: @i.descricao</span>
+                            <p style="margin-left : 38px">
+                                Quantidade: @i.quantidade <br>
+                                Tamanho: @i.tamanho <br>
+                                Valor: @i.valor
+                            </p>
+                        </li>
+
+                    }
+                </ul>
+
+            </div>
+        </div>
+        <div class="row">
+            <label for="quantidade"> Quantidade </label>
+            <input type="text" id="quantidade" name="quantidade" />
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="input-field col s12">
+        <table class="striped">
+            <tr>
+
+                <th>
+                    Código
+                </th>
+                <th>
+                    Produto
+                </th>
+                <th>
+                    Quantidade
+                </th>
+                <th>
+                    Valor Total
+                </th>
+
+               
+                <th>
+                    Selecionar
+                </th>
+                <th>
+                    Opções
+                </th>
+                <th></th>
+            </tr>
+          
+            @if (@ViewBag.Item != null)
+            {
+
+                foreach (var item in ViewBag.Item)
+                {
+                    <tr>
+
+                        <td>
+                            @item.idItem
+                        </td>
+
+                        <td>
+                            @item.Produto.descricao
+                        </td>
+                        <td>
+                            @item.quantidade
+                        </td>
+                        <td>
+                            @item.valorTotal
+                        </td>
+
+                        <td>
+                            <input type="checkbox" class="filled-in" id="@item.idItem" />
+                            <label for="@item.idItem"></label>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Atualizar", "Atualizar", new { id = item.idPessoa }) |
+                            @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idPessoa }) |
+                            @Html.ActionLink("Excluir", "Excluir", new { id = item.idPessoa })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

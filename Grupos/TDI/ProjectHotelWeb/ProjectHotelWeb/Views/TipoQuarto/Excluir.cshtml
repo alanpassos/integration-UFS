@@ -8,51 +8,46 @@
 
 <h3>Deseja Realmente Excluir?</h3>
 <div>
-    <h4>TipoQuarto</h4>
+    <h4>Tipo de Quarto</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.idTipoQuarto)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.idTipoQuarto)
-        </dd>
+    <div class="row">
+        <div class="input-field col s4">
+            <b>Código: </b>  @Html.DisplayFor(model => model.idTipoQuarto)
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descricao)
-        </dt>
+    </div>
+    <div class="row">
+        <div class="input-field col s4">
+            <b>Descrição: </b>  @Html.DisplayFor(model => model.descricao)
+        </div>
+        <div class="input-field col s4">
+            <b>Observação: </b>  @Html.DisplayFor(model => model.observacao)
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.descricao)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.observacao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.observacao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.valor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.valor)
-        </dd>
-
-    </dl>
+    </div>
+    <div class="row">
+        <div class="input-field col s4">
+            <b>Valor: </b>  @Html.DisplayFor(model => model.valor)
+        </div>
+    </div>
 
     @using (Html.BeginForm("ExcluirTipoQuarto", "TipoQuarto"))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.idTipoQuarto)
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Excluir" class="btn btn-default" /> |
+    <div class=" row">
+        <div class="input-field col s10">
             @Html.ActionLink("Voltar", "Index")
         </div>
+
+        <div class="input-field col s0">
+            <input type="submit" value="Excluir" class="btn btn-default" />
+
+
+        </div>
+    </div>
     }
 </div>
