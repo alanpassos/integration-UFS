@@ -253,7 +253,7 @@ CREATE TABLE Item (
   dataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
   cancelado BIT NOT NULL DEFAULT 0)
 go
- alter table Item add constraint pk_item  primary key (iditem)
+ alter table Item add constraint pk_item  primary key (idItem)
  go
  create index idx_fk_produto on Item (idProduto)
  create index idx_fk_hospedagem on Item (idHospedagem)
