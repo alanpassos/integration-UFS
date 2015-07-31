@@ -22,6 +22,7 @@ namespace ProjectHotelWeb.Controllers
             return View(itens);
         }
         
+
         public ActionResult Cadastrar(string idHospedagem)
         {
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
@@ -30,7 +31,7 @@ namespace ProjectHotelWeb.Controllers
             List<Item> itens = IItem.ListarItemPorHspedagem(Convert.ToInt32(idHospedagem)).ToList<Item>();
             ViewBag.Item = itens;          
             
-            return View();
+            return   View();
         }
 
         [HttpPost]

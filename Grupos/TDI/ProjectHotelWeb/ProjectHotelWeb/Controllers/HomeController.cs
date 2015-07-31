@@ -16,13 +16,7 @@ namespace ProjectHotelWeb.Controllers
         public IPessoas IPessoa { get; set; }
 
 
-        public ActionResult AdicionarItem()
-        {
-            
-
-
-            return RedirectToAction("Cadastrar", "Item");
-        }
+       
 
 
 
@@ -63,6 +57,14 @@ namespace ProjectHotelWeb.Controllers
             ViewBag.Hospedagens = hospedagens;
             ViewBag.Quartos = quartosLivres;
             ViewBag.Clientes = clientes;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult QuartosLivres()
+        {
+            List<Quarto> quartosLivres = IQuartos.Listar().ToList<Quarto>();
+            ViewBag.Hospedagens = null;
+            ViewBag.Quartos = quartosLivres;
             return View();
         }
     }
