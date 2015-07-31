@@ -26,38 +26,57 @@
             </div>
         </nav>
         <br>
-
         <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
 
+            <div class="col s12 m8 l9">
+                
+                @RenderBody()
+                <!-- Note that "m4 l3" was added -->
+                <!-- Grey navigation panel
 
-                    <li class="tab col s2"><a class="active" href="~/Funcionario/Index"><h6>Funcionário</h6></a></li>
+                  This content will be:
+              3-columns-wide on large screens,
+              4-columns-wide on medium screens,
+              12-columns-wide on small screens  -->
 
-                    <li class="tab col s2"><a href="~/TipoQuarto/Index"><h6>Tipo De Quarto</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/Cargo/Index"><h6>Cargo</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/Reserva/Index"><h6>Reserva</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/CheckIn/Index"><h6>Check-In</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/CheckOut/Index"><h6>Check-Out</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/Usuario/Index"><h6>Usuário</h6></a></li>
-                </ul>
             </div>
-        </div>
-        <div class="container">
-            <!-- Note that "m4 l3" was added -->
-            <!-- Grey navigation panel
 
-                This content will be:
-            3-columns-wide on large screens,
-            4-columns-wide on medium screens,
-            12-columns-wide on small screens  -->
-            @RenderBody()
+            <div class="col s12 m4 l3" style="border:hidden">
+                <div class="container" style="border-color:green">
+                    <div class="row">
+                        <a class="btn-floating btn-large waves-effect waves-light green" onclick="AddToCart()">
+                            
+                        </a>
+                        Quartos Disponíveis
+                    </div>
+                    <div class="row">
+                        <a class="btn-floating btn-large waves-effect waves-light red" onclick="AddToCart()">
+                            
+                        </a>
+                        Quartos Ocupados
+                    </div>
+                    <div class="row">
+                        <a class="btn-floating btn-large waves-effect waves-light grey" onclick="AddToCart()">
+                          
+                        </a>
+                        Todos
+                    </div>
+                    </div>
+                    <!-- Note that "m8 l9" was added -->
+                    <!-- Teal page content
+
+            This content will be:
+        9-columns-wide on large screens,
+        8-columns-wide on medium screens,
+        12-columns-wide on small screens  -->
+
+                </div>
+
         </div>
+
+
+
+      
 
 
     </main>
@@ -70,9 +89,7 @@
             </div>
         </div>
     </footer>
-    <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
-
+   
     <script>
         $('.datepicker').pickadate({
             format: 'dd/mm/yyyy',
@@ -118,12 +135,8 @@
         });
 
         $(function () {
-
             $("#pesquisar").click(function () {
                 var valor = $("#Consulta").val();
-
-                
-
             });
 
         });
@@ -177,8 +190,45 @@
 
             return v
         }
-    </script>
 
+        // ação de saber qual elemento está xecado no formulário de checkin
+    
+
+        function AdicionarItem() {
+            var tamanho = document.forms[0].elements.length;
+            var selecionou = false;
+            var valor = null;
+
+            for (var i = 0; i < tamanho ; i++) {
+
+                if(document.getElementById(document.forms[0].elements[i].id.toString()).checked){
+                    valor = document.forms[0].elements[i].id.toString();
+                    alert("xecado " + document.forms[0].elements[i].id.toString());
+                    selecionou = true;
+                    break;
+                    
+                } 
+
+            }
+
+            if (selecionou) {
+                $.ajax({
+
+                    url: "./Item/Cadastrar",
+                    data: idHospedagem = valor,
+                    success: function () {
+                        alert("Added");
+                    }
+                });
+            } else {
+                alert("Selecione uma hospedagem");
+            }
+        }
+
+    </script>
+    <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 
 </body>

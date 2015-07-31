@@ -14,7 +14,18 @@ namespace ProjectHotelWeb.Controllers
         public IQuartos IQuartos { get; set; }
         public IHospedagens IHospedagem { get; set; }
         public IPessoas IPessoa { get; set; }
-        
+
+
+        public ActionResult AdicionarItem()
+        {
+            
+
+
+            return RedirectToAction("Cadastrar", "Item");
+        }
+
+
+
         // GET: Home
         public ActionResult Index()
         {

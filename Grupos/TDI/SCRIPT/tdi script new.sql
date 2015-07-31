@@ -59,6 +59,7 @@ CREATE TABLE Quarto (
   idQuarto INT IDENTITY(1,1) NOT NULL,
   idTipoQuarto INT NOT NULL,
   descricao VARCHAR(45) NOT NULL,
+  observacao VARCHAR(100) NULL,
   capacidade INT NOT NULL,
   ativo BIT NOT NULL DEFAULT 1,
   status CHAR(1) CHECK (status in ('L','O','R'))) -- livre, ocupado, requerido

@@ -21,13 +21,13 @@ namespace ProjectHotelWeb.Controllers
             List<Item> itens = IItem.Listar().ToList<Item>();
             return View(itens);
         }
-
-        public ActionResult Cadastrar()
+        
+        public ActionResult Cadastrar(string idHospedagem)
         {
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
             ViewBag.Produto = produtos;
-            
-            List<Item> itens = IItem.ListarItemPorHspedagem(1).ToList<Item>();
+
+            List<Item> itens = IItem.ListarItemPorHspedagem(Convert.ToInt32(idHospedagem)).ToList<Item>();
             ViewBag.Item = itens;          
             
             return View();
