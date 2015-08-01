@@ -14,10 +14,41 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-horizontal">
 
+        @{var hospedagem = @ViewBag.Hospedagem;}
+        @{var cliente = @ViewBag.Cliente;}
 
 
         <div class="row">
-            <div class="input-field col s4" style="height: 400px; overflow: auto;">
+            <div class="col s6">
+                <div class="card-panel teal">
+                    
+                        <h5 class="center ; white-text">@hospedagem.Quarto.descricao</h5>
+                  
+                </div>
+                <div class="card-panel teal">
+                    <span class="white-text">
+                        <b>
+                            Cliente:
+                        </b>
+                        @cliente.nome
+                    </span>
+                </div>
+                <div class="card-panel teal">
+                    <span class="white-text">
+                        <b>Telefone</b>: @cliente.telefoneMovel
+                    </span>
+                </div>
+
+                <div class="card-panel teal">
+                    <span class="white-text">
+                        <b>Valor Total</b>: @hospedagem.valorHospedagem
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="input-field col s6" style="height: 400px; overflow: auto;">
                 <ul class="collection">
                     @foreach (var i in @ViewBag.Produto)
                     {
@@ -38,10 +69,17 @@
                 </ul>
 
             </div>
+            <div class="col s6 offset-s6 grid-example">
+                <label for="quantidade"> Quantidade </label>
+                <input type="text" id="quantidade" name="quantidade" required />
+            </div>
+
         </div>
+
+
+
         <div class="row">
-            <label for="quantidade"> Quantidade </label>
-            <input type="text" id="quantidade" name="quantidade" required/>
+
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -68,8 +106,6 @@
                 <th>
                     Valor Total
                 </th>
-
-               
                 <th>
                     Selecionar
                 </th>
@@ -78,7 +114,7 @@
                 </th>
                 <th></th>
             </tr>
-          
+
             @if (@ViewBag.Item != null)
             {
 
@@ -115,11 +151,6 @@
         </table>
     </div>
 </div>
-
-
-
-
-
 
 
 <div>

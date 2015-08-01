@@ -34,6 +34,22 @@ namespace ProjectHotelWeb.Controllers
             return   View();
         }
 
+		 private void AtualizaHospedagem()
+        {
+            Pessoa cliente = new Pessoa();
+            foreach (var c in hospedagem.ControleCliente)
+            {
+                if (c.isResponsavel)
+                {
+                    cliente = IPessoa.ResultadoUnico(c.idCliente);
+                    break;
+                }
+            }
+            ViewBag.Hospedagem = hospedagem;
+            ViewBag.Cliente = cliente;
+        }
+
+		
         [HttpPost]
         public ActionResult CadastrarItem()
         {
@@ -47,19 +63,25 @@ namespace ProjectHotelWeb.Controllers
             item.idProduto = produto.idProduto;
             item.cancelado = false;
             item.dataCadastro = DateTime.Now;
-            item.idHospedagem = 1;
+            item.idHospedagem = hospedagem.idHospedagem;
             if (produto.quantidade >= Convert.ToInt32(quantidade))
             { 
 
             IItem.Cadastrar(item);
-        }
+			}
 
+            hospedagem.valorHospedagem += item.valorTotal;
+            IHospedagem.Atualizar(hospedagem);
+            hospedagem = IHospedagem.ResultadoUnico(1);
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
-            ViewBag.Produto = produtos;
+            List<Item> itens = IItem.ListarItemPorHspedagem(hospedagem.idHospedagem).ToList<Item>();
+			ViewBag.Produto = produtos;
             List<Item> itens = IItem.ListarItemPorHspedagem(1).ToList<Item>();            
             ViewBag.Item = itens;
-
+			AtualizaHospedagem();
+            
             return RedirectToAction("Cadastrar");
+	
         }
     }
 }
