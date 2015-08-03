@@ -181,10 +181,6 @@
                     }
             });
 
-
-
-
-
         }
 
         function AdicionarItem() {
@@ -207,10 +203,28 @@
             } else {
                 alert("Selecione uma hospedagem");
             }
-
-           
         }
+        function RealizarCheckin() {
+            var tamanho = document.forms[0].elements.length;
+            var selecionou = false;
+            var valor = null;
 
+            for (var i = 0; i < tamanho ; i++) {
+
+                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
+                    valor = document.forms[0].elements[i].id.toString();
+                    selecionou = true;
+                }
+            }
+
+            if (selecionou) {
+                $.post("/Checkin/Checkin", { idHospedagem: valor }, function (data) {
+                    $("html").html(data);
+                });
+            } else {
+                alert("Selecione uma hospedagem");
+            }
+        }
     </script>
 
     <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
