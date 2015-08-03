@@ -44,8 +44,8 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult Teste(string idHospedagem)
         {
             hospedagem = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem));
-            ViewBag.Hospedagem = hospedagem;
-            return PartialView();
+           
+            return PartialView("_Partial",  hospedagem.Item[0]);
         }
 
 		private void ClienteHospedagem()

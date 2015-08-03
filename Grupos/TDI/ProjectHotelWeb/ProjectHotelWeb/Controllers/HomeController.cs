@@ -59,7 +59,7 @@ namespace ProjectHotelWeb.Controllers
             ViewBag.Clientes = clientes;
             return View();
         }
-        [HttpPost]
+        
         public ActionResult QuartosLivres()
         {
             List<Quarto> quartosLivres = IQuartos.Listar().ToList<Quarto>();
