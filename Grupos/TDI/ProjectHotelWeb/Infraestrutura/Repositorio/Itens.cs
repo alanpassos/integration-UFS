@@ -31,7 +31,7 @@ namespace Infraestrutura.Repositorio
 
         public void CadastrarNovo(Item item)
         {
-            Item itemAuxiliar;
+            Item itemAuxiliar = null;
             itemAuxiliar = ResultadoUnicoHospedagem(item.idHospedagem, item.idProduto);
             if (itemAuxiliar != null) 
             {
@@ -67,7 +67,7 @@ namespace Infraestrutura.Repositorio
 
         public Item ResultadoUnicoHospedagem(int idHospedagem, int idProduto)
         {
-            return itens.SingleOrDefault(c => c.idHospedagem == idHospedagem && c.idProduto == idProduto);
+            return itens.SingleOrDefault(c => c.idHospedagem == idHospedagem && c.idProduto == idProduto && c.cancelado == false);
         }
 
         public ICollection<Item> Listar()
