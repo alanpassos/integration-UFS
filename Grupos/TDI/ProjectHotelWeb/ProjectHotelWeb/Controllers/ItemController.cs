@@ -27,9 +27,9 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-        public ActionResult Cadastrar()
+        public ActionResult Cadastrar(string idHospedagem)
         {
-            hospedagem = IHospedagem.ResultadoUnico(1);
+            hospedagem = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem));
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
             ViewBag.Produto = produtos;
 
@@ -40,12 +40,12 @@ namespace ProjectHotelWeb.Controllers
 
             return View();
         }
-
-        public ActionResult Teste(string idHospedagem)
+        
+        public ActionResult Cadastro(string idHospedagem)
         {
             hospedagem = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem));
-           
-            return PartialView("_Partial",  hospedagem.Item[0]);
+            ViewBag.idHospedagem = hospedagem.idHospedagem;
+            return View();
         }
 
 		private void ClienteHospedagem()

@@ -1,13 +1,15 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-@{var controler = "Teste";}
-@{var metodo = "Teste";}
+@{var controler = "Home";}
+@{var metodo = "Index";}
+
+
+
+
 
 @using (Html.BeginForm(metodo, controler))
 {
-
-
 
     <div class="row">
 
@@ -20,7 +22,7 @@
 
 
                     <div class="col s1">
-                        <a class="btn-floating btn-large waves-effect waves-light blue" onclick="AddToCart()">
+                        <a class="btn-floating btn-large waves-effect waves-light blue" onclick="">
                             <i class="material-icons">call_made</i>
 
                         </a>
@@ -34,9 +36,11 @@
                     </div>
                     <div class="col s1">
 
-                        <a class="btn-floating btn-large waves-effect waves-light green" id="teste"onclick="AdicionarItem()">
+                        <a class="btn-floating btn-large waves-effect waves-light green" id="teste" onclick="AdicionarItem()">
                             <i class="material-icons">shopping_cart</i>
                         </a>
+                        
+
                     </div>
                     <div class="col s1">
 
@@ -143,9 +147,9 @@
                         </div>
                     }
                 </div>
-                
+
             </form>
-         
+
         </div>
 
         <div class="col s12 m2 l2">

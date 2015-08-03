@@ -50,7 +50,24 @@
         </div>
     </footer>
 
+
     <script>
+
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
+        $('#itemModal').openModal();
+        $('#itemModal').closeModal();
+        $('.modal-trigger').leanModal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+            ready: function () { alert('Ready'); }, // Callback for Modal open
+            complete: function () { alert('Closed'); } // Callback for Modal close
+        }
+  );
         $('.datepicker').pickadate({
             format: 'dd/mm/yyyy',
             selectMonths: true,
@@ -179,30 +196,19 @@
 
                 if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
                     valor = document.forms[0].elements[i].id.toString();
-                    alert("xecado " + document.forms[0].elements[i].id.toString());
                     selecionou = true;
-
                 }
-
             }
-            
-          
-            
+
             if (selecionou) {
-                $.ajax({
-                    type: 'GET',
-                    url: '/Item/Teste',
-                    dataType: 'html',
-                    data: { idHospedagem: valor },
-                    cache: false,
-                    async: true,
-                    success: function (data) {
-                        $("#divGridProdutos").html(data);
-                    }
+                $.post("/Item/Cadastrar", { idHospedagem: valor }, function (data) {
+                    $("html").html(data);
                 });
             } else {
                 alert("Selecione uma hospedagem");
             }
+
+           
         }
 
     </script>
