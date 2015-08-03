@@ -14,6 +14,9 @@ namespace ProjectHotelWeb.Controllers
         public IProjectHotel IProjectHotel { get; set; }
         public IItens IItem { get; set; }
         public IProdutos IProduto { get; set; }
+        public IHospedagens IHospedagem { get; set; }
+        public IPessoas IPessoa { get; set; }
+        public Hospedagem hospedagem { get; set; }
 
         // GET: Item
         public ActionResult Index()
@@ -21,17 +24,20 @@ namespace ProjectHotelWeb.Controllers
             List<Item> itens = IItem.Listar().ToList<Item>();
             return View(itens);
         }
-        
 
-        public ActionResult Cadastrar(string idHospedagem)
+
+        public ActionResult Cadastrar()
         {
+            hospedagem = IHospedagem.ResultadoUnico(1);
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
             ViewBag.Produto = produtos;
 
-            List<Item> itens = IItem.ListarItemPorHspedagem(Convert.ToInt32(idHospedagem)).ToList<Item>();
-            ViewBag.Item = itens;          
-            
-            return   View();
+            List<Item> itens = IItem.ListarItemPorHspedagem(hospedagem.idHospedagem).ToList<Item>();
+            ViewBag.Item = itens;
+                
+            AtualizaHospedagem();
+
+            return View();
         }
 
 		 private void AtualizaHospedagem()
@@ -55,7 +61,7 @@ namespace ProjectHotelWeb.Controllers
         {
             string id = Request.Params.Get("group1");
             string quantidade = Request.Params.Get("quantidade");
-
+            hospedagem = IHospedagem.ResultadoUnico(1);
             Produto produto = IProduto.ResultadoUnico(Convert.ToInt32(id));
             Item item = new Item();
             item.valorTotal = Convert.ToInt32(quantidade ) * produto.valor;
@@ -65,9 +71,8 @@ namespace ProjectHotelWeb.Controllers
             item.dataCadastro = DateTime.Now;
             item.idHospedagem = hospedagem.idHospedagem;
             if (produto.quantidade >= Convert.ToInt32(quantidade))
-            { 
-
-            IItem.Cadastrar(item);
+            {
+                IItem.CadastrarNovo(item);
 			}
 
             hospedagem.valorHospedagem += item.valorTotal;
@@ -76,7 +81,6 @@ namespace ProjectHotelWeb.Controllers
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
             List<Item> itens = IItem.ListarItemPorHspedagem(hospedagem.idHospedagem).ToList<Item>();
 			ViewBag.Produto = produtos;
-            List<Item> itens = IItem.ListarItemPorHspedagem(1).ToList<Item>();            
             ViewBag.Item = itens;
 			AtualizaHospedagem();
             

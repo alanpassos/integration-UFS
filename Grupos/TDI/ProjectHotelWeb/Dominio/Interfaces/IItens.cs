@@ -10,9 +10,11 @@ namespace Dominio.Interfaces
     public interface IItens : IRepositorio<Item>
     {
         void Cadastrar(Item item);
+        void CadastrarNovo(Item item);
         void Atualizar(Item item);
         void Remover(Item item);
         Item ResultadoUnico(int idItem);
+        Item ResultadoUnicoHospedagem(int idHospedagem, int idProduto);
         ICollection<Item> ListarItemPorHspedagem(int idHospedagem);
 
     }

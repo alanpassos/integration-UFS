@@ -29,6 +29,25 @@ namespace Infraestrutura.Repositorio
             unidadeTrabalho.Salvar();
         }
 
+        public void CadastrarNovo(Item item)
+        {
+            Item itemAuxiliar;
+            itemAuxiliar = ResultadoUnicoHospedagem(item.idHospedagem, item.idProduto);
+            if (itemAuxiliar != null) 
+            {
+                itemAuxiliar.quantidade += item.quantidade;
+                itemAuxiliar.valorTotal += item.valorTotal;
+                
+                unidadeTrabalho.RegistrarAlterado(itemAuxiliar);
+             
+            }
+            else
+            {
+                unidadeTrabalho.RegistrarNovo(item);
+            }
+            unidadeTrabalho.Salvar();
+        }
+
         public void Atualizar(Item historico)
         {
             unidadeTrabalho.RegistrarAlterado(historico);
@@ -44,6 +63,11 @@ namespace Infraestrutura.Repositorio
         public Item ResultadoUnico(int idItem)
         {
             return itens.SingleOrDefault(c => c.idItem == idItem);
+        }
+
+        public Item ResultadoUnicoHospedagem(int idHospedagem, int idProduto)
+        {
+            return itens.SingleOrDefault(c => c.idHospedagem == idHospedagem && c.idProduto == idProduto);
         }
 
         public ICollection<Item> Listar()
