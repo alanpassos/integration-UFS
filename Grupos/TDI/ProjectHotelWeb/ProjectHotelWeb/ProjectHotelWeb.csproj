@@ -112,6 +112,7 @@
     <Content Include="Content\font\material-design-icons\LICENSE.txt" />
     <Content Include="Content\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="Content\img\ex.jpg" />
+    <Content Include="Content\js\jquery-2.1.4.min.js" />
     <Content Include="Content\js\materialize.js" />
     <Content Include="Content\js\materialize.min.js" />
     <Content Include="Content\Site.css" />
