@@ -29,7 +29,7 @@
             </div>
 
             <div class="input-field col s4">
-                <input id="telefone" type="text" class="validate">
+                <input id="telefone" type="text" class="validate" onkeypress="javascript: mascara(this, telefone_mask); return isNumberKey(event)" maxlength="14">
                 <label for="telefone">Telefone</label>
             </div>
 
@@ -37,12 +37,12 @@
         <hr>
         <div class="row">
             <div class="input-field col s2">
-                <input id="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask)" maxlength="10">
+                <input id="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
                 <label for="dataInicio">Data Início</label>
             </div>
 
             <div class="input-field col s2">
-                <input id="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask)" maxlength="10">
+                <input id="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
                 <label for="dataFim">Data Final</label>
             </div>
             <div class="input-field col s4">
@@ -59,12 +59,12 @@
                 <label for="TipoQuarto">&nbsp;Tipo Quarto</label>
             </div>
             <div class="input-field col s1">
-                <input id="pessoas" type="number" class="validate" pattern="[0-9]+$">
+                <input id="pessoas" type="text" class="validate" onkeypress="return isNumberKey(event)" maxlength="5">
                 <label for="pessoas">Pessoas</label>
             </div>
 
             <div class="input-field col s1">
-                <input id="quartos" type="text" class="validate">
+                <input id="quartos" type="text" class="validate" onkeypress="return isNumberKey(event)" maxlength="5">
                 <label for="quartos">Quartos</label>
             </div>
         </div>
