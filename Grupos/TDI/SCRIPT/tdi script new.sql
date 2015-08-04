@@ -279,7 +279,7 @@ go
 CREATE TABLE Servico (
   idServico INT IDENTITY(1,1) NOT NULL,
   descricao VARCHAR(45) NOT NULL,
-  observacao VARCHAR(45) NULL,
+  observacao VARCHAR(100) NULL,
   valor NUMERIC(10,2) NOT NULL,
   ativo BIT NOT NULL DEFAULT 1)
 go
