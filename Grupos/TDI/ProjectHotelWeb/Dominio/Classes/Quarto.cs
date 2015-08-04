@@ -11,6 +11,7 @@ namespace Dominio.Classes
        public int idQuarto { get; set; }
        public int idTipoQuarto { get; set; }
        public string descricao { get; set; }
+       public string observacao { get; set; }
        public int capacidade { get; set; }
        public bool ativo { get; set; }
        public string status { get; set; }

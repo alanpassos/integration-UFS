@@ -42,10 +42,7 @@
         </div>
     </form>
 </div>
-
-<div style="margin-left:94%;" class=" row">
-    <a float href="http://localhost:61055/Quarto/Cadastrar">Cadastrar</a>
-</div>
+@Html.ActionLink("Cadastrar", "Cadastrar", "Quarto")
 <table class="striped">
     <tr>
         <th>
@@ -92,13 +89,13 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Atualizar", new { id = item.idQuarto }) |
-                @Html.ActionLink("Detalhes", "Detalhar", new { id = item.idQuarto }) |
-                @Html.ActionLink("Excluir", "Excluir", new { id = item.id
- })
+                @Html.ActionLink("Detalhes", "Detalhar", new { id = item.idQuarto })  |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.idQuarto })
+ 
             </td>
         </tr>
     }
-
+    
 </table>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
