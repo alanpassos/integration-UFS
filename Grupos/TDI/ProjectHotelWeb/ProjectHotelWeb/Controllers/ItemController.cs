@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProjectHotelWeb.ClassesEspeciais;
 
 namespace ProjectHotelWeb.Controllers
 {
@@ -17,7 +18,7 @@ namespace ProjectHotelWeb.Controllers
         public IHospedagens IHospedagem { get; set; }
         public IPessoas IPessoa { get; set; }
         public Hospedagem hospedagem { get; set; }
-
+      
 
         // GET: Item
         public ActionResult Index()
@@ -29,13 +30,25 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Cadastrar(string idHospedagem)
         {
-            hospedagem = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem));
+            if(idHospedagem != null)
+            {
+                Entidade.hospedagemGlobal = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem));
+            }
+            else
+            {
+                int id = Entidade.hospedagemGlobal.idHospedagem;
+                Entidade.hospedagemGlobal = new Hospedagem();
+                Entidade.hospedagemGlobal = IHospedagem.ResultadoUnico(id);
+            }
+
+
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
             ViewBag.Produto = produtos;
 
-            List<Item> itens = IItem.ListarItemPorHspedagem(hospedagem.idHospedagem).ToList<Item>();
+            List<Item> itens = IItem.ListarItemPorHspedagem(Entidade.hospedagemGlobal.idHospedagem).ToList<Item>();
             ViewBag.Item = itens;
-                
+
+            
             ClienteHospedagem();
 
             return View();
@@ -51,7 +64,7 @@ namespace ProjectHotelWeb.Controllers
 		private void ClienteHospedagem()
         {
             Pessoa cliente = new Pessoa();
-            foreach (var c in hospedagem.ControleCliente)
+            foreach (var c in Entidade.hospedagemGlobal.ControleCliente)
             {
                 if (c.isResponsavel)
                 {
@@ -59,7 +72,7 @@ namespace ProjectHotelWeb.Controllers
                     break;
                 }
             }
-            ViewBag.Hospedagem = hospedagem;
+            ViewBag.Hospedagem = Entidade.hospedagemGlobal;
             ViewBag.Cliente = cliente;
         }
 
@@ -69,7 +82,7 @@ namespace ProjectHotelWeb.Controllers
         {
             string id = Request.Params.Get("group1");
             string quantidade = Request.Params.Get("quantidade");
-            hospedagem = IHospedagem.ResultadoUnico(1);
+
             Produto produto = IProduto.ResultadoUnico(Convert.ToInt32(id));
             Item item = new Item();
             item.valorTotal = Convert.ToInt32(quantidade ) * produto.valor;
@@ -77,22 +90,22 @@ namespace ProjectHotelWeb.Controllers
             item.idProduto = produto.idProduto;
             item.cancelado = false;
             item.dataCadastro = DateTime.Now;
-            item.idHospedagem = hospedagem.idHospedagem;
+            item.idHospedagem = Entidade.hospedagemGlobal.idHospedagem;
             if (produto.quantidade >= Convert.ToInt32(quantidade))
             {
+                Hospedagem hospedagemAtualizada = IHospedagem.ResultadoUnico(Entidade.hospedagemGlobal.idHospedagem);
                 IItem.CadastrarNovo(item);
-                hospedagem.valorHospedagem += item.valorTotal;
-                IHospedagem.Atualizar(hospedagem);
+                hospedagemAtualizada.valorHospedagem += item.valorTotal;
+                IHospedagem.Atualizar(hospedagemAtualizada);
                
 			}
 
-            hospedagem = IHospedagem.ResultadoUnico(1);
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
-            List<Item> itens = IItem.ListarItemPorHspedagem(hospedagem.idHospedagem).ToList<Item>();
+            List<Item> itens = IItem.ListarItemPorHspedagem(Entidade.hospedagemGlobal.idHospedagem).ToList<Item>();
 			ViewBag.Produto = produtos;
             ViewBag.Item = itens;
 			ClienteHospedagem();
-            
+
             return RedirectToAction("Cadastrar");
 	
         }
@@ -122,7 +135,7 @@ namespace ProjectHotelWeb.Controllers
             string idHospedagem = itensCancelados[1];
             string idItem;
             Item itemCancelado;
-            Hospedagem hospedagemItemCancelado;
+            Hospedagem hospedagemItemCancelado = new Hospedagem();
 
             for (int i = 0; i < itensCancelados.Count(); i += 2 )
             {
