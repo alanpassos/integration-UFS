@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ProjectHotelWeb.ClassesEspeciais;
 
 namespace ProjectHotelWeb
 {
@@ -12,6 +13,7 @@ namespace ProjectHotelWeb
     {
         protected void Application_Start()
         {
+            Entidade.hospedagemGlobal = null;
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new AppConfig());
