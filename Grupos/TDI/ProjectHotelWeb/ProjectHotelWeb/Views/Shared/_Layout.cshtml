@@ -68,6 +68,10 @@
             complete: function () { alert('Closed'); } // Callback for Modal close
         }
   );
+
+        $(document).ready(function () {
+            $('input#input_text, textarea#textarea1').characterCounter();
+        });
         $('.datepicker').pickadate({
             format: 'dd/mm/yyyy',
             selectMonths: true,

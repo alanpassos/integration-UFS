@@ -39,7 +39,7 @@
                         <a class="btn-floating btn-large waves-effect waves-light green" id="teste" onclick="AdicionarItem()">
                             <i class="material-icons">shopping_cart</i>
                         </a>
-                        
+
 
                     </div>
                     <div class="col s1">
@@ -116,35 +116,39 @@
                     }
                     @foreach (var h in ViewBag.Hospedagens)
                     {
-                        <div class="input-fields col s2.3">
-                            <div class="card small">
-                                <div class="card red">
 
-                                    <div class="card-content white-text">
+                        if (h.Quarto.status.Equals("O"))
+                        {
+                            <div class="input-fields col s2.3">
+                                <div class="card small">
+                                    <div class="card red">
 
-                                        <input type="checkbox" class="filled-in" id="@h.idHospedagem" name="@h.idHospedagem" required />
-                                        <label for="@h.Quarto.idQuarto"><font color="white"><b>@h.Quarto.descricao</b></font></label>
+                                        <div class="card-content white-text">
 
-                                        @foreach (var cc in h.ControleCliente)
-                                        {
-                                            foreach (var c in ViewBag.Clientes)
+                                            <input type="checkbox" class="filled-in" id="@h.idHospedagem" name="@h.idHospedagem" required />
+                                            <label for="@h.Quarto.idQuarto"><font color="white"><b>@h.Quarto.descricao</b></font></label>
+
+                                            @foreach (var cc in h.ControleCliente)
                                             {
-                                                <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
+                                                foreach (var c in ViewBag.Clientes)
+                                                {
+                                                    <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
+                                                }
                                             }
-                                        }
-                                        <p>@h.Quarto.TipoQuarto.descricao</p>
-                                        <p>Total:   @h.valorHospedagem</p>
+                                            <p>@h.Quarto.TipoQuarto.descricao</p>
+                                            <p>Total:   @h.valorHospedagem</p>
+
+                                        </div>
+                                        <div class="card-action">
+
+                                            <a href="#">Check-out</a>
+
+                                        </div>
 
                                     </div>
-                                    <div class="card-action">
-
-                                        <a href="#">Check-out</a>
-
-                                    </div>
-
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
                 </div>
 

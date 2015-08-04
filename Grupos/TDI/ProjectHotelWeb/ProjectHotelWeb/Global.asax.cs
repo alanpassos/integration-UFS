@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using ProjectHotelWeb.ClassesEspeciais;
 
+
 namespace ProjectHotelWeb
 {
     public class MvcApplication : System.Web.HttpApplication

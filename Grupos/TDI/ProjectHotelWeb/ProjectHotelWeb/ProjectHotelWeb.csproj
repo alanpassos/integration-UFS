@@ -58,7 +58,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="StructureMap">
-      <HintPath>..\..\..\..\..\..\..\Documents\Visual Studio 2013\Projects\Solution3\Dll\StructureMap.dll</HintPath>
+      <HintPath>..\..\..\..\..\web-projetoExemplo\ExemploWEB\Properties\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -207,8 +207,10 @@
     <Content Include="Views\Item\Atualizar.cshtml" />
     <Content Include="Views\Item\Teste.cshtml" />
     <Content Include="Views\Item\Cadastro.cshtml" />
-    <Content Include="Views\Home\Item.cshtml" />
-    <Content Include="Views\Home\Cadastrar.cshtml" />
+    <Content Include="Views\Servico\Cadastrar.cshtml" />
+    <Content Include="Views\Servico\Index.cshtml" />
+    <Content Include="Views\Servico\Atualizar.cshtml" />
+    <Content Include="Views\Servico\Detalhar.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -242,6 +244,7 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
+    <Compile Include="Controllers\ServicoController.cs" />
     <Compile Include="Controllers\TipoQuartoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
