@@ -14,33 +14,33 @@ GO
 select * from tipoQuarto
 INSERT INTO Quarto VALUES 
 -- QUARTOS SIMPLES
-(1,'QUARTO 101',3,1,'L' ),
-(1,'QUARTO 102',4,1,'L' ),
-(1,'QUARTO 103',5,1,'L' ),
-(1,'QUARTO 104',3,1,'L' ),
-(1,'QUARTO 105',4,1,'L' ),
-(1,'QUARTO 106',2,1,'L' ),
-(1,'QUARTO 107',4,1,'L' ),
+(1,'QUARTO 101',NULL,3,1,'L' ),
+(1,'QUARTO 102',NULL,4,1,'L' ),
+(1,'QUARTO 103',NULL,5,1,'L' ),
+(1,'QUARTO 104',NULL,3,1,'L' ),
+(1,'QUARTO 105',NULL,4,1,'L' ),
+(1,'QUARTO 106',NULL,2,1,'L' ),
+(1,'QUARTO 107',NULL,4,1,'L' ),
 -- quartos conforto
-(2,'QUARTO 201',2,1,'L' ),
-(2,'QUARTO 202',3,1,'L' ),
-(2,'QUARTO 203',5,1,'L' ),
-(2,'QUARTO 204',6,1,'L' ),
-(2,'QUARTO 205',4,1,'L' ),
+(2,'QUARTO 201',NULL,2,1,'L' ),
+(2,'QUARTO 202',NULL,3,1,'L' ),
+(2,'QUARTO 203',NULL,5,1,'L' ),
+(2,'QUARTO 204',NULL,6,1,'L' ),
+(2,'QUARTO 205',NULL,4,1,'L' ),
 -- quartos de luxo
-(3,'QUARTO 301',3,1,'L' ),
-(3,'QUARTO 302',2,1,'L' ),
-(3,'QUARTO 303',4,1,'L' ),
-(3,'QUARTO 304',5,1,'L' ),
+(3,'QUARTO 301',NULL,3,1,'L' ),
+(3,'QUARTO 302',NULL,2,1,'L' ),
+(3,'QUARTO 303',NULL,4,1,'L' ),
+(3,'QUARTO 304',NULL,5,1,'L' ),
 -- quartos gold
-(4,'QUARTO 401',2,1,'L' ),
-(4,'QUARTO 402',3,1,'L' ),
-(4,'QUARTO 403',4,1,'L' ),
+(4,'QUARTO 401',NULL,2,1,'L' ),
+(4,'QUARTO 402',NULL,3,1,'L' ),
+(4,'QUARTO 403',NULL,4,1,'L' ),
 -- quartos platinium
-(5,'QUARTO 501',2,1,'L' ),
-(5,'QUARTO 502',4,1,'L' ),
+(5,'QUARTO 501',NULL,2,1,'L' ),
+(5,'QUARTO 502',NULL,4,1,'L' ),
 -- QUARTOS PRESIDENCIAL
-(6,'QUARTO 601',2,1,'L' )
+(6,'QUARTO 601',NULL,2,1,'L' )
 
 GO
 
@@ -69,8 +69,10 @@ INSERT INTO Hospedagem VALUES
 GO
 
 
+INSERT INTO ControleCliente VALUES
+(1,3,GETDATE(),1)
 
 
 
 
-
+SELECT * FROM Hospedagem
