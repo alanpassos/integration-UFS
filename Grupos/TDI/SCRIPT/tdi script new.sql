@@ -6,12 +6,31 @@ go
 use dbtdinewhotel
 
 -- -----------------------------------------------------
+-- Table TipoQuarto
+-- -----------------------------------------------------
+DROP TABLE  TipoQuarto 
+GO
+CREATE TABLE TipoQuarto (
+  idTipoQuarto INT NOT NULL,  
+  descricao VARCHAR(45) NOT NULL,
+  observacao VARCHAR(500) NULL,
+  valor NUMERIC(10,2) NOT NULL
+  )
+  
+GO
+ alter table TipoQuarto add constraint pk_tipo_quarto primary key (idTipoQuarto)
+ go
+ create index idx_descricao on TipoQuarto (descricao)
+ GO
+ 
+-- -----------------------------------------------------
 -- Table PacoteHospedagem
 -- -----------------------------------------------------
 DROP TABLE  PacoteHospedagem 
 go
 CREATE TABLE PacoteHospedagem (
   idPacoteHospedagem INT IDENTITY(1,1) NOT NULL,
+  idTipoQuarto int null,
   valorTotal NUMERIC(10,2) NOT NULL,
   subTotal NUMERIC(10,2) NOT NULL,
   observacao VARCHAR(45) NULL,
@@ -20,35 +39,17 @@ CREATE TABLE PacoteHospedagem (
   dataSaida DATE NULL,
   dataCadastro DATETIME NOT NULL,
   ativo BIT NOT NULL DEFAULT 1,
-  tipoPacote CHAR(1) CHECK(tipoPacote IN ('R','C','K')))
+  tipoPacote CHAR(1) CHECK(tipoPacote IN ('R','C','K')),
+  quantidadeReservada INT NULL)
   GO
 alter table PacoteHospedagem add constraint pk_pacote_hospedagem primary key (idPacoteHospedagem)
 go
 create index idx_tipo_pacote_hospedagem on PacoteHospedagem (tipoPacote)
 GO
-
--- -----------------------------------------------------
--- Table TipoQuarto
--- -----------------------------------------------------
-DROP TABLE  TipoQuarto 
-GO
-CREATE TABLE TipoQuarto (
-  idTipoQuarto INT NOT NULL,
-  idPacoteHospedagem INT NULL,
-  descricao VARCHAR(45) NOT NULL,
-  observacao VARCHAR(500) NULL,
-  valor NUMERIC(10,2) NOT NULL,
-  quantidadeReservada INT NULL)
-  
-GO
- alter table TipoQuarto add constraint pk_tipo_quarto primary key (idTipoQuarto)
- go
- create index idx_descricao on TipoQuarto (descricao)
- GO
- alter table TipoQuarto 
+alter table PacoteHospedagem 
   add constraint fk_pacote_hospedagem_tipo_quarto
-  foreign key (idPacoteHospedagem)
-  references   PacoteHospedagem (idPacoteHospedagem)
+  foreign key (idTipoQuarto)
+  references   TipoQuarto (idTipoQuarto)
   go
 -- -----------------------------------------------------
 -- Table Quarto

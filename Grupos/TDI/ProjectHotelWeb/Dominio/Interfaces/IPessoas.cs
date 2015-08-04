@@ -19,7 +19,8 @@ namespace Dominio.Interfaces
         ICollection<Pessoa> ListarFuncionario();
         ICollection<Pessoa> ListarPorCpfCnpj(string cpfCnpj);
         ICollection<Pessoa> ListarPorNome(string nome);
-        Pessoa ListarPorTelefone(string telefone);
+        ICollection<Pessoa> ListarPorTelefone(string telefone);
+         
         Pessoa ResultadoUnicoFuncionario(int idPessoa);
         
         

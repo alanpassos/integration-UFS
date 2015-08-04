@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProjectHotelWeb.ClassesEspeciais;
 
 namespace ProjectHotelWeb.Controllers
 {
     public class CheckInController : Controller
     {
-        List<Pessoa> pessoasAdicionadas = new List<Pessoa>();
+
         public IProjectHotel IProjectHotel { get; set; }
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
         public IPessoas IPessoas { get; set; }
@@ -73,10 +74,19 @@ namespace ProjectHotelWeb.Controllers
             string consulta = Request.Params.Get("Consulta");
             string filtro = Request.Params.Get("Filtro");
             adicionarPessoas(consulta, filtro);
-            ViewBag.Pessoas = pessoasAdicionadas;
+            ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
             return View("Checkin");
         }
+        /// <summary>
+        /// método resposável por deixar visivel para o usuario os clientes que são consultados e o retorno é mais de um valor
+        /// </summary>
+        private void tratarVariasPessoas()
+        {
 
+
+
+
+        }
 
 
 
@@ -91,12 +101,13 @@ namespace ProjectHotelWeb.Controllers
 
             if (ViewBag.Pessoas != null)
             {
-                pessoasAdicionadas.AddRange(ViewBag.Pessoas);
+                SuperClasses.pessoasAdicionadas.AddRange(ViewBag.Pessoas);
             }
             foreach (var pessoa in pessoas)
             {
-
-                pessoasAdicionadas.Add(pessoa);
+                
+                if (!SuperClasses.pessoasAdicionadas.Contains(pessoa))
+                    SuperClasses.pessoasAdicionadas.Add(pessoa);
 
             }
         }
@@ -125,8 +136,8 @@ namespace ProjectHotelWeb.Controllers
                     pessoas = IPessoas.ListarPorNome(nome).ToList<Pessoa>();
                     break;
                 case 4:
-                    string telefone = consulta.Replace("(", "").Replace(")", "").Replace("-", "");
-                    pessoas = IPessoas.ListarPorNome(telefone).ToList<Pessoa>();
+                    string telefone = consulta.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+                    pessoas = IPessoas.ListarPorTelefone(telefone).ToList<Pessoa>();
                     break;
 
             }

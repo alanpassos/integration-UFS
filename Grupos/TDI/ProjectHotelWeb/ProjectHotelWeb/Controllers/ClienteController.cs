@@ -47,7 +47,8 @@ namespace ProjectHotelWeb.Controllers
             pessoa.ativo = true;
             pessoa.dataNascimento = Convert.ToDateTime(Request.Params.Get("Nascimento"));
             pessoa.estadoCivil = Request.Params.Get("estadoCivil");
-            
+            string movel = pessoa.telefoneMovel.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+            pessoa.telefoneMovel = movel;
             pessoa.estado = Request.Params.Get("Estado");
             pessoa.sexo = Request.Params.Get("sexo");
             iPessoas.Cadastrar(pessoa);
