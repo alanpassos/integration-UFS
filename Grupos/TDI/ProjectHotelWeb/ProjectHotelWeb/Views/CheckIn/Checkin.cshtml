@@ -1,134 +1,17 @@
 ﻿@model Dominio.Classes.PacoteHospedagem
 
 @{
-    ViewBag.Title = "Checkin";
+    ViewBag.Title = "Create";
 }
 
-<h2>Checkin</h2>
 
-
-@using (Html.BeginForm("AtualizarCliente", "Checkin"))
+@using (Html.BeginForm("adicionarPessoas", "Checkin"))
 {
-    @Html.AntiForgeryToken()
     <form class="col s12">
 
-        <div class="row">
-            <div class="input-field col s2">
-                <select name="Filtro">
-                    <option value="" disabled selected>Filtro</option>
-                    <option value="1">CPF</option>
-                    <option value="2">CNPJ</option>
-                    <option value="3">Nome</option>
-                    <option value="4">Telefone</option>
-                </select>
-                <label></label>
-            </div>
-
-            <div class="input-field col s8">
-
-                <input id="Consulta" name="Consulta" type="text" onkeypress="javascript: mascara(this, cpf_mask);" maxlength="18" required>
-                <label for="Consulta"><i class="material-icons">search</i></label>
-            </div>
-
-            <div class="input-field col s2">
-                <input id="pesquisar" type="submit" value="Create" />
-                <i class="material-icons">search</i>
 
 
 
-            </div>
-        </div>
+
     </form>
-
-
-
 }
-@using (Html.BeginForm("AtualizarCliente", "Chekin"))
-{
-
-    <div class="row">
-        <div class="input-field col s12">
-            <table class="striped">
-                <tr>
-
-                    <th>
-                        Código
-                    </th>
-                    <th>
-                        Nome
-                    </th>
-                    <th>
-                        Celular
-                    </th>
-                    <th>
-                        E-mail
-                    </th>
-
-                    <th>
-                        CEP
-                    </th>
-                    <th>
-                        Selecionar
-                    </th>
-                    <th>
-                        Opções
-                    </th>
-                    <th></th>
-                </tr>
-                @if (@ViewBag.Pessoas != null)
-                {
-                    ViewBag.PessoasAdicionadas = @ViewBag.Pessoas;
-                }
-                @if (@ViewBag.Pessoas != null)
-                {
-
-                    foreach (var item in ViewBag.PessoasAdicionadas)
-                    {
-                        <tr>
-
-                            <td>
-                                @item.idPessoa
-                            </td>
-
-                            <td>
-                                @item.nome
-                            </td>
-                            <td>
-                                @item.telefoneMovel
-                            </td>
-                            <td>
-                                @item.emailPimario
-                            </td>
-
-                            <td>
-                                @item.cep
-                            </td>
-
-                            <td>
-                                <input type="checkbox" class="filled-in" id="@item.idPessoa" />
-                                <label for="@item.idPessoa"></label>
-                            </td>
-                            <td>
-                                @Html.ActionLink("Atualizar", "Atualizar", new { id = item.idPessoa }) |
-                                @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idPessoa }) |
-                                @Html.ActionLink("Excluir", "Excluir", new { id = item.idPessoa })
-
-
-                            </td>
-                        </tr>
-                    }
-
-                }
-
-
-            </table>
-
-
-        </div>
-    </div>
-
-}
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
