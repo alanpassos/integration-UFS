@@ -12,6 +12,7 @@ namespace ProjectHotelWeb.Controllers
     {
         public IProjectHotel IProjectHotel { get; set; }
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
+        public ITipoQuartos ITipoQuarto { get; set; }
 
         // GET: Reserva
         public ActionResult Index()
@@ -28,7 +29,10 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Cadastrar()
         {
+            List<TipoQuarto> tipoQuartos = ITipoQuarto.Listar().ToList<TipoQuarto>();
+            ViewBag.tipoQuarto = tipoQuartos;
             return View();
+            
         }
 
         [ActionName("CadastrarReserva")]

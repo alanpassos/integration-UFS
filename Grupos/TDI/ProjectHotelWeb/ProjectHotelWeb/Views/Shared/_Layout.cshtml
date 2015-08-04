@@ -168,6 +168,12 @@
 
             return v
         }
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
 
         // ação de saber qual elemento está xecado no formulário de checkin
         function ListarDisponivel() {
@@ -231,7 +237,6 @@
     <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-
 
 </body>
 </html>

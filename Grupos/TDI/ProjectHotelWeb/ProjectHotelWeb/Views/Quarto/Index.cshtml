@@ -20,8 +20,6 @@
                         <option value="2">Capacidade</option>
                         
                 </select>
-                <label for="first_name">Selecione Filtro</label>
-
             </div>
             <div class="input-field col s8">
                 
@@ -42,10 +40,7 @@
         </div>
     </form>
 </div>
-
-<div style="margin-left:94%;" class=" row">
-    <a float href="http://localhost:61055/Quarto/Cadastrar">Cadastrar</a>
-</div>
+@Html.ActionLink("Cadastrar", "Cadastrar", "Quarto")
 <table class="striped">
     <tr>
         <th>
@@ -92,15 +87,15 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Atualizar", new { id = item.idQuarto }) |
-                @Html.ActionLink("Detalhes", "Detalhar", new { id = item.idQuarto }) |
-                @Html.ActionLink("Excluir", "Excluir", new { id = item.id
- })
+                @Html.ActionLink("Detalhes", "Detalhar", new { id = item.idQuarto })  |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.idQuarto })
+ 
             </td>
         </tr>
     }
-
+    
 </table>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
