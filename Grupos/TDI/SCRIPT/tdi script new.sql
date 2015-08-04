@@ -59,6 +59,7 @@ CREATE TABLE Quarto (
   idQuarto INT IDENTITY(1,1) NOT NULL,
   idTipoQuarto INT NOT NULL,
   descricao VARCHAR(45) NOT NULL,
+  observacao VARCHAR(100) NULL,
   capacidade INT NOT NULL,
   ativo BIT NOT NULL DEFAULT 1,
   status CHAR(1) CHECK (status in ('L','O','R'))) -- livre, ocupado, requerido
@@ -253,7 +254,7 @@ CREATE TABLE Item (
   dataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
   cancelado BIT NOT NULL DEFAULT 0)
 go
- alter table Item add constraint pk_item  primary key (iditem)
+ alter table Item add constraint pk_item  primary key (idItem)
  go
  create index idx_fk_produto on Item (idProduto)
  create index idx_fk_hospedagem on Item (idHospedagem)
@@ -278,7 +279,7 @@ go
 CREATE TABLE Servico (
   idServico INT IDENTITY(1,1) NOT NULL,
   descricao VARCHAR(45) NOT NULL,
-  observacao VARCHAR(45) NULL,
+  observacao VARCHAR(100) NULL,
   valor NUMERIC(10,2) NOT NULL,
   ativo BIT NOT NULL DEFAULT 1)
 go

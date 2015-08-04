@@ -14,7 +14,12 @@ namespace ProjectHotelWeb.Controllers
         public IQuartos IQuartos { get; set; }
         public IHospedagens IHospedagem { get; set; }
         public IPessoas IPessoa { get; set; }
-        
+
+
+       
+
+
+
         // GET: Home
         public ActionResult Index()
         {
@@ -52,6 +57,14 @@ namespace ProjectHotelWeb.Controllers
             ViewBag.Hospedagens = hospedagens;
             ViewBag.Quartos = quartosLivres;
             ViewBag.Clientes = clientes;
+            return View();
+        }
+        
+        public ActionResult QuartosLivres()
+        {
+            List<Quarto> quartosLivres = IQuartos.Listar().ToList<Quarto>();
+            ViewBag.Hospedagens = null;
+            ViewBag.Quartos = quartosLivres;
             return View();
         }
     }

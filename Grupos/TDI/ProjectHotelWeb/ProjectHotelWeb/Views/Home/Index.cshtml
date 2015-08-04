@@ -1,63 +1,198 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
+@{var controler = "Home";}
+@{var metodo = "Index";}
 
-<h2>Icones Ex.</h2>
-<hr />
-<div class="row">
 
-    @foreach (var quarto in ViewBag.Quartos)
-    {
 
-        if (quarto.status.Equals("L"))
-        {
 
-            <div class="input-fields col s2">
-                <div class="card small">
-                    <div class="card green">
 
-                        <div class="card-content white-text">
-                            <input type="checkbox" class="filled-in" id="@quarto.idQuarto" checked="checked" />
-                            <label for="@quarto.idQuarto"></label>
-                            <span class="card-title">@quarto.descricao</span>
-                            <p>Total: @quarto.TipoQuarto.valor</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#">Check-in</a>
-                        </div>
+@using (Html.BeginForm(metodo, controler))
+{
+
+    <div class="row">
+
+        <div class="col s12 m10 l10">
+
+
+            <form name="itemForm" id="itemForm">
+
+                <div class="row">
+
+
+                    <div class="col s1">
+                        <a class="btn-floating btn-large waves-effect waves-light blue" onclick="RealizarCheckin()">
+                            <i class="material-icons">call_made</i>
+
+                        </a>
                     </div>
+                    <div class="col s1">
+
+                        <a class="btn-floating btn-large waves-effect waves-light red" onclick="AddToCart()">
+                            <i class="material-icons">call_received</i>
+                        </a>
+
+                    </div>
+                    <div class="col s1">
+
+                        <a class="btn-floating btn-large waves-effect waves-light green" id="teste" onclick="AdicionarItem()">
+                            <i class="material-icons">shopping_cart</i>
+                        </a>
+
+
+                    </div>
+                    <div class="col s1">
+
+
+                        <a class="btn-floating btn-large waves-effect waves-light green" onclick="AddToCart()">
+                            <i class="material-icons">polymer</i>
+                        </a>
+                    </div>
+                    <div class="col s1">
+                        <a class="btn-floating btn-large waves-effect waves-light green" onclick="AddToCart()">
+                            <i class="material-icons">search</i>
+                        </a>
+
+                    </div>
+                    <div class="col s1">
+
+                        <a class="btn-floating btn-large waves-effect waves-light green" onclick="AddToCart()">
+                            <i class="material-icons">dialpad</i>
+                        </a>
+                    </div>
+                    <div class="col s1">
+
+                        <a class="btn-floating btn-large waves-effect waves-light green" onclick="AddToCart()">
+                            <i class="material-icons">note_add</i>
+                        </a>
+                    </div>
+                    <div class="col s1">
+                        <a class="btn-floating btn-large waves-effect waves-light green" onclick="AddToCart()">
+                            <i class="material-icons">description</i>
+                        </a>
+                    </div>
+                    <div class="col s1">
+                        <a class="btn-floating btn-large waves-effect waves-light green" onclick="AddToCart()">
+                            <i class="material-icons">delete</i>
+                        </a>
+
+                    </div>
+
+
                 </div>
-            </div>
-        }
 
-    }
-    @foreach (var h in ViewBag.Hospedagens)
-    {
-        <div class="input-fields col s2">
-            <div class="card small">
-                <div class="card red">
 
-                    <div class="card-content white-text">
-                        <input type="checkbox" class="filled-in" id="@h.Quarto.idQuarto" checked="checked" />
-                        <label for="@h.Quarto.idQuarto"></label>
-                        <span class="card-title">@h.Quarto.descricao</span>
-                        @foreach (var cc in h.ControleCliente)
+                <hr />
+                <div class="row">
+
+                    @foreach (var quarto in ViewBag.Quartos)
+                    {
+
+                        if (quarto.status.Equals("L"))
                         {
-                            foreach (var c in ViewBag.Clientes)
-                            {
-                                <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
-                            }
+
+                            <div class="input-fields col s2.3">
+                                <div class="card small">
+                                    <div class="card green">
+
+                                        <div class="card-content white-text">
+                                            <span class="card-title">
+                                                <input type="checkbox" class="filled-in" id="@quarto.idQuarto" required />
+                                                <label for="@quarto.idQuarto"><font color="white"><b>@quarto.descricao</b></font></label>
+                                            </span>
+                                            <br />
+                                            <p>Tipo: @quarto.TipoQuarto.descricao</p>
+                                            <p>Total: @quarto.TipoQuarto.valor</p>
+                                        </div>
+                                        <div class="card-action">
+                                            <a href="#">Check-in</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         }
 
-                        <p>Total:   @h.valorHospedagem</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">Check-out</a>
+                    }
+                    @foreach (var h in ViewBag.Hospedagens)
+                    {
 
-                    </div>
+                        if (h.Quarto.status.Equals("O"))
+                        {
+                            <div class="input-fields col s2.3">
+                                <div class="card small">
+                                    <div class="card red">
 
+                                        <div class="card-content white-text">
+
+                                            <input type="checkbox" class="filled-in" id="@h.idHospedagem" name="@h.idHospedagem" required />
+                                            <label for="@h.Quarto.idQuarto"><font color="white"><b>@h.Quarto.descricao</b></font></label>
+
+                                            @foreach (var cc in h.ControleCliente)
+                                            {
+                                                foreach (var c in ViewBag.Clientes)
+                                                {
+                                                    <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
+                                                }
+                                            }
+                                            <p>@h.Quarto.TipoQuarto.descricao</p>
+                                            <p>Total:   @h.valorHospedagem</p>
+
+                                        </div>
+                                        <div class="card-action">
+
+                                            <a href="#">Check-out</a>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
-            </div>
+
+            </form>
+
         </div>
-    }
-</div>
+
+        <div class="col s12 m2 l2">
+
+            <div class="row">
+                <a class="btn-floating btn-large waves-effect waves-light green" id="livre" onclick="ListarDisponivel()">
+
+                </a>
+                Disponíveis
+            </div>
+            <div class="row">
+                <a class="btn-floating btn-large waves-effect waves-light red" onclick="AddToCart()">
+
+                </a>
+                Ocupados
+            </div>
+            <div class="row">
+                <a class="btn-floating btn-large waves-effect waves-light grey" onclick="AddToCart()">
+
+                </a>
+                Todos
+            </div>
+
+            <!-- Note that "m8 l9" was added -->
+            <!-- Teal page content
+
+                This content will be:
+            9-columns-wide on large screens,
+            8-columns-wide on medium screens,
+            12-columns-wide on small screens  -->
+
+        </div>
+
+    </div>
+
+
+
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -15,6 +15,10 @@ namespace ProjectHotelWeb.Controllers
         public IProjectHotel IProjectHotel { get; set; }
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
         public IPessoas IPessoas { get; set; }
+
+
+       
+
         // GET: CheckIn
         public ActionResult Index()
         {

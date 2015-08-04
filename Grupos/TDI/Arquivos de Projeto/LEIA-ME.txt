@@ -1,0 +1,4 @@
+Aqui ficaram os arquivos problematicos Web.config, App.Config, ProjetoHotelWeb.csproj e demais arquivos que já sabemos. 
+
+Como já é conhecimento de todos, tais arquivos não devem ser enviados juntamente com o restante to projeto por motivos de problemas ocasionados. Porém, dado o fato de tais arquivos ocasionalmente sofrerem modificações e todos precisarem se atualizar, bem como para fins de backup e recuperação, eles ficaram, sempre que modificados, nesta pasta.
+

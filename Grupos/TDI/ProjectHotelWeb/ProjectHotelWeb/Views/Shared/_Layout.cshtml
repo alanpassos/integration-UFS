@@ -26,38 +26,17 @@
             </div>
         </nav>
         <br>
-
-        <div class="row">
-            <div class="col s12">
-                <ul class="tabs">
-
-
-                    <li class="tab col s2"><a class="active" href="~/Funcionario/Index"><h6>Funcionário</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/TipoQuarto/Index"><h6>Tipo De Quarto</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/Cargo/Index"><h6>Cargo</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/Reserva/Index"><h6>Reserva</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/CheckIn/Index"><h6>Check-In</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/CheckOut/Index"><h6>Check-Out</h6></a></li>
-
-                    <li class="tab col s2"><a href="~/Usuario/Index"><h6>Usuário</h6></a></li>
-                </ul>
-            </div>
-        </div>
         <div class="container">
-            <!-- Note that "m4 l3" was added -->
-            <!-- Grey navigation panel
 
-                This content will be:
-            3-columns-wide on large screens,
-            4-columns-wide on medium screens,
-            12-columns-wide on small screens  -->
+
+
             @RenderBody()
+
+
         </div>
+
+
+
 
 
     </main>
@@ -70,10 +49,29 @@
             </div>
         </div>
     </footer>
-    <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+
 
     <script>
+
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
+        $('#itemModal').openModal();
+        $('#itemModal').closeModal();
+        $('.modal-trigger').leanModal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+            ready: function () { alert('Ready'); }, // Callback for Modal open
+            complete: function () { alert('Closed'); } // Callback for Modal close
+        }
+  );
+
+        $(document).ready(function () {
+            $('input#input_text, textarea#textarea1').characterCounter();
+        });
         $('.datepicker').pickadate({
             format: 'dd/mm/yyyy',
             selectMonths: true,
@@ -118,12 +116,8 @@
         });
 
         $(function () {
-
             $("#pesquisar").click(function () {
                 var valor = $("#Consulta").val();
-
-                
-
             });
 
         });
@@ -177,8 +171,69 @@
 
             return v
         }
+
+        // ação de saber qual elemento está xecado no formulário de checkin
+        function ListarDisponivel() {
+            $.ajax({
+                type: 'GET', url: '/Home/QuartosLivres',
+                dataType: 'html',
+                cache: false,
+                async: true,
+                success:
+                    function (data) {
+                        $('#itemForm').html(data);
+                    }
+            });
+
+        }
+
+        function AdicionarItem() {
+            var tamanho = document.forms[0].elements.length;
+            var selecionou = false;
+            var valor = null;
+
+            for (var i = 0; i < tamanho ; i++) {
+
+                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
+                    valor = document.forms[0].elements[i].id.toString();
+                    selecionou = true;
+                }
+            }
+
+            if (selecionou) {
+                $.post("/Item/Cadastrar", { idHospedagem: valor }, function (data) {
+                    $("html").html(data);
+                });
+            } else {
+                alert("Selecione uma hospedagem");
+            }
+        }
+        function RealizarCheckin() {
+            var tamanho = document.forms[0].elements.length;
+            var selecionou = false;
+            var valor = null;
+
+            for (var i = 0; i < tamanho ; i++) {
+
+                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
+                    valor = document.forms[0].elements[i].id.toString();
+                    selecionou = true;
+                }
+            }
+
+            if (selecionou) {
+                $.post("/Checkin/Checkin", { idHospedagem: valor }, function (data) {
+                    $("html").html(data);
+                });
+            } else {
+                alert("Selecione uma hospedagem");
+            }
+        }
     </script>
 
+    <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 
 </body>
