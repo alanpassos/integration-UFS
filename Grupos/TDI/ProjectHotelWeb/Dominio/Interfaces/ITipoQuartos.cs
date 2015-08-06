@@ -1,4 +1,5 @@
 ﻿using Dominio.Classes;
+using Dominio.Classes_Especiais;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Dominio.Interfaces
         void Atualizar(TipoQuarto tipoQuarto);
         void Remover(TipoQuarto tipoQuarto);
         TipoQuarto ResultadoUnico(int idTipoQuarto);
+        ICollection<QuartosLivresReserva> ListaLivres(string tipoQuartoPesquisa, string pessoasPesquisa, DateTime dataInicio, DateTime dataFim);
     }
 }
