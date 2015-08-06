@@ -62,7 +62,8 @@ namespace Infraestrutura.Repositorio
 
         public ICollection<Pessoa> ListarPorNome(string nome)
         {
-            return pessoas.Where(p => p.ativo == true && p.nome == nome).OrderBy(p => p.nome).ToList();
+            
+            return pessoas.Where(p => p.ativo == true && p.nome.Contains(nome)).OrderBy(p => p.nome).ToList();
             //OrderBy(p => p.nome).ToList();
         }
         public ICollection<Pessoa> ListarPorTelefone(string telefone)

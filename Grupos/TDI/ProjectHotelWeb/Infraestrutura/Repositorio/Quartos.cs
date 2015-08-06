@@ -50,7 +50,7 @@ namespace Infraestrutura.Repositorio
         {
             return quartos.OrderBy(p => p.descricao).ToList();
         }
-
+       
         public bool ContemRegistro()
         {
             throw new NotImplementedException();
