@@ -16,7 +16,7 @@ namespace ProjectHotelWeb.Controllers
         public IProjectHotel IProjectHotel { get; set; }
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
         public IPessoas IPessoas { get; set; }
-
+        public IQuartos IQuartos { get; set; }
 
 
 
@@ -61,21 +61,24 @@ namespace ProjectHotelWeb.Controllers
             IPacoteHospedagens.Atualizar(pacoteHospedagem);
             return RedirectToAction("Index");
         }
-        public ActionResult Checkin( string[] quartos)
+        public ActionResult Checkin(string[] quartos)
         {
-            if (SuperClasses.pessoasAdicionadas!=null)
-            ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
+            if (SuperClasses.pessoasAdicionadas != null)
+                ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
 
-
+            ViewBag.Quartos = carregarQuartos(quartos);
 
             return View();
         }
 
-        private List<Quarto> carregarQuartos()
+        private List<Quarto> carregarQuartos(string[] quartos)
         {
-
-
-            return new List<Quarto>();
+            List<Quarto> ListQuartos = new List<Quarto>();
+            foreach (var item in quartos)
+            {
+                ListQuartos.Add(IQuartos.ResultadoUnico(Convert.ToInt32(item)));
+            }
+            return ListQuartos;
         }
 
 

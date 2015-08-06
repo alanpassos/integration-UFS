@@ -56,10 +56,11 @@ namespace Infraestrutura.Repositorio
         {
             return tipoQuartos.OrderBy(p => p.descricao).ToList();
         }
-
+        
         public ICollection<QuartosLivresReserva> ListaLivres(string tipoQuartoPesquisa, string pessoasPesquisa, DateTime dataInicio, DateTime dataFim)
         {
-            List<QuartosLivresReserva> quartosLista;
+            List<QuartosLivresReserva> quartosLista = new List<QuartosLivresReserva>();
+            /*
             IQueryable<QuartosLivresReserva> Resultado = from tipo_quarto in tipoQuartos
                                                          join quarto in quartos on tipo_quarto.idTipoQuarto equals quarto.idTipoQuarto
                                                          where quarto.status.Equals("L") && tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
@@ -71,6 +72,7 @@ namespace Infraestrutura.Repositorio
                                                              capacidade = quartoLivre.Key.capacidade,
                                                              valor = quartoLivre.Key.valor,
                                                              quantidade = quartoLivre.Count()
+            
                                                          };
             IQueryable<QuartosLivresReserva> ConsultaPacoteHospedagem = from tipo_quarto in tipoQuartos
                                                                         join quarto in quartos on tipo_quarto.idTipoQuarto equals quarto.idTipoQuarto
@@ -95,6 +97,7 @@ namespace Infraestrutura.Repositorio
                                                                         };
             
             quartosLista = ConsultaPacoteHospedagem.OrderBy(p => p.descricao).ToList();
+          */
             return quartosLista;
         }
 

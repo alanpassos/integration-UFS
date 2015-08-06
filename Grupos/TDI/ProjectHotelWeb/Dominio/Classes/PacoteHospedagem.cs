@@ -11,7 +11,6 @@ namespace Dominio.Classes
 
         public int idPacoteHospedagem { get; set; }
         public decimal valorTotal{ get; set; }
-        
         public decimal subTotal{ get; set; }
         public string observacao { get; set; }
         public DateTime? dataLiberacao{ get; set; }
