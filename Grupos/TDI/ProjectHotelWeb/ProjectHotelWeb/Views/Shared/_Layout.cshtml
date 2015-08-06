@@ -4,260 +4,46 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-
-    <link type="text/css" rel="stylesheet" href="~/Content/css/materialize.min.css" media="screen,projection" />
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
 </head>
-
 <body>
-    <main>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="http://teste" class="brand-logo">Acapulco Hospedagens</a>
-                <ul class="right hide-on-med-and-down">
-
-                    <!-- Dropdown Trigger -->
-
-                </ul>
-            </div>
-        </nav>
-        <br>
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-
-
-            @RenderBody()
-
-
-        </div>
-
-
-
-
-
-    </main>
-    <footer class="page-footer">
-
-        <div class="footer-copyright">
-            <div class="container">
-                <p>&copy; @DateTime.Now- My ASP.NET Application</p>
-
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
+                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </footer>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
 
-
-    <script>
-
-
-
-
-
-        $(document).ready(function () {
-            $('input#input_text, textarea#textarea1').characterCounter();
-        });
-        $('.datepicker').pickadate({
-            format: 'dd/mm/yyyy',
-            selectMonths: true,
-            labelMonthNext: 'Póximo Mês',
-            selectYear: true,
-            selectYears: 120,
-            labelMonthPrev: 'Mês Anterior',
-            labelMonthSelect: 'Selecione um Mês',
-            labelYearSelect: 'Selecione um Ano',
-            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dez'],
-            weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-            weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-
-            clear: 'Limpar',
-            today: 'Hoje',
-            close: 'Fechar'
-        });
-
-        $(".dropdown-button").dropdown();
-
-
-        $(document).ready(function () {
-            $('select').material_select();
-        });
-        $('select').material_select('destroy');
-        $(document).ready(function () {
-            $('ul.tabs').tabs();
-        });
-        $(document).ready(function () {
-            $('ul.tabs').tabs('select_tab', 'tab_id');
-        });
-        $(document).ready(function () {
-            $('.slider').slider({ full_width: true });
-        });
-        $('.slider').slider('pause');
-        // Start slider
-        $('.slider').slider('start');
-        $(document).ready(function () {
-            $('input#input_text, textarea#textarea1').characterCounter();
-        });
-
-        $(function () {
-            $("#pesquisar").click(function () {
-                var valor = $("#Consulta").val();
-            });
-
-        });
-
-        /**
-           * MASCARA ( mascara(o,f) e execmascara() ) CRIADAS POR ELCIO LUIZ
-           * elcio.com.br
-           */
-        function mascara(o, f) {
-            v_obj = o
-            v_fun = f
-            setTimeout("execmascara()", 1)
-        }
-
-        function execmascara() {
-            v_obj.value = v_fun(v_obj.value)
-        }
-
-        function cpf_mask(v) {
-            v = v.replace(/\D/g, "")                 //Remove tudo o que não é dígito
-            v = v.replace(/(\d{3})(\d)/, "$1.$2")    //Coloca ponto entre o terceiro e o quarto dígitos
-            v = v.replace(/(\d{3})(\d)/, "$1.$2")    //Coloca ponto entre o setimo e o oitava dígitos
-            v = v.replace(/(\d{3})(\d)/, "$1-$2")   //Coloca ponto entre o decimoprimeiro e o decimosegundo dígitos
-            return v
-        }
-
-        function cnpj_mask(v) {
-            v = v.replace(/^(\d{2})(\d)/, "$1.$2")
-            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
-            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2")
-            v = v.replace(/(\d{4})(\d)/, "$1-$2")
-            return v
-        }
-
-        function telefone_mask(v) {
-            v = v.replace(/\D/g, "")
-            v = v.replace(/(\d{2})(\d)/, "($1) $2")
-            v = v.replace(/(\d{4})(\d)/, "$1-$2")
-            return v
-        }
-
-        function cep_mask(v) {
-            v = v.replace(/\D/g, "")
-            v = v.replace(/(\d{5})(\d)/, "$1-$2")
-            return v
-        }
-        function date_mask(v) {
-            v = v.replace(/\D/g, "")
-            v = v.replace(/(\d{2})(\d)/, "$1/$2")
-            v = v.replace(/(\d{2})(\d)/, "$1/$2")
-
-
-            return v
-        }
-        function isNumberKey(evt) {
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57))
-                return false;
-            return true;
-        }
-
-        // ação de saber qual elemento está xecado no formulário de checkin
-        function ListarDisponivel() {
-            $.ajax({
-                type: 'GET', url: '/Home/QuartosLivres',
-                dataType: 'html',
-                cache: false,
-                async: true,
-                success:
-                    function (data) {
-                        $('#itemForm').html(data);
-                    }
-            });
-
-        }
-
-        function AdicionarItem() {
-            var tamanho = document.forms[0].elements.length;
-            var selecionou = false;
-            var valor = null;
-
-            for (var i = 0; i < tamanho ; i++) {
-
-                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
-                    valor = document.forms[0].elements[i].id.toString();
-                    selecionou = true;
-                }
-            }
-
-            if (selecionou) {
-                $.post("/Item/Cadastrar", { idHospedagem: valor }, function (data) {
-                    $("html").html(data);
-                });
-            } else {
-                alert("Selecione uma hospedagem");
-            }
-        }
-
-        function ListarTipoQuarto() {
-            var valor = document.forms["Select"].elements["tipoQuarto"].val().toString();
-            $.post("/Checkin/CarregarQuartos", { idTipoQuarto: valor },
-                function (data) {
-                    $("html").html(data);
-                });
-        }
-
-
-
-        function RealizarCheckin() {
-            var tamanho = document.forms[0].elements.length;
-            var selecionou = false;
-            var valor = null;
-
-            for (var i = 0; i < tamanho ; i++) {
-
-                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
-                    valor = document.forms[0].elements[i].id.toString();
-                    selecionou = true;
-                }
-            }
-
-            if (selecionou) {
-                $.post("/Checkin/Checkin", { idHospedagem: valor }, function (data) {
-                    $("html").html(data);
-                });
-            } else {
-                alert("Selecione uma hospedagem");
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
-
-    <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
