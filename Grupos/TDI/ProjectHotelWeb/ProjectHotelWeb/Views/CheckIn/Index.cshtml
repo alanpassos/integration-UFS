@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Cadastrar", "Cadastrar")
 </p>
-<table class="table">
+<table class="hoverable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.idPacoteHospedagem)
@@ -38,38 +38,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idPacoteHospedagem)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.valorTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.subTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.observacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataLiberacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataEntrada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataSaida)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataCadastro)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Atualizar", new { id=item.idPacoteHospedagem }) |
-            @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idPacoteHospedagem }) |
-            @Html.ActionLink("Excluir", "Excluir", new { id = item.idPacoteHospedagem })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idPacoteHospedagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valorTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.observacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataLiberacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataSaida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataCadastro)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Atualizar", new { id = item.idPacoteHospedagem }) |
+                @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idPacoteHospedagem }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.idPacoteHospedagem })
+            </td>
+        </tr>
+    }
 
 </table>

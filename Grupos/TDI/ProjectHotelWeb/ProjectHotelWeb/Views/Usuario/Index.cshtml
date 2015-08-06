@@ -11,7 +11,7 @@
 <p>
     @Html.ActionLink("Cadastrar", "Cadastrar")
 </p>
-<table class="table">
+<table class="hoverable">
     <tr>
         <th>
             Código
@@ -29,26 +29,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idUsuario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pessoa.nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nivelAcesso)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Editar", new {  id= item.idUsuario }) |
-            @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idUsuario }) |
-            @Html.ActionLink("Excluir", "Excluir", new { id = item.idUsuario })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pessoa.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nivelAcesso)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.idUsuario }) |
+                @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idUsuario }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.idUsuario })
+            </td>
+        </tr>
+    }
 
 </table>
