@@ -38,8 +38,16 @@ namespace ProjectHotelWeb.Controllers
 
         [ActionName("CadastrarFormaPagamento")]
         public ActionResult Cadastrar(FormaPagamento formaPagamento){
+
+            //Seta
+            formaPagamento.idFormaPagamento = 13;
+            formaPagamento.ativo = true;
+
+            //Envia o Objeto para gravação no banco. 
             IFormaPagamento.Cadastrar(formaPagamento);
+
             return RedirectToAction("Index");
+
         }
 
         //Atualizar 

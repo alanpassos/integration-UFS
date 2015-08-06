@@ -65,18 +65,25 @@ namespace ProjectHotelWeb.Controllers
         {
             if (SuperClasses.pessoasAdicionadas != null)
                 ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
-
-            ViewBag.Quartos = carregarQuartos(quartos);
+            if (quartos!=null)
+                ViewBag.Quartos = carregarQuartos(quartos);
 
             return View();
         }
 
         private List<Quarto> carregarQuartos(string[] quartos)
         {
+
+            Quarto quarto;
             List<Quarto> ListQuartos = new List<Quarto>();
             foreach (var item in quartos)
             {
-                ListQuartos.Add(IQuartos.ResultadoUnico(Convert.ToInt32(item)));
+                quarto = new Quarto();
+                quarto = IQuartos.ResultadoUnico(Convert.ToInt32(item));
+                if (quarto.status.Equals("L"))
+                {
+                    ListQuartos.Add(quarto);
+                }
             }
             return ListQuartos;
         }
