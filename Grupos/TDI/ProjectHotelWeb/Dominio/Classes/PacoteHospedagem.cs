@@ -11,7 +11,7 @@ namespace Dominio.Classes
 
         public int idPacoteHospedagem { get; set; }
         public decimal valorTotal{ get; set; }
-        public int? idTipoQuarto { get; set; }
+        
         public decimal subTotal{ get; set; }
         public string observacao { get; set; }
         public DateTime? dataLiberacao{ get; set; }
@@ -20,12 +20,12 @@ namespace Dominio.Classes
         public DateTime dataCadastro{ get; set; }
         public bool ativo { get; set; }
         public string tipoPacote{ get; set; }
-        public int? quantidadeReservada { get; set; }
+        
 
         public virtual List<HistoricoAcesso> HistoricoAcesso { get; set; }
         public virtual List<Hospedagem> Hospedagem { get; set; }
         public virtual List<Pagamento> Pagamento { get; set; }
-        public virtual TipoQuarto TipoQuarto { get; set; }
+        public virtual List<TipoQuarto> TipoQuarto { get; set; }
         
 
     }

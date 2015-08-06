@@ -5,7 +5,9 @@
 
 }
 
+
 <h2>Checkin</h2>
+<hr />
 @using (Html.BeginForm("AtualizarCliente", "Checkin"))
 {
     @Html.AntiForgeryToken()
@@ -25,14 +27,14 @@
             </div>
 
             <div class="input-field col s7">
-                <input id="Consulta" name="Consulta" type="text" onkeypress="javascript: mascara(this, telefone_mask);" maxlength="18" required>
+                <input id="Consulta" name="Consulta" type="text" required>
                 <label for="Consulta"><i class="material-icons">search</i></label>
             </div>
-                
+
             <div class=" input-field col s3">
                 <button class="btn waves-effect waves-light" type="submit" name="action">
-                    Salvar
-                    <i class="material-icons">search</i>
+                    Consultar
+                    
                 </button>
 
             </div>
@@ -44,12 +46,124 @@
 
 
 }
+
+@if (ViewBag.PessoasEscola != null)
+{
+
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1" style="display:none"></a>
+
+
+
+
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4 class="center">Selecionar</h4>
+            <p>
+                <table class="hoverable">
+                    <tr>
+
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Celular
+                        </th>
+                        <th>
+                            CPF
+                        </th>
+
+                        <th>
+                            CEP
+                        </th>
+
+                        <th>
+                            Opções
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in ViewBag.PessoasEscola)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.idPessoa
+                            </td>
+
+                            <td>
+                                @item.nome
+                            </td>
+                            <td>
+                                @item.telefoneMovel
+                            </td>
+                            <td>
+                                @item.cpfCnpj
+                            </td>
+
+                            <td>
+                                @item.cep
+                            </td>
+
+
+                            <td>
+                                @Html.ActionLink("Selecionar", "EscolherCLiente", "Checkin", new { id = item.idPessoa }, null)
+
+
+
+                            </td>
+                        </tr>
+                    }
+
+
+
+
+                </table>
+            </p>
+
+
+
+
+        </div>
+
+
+    </div>
+    <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        $('#modal1').openModal();
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
+        $('.modal-trigger').leanModal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .10, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+            ready: function () { alert('Ready'); }, // Callback for Modal open
+            complete: function () { alert('Closed'); } // Callback for Modal close
+        }
+  );
+
+    </script>
+
+
+}
+
+
 @using (Html.BeginForm("AtualizarCliente", "Chekin"))
 {
 
     <div class="row">
         <div class="inputfield col s12">
-            <table class="striped">
+            <table class="hoverable">
                 <tr>
 
                     <th>
@@ -76,14 +190,14 @@
                     </th>
                     <th></th>
                 </tr>
-                @if (@ViewBag.Pessoas != null)
-                {
-                    ViewBag.PessoasAdicionadas = @ViewBag.Pessoas;
-                }
+
+
+
+
                 @if (@ViewBag.Pessoas != null)
                 {
 
-                    foreach (var item in ViewBag.PessoasAdicionadas)
+                    foreach (var item in ViewBag.Pessoas)
                     {
                         <tr>
 
@@ -110,9 +224,9 @@
                                 <label for="@item.idPessoa"></label>
                             </td>
                             <td>
-                                @Html.ActionLink("Atualizar", "Atualizar", new { id = item.idPessoa }) |
-                                @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idPessoa }) |
-                                @Html.ActionLink("Excluir", "Excluir", new { id = item.idPessoa })
+                                @Html.ActionLink("Atualizar", "Atualizar", "Cliente", new { id = item.idPessoa }, null) |
+                                @Html.ActionLink("Detalhar", "Detalhar", "Cliente", new { id = item.idPessoa }, null) |
+                                @Html.ActionLink("Excluir", "ExcluirCliente", "Checkin", new { id = item.idPessoa }, null)
 
 
                             </td>
@@ -129,6 +243,35 @@
     </div>
 
 }
+<br />
+<hr />
+<br />
+<form name="Select" id="Select">
+    <div class="row">
+        <div class="col s4">
+            <label for="tipoQuarto">Tipo</label>
+            <select name="tipoQuarto" onshow="ListarTipoQuarto()">
+                <option value="1"> tipo 1</option>
+                <option value="2"> tipo 2</option>
+                <option value="3"> tipo 3</option>
+                <option value="4"> tipo 4</option>
+            </select>
+            
+        </div>
+        <div class="col s4">
+            <label for="Quarto">&nbsp;Quarto</label>
+            <select name="Quarto">
+                <option value="1"> Quarto 001 - quantidade 1</option>
+                <option value="2"> Quarto 002 - quantidade 3</option>
+                <option value="3"> Quarto 003 - quantidade 4</option>
+                <option value="4"> Quarto 004 - quantidade 5</option>
+
+            </select>
+            
+        </div>
+    </div>
+
+</form>
 
 <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="~/Content/js/materialize.min.js"></script>

@@ -4,79 +4,82 @@
     ViewBag.Title = "Atualizar";
 }
 
-<h2>Atualizar</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Quarto</h4>
+
+    <from class="row">
+        <h4 class="center">Editar Quarto</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.idQuarto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.idQuarto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.idQuarto, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idTipoQuarto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.idTipoQuarto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.idTipoQuarto, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <form class="col s12">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="row">
+                <div class="input-field col s3" >
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.capacidade, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.capacidade, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.capacidade, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ativo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.ativo)
-                    @Html.ValidationMessageFor(model => model.ativo, "", new { @class = "text-danger" })
+                    <div class="col-md-10">
+                        <label for="first_name">Número</label>
+                        @Html.EditorFor(model => model.idQuarto, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.idQuarto, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="input-field col s6">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                    <div class="col-md-10">
+                        <label for="first_name">Descrição</label>
+                        @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
             </div>
-        </div>
-    </div>
+
+            <div class="row">
+                <div class="input-field col s3">
+
+                    <div class="col-md-10">
+                        <label for="first_name">Capacidade de hóspedagem</label>
+                        @Html.EditorFor(model => model.capacidade, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.capacidade, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="input-field col s3">
+                   
+                    <div class="col-md-10">
+                        <label for="first_name">Ativo</label>
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.ativo)
+                            @Html.ValidationMessageFor(model => model.ativo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-field col s3">
+                    
+                    <div class="col-md-10">
+                        <label for="first_name">Status</label>
+                        @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Alterar" class="btn btn-default" />
+                        @Html.ActionLink("Voltar", "Index")
+                    </div>
+                </div>
+           
+    </from>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

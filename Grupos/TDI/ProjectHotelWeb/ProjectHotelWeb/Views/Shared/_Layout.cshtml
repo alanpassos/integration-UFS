@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    
+
     <link type="text/css" rel="stylesheet" href="~/Content/css/materialize.min.css" media="screen,projection" />
-    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -55,16 +55,9 @@
 
     <script>
 
+
         
-        $('.modal-trigger').leanModal({
-            dismissible: true, // Modal can be dismissed by clicking outside of the modal
-            opacity: .5, // Opacity of modal background
-            in_duration: 300, // Transition in duration
-            out_duration: 200, // Transition out duration
-            ready: function () { alert('Ready'); }, // Callback for Modal open
-            complete: function () { alert('Closed'); } // Callback for Modal close
-        }
-  );
+
 
         $(document).ready(function () {
             $('input#input_text, textarea#textarea1').characterCounter();
@@ -212,6 +205,17 @@
                 alert("Selecione uma hospedagem");
             }
         }
+
+        function ListarTipoQuarto() {
+            var valor = document.forms["Select"].elements["tipoQuarto"].val().toString();
+            $.post("/Checkin/CarregarQuartos", { idTipoQuarto: valor },
+                function (data) {
+                    $("html").html(data);
+                });
+        }
+
+
+
         function RealizarCheckin() {
             var tamanho = document.forms[0].elements.length;
             var selecionou = false;
@@ -233,6 +237,22 @@
                 alert("Selecione uma hospedagem");
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
 
     <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>

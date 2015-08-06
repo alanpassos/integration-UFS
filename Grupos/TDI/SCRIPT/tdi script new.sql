@@ -5,13 +5,36 @@ create database dbtdinewhotel
 go
 use dbtdinewhotel
 
+ 
 -- -----------------------------------------------------
+-- Table PacoteHospedagem
+-- -----------------------------------------------------
+DROP TABLE  PacoteHospedagem 
+go
+CREATE TABLE PacoteHospedagem (
+  idPacoteHospedagem INT IDENTITY(1,1) NOT NULL,
+  valorTotal NUMERIC(10,2) NOT NULL,
+  subTotal NUMERIC(10,2) NOT NULL,
+  observacao VARCHAR(45) NULL,
+  dataLiberacao DATETIME NULL,
+  dataEntrada DATE NOT NULL,
+  dataSaida DATE NULL,
+  dataCadastro DATETIME NOT NULL,
+  ativo BIT NOT NULL DEFAULT 1,
+  tipoPacote CHAR(1) CHECK(tipoPacote IN ('R','C','K')))
+  GO
+alter table PacoteHospedagem add constraint pk_pacote_hospedagem primary key (idPacoteHospedagem)
+go
+create index idx_tipo_pacote_hospedagem on PacoteHospedagem (tipoPacote)
+GO
+  -- -----------------------------------------------------
 -- Table TipoQuarto
 -- -----------------------------------------------------
 DROP TABLE  TipoQuarto 
 GO
 CREATE TABLE TipoQuarto (
-  idTipoQuarto INT NOT NULL,  
+  idTipoQuarto INT IDENTITY(1,1) NOT NULL,  
+  idPacoteHospedagem INT NULL,
   descricao VARCHAR(45) NOT NULL,
   observacao VARCHAR(500) NULL,
   valor NUMERIC(10,2) NOT NULL
@@ -22,35 +45,12 @@ GO
  go
  create index idx_descricao on TipoQuarto (descricao)
  GO
- 
--- -----------------------------------------------------
--- Table PacoteHospedagem
--- -----------------------------------------------------
-DROP TABLE  PacoteHospedagem 
-go
-CREATE TABLE PacoteHospedagem (
-  idPacoteHospedagem INT IDENTITY(1,1) NOT NULL,
-  idTipoQuarto int null,
-  valorTotal NUMERIC(10,2) NOT NULL,
-  subTotal NUMERIC(10,2) NOT NULL,
-  observacao VARCHAR(45) NULL,
-  dataLiberacao DATETIME NULL,
-  dataEntrada DATE NOT NULL,
-  dataSaida DATE NULL,
-  dataCadastro DATETIME NOT NULL,
-  ativo BIT NOT NULL DEFAULT 1,
-  tipoPacote CHAR(1) CHECK(tipoPacote IN ('R','C','K')),
-  quantidadeReservada INT NULL)
-  GO
-alter table PacoteHospedagem add constraint pk_pacote_hospedagem primary key (idPacoteHospedagem)
-go
-create index idx_tipo_pacote_hospedagem on PacoteHospedagem (tipoPacote)
-GO
-alter table PacoteHospedagem 
+alter table TipoQuarto 
   add constraint fk_pacote_hospedagem_tipo_quarto
-  foreign key (idTipoQuarto)
-  references   TipoQuarto (idTipoQuarto)
+  foreign key (idPacoteHospedagem)
+  references   PacoteHospedagem (idPacoteHospedagem)
   go
+
 -- -----------------------------------------------------
 -- Table Quarto
 -- -----------------------------------------------------
@@ -63,7 +63,8 @@ CREATE TABLE Quarto (
   observacao VARCHAR(100) NULL,
   capacidade INT NOT NULL,
   ativo BIT NOT NULL DEFAULT 1,
-  status CHAR(1) CHECK (status in ('L','O','R'))) -- livre, ocupado, requerido
+  reservado BIT NOT NULL DEFAULT 0,
+  status CHAR(1) CHECK (status in ('L','O'))) -- livre, ocupado
 go
 -- adicionando primary key
 alter table Quarto add constraint pk_quarto 
@@ -89,7 +90,7 @@ go
 DROP TABLE  Cargo 
 GO
 CREATE TABLE  Cargo (
-  idCargo INT NOT NULL,
+  idCargo INT IDENTITY(1,1) NOT NULL,
   descricao VARCHAR(45) NOT NULL,
   observacao VARCHAR(45) NULL,
   ativo BIT NOT NULL DEFAULT 1)
@@ -180,7 +181,7 @@ go
 DROP TABLE  FormaPagamento 
 go
 CREATE TABLE FormaPagamento (
-  idFormaPagamento INT NOT NULL,
+  idFormaPagamento INT IDENTITY(10,10)NOT NULL,
   descricao VARCHAR(45) NOT NULL,
   observacao VARCHAR(45) NULL,
   numeroMaximoParcela INT NOT NULL,

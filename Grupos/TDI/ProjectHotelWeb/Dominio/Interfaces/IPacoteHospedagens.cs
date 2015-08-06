@@ -9,7 +9,7 @@ namespace Dominio.Interfaces
 {
    public interface IPacoteHospedagens : IRepositorio<PacoteHospedagem>
     {
-        void Cadastrar(PacoteHospedagem pacoteHospedagem);
+        int Cadastrar(PacoteHospedagem pacoteHospedagem);
         void Atualizar(PacoteHospedagem pacoteHospedagem);
         void Remover(PacoteHospedagem pacoteHospedagem);
         ICollection<PacoteHospedagem> ListarReserva();

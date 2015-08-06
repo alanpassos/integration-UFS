@@ -61,11 +61,21 @@ namespace ProjectHotelWeb.Controllers
             IPacoteHospedagens.Atualizar(pacoteHospedagem);
             return RedirectToAction("Index");
         }
-        public ActionResult Checkin()
+        public ActionResult Checkin( string[] quartos)
         {
+            if (SuperClasses.pessoasAdicionadas!=null)
+            ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
+
 
 
             return View();
+        }
+
+        private List<Quarto> carregarQuartos()
+        {
+
+
+            return new List<Quarto>();
         }
 
 
@@ -74,20 +84,20 @@ namespace ProjectHotelWeb.Controllers
             string consulta = Request.Params.Get("Consulta");
             string filtro = Request.Params.Get("Filtro");
             adicionarPessoas(consulta, filtro);
-            ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
             return View("Checkin");
         }
-        /// <summary>
-        /// método resposável por deixar visivel para o usuario os clientes que são consultados e o retorno é mais de um valor
-        /// </summary>
-        private void tratarVariasPessoas()
+
+        public ActionResult EscolherCLiente(int id)
         {
+            List<Pessoa> pessoas = new List<Pessoa>();
+
+            pessoas.Add(IPessoas.ResultadoUnico(id));
+
+            TestarIguais(pessoas);
 
 
-
-
+            return RedirectToAction("Checkin");
         }
-
 
 
         /// <summary>
@@ -99,18 +109,69 @@ namespace ProjectHotelWeb.Controllers
         {
             List<Pessoa> pessoas = FiltroConsulta(consulta, filtro);
 
-            if (ViewBag.Pessoas != null)
+            if (pessoas.Count > 1)
             {
-                SuperClasses.pessoasAdicionadas.AddRange(ViewBag.Pessoas);
+                ViewBag.PessoasEscola = pessoas;
             }
-            foreach (var pessoa in pessoas)
+            else
             {
-                
-                if (!SuperClasses.pessoasAdicionadas.Contains(pessoa))
-                    SuperClasses.pessoasAdicionadas.Add(pessoa);
+                TestarIguais(pessoas);
+            }
+
+        }
+
+        public ActionResult ExcluirCliente(int id)
+        {
+
+            for (int i = 0; i < SuperClasses.pessoasAdicionadas.Count; i++)
+            {
+                if (SuperClasses.pessoasAdicionadas[i].idPessoa == id)
+                {
+                    SuperClasses.pessoasAdicionadas.RemoveAt(i);
+                    break;
+
+                }
+            }
+            return RedirectToAction("Checkin");
+        }
+
+
+        private void TestarIguais(List<Pessoa> pessoas)
+        {
+
+            bool diferente = true;
+            if (SuperClasses.pessoasAdicionadas.Count > 0)
+            {
+
+                List<Pessoa> distinctPessoas = SuperClasses.pessoasAdicionadas;
+
+                foreach (var item in distinctPessoas)
+                {
+
+                    if (item.idPessoa == pessoas[0].idPessoa)
+                    {
+                        diferente = false;
+                        break;
+                    }
+                }
+
+                if (diferente)
+                    SuperClasses.pessoasAdicionadas.Add(pessoas[0]);
+
+                ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
+            }
+            else
+            {
+
+                SuperClasses.pessoasAdicionadas.AddRange(pessoas);
+
+                ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
 
             }
         }
+
+
+
         /// <summary>
         /// Filtro da consulta para o retorno das pessoas selecionadas
         /// </summary>
@@ -143,5 +204,12 @@ namespace ProjectHotelWeb.Controllers
             }
             return pessoas;
         }
+
+
+
+
+
+
+
     }
 }

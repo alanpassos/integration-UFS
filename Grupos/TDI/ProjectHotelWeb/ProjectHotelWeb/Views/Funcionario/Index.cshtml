@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Contratar", "Cadastrar")
 </p>
-<table class="striped">
+<table class="hoverable">
     <tr>
 
         <th>
@@ -63,11 +63,12 @@
             <td>
                 @Html.ActionLink("Atualizar", "Atualizar", new { id = item.idPessoa }) |
                 @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idPessoa }) |
-                @Html.ActionLink("Demitir", "Excluir", new { id = item.idPessoa } )
+                @Html.ActionLink("Demitir", "Excluir", new { id = item.idPessoa })
 
-                
+
             </td>
         </tr>
     }
-   
+
 </table>
+
