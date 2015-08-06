@@ -15,9 +15,10 @@ namespace ProjectHotelWeb.Controllers
 
         public IProjectHotel IProjectHotel { get; set; }
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
+        public IHospedagens IHospedagens { get; set; }
         public IPessoas IPessoas { get; set; }
         public IQuartos IQuartos { get; set; }
-
+        public IControleClientes IControleCliente { get; set; }
 
 
         // GET: CheckIn
@@ -65,9 +66,12 @@ namespace ProjectHotelWeb.Controllers
         {
             if (SuperClasses.pessoasAdicionadas != null)
                 ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
-            if (quartos!=null)
-                ViewBag.Quartos = carregarQuartos(quartos);
+            if (quartos != null)
+            {
+                SuperClasses.quartosListados.AddRange(carregarQuartos(quartos));
 
+            }
+            ViewBag.Quartos = SuperClasses.quartosListados;
             return View();
         }
 
@@ -92,7 +96,7 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult AtualizarCliente()
         {
             string consulta = Request.Params.Get("Consulta");
-            string filtro = Request.Params.Get("Filtro");
+            string filtro = Request.Params.Get("group1");
             adicionarPessoas(consulta, filtro);
             return View("Checkin");
         }
@@ -172,12 +176,10 @@ namespace ProjectHotelWeb.Controllers
             }
             else
             {
-
                 SuperClasses.pessoasAdicionadas.AddRange(pessoas);
-
                 ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
-
             }
+            ViewBag.Quartos = SuperClasses.quartosListados;
         }
 
 
@@ -217,9 +219,71 @@ namespace ProjectHotelWeb.Controllers
 
 
 
+        public ActionResult RealizarCheckin()
+        {
+            string[] pessoasSelect = Request.Params.Get("checkPessoa").Split(',');
+            int idQuarto = Convert.ToInt32(Request.Params.Get("group2"));
+            decimal valorHospedagemTotal = IQuartos.ResultadoUnico(idQuarto).TipoQuarto.valor;
+            DateTime abertura = DateTime.Now;
+            double periodo = Convert.ToDouble(Request.Params.Get("Quantidade"));
+            DateTime dataLibert = abertura.AddDays(periodo);
+
+            int idPacote = IPacoteHospedagens.Cadastrar(
+                new PacoteHospedagem()
+                {
+                    dataCadastro = DateTime.Now,
+                    tipoPacote = "C",
+                    ativo = true,
+                    dataEntrada = DateTime.Now,
+                    subTotal = 0,
+                    valorTotal = 0
+                });
+
+            int idHosp = IHospedagens.Cadastrar(
+                 new Hospedagem()
+                 {
+                     aberto = true,
+                     idPacoteHospedagem = idPacote,
+                     dataAbertura = DateTime.Now,
+                     dataLiberacao = dataLibert,
+                     idQuarto = idQuarto,
+                     valorHospedagem = valorHospedagemTotal
+                 });
+
+            bool responsavel = false;
+
+            for (int i = 0; i < pessoasSelect.Length; i++)
+            {
+                responsavel = false;
+                if (i == 0)
+                {
+                    responsavel = true;
+
+                }
 
 
+                ControleCliente controle = new ControleCliente()
+                    {
+                        idCliente = Convert.ToInt32(pessoasSelect[i]),
+                        idHospedagem = idHosp,
+                        idPacoteHospedagem = idPacote,
+                        isResponsavel = responsavel,
+                        dataCadastro = DateTime.Now
+                    };
+                IControleCliente.Cadastrar(controle);
+                
+            }
 
+            Quarto quarto = IQuartos.ResultadoUnico(idQuarto);
+            quarto.status = "O";
+            IQuartos.Atualizar(quarto);
+
+            
+
+            return RedirectToAction("Checkin");
+        }
+
+        
 
     }
 }

@@ -17,6 +17,7 @@ namespace ProjectHotelWeb.ClassesEspeciais
     {
 
         public static List<Pessoa> pessoasAdicionadas { get; set; }
+        public static List<Quarto> quartosListados { get; set; }
 
     }
 }

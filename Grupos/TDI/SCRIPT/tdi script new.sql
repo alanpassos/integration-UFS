@@ -111,7 +111,7 @@ CREATE TABLE Pessoa (
   emailPimario VARCHAR(45) NULL,
   emailSecundario VARCHAR(45) NULL,
   salario NUMERIC(10,2) NULL ,
-  estado char(2) NOT NULL,
+  estado char(2) NULL,
   cidade VARCHAR(45)  NULL,
   bairro VARCHAR(45)  NULL,
   rua VARCHAR(45)  NULL,
@@ -390,7 +390,7 @@ go
 DROP TABLE  ControleCliente 
 GO
 CREATE TABLE ControleCliente (
-  idCliente INT NULL,
+  idCliente INT NOT NULL,
   idHospedagem INT NOT NULL,
   idPacoteHospedagem INT NULL,
   dataCadastro DATETIME NOT NULL,
