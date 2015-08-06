@@ -6,14 +6,13 @@
 
 <h2 class="center">Excluir Quarto</h2>
 <hr />
-<dl class="dl-horizontal">
 
-    <form class="col 12">
+<form class="col 12">
 
         <div class="row">
             <div class="input-field col s4">
                 <p class="flow-text">
-                    Número: @Html.DisplayFor(model => model.idQuarto)
+                    Número Quarto: @Html.DisplayFor(model => model.idQuarto)
                 </p>
             </div>
             <div class="input-field col s8">
@@ -45,15 +44,17 @@
             </div>
         </div>
 
-
-        @using (Html.BeginForm())
+    <div class="row">
+        @using (Html.BeginForm("ExcluirQuarto", "Quarto"))
         {
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.idQuarto)
 
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
+                <input type="submit" value="Excluir" class="btn btn-default" onclick="javascript:return confirm('Tem certeza que deseja excluir quarto?');" /> |
                 @Html.ActionLink("Voltar", "Index")
             </div>
         }
+    </div>
 
-    </form>
+</form>
