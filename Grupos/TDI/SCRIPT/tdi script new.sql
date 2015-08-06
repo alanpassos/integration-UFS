@@ -398,7 +398,7 @@ CREATE TABLE ControleCliente (
 go
 
 
-alter table ControleCliente add constraint pk_controle_cliente primary key (idHospedagem)
+alter table ControleCliente add constraint pk_controle_cliente primary key (idHospedagem,idCliente)
 go
  create index idx_fk_hospedagem on ControleCliente (idHospedagem )
  create index idx_fkcliente on ControleCliente(idCliente )

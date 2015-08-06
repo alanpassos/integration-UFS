@@ -37,7 +37,7 @@ namespace ProjectHotelWeb.Controllers
                     if (c.isResponsavel)
                     {
 
-                        clientes.Add( IPessoa.ResultadoUnico(c.idCliente));
+                        clientes.Add( IPessoa.ResultadoUnico(Convert.ToInt32(c.idCliente)));
                         break;
                     }
 
