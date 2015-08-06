@@ -9,7 +9,7 @@ namespace Dominio.Interfaces
 {
     public interface IHospedagens : IRepositorio<Hospedagem>
     {
-        void Cadastrar(Hospedagem hospedagem);
+        int Cadastrar(Hospedagem hospedagem);
         void Atualizar(Hospedagem hospedagem);
         void Remover(Hospedagem hospedagem);
         Hospedagem ResultadoUnico(int idHospedagem);

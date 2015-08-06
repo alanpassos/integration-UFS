@@ -14,8 +14,12 @@ namespace ProjectHotelWeb
     {
         protected void Application_Start()
         {
+            #region estâncias de estaticas
             Entidade.hospedagemGlobal = null;
-            SuperClasses.pessoasAdicionadas= new List<Pessoa>();
+            SuperClasses.pessoasAdicionadas = new List<Pessoa>();
+            SuperClasses.quartosListados = new List<Quarto>();
+            #endregion
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new AppConfig());
