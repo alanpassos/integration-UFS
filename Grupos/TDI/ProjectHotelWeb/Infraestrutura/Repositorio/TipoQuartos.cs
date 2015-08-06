@@ -16,6 +16,7 @@ namespace Infraestrutura.Repositorio
         private IProjectHotel unidadeTrabalho;
         private IQueryable<Quarto> quartos;
         private IQueryable<PacoteHospedagem> pacoteHospedagem;
+        private IQueryable<Hospedagem> hospedagem;
 
         private TipoQuartos(IQueryable<TipoQuarto> TipoQuartos, IProjectHotel unidadeTrabalho)
         {
@@ -23,6 +24,7 @@ namespace Infraestrutura.Repositorio
             this.unidadeTrabalho = unidadeTrabalho;
             quartos = unidadeTrabalho.Quartos;
             pacoteHospedagem = unidadeTrabalho.PacoteHospedagens;
+            hospedagem = unidadeTrabalho.Hospedagens;
         }
 
         public TipoQuartos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
@@ -66,12 +68,13 @@ namespace Infraestrutura.Repositorio
                                                                         where quarto.status.Equals("L") && tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
                                                                         && quarto.capacidade.ToString().Equals(pessoasPesquisa)
                                                                         && !(
-                                                                            from _pacote_Hospedagem in pacoteHospedagem
-	                                                                        join _tipo_quarto in tipoQuartos on _pacote_Hospedagem.idPacoteHospedagem equals _tipo_quarto.idPacoteHospedagem
-                                                                            join _quartos in quartos on _tipo_quarto.idTipoQuarto equals _quartos.idTipoQuarto
-                                                                            where _pacote_Hospedagem.tipoPacote.Equals("R")
-                                                                            && _quartos.idQuarto.Equals(quarto.idQuarto)
-                                                                            && (dataInicio <= _pacote_Hospedagem.dataSaida || dataFim >= _pacote_Hospedagem.dataEntrada)
+                                                                            from _pacote_hospedagem in pacoteHospedagem
+                                                                            join _hospedagem in hospedagem on _pacote_hospedagem.idPacoteHospedagem equals _hospedagem.idPacoteHospedagem
+                                                                            join _quartos in quartos on _hospedagem.idQuarto equals _quartos.idQuarto
+                                                                            join _tipo_quarto in tipoQuartos on _quartos.idTipoQuarto equals _tipo_quarto.idTipoQuarto
+                                                                            where _quartos.idQuarto.Equals(quarto.idQuarto)
+                                                                            && (dataInicio <= _pacote_hospedagem.dataSaida || dataFim >= _pacote_hospedagem.dataEntrada)
+                                                                            && _pacote_hospedagem.tipoPacote.Equals("R")
 	                                                                        select _quartos.idQuarto       
                                                                         ).Contains(quarto.idQuarto)                                                                         
                                                                         group tipo_quarto by new

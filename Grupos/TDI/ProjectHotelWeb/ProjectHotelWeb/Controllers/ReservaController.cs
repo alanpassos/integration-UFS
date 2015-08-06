@@ -15,6 +15,7 @@ namespace ProjectHotelWeb.Controllers
         public IProjectHotel IProjectHotel { get; set; }
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
         public ITipoQuartos ITipoQuarto { get; set; }
+        public IPessoas IPessoas { get; set; }
 
         // GET: Reserva
         public ActionResult Index()
@@ -38,7 +39,9 @@ namespace ProjectHotelWeb.Controllers
             {
                 ViewBag.quartosLivres = (List<QuartosLivresReserva>)TempData["quartos"];
                 ViewBag.dataInicioFim = (List<DateTime>)TempData["datas"];
-                ViewBag.dadosView = (List<object>)TempData["dadosView"];
+                List<object> dadosCliente = (List<object>)TempData["dadosView"];
+                TempData["dadosCliente"] = dadosCliente;
+                ViewBag.dadosView = dadosCliente;
             }
             
             return View();
@@ -48,15 +51,57 @@ namespace ProjectHotelWeb.Controllers
         [ActionName("CadastrarReserva")]
         public ActionResult Cadastrar(PacoteHospedagem pacoteHospedagem)
         {
-            string idTipoQuarto = Request.Params.Get("checkQuartos");
+            List<object> dadosCliente = (List<object>)TempData["dadosCliente"];
+
             string dataInicio = Request.Params.Get("dataInicio");
             string dataFim = Request.Params.Get("dataFim");
+
+            string[] quartosSelecionados = Request.Params.Get("checkQuartos").Split(',', ' ');
+
+            List<Pessoa> pessoaResultado = IPessoas.ListarPorCpfCnpj((string)dadosCliente[0]).ToList();
+            Pessoa cliente;
+            if(pessoaResultado == null)
+            {
+                cliente = new Pessoa();
+                cliente.cpfCnpj = (string)dadosCliente[0];
+                cliente.nome = (string)dadosCliente[1];
+                cliente.telefoneMovel = (string)dadosCliente[2];
+                cliente.ativo = true;
+                cliente.isFuncionario = false;
+                cliente.dataCadastro = DateTime.Now;
+                cliente.estado = "";
+                IPessoas.Cadastrar(cliente);
+            }
+            else
+            {
+                cliente = pessoaResultado[0];
+            }
+
+            PacoteHospedagem reserva = new PacoteHospedagem();
+            reserva.tipoPacote = "R";
+            reserva.dataCadastro = DateTime.Now;
+            reserva.dataEntrada = Convert.ToDateTime(Request.Params.Get(dataInicio));
+            reserva.dataSaida = Convert.ToDateTime(Request.Params.Get(dataFim));
+            /*
+            for (int i = 0; i < itensCancelados.Count(); i += 2)
+            {
+                idItem = itensCancelados[i];
+                itemCancelado = IItem.ResultadoUnico(Convert.ToInt32(idItem));
+                itemCancelado.cancelado = true;
+                IItem.Atualizar(itemCancelado);
+
+                hospedagemItemCancelado = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem));
+                hospedagemItemCancelado.valorHospedagem -= itemCancelado.valorTotal;
+                IHospedagem.Atualizar(hospedagemItemCancelado);
+            }
+            */
+
             return RedirectToAction("Cadastrar");
         }
 
         public ActionResult Consultar()
         {
-            string cpf = Request.Params.Get("cpf");
+            string cpf = Request.Params.Get("cpf").Replace(".","").Replace("-","");
             string nomeCliente = Request.Params.Get("nome");
             string telefone = Request.Params.Get("telefone");
 
