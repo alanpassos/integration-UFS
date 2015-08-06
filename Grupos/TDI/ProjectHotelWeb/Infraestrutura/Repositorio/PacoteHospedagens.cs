@@ -23,10 +23,12 @@ namespace Infraestrutura.Repositorio
         public PacoteHospedagens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.PacoteHospedagens, unidadeTrabalho) { }
 
-        public void Cadastrar(PacoteHospedagem pacoteHospedagem)
+        public int  Cadastrar(PacoteHospedagem pacoteHospedagem)
         {
             unidadeTrabalho.RegistrarNovo(pacoteHospedagem);
             unidadeTrabalho.Salvar();
+
+            return pacoteHospedagens.Max(p => p.idPacoteHospedagem);
         }
 
         public void Atualizar(PacoteHospedagem pacoteHospedagem)

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ProjectHotelWeb.ClassesEspeciais;
+using Dominio.Classes;
 
 namespace ProjectHotelWeb
 {
@@ -14,6 +15,7 @@ namespace ProjectHotelWeb
         protected void Application_Start()
         {
             Entidade.hospedagemGlobal = null;
+            SuperClasses.pessoasAdicionadas= new List<Pessoa>();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new AppConfig());

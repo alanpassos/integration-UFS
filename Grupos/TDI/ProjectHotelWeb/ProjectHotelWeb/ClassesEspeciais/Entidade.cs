@@ -10,7 +10,13 @@ namespace ProjectHotelWeb.ClassesEspeciais
     {
         public static Usuario usuarioAutenticado { get; set; }
         public static List<HistoricoAcesso> historicoAcessos { get; set; }
-        public static List<Pessoa> PessoasAdicionadas { get; set; }
         public static Hospedagem hospedagemGlobal { get; set; }
+    }
+
+    public static class SuperClasses
+    {
+
+        public static List<Pessoa> pessoasAdicionadas { get; set; }
+
     }
 }

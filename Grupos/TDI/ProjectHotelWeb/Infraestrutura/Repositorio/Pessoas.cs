@@ -62,12 +62,13 @@ namespace Infraestrutura.Repositorio
 
         public ICollection<Pessoa> ListarPorNome(string nome)
         {
-            return pessoas.Where(p => p.ativo == true && p.nome == nome).OrderBy(p => p.nome).ToList();
+            
+            return pessoas.Where(p => p.ativo == true && p.nome.Contains(nome)).OrderBy(p => p.nome).ToList();
             //OrderBy(p => p.nome).ToList();
         }
-        public Pessoa ListarPorTelefone(string telefone)
+        public ICollection<Pessoa> ListarPorTelefone(string telefone)
         {
-            return pessoas.SingleOrDefault(p => p.telefoneMovel == telefone && p.ativo == true);
+            return pessoas.Where(p => p.telefoneMovel == telefone && p.ativo == true).ToList();
         }
 
         public ICollection<Pessoa> ListarFuncionario()

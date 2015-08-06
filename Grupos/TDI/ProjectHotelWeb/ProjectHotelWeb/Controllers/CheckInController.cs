@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProjectHotelWeb.ClassesEspeciais;
 
 namespace ProjectHotelWeb.Controllers
 {
     public class CheckInController : Controller
     {
-        List<Pessoa> pessoasAdicionadas = new List<Pessoa>();
+
         public IProjectHotel IProjectHotel { get; set; }
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
         public IPessoas IPessoas { get; set; }
@@ -62,7 +63,8 @@ namespace ProjectHotelWeb.Controllers
         }
         public ActionResult Checkin()
         {
-
+            if (SuperClasses.pessoasAdicionadas!=null)
+            ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
 
             return View();
         }
@@ -73,11 +75,20 @@ namespace ProjectHotelWeb.Controllers
             string consulta = Request.Params.Get("Consulta");
             string filtro = Request.Params.Get("Filtro");
             adicionarPessoas(consulta, filtro);
-            ViewBag.Pessoas = pessoasAdicionadas;
             return View("Checkin");
         }
 
+        public ActionResult EscolherCLiente(int id)
+        {
+            List<Pessoa> pessoas = new List<Pessoa>();
 
+            pessoas.Add(IPessoas.ResultadoUnico(id));
+
+            TestarIguais(pessoas);
+
+
+            return RedirectToAction("Checkin");
+        }
 
 
         /// <summary>
@@ -89,17 +100,69 @@ namespace ProjectHotelWeb.Controllers
         {
             List<Pessoa> pessoas = FiltroConsulta(consulta, filtro);
 
-            if (ViewBag.Pessoas != null)
+            if (pessoas.Count > 1)
             {
-                pessoasAdicionadas.AddRange(ViewBag.Pessoas);
+                ViewBag.PessoasEscola = pessoas;
             }
-            foreach (var pessoa in pessoas)
+            else
+            {
+                TestarIguais(pessoas);
+            }
+
+        }
+
+        public ActionResult ExcluirCliente(int id)
+        {
+
+            for (int i = 0; i < SuperClasses.pessoasAdicionadas.Count; i++)
+            {
+                if (SuperClasses.pessoasAdicionadas[i].idPessoa == id)
+                {
+                    SuperClasses.pessoasAdicionadas.RemoveAt(i);
+                    break;
+
+                }
+            }
+            return RedirectToAction("Checkin");
+        }
+
+
+        private void TestarIguais(List<Pessoa> pessoas)
+        {
+
+            bool diferente = true;
+            if (SuperClasses.pessoasAdicionadas.Count > 0)
             {
 
-                pessoasAdicionadas.Add(pessoa);
+                List<Pessoa> distinctPessoas = SuperClasses.pessoasAdicionadas;
+
+                foreach (var item in distinctPessoas)
+                {
+
+                    if (item.idPessoa == pessoas[0].idPessoa)
+                    {
+                        diferente = false;
+                        break;
+                    }
+                }
+
+                if (diferente)
+                    SuperClasses.pessoasAdicionadas.Add(pessoas[0]);
+
+                ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
+            }
+            else
+            {
+
+                SuperClasses.pessoasAdicionadas.AddRange(pessoas);
+
+                ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
 
             }
         }
+
+
+
         /// <summary>
         /// Filtro da consulta para o retorno das pessoas selecionadas
         /// </summary>
@@ -125,11 +188,14 @@ namespace ProjectHotelWeb.Controllers
                     pessoas = IPessoas.ListarPorNome(nome).ToList<Pessoa>();
                     break;
                 case 4:
-                    string telefone = consulta.Replace("(", "").Replace(")", "").Replace("-", "");
-                    pessoas = IPessoas.ListarPorNome(telefone).ToList<Pessoa>();
+                    string telefone = consulta.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+                    pessoas = IPessoas.ListarPorTelefone(telefone).ToList<Pessoa>();
                     break;
 
             }
+
+
+
             return pessoas;
         }
     }
