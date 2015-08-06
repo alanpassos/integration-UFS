@@ -55,12 +55,17 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult Atualizar(int id)
         {
             Quarto quarto = IQuarto.ResultadoUnico(id);
+
+            ViewBag.TipoQuarto = ITipoQuarto.Listar();
+
             return View(quarto);
         }
 
         [ActionName("AtualizarQuarto")]
         public ActionResult Atualizar(Quarto quarto)
         {
+            quarto.idTipoQuarto = Convert.ToInt32(Request.Params.Get("tipoquarto"));
+
             IQuarto.Atualizar(quarto);
             return RedirectToAction("Index");
         }
@@ -75,9 +80,16 @@ namespace ProjectHotelWeb.Controllers
         [ActionName("ExcluirQuarto")]
         public ActionResult Excluir(Quarto quarto)
         {
-            quarto.ativo = false;
-            IQuarto.Atualizar(quarto);
+            Quarto newQuarto = IQuarto.ResultadoUnico(quarto.idQuarto);
 
+            if (newQuarto != null)
+            {
+                newQuarto.ativo = false;
+                IQuarto.Atualizar(newQuarto);
+            }
+            else
+                return null;
+            
             return RedirectToAction("Index");
         }
 
