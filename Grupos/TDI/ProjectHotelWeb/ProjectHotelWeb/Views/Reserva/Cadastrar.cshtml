@@ -76,81 +76,99 @@
         <hr>
     </form>
 }
-@using (Html.BeginForm("Consultar", "Reserva"))
+@using (Html.BeginForm("CadastrarReserva", "Reserva"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row">
-            <div class="input-field col s12">
-                <table class="striped">
-                    <tr>
+    <div class="row">
+        <div class="input-field col s12">
+            <table class="striped">
+                <tr>
 
-                        <th>
-                            Data Início
-                        </th>
-                        <th>
-                            Data Fim
-                        </th>
-                        <th>
-                            Tipo Quarto
-                        </th>
-                        <th>
-                            Quantidade
-                        </th>
-                        <th>
-                            Pessoas
-                        </th>
-                        <th>
-                            Valor
-                        </th>
-                        <th></th>
-                    </tr>
-
-
+                    <th>
+                        Período Disponível
+                    </th>
+                    <th>
+                        Tipo Quarto
+                    </th>
+                    <th>
+                        Quantidade
+                    </th>
+                    <th>
+                        Pessoas
+                    </th>
+                    <th>
+                        Valor
+                    </th>
+                    <th>
+                        Selecionar
+                    </th>
+                    <th></th>
+                </tr>
 
 
-                    @if (@ViewBag.quartosLivres != null)
+
+
+                @if (@ViewBag.quartosLivres != null)
+                {
+                    foreach (var i in @ViewBag.quartosLivres)
                     {
-                        foreach (var i in @ViewBag.quartosLivres)
-                        {
-                            <tr>
+                        <tr>
 
-                                <td>
-                                    @i.dataInicio
-                                </td>
-
-                                <td>
-                                    @i.dataFim
-                                </td>
-                                <td>
-                                    @i.descricao
-                                </td>
-                                <td>
-                                    @i.quantidade
-                                </td>
-                                <td>
-                                    @i.capacidade
-                                </td>
-                                <td>
-                                    @i.valor
-                                </td>
-                                <td>
-                                    <input type="checkbox" class="filled-in" id="@i.idQuarto" value="@i.idQuarto" name="checkCancelar" />
-                                    <label for="@i.idQuarto"></label>
-                                </td>
-                            </tr>
-                        }
+                            <td>
+                                @if(@i.dataInicio != null)
+                                {
+                                    @i.dataInicio.ToShortDateString()
+                                }
+                                -    
+                                @if(@i.dataFim != null)
+                                { 
+                                    @i.dataFim.ToShortDateString()
+                                }
+                            </td>
+                            <td>
+                                @i.descricao
+                            </td>
+                            <td>
+                                @i.quantidade
+                            </td>
+                            <td>
+                                @i.capacidade
+                            </td>
+                            <td>
+                                @i.valor
+                            </td>
+                            <td>
+                                <input type="checkbox" class="filled-in" id="@i.idTipoQuarto @i.idQuarto" value="@i.idTipoQuarto @i.idQuarto" name="checkQuartos" />
+                                <label for="@i.idTipoQuarto @i.idQuarto"></label>
+                            </td>
+                        </tr>
                     }
+                }
 
-                </table>
+            </table>
+            @if (@ViewBag.quartosLivres != null)
+            {
                 <div class="row">
-                    <div class="col s6 offset-s10 grid-example">
+                    <div class="input-field col s2">
+                        <input id="dataInicio" name="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
+                        <label for="dataInicio">Data Início</label>
+                    </div>
+
+                    <div class="input-field col s2">
+                        <input id="dataFim" name="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
+                        <label for="dataFim">Data Final</label>
+                    </div>
+                    <div class="col s4 offset-s10 grid-example">
                         <input type="submit" value="Adicionar" class="btn btn-default" />
                     </div>
                 </div>
-            </div>
+            }
+            
+            <hr>
         </div>
-    
+    </div>
+
 }
 
 <div>

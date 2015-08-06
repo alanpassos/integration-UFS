@@ -38,8 +38,7 @@ namespace ProjectHotelWeb.Controllers
             if(TempData["quartos"] != null)
             {
                 ViewBag.quartosLivres = (List<QuartosLivresReserva>)TempData["quartos"];
-            }
-            
+            }           
 
             return View();
             
@@ -48,10 +47,10 @@ namespace ProjectHotelWeb.Controllers
         [ActionName("CadastrarReserva")]
         public ActionResult Cadastrar(PacoteHospedagem pacoteHospedagem)
         {
-            pacoteHospedagem.ativo = true;
-            pacoteHospedagem.tipoPacote = "R";
-            IPacoteHospedagens.Cadastrar(pacoteHospedagem);
-            return RedirectToAction("Index");
+            string idTipoQuarto = Request.Params.Get("checkQuartos");
+            string dataInicio = Request.Params.Get("dataInicio");
+            string dataFim = Request.Params.Get("dataFim");
+            return RedirectToAction("Cadastrar");
         }
 
         public ActionResult Consultar()
@@ -62,15 +61,14 @@ namespace ProjectHotelWeb.Controllers
 
             CultureInfo culture = new CultureInfo("en-US");
 
-            string stringDataInicio = Request.Params.Get("dataInicio");
-            string stringDataFim = Request.Params.Get("dataFim");
-            DateTime dataInicio = Convert.ToDateTime(stringDataInicio, culture);
-            DateTime dataFim = Convert.ToDateTime(stringDataFim, culture);
+            DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"), culture);
+            DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"), culture);
             string tipoQuarto = Request.Params.Get("tipoQuarto");
             string numeroPessoas = Request.Params.Get("pessoas");
             string numeroQuartos = Request.Params.Get("quartos");
 
             List<QuartosLivresReserva> quartosLivresReserva = ITipoQuarto.ListaLivres(tipoQuarto, numeroPessoas, dataInicio, dataFim).ToList<QuartosLivresReserva>();
+            
             TempData["quartos"] = quartosLivresReserva;
 
             return RedirectToAction("Cadastrar");
