@@ -4,63 +4,54 @@
     ViewBag.Title = "Detalhar";
 }
 
-<h2>Detalhar</h2>
+<h4 class="center">Detalhar</h4>
+<hr />
+<dl class="dl-horizontal">
 
-<div>
-    <h4>Quarto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.idQuarto)
-        </dt>
+    <form class="col 12">
 
-        <dd>
-            @Html.DisplayFor(model => model.idQuarto)
-        </dd>
+              <div class="row">
+                  <div class="input-field col s4">
+                      <p class="flow-text">
+                          Código: @Html.DisplayFor(model => model.idQuarto)
+                      </p>
+                  </div>
+                  <div class="input-field col s8">
+                      <p class="flow-text">
+                          Descrição: @Html.DisplayFor(model => model.descricao)
+                      </p>
+                  </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.idTipoQuarto)
-        </dt>
+              </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.idTipoQuarto)
-        </dd>
+            <div class="row">
+                <div class="input-field col s4">
+                    <p class="flow-text">
+                        Capacidade: @Html.DisplayFor(model => model.capacidade)
+                    </p>
+                </div>
+                <div class="input-field col s8">
+                    <p class="flow-text">
+                        Tipo: @Html.DisplayFor(model => model.TipoQuarto.descricao)
+                    </p>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descricao)
-        </dt>
+            <div class="row">
+                <div class="input-field col s12">
+                    <p class="flow-text">
+                        Observação: @Html.DisplayFor(model => model.observacao)
+                    </p>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.descricao)
-        </dd>
+        <hr />
+            <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.capacidade)
-        </dt>
+                @Html.ActionLink("Editar", "Atualizar", new { id = Model.idQuarto }) |
+                @Html.ActionLink("Voltar", "Index")
 
-        <dd>
-            @Html.DisplayFor(model => model.capacidade)
-        </dd>
+            </div>
+</form>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ativo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ativo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        
