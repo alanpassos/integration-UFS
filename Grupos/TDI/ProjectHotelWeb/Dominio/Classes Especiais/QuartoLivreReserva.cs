@@ -8,6 +8,7 @@ namespace Dominio.Classes_Especiais
 {
     public class QuartosLivresReserva
     {
+        public int idTipoQuarto { get; set; }
         public int idQuarto { get; set; }
         public int quantidade { get; set; }
         public string descricao { get; set; }

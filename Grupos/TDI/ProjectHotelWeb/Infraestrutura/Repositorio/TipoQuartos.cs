@@ -64,9 +64,12 @@ namespace Infraestrutura.Repositorio
                                                          join quarto in quartos on tipo_quarto.idTipoQuarto equals quarto.idTipoQuarto
                                                          where quarto.status.Equals("L") && tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
                                                          && quarto.capacidade.ToString().Equals(pessoasPesquisa)
-                                                         group tipo_quarto by new {tipo_quarto.descricao, quarto.capacidade, tipo_quarto.valor} into quartoLivre
+                                                         group tipo_quarto by new {tipo_quarto.idTipoQuarto, tipo_quarto.descricao, 
+                                                             quarto.idQuarto, quarto.capacidade, tipo_quarto.valor} into quartoLivre
                                                          select new QuartosLivresReserva
                                                          {
+                                                             idTipoQuarto = quartoLivre.Key.idTipoQuarto,
+                                                             idQuarto = quartoLivre.Key.idQuarto,
                                                              descricao = quartoLivre.Key.descricao,
                                                              capacidade = quartoLivre.Key.capacidade,
                                                              valor = quartoLivre.Key.valor,
@@ -78,14 +81,15 @@ namespace Infraestrutura.Repositorio
                                                                         where tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
                                                                         && quarto.capacidade.ToString().Equals(pessoasPesquisa)
                                                                         && (quarto.status.Equals("R") || quarto.status.Equals("L"))
-                                                                        && (dataInicio <= pacote_Hospedagem.dataSaida && dataFim >= pacote_Hospedagem.dataSaida)
+                                                                        && (dataInicio >= pacote_Hospedagem.dataSaida || dataFim <= pacote_Hospedagem.dataEntrada)
                                                                         && pacote_Hospedagem.tipoPacote.Equals("R")
                                                                         && pacote_Hospedagem.ativo
-                                                                        group tipo_quarto by new { tipo_quarto.idTipoQuarto, tipo_quarto.descricao, quarto.capacidade, tipo_quarto.valor,
-                                                                            pacote_Hospedagem.dataEntrada, pacote_Hospedagem.dataSaida } into quartoLivre
+                                                                        group tipo_quarto.idTipoQuarto by new { tipo_quarto.idTipoQuarto, tipo_quarto.descricao, quarto.capacidade, tipo_quarto.valor,
+                                                                            pacote_Hospedagem.dataEntrada, pacote_Hospedagem.dataSaida, quarto.idQuarto } into quartoLivre
                                                                         select new QuartosLivresReserva
                                                                         {
-                                                                            idQuarto = quartoLivre.Key.idTipoQuarto,
+                                                                            idTipoQuarto = quartoLivre.Key.idTipoQuarto,
+                                                                            idQuarto = quartoLivre.Key.idQuarto,
                                                                             descricao = quartoLivre.Key.descricao,
                                                                             capacidade = quartoLivre.Key.capacidade,
                                                                             valor = quartoLivre.Key.valor,
