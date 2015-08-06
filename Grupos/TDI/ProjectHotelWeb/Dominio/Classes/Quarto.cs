@@ -14,6 +14,7 @@ namespace Dominio.Classes
        public string observacao { get; set; }
        public int capacidade { get; set; }
        public bool ativo { get; set; }
+       public bool reservado { get; set; }
        public string status { get; set; }
 
        
