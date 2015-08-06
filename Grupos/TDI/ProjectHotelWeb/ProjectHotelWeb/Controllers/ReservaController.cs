@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System;
 using System.Globalization;
 namespace ProjectHotelWeb.Controllers
 {
@@ -38,8 +37,10 @@ namespace ProjectHotelWeb.Controllers
             if(TempData["quartos"] != null)
             {
                 ViewBag.quartosLivres = (List<QuartosLivresReserva>)TempData["quartos"];
-            }           
-
+                ViewBag.dataInicioFim = (List<DateTime>)TempData["datas"];
+                ViewBag.dadosView = (List<object>)TempData["dadosView"];
+            }
+            
             return View();
             
         }
@@ -59,7 +60,7 @@ namespace ProjectHotelWeb.Controllers
             string nomeCliente = Request.Params.Get("nome");
             string telefone = Request.Params.Get("telefone");
 
-            CultureInfo culture = new CultureInfo("en-US");
+            CultureInfo culture = new CultureInfo("pt-BR");
 
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"), culture);
             DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"), culture);
@@ -68,8 +69,17 @@ namespace ProjectHotelWeb.Controllers
             string numeroQuartos = Request.Params.Get("quartos");
 
             List<QuartosLivresReserva> quartosLivresReserva = ITipoQuarto.ListaLivres(tipoQuarto, numeroPessoas, dataInicio, dataFim).ToList<QuartosLivresReserva>();
-            
+            List<DateTime> dataInicioFim = new List<DateTime>();
+            dataInicioFim.Add(dataInicio);
+            dataInicioFim.Add(dataFim);
+            List<object> dadosView = new List<object>();
+            dadosView.Add(cpf);
+            dadosView.Add(nomeCliente);
+            dadosView.Add(telefone);
+
+            TempData["dadosView"] = dadosView;
             TempData["quartos"] = quartosLivresReserva;
+            TempData["datas"] = dataInicioFim;
 
             return RedirectToAction("Cadastrar");
         }

@@ -60,48 +60,44 @@ namespace Infraestrutura.Repositorio
         public ICollection<QuartosLivresReserva> ListaLivres(string tipoQuartoPesquisa, string pessoasPesquisa, DateTime dataInicio, DateTime dataFim)
         {
             List<QuartosLivresReserva> quartosLista = new List<QuartosLivresReserva>();
-            /*
-            IQueryable<QuartosLivresReserva> Resultado = from tipo_quarto in tipoQuartos
-                                                         join quarto in quartos on tipo_quarto.idTipoQuarto equals quarto.idTipoQuarto
-                                                         where quarto.status.Equals("L") && tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
-                                                         && quarto.capacidade.ToString().Equals(pessoasPesquisa)
-                                                         group tipo_quarto by new {tipo_quarto.idTipoQuarto, tipo_quarto.descricao, 
-                                                             quarto.idQuarto, quarto.capacidade, tipo_quarto.valor} into quartoLivre
-                                                         select new QuartosLivresReserva
-                                                         {
-                                                             idTipoQuarto = quartoLivre.Key.idTipoQuarto,
-                                                             idQuarto = quartoLivre.Key.idQuarto,
-                                                             descricao = quartoLivre.Key.descricao,
-                                                             capacidade = quartoLivre.Key.capacidade,
-                                                             valor = quartoLivre.Key.valor,
-                                                             quantidade = quartoLivre.Count()
-            
-                                                         };
+
             IQueryable<QuartosLivresReserva> ConsultaPacoteHospedagem = from tipo_quarto in tipoQuartos
                                                                         join quarto in quartos on tipo_quarto.idTipoQuarto equals quarto.idTipoQuarto
-                                                                        join pacote_Hospedagem in pacoteHospedagem on tipo_quarto.idTipoQuarto equals pacote_Hospedagem.idTipoQuarto
-                                                                        where tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
+                                                                        where quarto.status.Equals("L") && tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
                                                                         && quarto.capacidade.ToString().Equals(pessoasPesquisa)
-                                                                        && (quarto.status.Equals("R") || quarto.status.Equals("L"))
-                                                                        && (dataInicio >= pacote_Hospedagem.dataSaida || dataFim <= pacote_Hospedagem.dataEntrada)
-                                                                        && pacote_Hospedagem.tipoPacote.Equals("R")
-                                                                        && pacote_Hospedagem.ativo
-                                                                        group tipo_quarto.idTipoQuarto by new { tipo_quarto.idTipoQuarto, tipo_quarto.descricao, quarto.capacidade, tipo_quarto.valor,
-                                                                            pacote_Hospedagem.dataEntrada, pacote_Hospedagem.dataSaida, quarto.idQuarto } into quartoLivre
+                                                                        && !(
+                                                                            from _pacote_Hospedagem in pacoteHospedagem
+	                                                                        join _tipo_quarto in tipoQuartos on _pacote_Hospedagem.idPacoteHospedagem equals _tipo_quarto.idPacoteHospedagem
+                                                                            join _quartos in quartos on _tipo_quarto.idTipoQuarto equals _quartos.idTipoQuarto
+                                                                            where _pacote_Hospedagem.tipoPacote.Equals("R")
+                                                                            && _quartos.idQuarto.Equals(quarto.idQuarto)
+                                                                            && (dataInicio <= _pacote_Hospedagem.dataSaida || dataFim >= _pacote_Hospedagem.dataEntrada)
+	                                                                        select _quartos.idQuarto       
+                                                                        ).Contains(quarto.idQuarto)                                                                         
+                                                                        group tipo_quarto by new
+                                                                        {
+                                                                            tipo_quarto.idTipoQuarto,
+                                                                            tipo_quarto.descricao,
+                                                                            quarto.idQuarto,
+                                                                            quarto.capacidade,
+                                                                            tipo_quarto.valor
+
+                                                                        } into quartoLivre
                                                                         select new QuartosLivresReserva
                                                                         {
-                                                                            idTipoQuarto = quartoLivre.Key.idTipoQuarto,
-                                                                            idQuarto = quartoLivre.Key.idQuarto,
-                                                                            descricao = quartoLivre.Key.descricao,
-                                                                            capacidade = quartoLivre.Key.capacidade,
-                                                                            valor = quartoLivre.Key.valor,
-                                                                            quantidade = quartoLivre.Count(),
-                                                                            dataInicio = quartoLivre.Key.dataEntrada,
-                                                                            dataFim = quartoLivre.Key.dataSaida
+                                                                             idTipoQuarto = quartoLivre.Key.idTipoQuarto,
+                                                                             idQuarto = quartoLivre.Key.idQuarto,
+                                                                             descricao = quartoLivre.Key.descricao,
+                                                                             capacidade = quartoLivre.Key.capacidade,
+                                                                             valor = quartoLivre.Key.valor,
+                                                                             quantidade = quartoLivre.Count(),
+                                                                             dataFim = dataFim,
+                                                                             dataInicio = dataInicio
                                                                         };
+      
             
             quartosLista = ConsultaPacoteHospedagem.OrderBy(p => p.descricao).ToList();
-          */
+          
             return quartosLista;
         }
 
