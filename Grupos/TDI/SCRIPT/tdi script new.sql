@@ -63,7 +63,7 @@ CREATE TABLE Quarto (
   observacao VARCHAR(100) NULL,
   capacidade INT NOT NULL,
   ativo BIT NOT NULL DEFAULT 1,
-  status CHAR(1) CHECK (status in ('L','O','R'))) -- livre, ocupado, requerido
+  status CHAR(1) CHECK (status in ('L','O','R'))) -- livre, ocupado, reservado
 go
 -- adicionando primary key
 alter table Quarto add constraint pk_quarto 

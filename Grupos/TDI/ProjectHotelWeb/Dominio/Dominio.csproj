@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes Especiais\QuartoLivreReserva.cs" />
     <Compile Include="Classes\Cargo.cs" />
     <Compile Include="Classes\ControleCliente.cs" />
     <Compile Include="Classes\ControleServico.cs" />
