@@ -63,7 +63,8 @@ namespace ProjectHotelWeb.Controllers
         }
         public ActionResult Checkin()
         {
-
+            if (SuperClasses.pessoasAdicionadas!=null)
+            ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
 
             return View();
         }
@@ -86,7 +87,7 @@ namespace ProjectHotelWeb.Controllers
             TestarIguais(pessoas);
 
 
-            return View("Checkin");
+            return RedirectToAction("Checkin");
         }
 
 
@@ -122,7 +123,7 @@ namespace ProjectHotelWeb.Controllers
 
                 }
             }
-            return View("Checkin");
+            return RedirectToAction("Checkin");
         }
 
 
