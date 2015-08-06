@@ -61,12 +61,21 @@ namespace ProjectHotelWeb.Controllers
             IPacoteHospedagens.Atualizar(pacoteHospedagem);
             return RedirectToAction("Index");
         }
-        public ActionResult Checkin()
+        public ActionResult Checkin( string[] quartos)
         {
             if (SuperClasses.pessoasAdicionadas!=null)
             ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
 
+
+
             return View();
+        }
+
+        private List<Quarto> carregarQuartos()
+        {
+
+
+            return new List<Quarto>();
         }
 
 
@@ -193,10 +202,14 @@ namespace ProjectHotelWeb.Controllers
                     break;
 
             }
-
-
-
             return pessoas;
         }
+
+
+
+
+
+
+
     }
 }

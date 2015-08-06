@@ -11,7 +11,7 @@ namespace ProjectHotelWeb.Controllers
     public class HomeController : Controller
     {
 
-        public IQuartos IQuartos { get; set; }
+        public ITipoQuartos ITipoQuartos { get; set; }
         public IHospedagens IHospedagem { get; set; }
         public IPessoas IPessoa { get; set; }
 
@@ -51,18 +51,18 @@ namespace ProjectHotelWeb.Controllers
 
 
 
-            List<Quarto> quartosLivres = IQuartos.Listar().ToList<Quarto>();
+            List<TipoQuarto> quartosLivres = ITipoQuartos.Listar().ToList<TipoQuarto>();
             
 
             ViewBag.Hospedagens = hospedagens;
-            ViewBag.Quartos = quartosLivres;
+            ViewBag.TipoQuartos = quartosLivres;
             ViewBag.Clientes = clientes;
             return View();
         }
         
         public ActionResult QuartosLivres()
         {
-            List<Quarto> quartosLivres = IQuartos.Listar().ToList<Quarto>();
+            List<TipoQuarto> quartosLivres = ITipoQuartos.Listar().ToList<TipoQuarto>();
             ViewBag.Hospedagens = null;
             ViewBag.Quartos = quartosLivres;
             return View();

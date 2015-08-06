@@ -84,72 +84,105 @@
 
 
                 <hr />
+
+
                 <div class="row">
-
-                    @foreach (var quarto in ViewBag.Quartos)
+                    
+                    @foreach (var quarto in ViewBag.TipoQuartos)
                     {
 
-                        if (quarto.status.Equals("L"))
-                        {
+                        <div class="card-panel teal">
 
-                            <div class="input-fields col s2.3">
-                                <div class="card small">
-                                    <div class="card green">
+                            <h6 class="center ; white-text"> @quarto.descricao</h6>
+                        </div>
 
-                                        <div class="card-content white-text">
-                                            <span class="card-title">
-                                                <input type="checkbox" class="filled-in" id="@quarto.idQuarto" required />
-                                                <label for="@quarto.idQuarto"><font color="white"><b>@quarto.descricao</b></font></label>
-                                            </span>
-                                            <br />
-                                            <p>Tipo: @quarto.TipoQuarto.descricao</p>
-                                            <p>Total: @quarto.TipoQuarto.valor</p>
-                                        </div>
-                                        <div class="card-action">
-                                            <a href="#">Check-in</a>
+                        <div class="row">
+
+                            @foreach (var item in quarto.Quarto)
+                            {
+
+
+                                if (item.status.Equals("L"))
+                                {
+
+
+
+                                    <div class="col s2.3">
+                                        <div class="card small">
+                                            <div class="card green">
+
+                                                <div class="card-content white-text">
+                                                    <span class="card-title">
+                                                        <input type="checkbox" class="filled-in" id="@item.idQuarto" required />
+                                                        <label for="@item.idQuarto"><font color="white"><b>@item.descricao</b></font></label>
+                                                    </span>
+                                                    <br />
+                                                    
+                                                    <p>Total: @item.TipoQuarto.valor</p>
+                                                </div>
+                                                <div class="card-action">
+                                                    <a href="#">Check-in</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        }
+
+
+
+                                }
+
+                            }
+
+                        </div>
 
                     }
-                    @foreach (var h in ViewBag.Hospedagens)
-                    {
+                    <div class="card-panel teal">
 
-                        if (h.Quarto.status.Equals("O"))
-                        {
-                            <div class="input-fields col s2.3">
-                                <div class="card small">
-                                    <div class="card red">
+                        <h6 class="center ; white-text"> Hospedagens</h6>
+                    </div>
+                    <div class="row">
+                        
+                        @foreach (var h in ViewBag.Hospedagens)
+                        {<div class="card-panel teal">
 
-                                        <div class="card-content white-text">
+                            <h6 class="center ; white-text">@h.Quarto.TipoQuarto.descricao</h6>
+                        </div>
 
-                                            <input type="checkbox" class="filled-in" id="@h.idHospedagem" name="@h.idHospedagem" required />
-                                            <label for="@h.Quarto.idQuarto"><font color="white"><b>@h.Quarto.descricao</b></font></label>
 
-                                            @foreach (var cc in h.ControleCliente)
-                                            {
-                                                foreach (var c in ViewBag.Clientes)
+                            if (h.Quarto.status.Equals("O"))
+                            {
+                                <div class="input-fields col s2.3">
+                                    <div class="card small">
+                                        <div class="card red">
+
+                                            <div class="card-content white-text">
+
+                                                <input type="checkbox" class="filled-in" id="@h.idHospedagem" name="@h.idHospedagem" required />
+                                                <label for="@h.Quarto.idQuarto"><font color="white"><b>@h.Quarto.descricao</b></font></label>
+
+                                                @foreach (var cc in h.ControleCliente)
                                                 {
-                                                    <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
+                                                    foreach (var c in ViewBag.Clientes)
+                                                    {
+                                                        <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
+                                                    }
                                                 }
-                                            }
-                                            <p>@h.Quarto.TipoQuarto.descricao</p>
-                                            <p>Total:   @h.valorHospedagem</p>
+                                                
+                                                <p>Total:   @h.valorHospedagem</p>
+
+                                            </div>
+                                            <div class="card-action">
+
+                                                <a href="#">Check-out</a>
+
+                                            </div>
 
                                         </div>
-                                        <div class="card-action">
-
-                                            <a href="#">Check-out</a>
-
-                                        </div>
-
                                     </div>
                                 </div>
-                            </div>
+                            }
                         }
-                    }
+                    </div>
                 </div>
 
             </form>
