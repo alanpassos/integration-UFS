@@ -34,7 +34,6 @@ DROP TABLE  TipoQuarto
 GO
 CREATE TABLE TipoQuarto (
   idTipoQuarto INT IDENTITY(1,1) NOT NULL,  
-  idPacoteHospedagem INT NULL,
   descricao VARCHAR(45) NOT NULL,
   observacao VARCHAR(500) NULL,
   valor NUMERIC(10,2) NOT NULL
@@ -44,13 +43,7 @@ GO
  alter table TipoQuarto add constraint pk_tipo_quarto primary key (idTipoQuarto)
  go
  create index idx_descricao on TipoQuarto (descricao)
- GO
-alter table TipoQuarto 
-  add constraint fk_pacote_hospedagem_tipo_quarto
-  foreign key (idPacoteHospedagem)
-  references   PacoteHospedagem (idPacoteHospedagem)
-  go
-
+ 
 -- -----------------------------------------------------
 -- Table Quarto
 -- -----------------------------------------------------
@@ -110,7 +103,7 @@ CREATE TABLE Pessoa (
   nome VARCHAR(45) NOT NULL,
   cpfCnpj VARCHAR(14) NOT NULL,
   rg VARCHAR(14) NULL,
-  dataNascimento DATE NOT NULL,
+  dataNascimento DATE  NULL,
   estadoCivil VARCHAR(20) NULL,
   sexo CHAR(1) NULL,
   telefoneFixo VARCHAR(14) NULL,
@@ -119,12 +112,12 @@ CREATE TABLE Pessoa (
   emailSecundario VARCHAR(45) NULL,
   salario NUMERIC(10,2) NULL ,
   estado char(2) NOT NULL,
-  cidade VARCHAR(45) NOT NULL,
-  bairro VARCHAR(45) NOT NULL,
-  rua VARCHAR(45) NOT NULL,
+  cidade VARCHAR(45)  NULL,
+  bairro VARCHAR(45)  NULL,
+  rua VARCHAR(45)  NULL,
   complemento VARCHAR(45) NULL,
-  numero INT NOT NULL,
-  cep VARCHAR(9) NOT NULL,
+  numero INT  NULL,
+  cep VARCHAR(9)  NULL,
   dataCadastro DATETIME NOT NULL DEFAULT GETDATE(),
   ativo BIT NOT NULL DEFAULT 1,
   isFuncionario BIT NOT NULL)
@@ -397,14 +390,15 @@ go
 DROP TABLE  ControleCliente 
 GO
 CREATE TABLE ControleCliente (
-  idCliente INT NOT NULL,
+  idCliente INT NULL,
   idHospedagem INT NOT NULL,
+  idPacoteHospedagem INT NULL,
   dataCadastro DATETIME NOT NULL,
   isResponsavel BIT NULL)
 go
 
 
-alter table ControleCliente add constraint pk_controle_cliente primary key (idHospedagem,idCliente)
+alter table ControleCliente add constraint pk_controle_cliente primary key (idHospedagem)
 go
  create index idx_fk_hospedagem on ControleCliente (idHospedagem )
  create index idx_fkcliente on ControleCliente(idCliente )
@@ -419,6 +413,12 @@ go
     foreign key (idCliente)
     references   Pessoa (idPessoa)
  go   
+ 
+alter table ControleCliente 
+  add constraint fk_pacote_hospedagem_ControleCliente
+  foreign key (idPacoteHospedagem)
+  references   PacoteHospedagem (idPacoteHospedagem)
+  go
 
 -- -----------------------------------------------------
 -- Table Historico
