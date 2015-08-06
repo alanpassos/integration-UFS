@@ -73,7 +73,7 @@ namespace Infraestrutura.Repositorio
                                                                             join _quartos in quartos on _hospedagem.idQuarto equals _quartos.idQuarto
                                                                             join _tipo_quarto in tipoQuartos on _quartos.idTipoQuarto equals _tipo_quarto.idTipoQuarto
                                                                             where _quartos.idQuarto.Equals(quarto.idQuarto)
-                                                                            && (dataInicio <= _pacote_hospedagem.dataSaida || dataFim >= _pacote_hospedagem.dataEntrada)
+                                                                            && (dataInicio <= _pacote_hospedagem.dataSaida && dataFim >= _pacote_hospedagem.dataEntrada)
                                                                             && _pacote_hospedagem.tipoPacote.Equals("R")
 	                                                                        select _quartos.idQuarto       
                                                                         ).Contains(quarto.idQuarto)                                                                         

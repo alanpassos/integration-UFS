@@ -16,6 +16,8 @@ namespace ProjectHotelWeb.Controllers
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
         public ITipoQuartos ITipoQuarto { get; set; }
         public IPessoas IPessoas { get; set; }
+        public IControleClientes IControleCliente { get; set; }
+        public IHospedagens IHospedagem { get; set; }
 
         // GET: Reserva
         public ActionResult Index()
@@ -51,6 +53,7 @@ namespace ProjectHotelWeb.Controllers
         [ActionName("CadastrarReserva")]
         public ActionResult Cadastrar(PacoteHospedagem pacoteHospedagem)
         {
+            CultureInfo culture = new CultureInfo("pt-BR");
             List<object> dadosCliente = (List<object>)TempData["dadosCliente"];
 
             string dataInicio = Request.Params.Get("dataInicio");
@@ -60,7 +63,8 @@ namespace ProjectHotelWeb.Controllers
 
             List<Pessoa> pessoaResultado = IPessoas.ListarPorCpfCnpj((string)dadosCliente[0]).ToList();
             Pessoa cliente;
-            if(pessoaResultado == null)
+            int idCliente;
+            if(pessoaResultado.Count == 0)
             {
                 cliente = new Pessoa();
                 cliente.cpfCnpj = (string)dadosCliente[0];
@@ -72,29 +76,45 @@ namespace ProjectHotelWeb.Controllers
                 cliente.estado = "";
                 IPessoas.Cadastrar(cliente);
             }
-            else
-            {
-                cliente = pessoaResultado[0];
-            }
+            idCliente = IPessoas.ListarPorCpfCnpj((string)dadosCliente[0]).ToList()[0].idPessoa;
+           
+            int idPacoteHospedagem = IPacoteHospedagens.Cadastrar(
+                new PacoteHospedagem()
+                {
+                    dataCadastro = DateTime.Now,
+                    tipoPacote = "R",
+                    ativo = true,
+                    dataEntrada = Convert.ToDateTime(dataInicio),
+                    dataSaida = Convert.ToDateTime(dataFim),
+                    subTotal = 0,
+                    valorTotal = 0
+                });
 
-            PacoteHospedagem reserva = new PacoteHospedagem();
-            reserva.tipoPacote = "R";
-            reserva.dataCadastro = DateTime.Now;
-            reserva.dataEntrada = Convert.ToDateTime(Request.Params.Get(dataInicio));
-            reserva.dataSaida = Convert.ToDateTime(Request.Params.Get(dataFim));
-            /*
-            for (int i = 0; i < itensCancelados.Count(); i += 2)
-            {
-                idItem = itensCancelados[i];
-                itemCancelado = IItem.ResultadoUnico(Convert.ToInt32(idItem));
-                itemCancelado.cancelado = true;
-                IItem.Atualizar(itemCancelado);
 
-                hospedagemItemCancelado = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem));
-                hospedagemItemCancelado.valorHospedagem -= itemCancelado.valorTotal;
-                IHospedagem.Atualizar(hospedagemItemCancelado);
+            for (int i = 0; i < quartosSelecionados.Count(); i += 3)
+            {
+                int idHospedagem = IHospedagem.Cadastrar(
+                 new Hospedagem()
+                 {
+                     aberto = true,
+                     idPacoteHospedagem = idPacoteHospedagem,
+                     dataAbertura = DateTime.Now,
+                     dataLiberacao = DateTime.Now,                  
+                     idQuarto = Convert.ToInt32(quartosSelecionados[i+2]),
+                     valorHospedagem = 0
+                 });
+
+                ControleCliente controle = new ControleCliente()
+                {
+                    idCliente = idCliente,
+                    idHospedagem = idHospedagem,
+                    idPacoteHospedagem = idPacoteHospedagem,
+                    isResponsavel = true,
+                    dataCadastro = DateTime.Now
+                };
+                IControleCliente.Cadastrar(controle);
             }
-            */
+         
 
             return RedirectToAction("Cadastrar");
         }
