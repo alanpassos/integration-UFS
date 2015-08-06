@@ -9,7 +9,7 @@ namespace Dominio.Classes
    public class Produto
     {
        public int idProduto { get; set; }
-       public decimal tamanho { get; set; }
+       public string tamanho { get; set; }
        public int quantidade { get; set; }
        public string descricao { get; set; }
        public string observacao { get; set; }

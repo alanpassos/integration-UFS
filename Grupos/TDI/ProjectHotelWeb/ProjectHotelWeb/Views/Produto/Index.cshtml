@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Cadastrar", "Cadastrar")
 </p>
-<table class="table">
+<table class="hoverable">
     <tr>
         <th>
             Código
@@ -23,7 +23,7 @@
             Descrição
         </th>
         <th>
-           Observação
+            Observação
         </th>
         <th>
             Valor
@@ -31,32 +31,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idProduto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tamanho)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.observacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.valor)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Atualizar", new { id = item.idProduto }) |
-            @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idProduto }) |
-            @Html.ActionLink("Excluir", "Excluir", new {  id = item.idProduto })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tamanho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.observacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valor)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Atualizar", new { id = item.idProduto }) |
+                @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idProduto }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.idProduto })
+            </td>
+        </tr>
+    }
 
 </table>

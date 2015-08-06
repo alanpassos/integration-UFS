@@ -192,7 +192,7 @@ DROP TABLE  Produto
 go
 CREATE TABLE Produto (
   idProduto INT IDENTITY(1,1) NOT NULL,
-  tamanho NUMERIC(10,2) NOT NULL,
+  tamanho VARCHAR(20) NOT NULL,
   quantidade INT NOT NULL,
   descricao VARCHAR(45) NOT NULL,
   observacao VARCHAR(45) NULL,
