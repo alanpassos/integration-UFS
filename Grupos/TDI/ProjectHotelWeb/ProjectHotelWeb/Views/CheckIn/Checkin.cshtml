@@ -199,6 +199,9 @@
                             Selecionar
                         </th>
                         <th>
+                            Responsavel
+                        </th>
+                        <th>
                             Remover
                         </th>
                         <th></th>
@@ -228,10 +231,14 @@
 
 
                                 <td>
-                                    <input type="checkbox" class="filledin" id="@item.idPessoa" value="@item.idPessoa" name="checkPessoa" />
+                                    <input type="checkbox" class="filledin" id="@item.idPessoa" value="@item.idPessoa" name="checkPessoa" required />
                                     <label for="@item.idPessoa"></label>
                                 </td>
+                                <td>
+                                    <input name="group3" type="radio" id=@(item.idPessoa+"#"+ item.cpfCnpj) value=@item.idPessoa required />
+                                    <label for=@(item.idPessoa+"#"+ item.cpfCnpj)></label>
 
+                                </td>
                                 <td>
                                     @Html.ActionLink("Excluir", "ExcluirCliente", "Checkin", new { id = item.idPessoa }, null)
                                 </td>
@@ -281,7 +288,7 @@
 
                 </div>
                 <div class="input-field col s4">
-                    <input name="Quantidade" id="Quantidade" type="text" class="validate">
+                    <input name="Quantidade" id="Quantidade" type="text" class="validate" required>
                     <label for="Quantidade">Periodo</label>
                 </div>
             }
@@ -289,12 +296,33 @@
 
 
         </div>
-
+        <hr />
         <button class="btn waves-effect waves-light" type="submit" name="action">
             Salvar
         </button>
     </form>
+
 }
+
+<table class="hoverable">
+    <tr>
+
+        <th>
+
+
+        </th>
+
+        <td>
+
+
+
+        </td>
+
+
+    </tr>
+</table>
+
+
 
 
 <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>

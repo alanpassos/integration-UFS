@@ -86,12 +86,33 @@ namespace ProjectHotelWeb.Controllers
                 quarto = IQuartos.ResultadoUnico(Convert.ToInt32(item));
                 if (quarto.status.Equals("L"))
                 {
-                    ListQuartos.Add(quarto);
+
+                    if (!testarQuartosIguais(quarto))
+                        ListQuartos.Add(quarto);
+
+
+
                 }
             }
             return ListQuartos;
         }
+        private bool testarQuartosIguais(Quarto quarto)
+        {
+            int count = 0;
 
+            foreach (var item in SuperClasses.quartosListados)
+            {
+                if (item.idQuarto == quarto.idQuarto)
+                {
+
+                    count++;
+                }
+            }
+
+
+
+            return count >= 1 ? true : false;
+        }
 
         public ActionResult AtualizarCliente()
         {
@@ -248,12 +269,12 @@ namespace ProjectHotelWeb.Controllers
             DateTime abertura = DateTime.Now;
             double periodo = Convert.ToDouble(Request.Params.Get("Quantidade"));
             DateTime dataLibert = abertura.AddDays(periodo);
-
+            string responsavel = Request.Params.Get("group3");
             int idPacote = CadastrarPacoteHopedagem();
 
             int idHosp = CadastrarHospedagem(idQuarto, valorHospedagemTotal, dataLibert, idPacote);
 
-            CadastrarControleCliente(pessoasSelect, idPacote, idHosp);
+            CadastrarControleCliente(pessoasSelect, idPacote, idHosp, Convert.ToInt32(responsavel));
 
             AtualizarQuartoParaOcupado(idQuarto);
 
@@ -286,16 +307,16 @@ namespace ProjectHotelWeb.Controllers
             IQuartos.Atualizar(quarto);
         }
 
-        private void CadastrarControleCliente(string[] pessoasSelect, int idPacote, int idHosp)
+        private void CadastrarControleCliente(string[] pessoasSelect, int idPacote, int idHosp, int responsavel)
         {
-            bool responsavel = false;
 
+            bool isResponsible = false;
             for (int i = 0; i < pessoasSelect.Length; i++)
             {
-                responsavel = false;
-                if (i == 0)
+                isResponsible = false;
+                if (Convert.ToInt32(pessoasSelect[i]) == responsavel)
                 {
-                    responsavel = true;
+                    isResponsible = true;
 
                 }
 
@@ -305,7 +326,7 @@ namespace ProjectHotelWeb.Controllers
                     idCliente = Convert.ToInt32(pessoasSelect[i]),
                     idHospedagem = idHosp,
                     idPacoteHospedagem = idPacote,
-                    isResponsavel = responsavel,
+                    isResponsavel = isResponsible,
                     dataCadastro = DateTime.Now
                 };
                 IControleCliente.Cadastrar(controle);
@@ -351,7 +372,7 @@ namespace ProjectHotelWeb.Controllers
 
                 for (int i = 0; i < SuperClasses.quartosListados.Count; i++)
                 {
-                    if(SuperClasses.quartosListados[i].idQuarto == idQuarto)
+                    if (SuperClasses.quartosListados[i].idQuarto == idQuarto)
                     {
                         SuperClasses.quartosListados.RemoveAt(i);
                         break;
