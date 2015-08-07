@@ -19,7 +19,7 @@
     <main>
         <nav>
             <div class="nav-wrapper">
-                <a href="http://teste" class="brand-logo">Acapulco Hospedagens</a>
+                <a href="http://localhost:61055/Home/" class="brand-logo">Acapulco Hospedagens</a>
                 <ul class="right hide-on-med-and-down">
 
                     <!-- Dropdown Trigger -->
@@ -170,20 +170,13 @@
         }
 
         // ação de saber qual elemento está xecado no formulário de checkin
-        function ListarDisponivel() {
-            $.ajax({
-                type: 'GET', url: '/Home/QuartosLivres',
-                dataType: 'html',
-                cache: false,
-                async: true,
-                success:
-                    function (data) {
-                        $('#itemForm').html(data);
-                    }
+        function ListarQuartos(valor) {
+            $.post("/Home/Index", { filtro: valor }, function (data) {
+                $("html").html(data);
             });
 
         }
-
+        
 
         function RealizarCheckin() {
             var tamanho = document.forms[0].elements.length;

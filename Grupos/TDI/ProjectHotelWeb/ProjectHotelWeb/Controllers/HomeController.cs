@@ -16,18 +16,43 @@ namespace ProjectHotelWeb.Controllers
         public IPessoas IPessoa { get; set; }
 
 
-       
+
 
 
 
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(string filtro)
         {
 
+            switch (filtro)
+            {
+                case "L":
+                    ListarLivres();
+                    break;
+                case "O":
+                    ListarOcupados();
+                    break;
+                default:
+                    ListarLivres();
+                    ListarOcupados();
+                    break;
 
 
+            }
+
+
+            return View();
+        }
+
+        private void ListarLivres()
+        {
+            List<TipoQuarto> quartosLivres = ITipoQuartos.Listar().ToList<TipoQuarto>();
+            ViewBag.TipoQuartos = quartosLivres;
+        }
+
+        private void ListarOcupados()
+        {
             List<Hospedagem> hospedagens = IHospedagem.Listar().ToList<Hospedagem>();
-
             List<Quarto> quartos = new List<Quarto>();
             List<Pessoa> clientes = new List<Pessoa>();
             foreach (var h in hospedagens)
@@ -36,30 +61,17 @@ namespace ProjectHotelWeb.Controllers
                 {
                     if (c.isResponsavel)
                     {
-
-                        clientes.Add( IPessoa.ResultadoUnico(Convert.ToInt32(c.idCliente)));
+                        clientes.Add(IPessoa.ResultadoUnico(Convert.ToInt32(c.idCliente)));
                         break;
                     }
 
-
                 }
 
-
             }
-
-
-
-
-
-            List<TipoQuarto> quartosLivres = ITipoQuartos.Listar().ToList<TipoQuarto>();
-            
-
             ViewBag.Hospedagens = hospedagens;
-            ViewBag.TipoQuartos = quartosLivres;
             ViewBag.Clientes = clientes;
-            return View();
         }
-        
+
         public ActionResult QuartosLivres()
         {
             List<TipoQuarto> quartosLivres = ITipoQuartos.Listar().ToList<TipoQuarto>();
