@@ -33,16 +33,17 @@ namespace IdentitySample
                 UserRole newRole = new UserRole("Administrador", "Nível máximo de acesso");
                 roleManager.Create(newRole);
             }
-            else if (!roleManager.RoleExists("Gerente"))
+            if (!roleManager.RoleExists("Gerente"))
             {
                 UserRole newRole = new UserRole("Gerente", "Nível elevado de acesso");
+                roleManager.Create(newRole);
             }
-            else if (!roleManager.RoleExists("Recepcionista"))
+            if (!roleManager.RoleExists("Recepcionista"))
             {
                 UserRole newRole = new UserRole("Recepcionista", "Nível médio de acesso");
                 roleManager.Create(newRole);
             }
-            else if (!roleManager.RoleExists("Convidado"))
+            if (!roleManager.RoleExists("Convidado"))
             {
                 UserRole newRole = new UserRole("Convidado", "Nível básico de acesso");
                 roleManager.Create(newRole);
