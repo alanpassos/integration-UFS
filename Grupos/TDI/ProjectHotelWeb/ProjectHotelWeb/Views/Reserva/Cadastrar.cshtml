@@ -16,20 +16,35 @@
         <div class="row">
 
             <div class="input-field col s4">
-                <input id="cpf" name="cpf" type="text" class="validate">
-                <label for="cpf">Cpf/Cnpj</label>
+                @{var cpf = "";}
+                @if(@ViewBag.dadosView != null)
+                {
+                    cpf = @ViewBag.dadosView[0];
+                }
+                <input id="cpf" value="@cpf" name="cpf" type="text" class="validate" onkeypress="javascript: mascara(this, cpf_mask); return isNumberKey(event)" maxlength="14" required>
+                <label for="cpf">Cpf</label>
             </div>
 
         </div>
         <div class="row">
 
             <div class="input-field col s8">
-                <input id="nome" name="nome" type="text" class="validate">
+                @{var nome = "";}
+                @if (@ViewBag.dadosView != null)
+                {
+                    nome = @ViewBag.dadosView[1];
+                }
+                <input id="nome" value="@nome" name="nome" type="text" class="validate" required>
                 <label for="nome">Nome</label>
             </div>
 
             <div class="input-field col s4">
-                <input id="telefone" name="telefone" type="text" class="validate" onkeypress="javascript: mascara(this, telefone_mask); return isNumberKey(event)" maxlength="14">
+                @{var telefone = "";}
+                @if (@ViewBag.dadosView != null)
+                {
+                    telefone = @ViewBag.dadosView[2];
+                }
+                <input id="telefone" value="@telefone" name="telefone" type="text" class="validate" onkeypress="javascript: mascara(this, telefone_mask); return isNumberKey(event)" maxlength="14" required>
                 <label for="telefone">Telefone</label>
             </div>
 
@@ -37,17 +52,17 @@
         <hr>
         <div class="row">
             <div class="input-field col s2">
-                <input id="dataInicio" name="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
+                <input id="dataInicio" name="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
                 <label for="dataInicio">Data Início</label>
             </div>
 
             <div class="input-field col s2">
-                <input id="dataFim" name="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
+                <input id="dataFim" name="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
                 <label for="dataFim">Data Final</label>
             </div>
             <div class="input-field col s4">
 
-                <select name="tipoQuarto">
+                <select name="tipoQuarto" required>
                     <option value="" disabled selected>Selecione a opção</option>
                     @foreach (var i in @ViewBag.tipoQuarto)
                     {
@@ -59,7 +74,7 @@
                 <label for="tipoQuarto">&nbsp;Tipo Quarto</label>
             </div>
             <div class="input-field col s1">
-                <input id="pessoas" name="pessoas" type="text" class="validate" onkeypress="return isNumberKey(event)" maxlength="5">
+                <input id="pessoas" name="pessoas" type="text" class="validate" onkeypress="return isNumberKey(event)" maxlength="5" required>
                 <label for="pessoas">Pessoas</label>
             </div>
 
@@ -139,8 +154,8 @@
                                 @i.valor
                             </td>
                             <td>
-                                <input type="checkbox" class="filled-in" id="@i.idTipoQuarto @i.idQuarto" value="@i.idTipoQuarto @i.idQuarto" name="checkQuartos" />
-                                <label for="@i.idTipoQuarto @i.idQuarto"></label>
+                                <input type="checkbox" class="filled-in" id="@i.quantidade @i.idTipoQuarto @i.idQuarto" value="@i.quantidade @i.idTipoQuarto @i.idQuarto" name="checkQuartos" required />
+                                <label for="@i.quantidade @i.idTipoQuarto @i.idQuarto"></label>
                             </td>
                         </tr>
                     }
@@ -151,12 +166,12 @@
             {
                 <div class="row">
                     <div class="input-field col s2">
-                        <input id="dataInicio" name="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
+                        <input id="dataInicio" value="@ViewBag.dataInicioFim[0].ToShortDateString()" name="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
                         <label for="dataInicio">Data Início</label>
                     </div>
 
                     <div class="input-field col s2">
-                        <input id="dataFim" name="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
+                        <input id="dataFim" value="@ViewBag.dataInicioFim[1].ToShortDateString()" name="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
                         <label for="dataFim">Data Final</label>
                     </div>
                     <div class="col s4 offset-s10 grid-example">
