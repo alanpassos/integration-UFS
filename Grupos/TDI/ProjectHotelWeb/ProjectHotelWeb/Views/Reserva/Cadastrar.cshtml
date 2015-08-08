@@ -5,13 +5,36 @@
 }
 
 <h2>Cadastrar</h2>
+<style type="text/css">
+    .progresso {
+        display: none;
+        position: fixed;
+        top: 360px;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: white;
+        border: 1px solid black;
+        height: 90px;
+        width: 120px;
+    }
+</style>
 
 
-@using (Html.BeginForm("Consultar", "Reserva"))
+@using (Ajax.BeginForm(
+     "Consultar",
+     "Reserva",
+     new AjaxOptions
+     {
+         UpdateTargetId = "divResultadoConsulta",
+         LoadingElementId = "divCarregando"
+     }))
 {
-    @Html.AntiForgeryToken()
-    <h4>Reserva</h4>
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
 
 
     <hr>
@@ -27,7 +50,7 @@
         </div>
         <div class="input-field col s4">
 
-            <select name="tipoQuarto" required>
+            <select name="tipoQuarto">
                 <option value="" disabled selected>Selecione a opção</option>
                 @foreach (var i in @ViewBag.tipoQuarto)
                 {
@@ -56,6 +79,8 @@
     <hr>
 
 }
+
+
 @using (Html.BeginForm("CadastrarReserva", "Reserva"))
 {
     @Html.AntiForgeryToken()
@@ -99,103 +124,11 @@
 
     </div>
 
-    <div class="row">
-        <div class="input-field col s12">
-            <table class="striped">
-                <tr>
-
-                    <th>
-                        Período Disponível
-                    </th>
-                    <th>
-                        Tipo Quarto
-                    </th>
-                    <th>
-                        Pessoas
-                    </th>
-                    <th>
-                        Valor
-                    </th>
-                    <th>
-                        Quantidade
-                    </th>
-                    <th>
-                        Selecionar
-                    </th>
-                    <th></th>
-                </tr>
-
-                @if (@ViewBag.quartosLivres != null)
-                {
-                    foreach (var i in @ViewBag.quartosLivres)
-                    {
-                        <tr>
-
-                            <td>
-                                @if (@i.dataInicio != null)
-                                {
-                                    @i.dataInicio.ToShortDateString()
-                                }
-                                -
-                                @if (@i.dataFim != null)
-                                {
-                                    @i.dataFim.ToShortDateString()
-                                }
-                            </td>
-                            <td>
-                                @i.descricao
-                            </td>
-                            <td>
-                                @i.capacidade
-                            </td>
-                            <td>
-                                @i.valor
-                            </td>
-                            <td>
-                                <div class="input-field col s2">
-                                    <select name="quantidade" required>
-                                        @for (var j = 1; j <= @i.quantidade; j++)
-                                        {
-                                            <option value="@i.idTipoQuarto @j">@j</option>
-                                        }
-
-
-                                    </select>
-                                </div>
-                            </td>
-                            <td>
-
-                                <input type="checkbox" class="filled-in" id="@i.idTipoQuarto @i.capacidade" value="@i.idTipoQuarto @i.capacidade" name="checkQuartos" />
-                                <label for="@i.idTipoQuarto @i.capacidade"></label>
-                            </td>
-
-                        </tr>
-                    }
-                }
-
-            </table>
-            @if (@ViewBag.quartosLivres != null)
-            {
-                <div class="row">
-                    <div class="input-field col s2">
-                        <input id="dataInicio" value="@ViewBag.dataInicioFim[0].ToShortDateString()" name="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
-                        <label for="dataInicio">Data Início</label>
-                    </div>
-
-                    <div class="input-field col s2">
-                        <input id="dataFim" value="@ViewBag.dataInicioFim[1].ToShortDateString()" name="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
-                        <label for="dataFim">Data Final</label>
-                    </div>
-                    <div class="col s4 offset-s10 grid-example">
-                        <input type="submit" value="Adicionar" class="btn btn-default" />
-                    </div>
-                </div>
-            }
-
-            <hr>
-        </div>
+    <div id="divResultadoConsulta"> </div>
+    <div id="divCarregando" class="progresso">
+        <br /> Carregando...
     </div>
-
+    <hr>
 }
 
 @using (Html.BeginForm("CadastrarReserva", "Reserva"))
@@ -223,7 +156,7 @@
                     <th>
                         Valor
                     </th>
-                    
+
                     <th></th>
                 </tr>
 

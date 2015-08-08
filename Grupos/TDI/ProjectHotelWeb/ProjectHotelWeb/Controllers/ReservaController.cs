@@ -50,7 +50,7 @@ namespace ProjectHotelWeb.Controllers
                 ViewBag.dadosView = objetosCliente;
                 ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(Convert.ToInt32(objetosCliente[3]));
             }
-            ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(2);
+            //ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(2);
             return View();
 
         }
@@ -191,7 +191,7 @@ namespace ProjectHotelWeb.Controllers
 
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"), culture);
             DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"), culture);
-            string tipoQuarto = Request.Params.Get("tipoQuarto");
+            string tipoQuarto = "SIMPLES";//Request.Params.Get("tipoQuarto");
             string numeroPessoas = Request.Params.Get("pessoas");
             string numeroQuartos = Request.Params.Get("quartos");
 
@@ -204,7 +204,9 @@ namespace ProjectHotelWeb.Controllers
             TempData["quartos"] = quartosLivresReserva;
             TempData["datas"] = dataInicioFim;
 
-            return RedirectToAction("Cadastrar");
+            return PartialView(quartosLivresReserva);
+
+            //return RedirectToAction("Cadastrar");
         }
 
         public ActionResult Atualizar(int id)

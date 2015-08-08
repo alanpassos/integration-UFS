@@ -68,7 +68,6 @@ namespace Infraestrutura.Repositorio
             IQueryable<QuartosLivresReserva> ConsultaPacoteHospedagem = from tipo_quarto in tipoQuartos
                                                                         join quarto in quartos on tipo_quarto.idTipoQuarto equals quarto.idTipoQuarto
                                                                         where quarto.status.Equals("L") && tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
-                                                                        && !quarto.reservado
                                                                         && quarto.capacidade.ToString().Equals(pessoasPesquisa)
                                                                         && !(
                                                                             from _pacote_hospedagem in pacoteHospedagem
@@ -78,6 +77,7 @@ namespace Infraestrutura.Repositorio
                                                                             where _quartos.idQuarto.Equals(quarto.idQuarto)
                                                                             && (dataInicio <= _pacote_hospedagem.dataSaida && dataFim >= _pacote_hospedagem.dataEntrada)
                                                                             && _pacote_hospedagem.tipoPacote.Equals("R")
+                                                                            && _quartos.reservado
                                                                             select _quartos.idQuarto
                                                                         ).Contains(quarto.idQuarto)
                                                                         group tipo_quarto by new
