@@ -13,22 +13,23 @@ namespace ProjectHotelWeb.Controllers
     public class ReservaController : Controller
     {
         public IProjectHotel IProjectHotel { get; set; }
-        public IPacoteHospedagens IPacoteHospedagens { get; set; }
+        public IPacoteHospedagens IPacoteHospedagem { get; set; }
         public ITipoQuartos ITipoQuarto { get; set; }
         public IPessoas IPessoas { get; set; }
         public IControleClientes IControleCliente { get; set; }
         public IHospedagens IHospedagem { get; set; }
+        public IQuartos IQuarto { get; set; }
 
         // GET: Reserva
         public ActionResult Index()
         {
-            List<PacoteHospedagem> pacoteHospedagens = IPacoteHospedagens.ListarReserva().ToList<PacoteHospedagem>();
+            List<PacoteHospedagem> pacoteHospedagens = IPacoteHospedagem.ListarReserva().ToList<PacoteHospedagem>();
             return View(pacoteHospedagens);
         }
 
         public ActionResult Detalhar(int id)
         {
-            PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoReserva(id);
+            PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnicoReserva(id);
             return View(pacoteHospedagem);
         }
 
@@ -37,93 +38,154 @@ namespace ProjectHotelWeb.Controllers
             List<TipoQuarto> tipoQuartos = ITipoQuarto.Listar().ToList<TipoQuarto>();
             ViewBag.tipoQuarto = tipoQuartos;
 
-            if(TempData["quartos"] != null)
+            if (TempData["quartos"] != null)
             {
                 ViewBag.quartosLivres = (List<QuartosLivresReserva>)TempData["quartos"];
                 ViewBag.dataInicioFim = (List<DateTime>)TempData["datas"];
-                List<object> dadosCliente = (List<object>)TempData["dadosView"];
-                TempData["dadosCliente"] = dadosCliente;
-                ViewBag.dadosView = dadosCliente;
             }
-            
+
+            if(TempData["dadosView"] != null)
+            {
+                List<object> objetosCliente = (List<object>) TempData["dadosView"];
+                ViewBag.dadosView = objetosCliente;
+                ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(Convert.ToInt32(objetosCliente[3]));
+            }
+            ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(2);
             return View();
-            
+
         }
 
         [ActionName("CadastrarReserva")]
-        public ActionResult Cadastrar(PacoteHospedagem pacoteHospedagem)
+        public ActionResult Cadastrar(PacoteHospedagem _pacoteHospedagem)
         {
-            CultureInfo culture = new CultureInfo("pt-BR");
-            List<object> dadosCliente = (List<object>)TempData["dadosCliente"];
+            string cpf = Request.Params.Get("cpf");
+            string nomeCliente = Request.Params.Get("nome");
+            string telefone = Request.Params.Get("telefone");
 
-            string dataInicio = Request.Params.Get("dataInicio");
-            string dataFim = Request.Params.Get("dataFim");
-
-            string[] quartosSelecionados = Request.Params.Get("checkQuartos").Split(',', ' ');
-
-            List<Pessoa> pessoaResultado = IPessoas.ListarPorCpfCnpj((string)dadosCliente[0]).ToList();
-            Pessoa cliente;
-            int idCliente;
-            if(pessoaResultado.Count == 0)
-            {
-                cliente = new Pessoa();
-                cliente.cpfCnpj = (string)dadosCliente[0];
-                cliente.nome = (string)dadosCliente[1];
-                cliente.telefoneMovel = (string)dadosCliente[2];
-                cliente.ativo = true;
-                cliente.isFuncionario = false;
-                cliente.dataCadastro = DateTime.Now;
-                cliente.estado = "";
-                IPessoas.Cadastrar(cliente);
-            }
-            idCliente = IPessoas.ListarPorCpfCnpj((string)dadosCliente[0]).ToList()[0].idPessoa;
+            List<object> dadosView = new List<object>();
+            dadosView.Add(cpf);
+            dadosView.Add(nomeCliente);
+            dadosView.Add(telefone);
            
-            int idPacoteHospedagem = IPacoteHospedagens.Cadastrar(
+
+            cpf = cpf.Replace(".", "").Replace("-", "");
+
+            CultureInfo culture = new CultureInfo("pt-BR");
+            DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"));
+            DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"));
+            List<int> idsQuartos;
+            string[] comboBoxQuantidadeQuartos = Request.Params.Get("quantidade").Split(',', ' ');
+            string[] checkBoxQuartosSelecionados = Request.Params.Get("checkQuartos").Split(',', ' ');
+            List<Pessoa> pessoaResultado = IPessoas.ListarPorCpfCnpj(cpf).ToList();
+            int idCliente;
+            if (pessoaResultado.Count == 0)
+            {
+                 CadastraCliente(cpf, nomeCliente, telefone);
+            }
+            idCliente = IPessoas.ListarPorCpfCnpj(cpf).ToList()[0].idPessoa;
+            dadosView.Add(idCliente);
+            int idPacoteHospedagem = CadastraPacoteHospedagem(dataInicio, dataFim);
+            double periodo = (dataFim - dataInicio).TotalDays;
+            for (int i = 0; i < checkBoxQuartosSelecionados.Count(); i += 2)
+            {
+                string idTipoQuartoCheck = checkBoxQuartosSelecionados[i];
+                string capacidadeQuarto = checkBoxQuartosSelecionados[i + 1];
+                idsQuartos = ITipoQuarto.ListaQuartosTipo(idTipoQuartoCheck, capacidadeQuarto).ToList();              
+                for (int j = 0; j < comboBoxQuantidadeQuartos.Count(); j += 2)
+                {
+                    string idTipoQuartoCombo = comboBoxQuantidadeQuartos[j];
+                    if (idTipoQuartoCheck.Equals(idTipoQuartoCombo))
+                    {
+                        int indiceQuarto = 0;
+                        string quantidadeQuatosSelecionada = comboBoxQuantidadeQuartos[j + 1];
+                        for (int k = 0; k < Convert.ToInt32(quantidadeQuatosSelecionada); k++)
+                        {
+                            TipoQuarto tipoQuarto = ITipoQuarto.ResultadoUnico(Convert.ToInt32(idTipoQuartoCombo));
+                            decimal valorHospedagem = tipoQuarto.valor * Convert.ToDecimal(periodo);
+                            PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnico(idPacoteHospedagem);
+                            pacoteHospedagem.valorTotal = pacoteHospedagem.valorTotal + valorHospedagem;
+                            pacoteHospedagem.subTotal = pacoteHospedagem.valorTotal;
+                            IPacoteHospedagem.Atualizar(pacoteHospedagem);
+                            int idHospedagem = CadastraHospedagem(dataInicio, dataFim, idsQuartos, valorHospedagem, idPacoteHospedagem, indiceQuarto);
+                            AtualizaQuartoReservado(idsQuartos[indiceQuarto]);
+                            indiceQuarto++;
+                            CadastraControleCliente(idCliente, idPacoteHospedagem, idHospedagem);
+                        }
+                    }
+                }
+            }
+            TempData["dadosView"] = dadosView;
+            return RedirectToAction("Cadastrar");
+        }
+
+        private void AtualizaQuartoReservado(int indiceQuarto)
+        {
+            Quarto quarto = IQuarto.ResultadoUnico(indiceQuarto);
+            quarto.reservado = true;
+            IQuarto.Atualizar(quarto);
+        }
+
+        private int CadastraHospedagem(DateTime dataInicio, DateTime dataFim, List<int> idsQuartos, decimal valorHospedagem, int idPacoteHospedagem, int indiceQuarto)
+        {
+            int idHospedagem = IHospedagem.Cadastrar(
+            new Hospedagem()
+            {
+                aberto = true,
+                idPacoteHospedagem = idPacoteHospedagem,
+                dataAbertura = dataInicio,
+                dataLiberacao = dataFim,
+                idQuarto = idsQuartos[indiceQuarto],
+                valorHospedagem = valorHospedagem
+            });
+            return idHospedagem;
+        }
+
+        private void CadastraControleCliente(int idCliente, int idPacoteHospedagem, int idHospedagem)
+        {
+            ControleCliente controle = new ControleCliente()
+            {
+                idCliente = idCliente,
+                idHospedagem = idHospedagem,
+                idPacoteHospedagem = idPacoteHospedagem,
+                isResponsavel = true,
+                dataCadastro = DateTime.Now
+            };
+            IControleCliente.Cadastrar(controle);
+        }
+
+        private void CadastraCliente(string cpf, string nome, string telefone)
+        {
+            Pessoa cliente;
+            cliente = new Pessoa();
+            cliente.cpfCnpj = cpf;
+            cliente.nome = nome;
+            cliente.telefoneMovel = telefone;
+            cliente.ativo = true;
+            cliente.isFuncionario = false;
+            cliente.dataCadastro = DateTime.Now;
+            cliente.estado = "";
+            IPessoas.Cadastrar(cliente);      
+        }
+
+        private int CadastraPacoteHospedagem(DateTime dataInicio, DateTime dataFim)
+        {
+            int idPacoteHospedagem = IPacoteHospedagem.Cadastrar(
                 new PacoteHospedagem()
                 {
                     dataCadastro = DateTime.Now,
                     tipoPacote = "R",
                     ativo = true,
-                    dataEntrada = Convert.ToDateTime(dataInicio),
-                    dataSaida = Convert.ToDateTime(dataFim),
+                    dataLiberacao = DateTime.Now,
+                    dataEntrada = dataInicio,
+                    dataSaida = dataFim,
                     subTotal = 0,
                     valorTotal = 0
                 });
-
-
-            for (int i = 0; i < quartosSelecionados.Count(); i += 3)
-            {
-                int idHospedagem = IHospedagem.Cadastrar(
-                 new Hospedagem()
-                 {
-                     aberto = true,
-                     idPacoteHospedagem = idPacoteHospedagem,
-                     dataAbertura = DateTime.Now,
-                     dataLiberacao = DateTime.Now,                  
-                     idQuarto = Convert.ToInt32(quartosSelecionados[i+2]),
-                     valorHospedagem = 0
-                 });
-
-                ControleCliente controle = new ControleCliente()
-                {
-                    idCliente = idCliente,
-                    idHospedagem = idHospedagem,
-                    idPacoteHospedagem = idPacoteHospedagem,
-                    isResponsavel = true,
-                    dataCadastro = DateTime.Now
-                };
-                IControleCliente.Cadastrar(controle);
-            }
-         
-
-            return RedirectToAction("Cadastrar");
+            return idPacoteHospedagem;
         }
 
         public ActionResult Consultar()
         {
-            string cpf = Request.Params.Get("cpf").Replace(".","").Replace("-","");
-            string nomeCliente = Request.Params.Get("nome");
-            string telefone = Request.Params.Get("telefone");
 
             CultureInfo culture = new CultureInfo("pt-BR");
 
@@ -138,11 +200,7 @@ namespace ProjectHotelWeb.Controllers
             dataInicioFim.Add(dataInicio);
             dataInicioFim.Add(dataFim);
             List<object> dadosView = new List<object>();
-            dadosView.Add(cpf);
-            dadosView.Add(nomeCliente);
-            dadosView.Add(telefone);
 
-            TempData["dadosView"] = dadosView;
             TempData["quartos"] = quartosLivresReserva;
             TempData["datas"] = dataInicioFim;
 
@@ -151,7 +209,7 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Atualizar(int id)
         {
-            PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoReserva(id);
+            PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnicoReserva(id);
             return View(pacoteHospedagem);
         }
 
@@ -160,20 +218,20 @@ namespace ProjectHotelWeb.Controllers
         {
             pacoteHospedagem.ativo = true;
             pacoteHospedagem.tipoPacote = "R";
-            IPacoteHospedagens.Atualizar(pacoteHospedagem);
+            IPacoteHospedagem.Atualizar(pacoteHospedagem);
             return RedirectToAction("Index");
         }
 
         public ActionResult Excluir(int id)
         {
-            PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoReserva(id);
+            PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnicoReserva(id);
             return View(pacoteHospedagem);
         }
 
         [ActionName("ExcluirReserva")]
         public ActionResult Excluir(PacoteHospedagem pacoteHospedagem)
         {
-            IPacoteHospedagens.Remover(pacoteHospedagem);
+            IPacoteHospedagem.Remover(pacoteHospedagem);
             return RedirectToAction("Index");
         }
     }
