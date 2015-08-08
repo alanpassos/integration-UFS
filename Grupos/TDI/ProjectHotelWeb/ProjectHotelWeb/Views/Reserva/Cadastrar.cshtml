@@ -12,89 +12,93 @@
     @Html.AntiForgeryToken()
     <h4>Reserva</h4>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <form class="col s12">
-        <div class="row">
 
-            <div class="input-field col s4">
-                @{var cpf = "";}
-                @if(@ViewBag.dadosView != null)
+
+    <hr>
+    <div class="row">
+        <div class="input-field col s2">
+            <input id="dataInicio" name="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
+            <label for="dataInicio">Data Início</label>
+        </div>
+
+        <div class="input-field col s2">
+            <input id="dataFim" name="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
+            <label for="dataFim">Data Final</label>
+        </div>
+        <div class="input-field col s4">
+
+            <select name="tipoQuarto" required>
+                <option value="" disabled selected>Selecione a opção</option>
+                @foreach (var i in @ViewBag.tipoQuarto)
                 {
-                    cpf = @ViewBag.dadosView[0];
+                    <option value="@i.descricao">@i.descricao</option>
                 }
-                <input id="cpf" value="@cpf" name="cpf" type="text" class="validate" onkeypress="javascript: mascara(this, cpf_mask); return isNumberKey(event)" maxlength="14" required>
-                <label for="cpf">Cpf</label>
-            </div>
 
+
+            </select>
+            <label for="tipoQuarto">&nbsp;Tipo Quarto</label>
         </div>
-        <div class="row">
-
-            <div class="input-field col s8">
-                @{var nome = "";}
-                @if (@ViewBag.dadosView != null)
-                {
-                    nome = @ViewBag.dadosView[1];
-                }
-                <input id="nome" value="@nome" name="nome" type="text" class="validate" required>
-                <label for="nome">Nome</label>
-            </div>
-
-            <div class="input-field col s4">
-                @{var telefone = "";}
-                @if (@ViewBag.dadosView != null)
-                {
-                    telefone = @ViewBag.dadosView[2];
-                }
-                <input id="telefone" value="@telefone" name="telefone" type="text" class="validate" onkeypress="javascript: mascara(this, telefone_mask); return isNumberKey(event)" maxlength="14" required>
-                <label for="telefone">Telefone</label>
-            </div>
-
+        <div class="input-field col s1">
+            <input id="pessoas" name="pessoas" type="text" class="validate" onkeypress="return isNumberKey(event)" maxlength="5" required>
+            <label for="pessoas">Pessoas</label>
         </div>
-        <hr>
-        <div class="row">
-            <div class="input-field col s2">
-                <input id="dataInicio" name="dataInicio" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
-                <label for="dataInicio">Data Início</label>
-            </div>
 
-            <div class="input-field col s2">
-                <input id="dataFim" name="dataFim" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
-                <label for="dataFim">Data Final</label>
-            </div>
-            <div class="input-field col s4">
-
-                <select name="tipoQuarto" required>
-                    <option value="" disabled selected>Selecione a opção</option>
-                    @foreach (var i in @ViewBag.tipoQuarto)
-                    {
-                        <option value="@i.descricao">@i.descricao</option>
-                    }
-
-
-                </select>
-                <label for="tipoQuarto">&nbsp;Tipo Quarto</label>
-            </div>
-            <div class="input-field col s1">
-                <input id="pessoas" name="pessoas" type="text" class="validate" onkeypress="return isNumberKey(event)" maxlength="5" required>
-                <label for="pessoas">Pessoas</label>
-            </div>
-
-            <div class="input-field col s1">
-                <input id="quartos" name="quartos" type="text" class="validate" onkeypress="return isNumberKey(event)" maxlength="5">
-                <label for="quartos">Quartos</label>
-            </div>
+        <div class="input-field col s1">
+            <input id="quartos" name="quartos" type="text" class="validate" onkeypress="return isNumberKey(event)" maxlength="5">
+            <label for="quartos">Quartos</label>
         </div>
-        <div class="row">
-            <div class="col s6 offset-s10 grid-example">
-                <input type="submit" value="Consultar" class="btn btn-default" />
-            </div>
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s10 grid-example">
+            <input type="submit" value="Consultar" class="btn btn-default" />
         </div>
-        <hr>
-    </form>
+    </div>
+    <hr>
+
 }
 @using (Html.BeginForm("CadastrarReserva", "Reserva"))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+
+        <div class="input-field col s4">
+            @{var cpf = "";}
+            @if (@ViewBag.dadosView != null)
+            {
+                cpf = @ViewBag.dadosView[0];
+            }
+            <input id="cpf" value="@cpf" name="cpf" type="text" class="validate" onkeypress="javascript: mascara(this, cpf_mask); return isNumberKey(event)" maxlength="14" required>
+            <label for="cpf">Cpf</label>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="input-field col s8">
+
+            @{var nome = "";}
+            @if (@ViewBag.dadosView != null)
+            {
+                nome = @ViewBag.dadosView[1];
+            }
+            <input id="nome" value="@nome" name="nome" type="text" class="validate" required>
+            <label for="nome">Nome</label>
+        </div>
+
+        <div class="input-field col s4">
+            @{var telefone = "";}
+            @if (@ViewBag.dadosView != null)
+            {
+                telefone = @ViewBag.dadosView[2];
+            }
+            <input id="telefone" value="@telefone" name="telefone" type="text" class="validate" onkeypress="javascript: mascara(this, telefone_mask); return isNumberKey(event)" maxlength="14" required>
+            <label for="telefone">Telefone</label>
+        </div>
+
+    </div>
+
     <div class="row">
         <div class="input-field col s12">
             <table class="striped">
@@ -107,22 +111,19 @@
                         Tipo Quarto
                     </th>
                     <th>
-                        Quantidade
-                    </th>
-                    <th>
                         Pessoas
                     </th>
                     <th>
                         Valor
                     </th>
                     <th>
+                        Quantidade
+                    </th>
+                    <th>
                         Selecionar
                     </th>
                     <th></th>
                 </tr>
-
-
-
 
                 @if (@ViewBag.quartosLivres != null)
                 {
@@ -131,21 +132,18 @@
                         <tr>
 
                             <td>
-                                @if(@i.dataInicio != null)
+                                @if (@i.dataInicio != null)
                                 {
                                     @i.dataInicio.ToShortDateString()
                                 }
-                                -    
-                                @if(@i.dataFim != null)
-                                { 
+                                -
+                                @if (@i.dataFim != null)
+                                {
                                     @i.dataFim.ToShortDateString()
                                 }
                             </td>
                             <td>
                                 @i.descricao
-                            </td>
-                            <td>
-                                @i.quantidade
                             </td>
                             <td>
                                 @i.capacidade
@@ -154,9 +152,23 @@
                                 @i.valor
                             </td>
                             <td>
-                                <input type="checkbox" class="filled-in" id="@i.quantidade @i.idTipoQuarto @i.idQuarto" value="@i.quantidade @i.idTipoQuarto @i.idQuarto" name="checkQuartos" required />
-                                <label for="@i.quantidade @i.idTipoQuarto @i.idQuarto"></label>
+                                <div class="input-field col s2">
+                                    <select name="quantidade" required>
+                                        @for (var j = 1; j <= @i.quantidade; j++)
+                                        {
+                                            <option value="@i.idTipoQuarto @j">@j</option>
+                                        }
+
+
+                                    </select>
+                                </div>
                             </td>
+                            <td>
+
+                                <input type="checkbox" class="filled-in" id="@i.idTipoQuarto @i.capacidade" value="@i.idTipoQuarto @i.capacidade" name="checkQuartos" />
+                                <label for="@i.idTipoQuarto @i.capacidade"></label>
+                            </td>
+
                         </tr>
                     }
                 }
@@ -179,12 +191,82 @@
                     </div>
                 </div>
             }
-            
+
             <hr>
         </div>
     </div>
 
 }
+
+@using (Html.BeginForm("CadastrarReserva", "Reserva"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <h4>Reservas</h4>
+    <div class="row">
+        <div class="input-field col s12">
+            <table class="striped">
+                <tr>
+
+                    <th>
+                        Entrada
+                    </th>
+                    <th>
+                        Saída
+                    </th>
+                    <th>
+                        Tipo Quarto
+                    </th>
+                    <th>
+                        Pessoas
+                    </th>
+                    <th>
+                        Valor
+                    </th>
+                    
+                    <th></th>
+                </tr>
+
+                @if (@ViewBag.listaReservaCliente != null)
+                {
+                    foreach (var i in @ViewBag.listaReservaCliente)
+                    {
+                        <tr>
+
+                            <td>
+                                @if (@i.dataInicio != null)
+                                {
+                                    @i.dataInicio.ToShortDateString()
+                                }
+                            </td>
+                            <td>
+                                @if (@i.dataFim != null)
+                                {
+                                    @i.dataFim.ToShortDateString()
+                                }
+                            </td>
+                            <td>
+                                @i.descricao
+                            </td>
+                            <td>
+                                @i.capacidade
+                            </td>
+                            <td>
+                                @i.valor
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+            </table>
+
+            <hr>
+        </div>
+    </div>
+
+}
+
 
 <div>
     @Html.ActionLink("Voltar", "Index")
