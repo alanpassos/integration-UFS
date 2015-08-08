@@ -7,11 +7,12 @@
             <li>
                 @Html.ActionLink("Olá, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
             @if ((User.IsInRole("Administrador")) || (User.IsInRole("Gerente")))
             {
-                <li>@Html.ActionLink("Registrar usuário", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li>@Html.ActionLink("Gerenciamento de usuários", "Index", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
             }
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
+           
         </ul>
     }
 }

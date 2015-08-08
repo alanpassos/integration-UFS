@@ -25,7 +25,7 @@
                         <li><a href="http://localhost:61055/Home/">Acapulco Hospedagens</a></li>
 
                     </ul>
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav right">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -35,8 +35,9 @@
                             <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
                             <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
                         }
+
+                        <li>@Html.Partial("_LoginPartial")</li>
                     </ul>
-                    @Html.Partial("_LoginPartial")
                 </div>
                
             </nav>
