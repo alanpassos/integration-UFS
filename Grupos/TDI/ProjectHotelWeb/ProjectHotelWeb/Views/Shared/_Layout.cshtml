@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Acapulco Hospedagem</title>
 
     <link type="text/css" rel="stylesheet" href="~/Content/css/materialize.min.css" media="screen,projection" />
 
@@ -17,16 +17,18 @@
 
 <body>
     <main>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="http://teste" class="brand-logo">Acapulco Hospedagens</a>
-                <ul class="right hide-on-med-and-down">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="http://localhost:61055/Home/" class="brand-logo center"><img src="~/Content/img/hotel.png" /></a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><a href="http://localhost:61055/Home/">Acapulco Hospedagens</a></li>
 
-                    <!-- Dropdown Trigger -->
+                    </ul>
+                </div>
 
-                </ul>
-            </div>
-        </nav>
+            </nav>
+        </div>
         <br>
         <div class="container">
 
@@ -46,7 +48,7 @@
 
         <div class="footer-copyright">
             <div class="container">
-                <p>&copy; @DateTime.Now- My ASP.NET Application</p>
+                <p>&copy; @DateTime.Now- Hydra Softwares</p>
 
             </div>
         </div>
@@ -57,7 +59,7 @@
 
 
 
-
+        $('.fixed-action-btn').openFAB();
 
         $(document).ready(function () {
             $('input#input_text, textarea#textarea1').characterCounter();
@@ -170,16 +172,9 @@
         }
 
         // ação de saber qual elemento está xecado no formulário de checkin
-        function ListarDisponivel() {
-            $.ajax({
-                type: 'GET', url: '/Home/QuartosLivres',
-                dataType: 'html',
-                cache: false,
-                async: true,
-                success:
-                    function (data) {
-                        $('#itemForm').html(data);
-                    }
+        function ListarQuartos(valor) {
+            $.post("/Home/Index", { filtro: valor }, function (data) {
+                $("html").html(data);
             });
 
         }
@@ -190,7 +185,7 @@
             var selecionou = false;
             var valor = [];
             var index = 0;
-            
+
             for (var i = 0; i < tamanho ; i++) {
 
                 if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
@@ -207,8 +202,28 @@
                 alert("Selecione uma hospedagem");
             }
         }
+       
+        function RealizarCheckout() {
+            var tamanho = document.forms[0].elements.length;
+            var selecionou = false;
+            var valor = null;
 
+            for (var i = 0; i < tamanho ; i++) {
 
+                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
+                    valor = document.forms[0].elements[i].id.toString();
+                    selecionou = true;
+                }
+            }
+
+            if (selecionou) {
+                $.post("/Checkout/Checkout", { idHospedagem: valor }, function (data) {
+                    $("html").html(data);
+                });
+            } else {
+                alert("Selecione uma hospedagem");
+            }
+        }
 
         function AdicionarItem() {
             var tamanho = document.forms[0].elements.length;

@@ -13,11 +13,24 @@ namespace ProjectHotelWeb.ClassesEspeciais
         public static Hospedagem hospedagemGlobal { get; set; }
     }
 
-    public static class SuperClasses
+    public static class SuperCheckin
     {
 
         public static List<Pessoa> pessoasAdicionadas { get; set; }
         public static List<Quarto> quartosListados { get; set; }
+        public static int pacoteatual { get; set; }
+        public static int quantidadePacote { get; set; }
+
+
+    }
+    public static class SuperCheckout
+    {
+
+        public static List<Pessoa> pessoasSelecionadas { get; set; }
+        public static PacoteHospedagem pacoteHospedagemSeleionada { get; set; }
+        public static List<Hospedagem> hospedagensIniciais { get; set; }
+        public static List<ControleServico> controleServicosSelecionados { get; set; }
+        
 
     }
 }
