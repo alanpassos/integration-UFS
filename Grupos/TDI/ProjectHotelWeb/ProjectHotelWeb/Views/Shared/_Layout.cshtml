@@ -248,6 +248,29 @@
             }
         }
 
+        function VincularServico() {
+            var tamanho = document.forms[0].elements.length;
+            var selecionou = false;
+            var valor = null;
+
+            for (var i = 0; i < tamanho ; i++) {
+
+                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
+                    valor = document.forms[0].elements[i].id.toString();
+                    selecionou = true;
+                }
+            }
+
+            if (selecionou) {
+                
+                $.post("/ControleServico/VincularServicoHospedagem", { idHospedagem: valor }, function (data) {
+                    $("html").html(data);
+                });
+            } else {
+                alert("Selecione uma hospedagem");
+            }
+        }
+
         function ListarTipoQuarto() {
             var valor = document.forms["Select"].elements["tipoQuarto"].val().toString();
             $.post("/Checkin/CarregarQuartos", { idTipoQuarto: valor },
