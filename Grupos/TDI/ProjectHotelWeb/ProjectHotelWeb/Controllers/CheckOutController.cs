@@ -62,14 +62,12 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Checkout(string[] hospedagens)
         {
-            List<Hospedagem> hospedagensAtuais = new List<Hospedagem>();
-
+            
+            
             if (hospedagens != null)
             {
                 foreach (var item in hospedagens)
                 {
-
-
                     string[] ids = item.Split('#');
                     int idHospedagem = Convert.ToInt32(ids[0]);
                     Hospedagem hospedagem = new Hospedagem();
@@ -78,14 +76,10 @@ namespace ProjectHotelWeb.Controllers
                         SuperCheckout.hospedagemSeleionada.Add(hospedagem);
 
                 }
-                
-               
-
-
-
-
             }
 
+
+           
 
             List<Pessoa> clientes = new List<Pessoa>();
             foreach (var item in SuperCheckout.hospedagemSeleionada)
