@@ -65,14 +65,14 @@ namespace ProjectHotelWeb.Controllers
      
         public ActionResult Checkin(string[] quartos)
         {
-            if (SuperClasses.pessoasAdicionadas != null)
-                ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
+            if (SuperCheckin.pessoasAdicionadas != null)
+                ViewBag.Pessoas = SuperCheckin.pessoasAdicionadas;
             if (quartos != null)
             {
-                SuperClasses.quartosListados.AddRange(carregarQuartos(quartos));
+                SuperCheckin.quartosListados.AddRange(carregarQuartos(quartos));
 
             }
-            ViewBag.Quartos = SuperClasses.quartosListados;
+            ViewBag.Quartos = SuperCheckin.quartosListados;
 
             ViewBag.Pacote = (PacoteHospedagem)TempData["Pacote"];
             return View();
@@ -104,7 +104,7 @@ namespace ProjectHotelWeb.Controllers
         {
             int count = 0;
 
-            foreach (var item in SuperClasses.quartosListados)
+            foreach (var item in SuperCheckin.quartosListados)
             {
                 if (item.idQuarto == quarto.idQuarto)
                 {
@@ -161,11 +161,11 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult ExcluirCliente(int id)
         {
 
-            for (int i = 0; i < SuperClasses.pessoasAdicionadas.Count; i++)
+            for (int i = 0; i < SuperCheckin.pessoasAdicionadas.Count; i++)
             {
-                if (SuperClasses.pessoasAdicionadas[i].idPessoa == id)
+                if (SuperCheckin.pessoasAdicionadas[i].idPessoa == id)
                 {
-                    SuperClasses.pessoasAdicionadas.RemoveAt(i);
+                    SuperCheckin.pessoasAdicionadas.RemoveAt(i);
                     break;
 
                 }
@@ -177,10 +177,10 @@ namespace ProjectHotelWeb.Controllers
         {
 
             bool diferente = true;
-            if (SuperClasses.pessoasAdicionadas.Count > 0)
+            if (SuperCheckin.pessoasAdicionadas.Count > 0)
             {
 
-                List<Pessoa> distinctPessoas = SuperClasses.pessoasAdicionadas;
+                List<Pessoa> distinctPessoas = SuperCheckin.pessoasAdicionadas;
 
                 foreach (var item in distinctPessoas)
                 {
@@ -193,16 +193,16 @@ namespace ProjectHotelWeb.Controllers
                 }
 
                 if (diferente)
-                    SuperClasses.pessoasAdicionadas.Add(pessoas[0]);
+                    SuperCheckin.pessoasAdicionadas.Add(pessoas[0]);
 
-                ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
+                ViewBag.Pessoas = SuperCheckin.pessoasAdicionadas;
             }
             else
             {
-                SuperClasses.pessoasAdicionadas.AddRange(pessoas);
-                ViewBag.Pessoas = SuperClasses.pessoasAdicionadas;
+                SuperCheckin.pessoasAdicionadas.AddRange(pessoas);
+                ViewBag.Pessoas = SuperCheckin.pessoasAdicionadas;
             }
-            ViewBag.Quartos = SuperClasses.quartosListados;
+            ViewBag.Quartos = SuperCheckin.quartosListados;
         }
 
         /// <summary>
@@ -241,9 +241,9 @@ namespace ProjectHotelWeb.Controllers
         private void removerPessoasCadastrardas(int id)
         {
             List<int> posicoes = new List<int>();
-            for (int i = 0; i < SuperClasses.pessoasAdicionadas.Count; i++)
+            for (int i = 0; i < SuperCheckin.pessoasAdicionadas.Count; i++)
             {
-                if (SuperClasses.pessoasAdicionadas[i].idPessoa == id)
+                if (SuperCheckin.pessoasAdicionadas[i].idPessoa == id)
                 {
                     posicoes.Add(i);
 
@@ -253,7 +253,7 @@ namespace ProjectHotelWeb.Controllers
 
             foreach (var item in posicoes)
             {
-                SuperClasses.pessoasAdicionadas.RemoveAt(item);
+                SuperCheckin.pessoasAdicionadas.RemoveAt(item);
             }
 
 
@@ -271,21 +271,21 @@ namespace ProjectHotelWeb.Controllers
             DateTime dataLibert = abertura.AddDays(periodo);
             string responsavel = Request.Params.Get("group3");
             string placa = Request.Params.Get("Placa");
-            if (SuperClasses.quantidadePacote == 0)
+            if (SuperCheckin.quantidadePacote == 0)
             {
-                SuperClasses.pacoteatual = CadastrarPacoteHopedagem();
+                SuperCheckin.pacoteatual = CadastrarPacoteHopedagem();
 
-                SuperClasses.quantidadePacote++;
+                SuperCheckin.quantidadePacote++;
             }
 
 
-            int idHosp = CadastrarHospedagem(idQuarto, valorHospedagemTotal, dataLibert, SuperClasses.pacoteatual, placa);
+            int idHosp = CadastrarHospedagem(idQuarto, valorHospedagemTotal, dataLibert, SuperCheckin.pacoteatual, placa);
 
-            CadastrarControleCliente(pessoasSelect, SuperClasses.pacoteatual, idHosp, Convert.ToInt32(responsavel));
+            CadastrarControleCliente(pessoasSelect, SuperCheckin.pacoteatual, idHosp, Convert.ToInt32(responsavel));
 
             AtualizarQuartoParaOcupado(idQuarto);
 
-            AtualizarValoresPacoteHospedagem(valorHospedagemTotal, SuperClasses.pacoteatual);
+            AtualizarValoresPacoteHospedagem(valorHospedagemTotal, SuperCheckin.pacoteatual);
 
             foreach (var item in pessoasSelect)
             {
@@ -294,7 +294,7 @@ namespace ProjectHotelWeb.Controllers
 
             removerQuartos(idQuarto, pessoasSelect.Length);
 
-            PacoteHospedagem pacote = IPacoteHospedagens.ResultadoUnico(SuperClasses.pacoteatual);
+            PacoteHospedagem pacote = IPacoteHospedagens.ResultadoUnico(SuperCheckin.pacoteatual);
 
             TempData["Pacote"] = pacote;
 
@@ -379,11 +379,11 @@ namespace ProjectHotelWeb.Controllers
         {
 
             
-                for (int i = 0; i < SuperClasses.quartosListados.Count; i++)
+                for (int i = 0; i < SuperCheckin.quartosListados.Count; i++)
                 {
-                    if (SuperClasses.quartosListados[i].idQuarto == idQuarto)
+                    if (SuperCheckin.quartosListados[i].idQuarto == idQuarto)
                     {
-                        SuperClasses.quartosListados.RemoveAt(i);
+                        SuperCheckin.quartosListados.RemoveAt(i);
                         break;
 
                     }
@@ -396,10 +396,10 @@ namespace ProjectHotelWeb.Controllers
        
         public ActionResult FinalizarCheckin()
         {
-            SuperClasses.pacoteatual = 0;
-            SuperClasses.pessoasAdicionadas = new List<Pessoa>();
-            SuperClasses.quantidadePacote = 0;
-            SuperClasses.quartosListados = new List<Quarto>();
+            SuperCheckin.pacoteatual = 0;
+            SuperCheckin.pessoasAdicionadas = new List<Pessoa>();
+            SuperCheckin.quantidadePacote = 0;
+            SuperCheckin.quartosListados = new List<Quarto>();
 
             return RedirectToAction("Index", "Home");
         }

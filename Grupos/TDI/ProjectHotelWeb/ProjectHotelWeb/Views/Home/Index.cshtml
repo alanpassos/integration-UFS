@@ -23,7 +23,7 @@
                     </div>
                     <div class="col s1">
 
-                        <a class="btn-floating btn-large waves-effect waves-light red" onclick="AddToCart()">
+                        <a class="btn-floating btn-large waves-effect waves-light red" onclick="RealizarCheckout()">
                             <i class="material-icons">call_received</i>
                         </a>
 
@@ -152,8 +152,8 @@
                                                 <div class="card red">
                                                     <div class="card-content white-text">
                                                         <span class="card-title">
-                                                            <input type="checkbox" class="filled-in" id="@(h.idHospedagem+"#"+h.Quarto.idQuarto)" />
-                                                            <label for="@(h.idHospedagem+"#"+h.Quarto.idQuarto)"><font color="white"><b>@h.Quarto.descricao</b></font></label>
+                                                            <input type="checkbox" class="filled-in" id="@(h.idHospedagem + "#" + h.idPacoteHospedagem)" />
+                                                            <label for="@(h.idHospedagem + "#" + h.idPacoteHospedagem)"><font color="white"><b>@h.Quarto.descricao</b></font></label>
                                                         </span>
                                                         @foreach (var cc in h.ControleCliente)
                                                         {

@@ -16,10 +16,15 @@ namespace ProjectHotelWeb
         {
             #region estâncias de estaticas
             Entidade.hospedagemGlobal = null;
-            SuperClasses.pessoasAdicionadas = new List<Pessoa>();
-            SuperClasses.quartosListados = new List<Quarto>();
-            SuperClasses.pacoteatual = 0;
-            SuperClasses.quantidadePacote = 0;
+            SuperCheckin.pessoasAdicionadas = new List<Pessoa>();
+            SuperCheckin.quartosListados = new List<Quarto>();
+            SuperCheckin.pacoteatual = 0;
+            SuperCheckin.quantidadePacote = 0;
+
+            SuperCheckout.hospedagensIniciais= new List<Hospedagem>();
+            SuperCheckout.pacoteHospedagemSeleionada = new PacoteHospedagem();
+            SuperCheckout.pessoasSelecionadas = new List<Pessoa>();
+            SuperCheckout.controleServicosSelecionados = new List<ControleServico>();
             #endregion
 
             AreaRegistration.RegisterAllAreas();

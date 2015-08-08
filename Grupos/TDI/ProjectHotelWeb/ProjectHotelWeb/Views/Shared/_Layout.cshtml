@@ -202,8 +202,28 @@
                 alert("Selecione uma hospedagem");
             }
         }
+       
+        function RealizarCheckout() {
+            var tamanho = document.forms[0].elements.length;
+            var selecionou = false;
+            var valor = null;
 
+            for (var i = 0; i < tamanho ; i++) {
 
+                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
+                    valor = document.forms[0].elements[i].id.toString();
+                    selecionou = true;
+                }
+            }
+
+            if (selecionou) {
+                $.post("/Checkout/Checkout", { idHospedagem: valor }, function (data) {
+                    $("html").html(data);
+                });
+            } else {
+                alert("Selecione uma hospedagem");
+            }
+        }
 
         function AdicionarItem() {
             var tamanho = document.forms[0].elements.length;
