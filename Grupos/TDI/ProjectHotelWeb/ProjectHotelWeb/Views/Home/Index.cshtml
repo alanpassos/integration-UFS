@@ -141,11 +141,11 @@
                             @foreach (var h in ViewBag.Hospedagens)
                             {
                                 
-                                <div class="row">
+                                
 
                                     
 
-                                    @if (h.Quarto.status.Equals("O"))
+                                    if (h.Quarto.status.Equals("O"))
                                     {
                                         <div class="col s2.3">
                                             <div class="card small">
@@ -173,7 +173,7 @@
                                             </div>
                                         </div>
                                     }
-                                </div>
+                                
                             }
 
                         </div>

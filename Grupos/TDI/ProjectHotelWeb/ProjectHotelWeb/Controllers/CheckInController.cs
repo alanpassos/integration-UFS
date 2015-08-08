@@ -62,6 +62,7 @@ namespace ProjectHotelWeb.Controllers
             IPacoteHospedagens.Atualizar(pacoteHospedagem);
             return RedirectToAction("Index");
         }
+     
         public ActionResult Checkin(string[] quartos)
         {
             if (SuperClasses.pessoasAdicionadas != null)
@@ -73,7 +74,7 @@ namespace ProjectHotelWeb.Controllers
             }
             ViewBag.Quartos = SuperClasses.quartosListados;
 
-            ViewBag.Pacote =(PacoteHospedagem) TempData["Pacote"];
+            ViewBag.Pacote = (PacoteHospedagem)TempData["Pacote"];
             return View();
         }
 
@@ -98,6 +99,7 @@ namespace ProjectHotelWeb.Controllers
             }
             return ListQuartos;
         }
+     
         private bool testarQuartosIguais(Quarto quarto)
         {
             int count = 0;
@@ -136,7 +138,6 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Checkin");
         }
 
-
         /// <summary>
         /// Adiciona as pessoas que estão cadastrardas no sistema
         /// </summary>
@@ -172,7 +173,6 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Checkin");
         }
 
-
         private void TestarIguais(List<Pessoa> pessoas)
         {
 
@@ -204,8 +204,6 @@ namespace ProjectHotelWeb.Controllers
             }
             ViewBag.Quartos = SuperClasses.quartosListados;
         }
-
-
 
         /// <summary>
         /// Filtro da consulta para o retorno das pessoas selecionadas
@@ -240,7 +238,7 @@ namespace ProjectHotelWeb.Controllers
             return pessoas;
         }
 
-        private void removerPEssoasCadastrardas(int id)
+        private void removerPessoasCadastrardas(int id)
         {
             List<int> posicoes = new List<int>();
             for (int i = 0; i < SuperClasses.pessoasAdicionadas.Count; i++)
@@ -262,10 +260,9 @@ namespace ProjectHotelWeb.Controllers
 
         }
 
-
         public ActionResult RealizarCheckin()
         {
-            
+
             string[] pessoasSelect = Request.Params.Get("checkPessoa").Split(',');
             int idQuarto = Convert.ToInt32(Request.Params.Get("group2"));
             decimal valorHospedagemTotal = IQuartos.ResultadoUnico(idQuarto).TipoQuarto.valor;
@@ -273,15 +270,16 @@ namespace ProjectHotelWeb.Controllers
             double periodo = Convert.ToDouble(Request.Params.Get("Quantidade"));
             DateTime dataLibert = abertura.AddDays(periodo);
             string responsavel = Request.Params.Get("group3");
+            string placa = Request.Params.Get("Placa");
             if (SuperClasses.quantidadePacote == 0)
             {
                 SuperClasses.pacoteatual = CadastrarPacoteHopedagem();
-                
+
                 SuperClasses.quantidadePacote++;
             }
 
 
-            int idHosp = CadastrarHospedagem(idQuarto, valorHospedagemTotal, dataLibert, SuperClasses.pacoteatual);
+            int idHosp = CadastrarHospedagem(idQuarto, valorHospedagemTotal, dataLibert, SuperClasses.pacoteatual, placa);
 
             CadastrarControleCliente(pessoasSelect, SuperClasses.pacoteatual, idHosp, Convert.ToInt32(responsavel));
 
@@ -291,7 +289,7 @@ namespace ProjectHotelWeb.Controllers
 
             foreach (var item in pessoasSelect)
             {
-                removerPEssoasCadastrardas(Convert.ToInt32(item));
+                removerPessoasCadastrardas(Convert.ToInt32(item));
             }
 
             removerQuartos(idQuarto, pessoasSelect.Length);
@@ -346,7 +344,7 @@ namespace ProjectHotelWeb.Controllers
             }
         }
 
-        private int CadastrarHospedagem(int idQuarto, decimal valorHospedagemTotal, DateTime dataLibert, int idPacote)
+        private int CadastrarHospedagem(int idQuarto, decimal valorHospedagemTotal, DateTime dataLibert, int idPacote, string placa)
         {
             int idHosp = IHospedagens.Cadastrar(
                  new Hospedagem()
@@ -356,7 +354,8 @@ namespace ProjectHotelWeb.Controllers
                      dataAbertura = DateTime.Now,
                      dataLiberacao = dataLibert,
                      idQuarto = idQuarto,
-                     valorHospedagem = valorHospedagemTotal
+                     valorHospedagem = valorHospedagemTotal,
+                     placaVeiculo = placa
                  });
             return idHosp;
         }
@@ -379,9 +378,7 @@ namespace ProjectHotelWeb.Controllers
         private void removerQuartos(int idQuarto, int quantidadePessoas)
         {
 
-            if (IQuartos.ResultadoUnico(idQuarto).capacidade == quantidadePessoas)
-            {
-
+            
                 for (int i = 0; i < SuperClasses.quartosListados.Count; i++)
                 {
                     if (SuperClasses.quartosListados[i].idQuarto == idQuarto)
@@ -393,9 +390,18 @@ namespace ProjectHotelWeb.Controllers
                 }
 
 
-            }
+            
 
         }
+       
+        public ActionResult FinalizarCheckin()
+        {
+            SuperClasses.pacoteatual = 0;
+            SuperClasses.pessoasAdicionadas = new List<Pessoa>();
+            SuperClasses.quantidadePacote = 0;
+            SuperClasses.quartosListados = new List<Quarto>();
 
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
