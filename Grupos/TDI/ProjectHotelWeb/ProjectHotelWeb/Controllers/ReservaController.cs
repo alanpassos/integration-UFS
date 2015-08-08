@@ -191,7 +191,7 @@ namespace ProjectHotelWeb.Controllers
 
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"), culture);
             DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"), culture);
-            string tipoQuarto = "SIMPLES";//Request.Params.Get("tipoQuarto");
+            string tipoQuarto = Request.Params.Get("tipoQuarto");
             string numeroPessoas = Request.Params.Get("pessoas");
             string numeroQuartos = Request.Params.Get("quartos");
 

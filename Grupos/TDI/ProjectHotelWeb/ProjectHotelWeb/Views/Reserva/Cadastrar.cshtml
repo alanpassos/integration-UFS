@@ -5,25 +5,6 @@
 }
 
 <h2>Cadastrar</h2>
-<style type="text/css">
-    .progresso {
-        display: none;
-        position: fixed;
-        top: 360px;
-        left: 50%;
-        margin-top: -50px;
-        margin-left: -100px;
-        vertical-align: middle;
-        text-align: center;
-        font-size: 16px;
-        font-weight: bold;
-        background-color: white;
-        border: 1px solid black;
-        height: 90px;
-        width: 120px;
-    }
-</style>
-
 
 @using (Ajax.BeginForm(
      "Consultar",
@@ -31,11 +12,9 @@
      new AjaxOptions
      {
          UpdateTargetId = "divResultadoConsulta",
-         LoadingElementId = "divCarregando"
+         LoadingElementId = "divCarregando",
      }))
 {
-
-
 
     <hr>
     <div class="row">
@@ -77,9 +56,7 @@
         </div>
     </div>
     <hr>
-
 }
-
 
 @using (Html.BeginForm("CadastrarReserva", "Reserva"))
 {
@@ -126,7 +103,7 @@
 
     <div id="divResultadoConsulta"> </div>
     <div id="divCarregando" class="progresso">
-        <br /> Carregando...
+        <br /> <div class="indeterminate">Carregando...</div>
     </div>
     <hr>
 }

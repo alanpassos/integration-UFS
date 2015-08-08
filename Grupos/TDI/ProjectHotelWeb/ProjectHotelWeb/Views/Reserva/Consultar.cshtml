@@ -1,7 +1,13 @@
 ﻿@model IEnumerable<Dominio.Classes_Especiais.QuartosLivresReserva>
 
+<script>
+    $(document).ready(function () {
+        $('#quantidade').material_select();
+    });
+   
+</script>
 
-<table class="striped"> 
+<table class="striped">
     <tr>
 
         <th>
@@ -25,50 +31,50 @@
         <th></th>
     </tr>
 
-@foreach (var i in Model)
-{
-    <tr>
+    @foreach (var i in Model)
+    {
+        <tr>
 
-        <td>
-            @if (@i.dataInicio != null)
-            {
-                @i.dataInicio
-            }
-            -
-            @if (@i.dataFim != null)
-            {
-                @i.dataFim
-            }
-        </td>
-        <td>
-            @i.descricao
-        </td>
-        <td>
-            @i.capacidade
-        </td>
-        <td>
-            @i.valor
-        </td>
-        <td>
-            <div class="input-field col s2">
-                <select name="quantidade" required>
-                    @for (var j = 1; j <= @i.quantidade; j++)
-                    {
-                        <option value="@i.idTipoQuarto @j">@j</option>
-                    }
+            <td>
+                @if (@i.dataInicio != null)
+                {
+                    @i.dataInicio
+                }
+                -
+                @if (@i.dataFim != null)
+                {
+                    @i.dataFim
+                }
+            </td>
+            <td>
+                @i.descricao
+            </td>
+            <td>
+                @i.capacidade
+            </td>
+            <td>
+                @i.valor
+            </td>
+            <td>
+                <div class="input-field col s2">
+                    <select id="quantidade" name="quantidade" required>
+                        @for (var j = 1; j <= @i.quantidade; j++)
+                        {
+                            <option value="@i.idTipoQuarto @j">@j</option>
+                        }
 
 
-                </select>
-            </div>
-        </td>
-        <td>
+                    </select>
+                </div>
+            </td>
+            <td>
 
-            <input type="checkbox" class="filled-in" id="@i.idTipoQuarto @i.capacidade" value="@i.idTipoQuarto @i.capacidade" name="checkQuartos" />
-            <label for="@i.idTipoQuarto @i.capacidade"></label>
-        </td>
+                <input type="checkbox" class="filled-in" id="@i.idTipoQuarto @i.capacidade" value="@i.idTipoQuarto @i.capacidade" name="checkQuartos" />
+                <label for="@i.idTipoQuarto @i.capacidade"></label>
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>
 
@@ -104,4 +110,5 @@
         </div>
     </div>
 </div>
+
 
