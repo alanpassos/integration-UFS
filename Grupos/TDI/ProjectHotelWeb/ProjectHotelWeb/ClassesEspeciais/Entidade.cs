@@ -27,7 +27,7 @@ namespace ProjectHotelWeb.ClassesEspeciais
     {
 
         public static List<Pessoa> pessoasSelecionadas { get; set; }
-        public static PacoteHospedagem pacoteHospedagemSeleionada { get; set; }
+        public static List<Hospedagem> hospedagemSeleionada { get; set; }
         public static List<Hospedagem> hospedagensIniciais { get; set; }
         public static List<ControleServico> controleServicosSelecionados { get; set; }
         

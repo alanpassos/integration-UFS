@@ -22,7 +22,7 @@ namespace ProjectHotelWeb
             SuperCheckin.quantidadePacote = 0;
 
             SuperCheckout.hospedagensIniciais= new List<Hospedagem>();
-            SuperCheckout.pacoteHospedagemSeleionada = new PacoteHospedagem();
+            SuperCheckout.hospedagemSeleionada = new List<Hospedagem>();
             SuperCheckout.pessoasSelecionadas = new List<Pessoa>();
             SuperCheckout.controleServicosSelecionados = new List<ControleServico>();
             #endregion

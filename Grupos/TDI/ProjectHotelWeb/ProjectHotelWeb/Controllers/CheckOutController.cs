@@ -60,35 +60,58 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-        public ActionResult Checkout(string idHospedagem)
+        public ActionResult Checkout(string[] hospedagens)
         {
+            List<Hospedagem> hospedagensAtuais = new List<Hospedagem>();
 
-            if (idHospedagem != null)
+            if (hospedagens != null)
             {
-                string[] ids = idHospedagem.Split('#');
-                int idPacoteHospedagem = Convert.ToInt32(ids[1]);
-                SuperCheckout.pacoteHospedagemSeleionada = IPacoteHospedagens.ResultadoUnico(idPacoteHospedagem);
+                foreach (var item in hospedagens)
+                {
+
+
+                    string[] ids = item.Split('#');
+                    int idHospedagem = Convert.ToInt32(ids[0]);
+                    Hospedagem hospedagem = new Hospedagem();
+                    hospedagem = IHospedagens.ResultadoUnico(idHospedagem);
+                    if(!SuperCheckout.hospedagemSeleionada.Contains(hospedagem))
+                        SuperCheckout.hospedagemSeleionada.Add(hospedagem);
+
+                }
+                
+               
+
+
+
+
             }
 
 
             List<Pessoa> clientes = new List<Pessoa>();
-            foreach (var item in SuperCheckout.pacoteHospedagemSeleionada.ControleCliente)
+            foreach (var item in SuperCheckout.hospedagemSeleionada)
             {
-                if (item.isResponsavel)
-                    clientes.Add(IPessoas.ResultadoUnico(item.idCliente));
+                foreach (var controle in item.ControleCliente)
+                {
+
+
+                    if (controle.isResponsavel)
+                        clientes.Add(IPessoas.ResultadoUnico(controle.idCliente));
+                }
             }
             ViewBag.Clientes = clientes;
             ViewBag.hospedagem = SuperCheckout.hospedagensIniciais;
             ViewBag.ControleServico = SuperCheckout.controleServicosSelecionados;
-            return View(SuperCheckout.pacoteHospedagemSeleionada);
+            return View(SuperCheckout.hospedagemSeleionada);
         }
+    
+
         public ActionResult acicionarQuartos()
         {
             string[] ids = Request.Params.Get("check").Split(',');
             foreach (var idHospedagem in ids)
             {
 
-                
+
                 Hospedagem hospedagemSelect = new Hospedagem();
                 hospedagemSelect = IHospedagens.ResultadoUnico(Convert.ToInt32(idHospedagem));
 
@@ -101,15 +124,15 @@ namespace ProjectHotelWeb.Controllers
             }
             return RedirectToAction("Checkout");
         }
-        
+
         private void removerHospedagensSelecionadas(int idHospedagem)
         {
-            for (int i = 0; i < SuperCheckout.pacoteHospedagemSeleionada.Hospedagem.Count; i++)
+            for (int i = 0; i < SuperCheckout.hospedagemSeleionada.Count; i++)
             {
-                if (SuperCheckout.pacoteHospedagemSeleionada.Hospedagem[i].idHospedagem == idHospedagem)
+                if (SuperCheckout.hospedagemSeleionada[i].idHospedagem == idHospedagem)
                 {
 
-                    SuperCheckout.pacoteHospedagemSeleionada.Hospedagem.RemoveAt(i);
+                    SuperCheckout.hospedagemSeleionada.RemoveAt(i);
                     break;
 
                 }
@@ -121,7 +144,7 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult adicionarHospedagensExcluidas(int idHospedagem)
         {
 
-            SuperCheckout.pacoteHospedagemSeleionada.Hospedagem.Add(IHospedagens.ResultadoUnico(idHospedagem));
+            SuperCheckout.hospedagemSeleionada.Add(IHospedagens.ResultadoUnico(idHospedagem));
             for (int i = 0; i < SuperCheckout.hospedagensIniciais.Count; i++)
             {
                 if (SuperCheckout.hospedagensIniciais[i].idHospedagem == idHospedagem)
