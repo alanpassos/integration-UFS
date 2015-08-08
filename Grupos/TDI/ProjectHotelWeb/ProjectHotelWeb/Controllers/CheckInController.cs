@@ -72,6 +72,8 @@ namespace ProjectHotelWeb.Controllers
 
             }
             ViewBag.Quartos = SuperClasses.quartosListados;
+
+            ViewBag.Pacote =(PacoteHospedagem) TempData["Pacote"];
             return View();
         }
 
@@ -263,6 +265,7 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult RealizarCheckin()
         {
+            
             string[] pessoasSelect = Request.Params.Get("checkPessoa").Split(',');
             int idQuarto = Convert.ToInt32(Request.Params.Get("group2"));
             decimal valorHospedagemTotal = IQuartos.ResultadoUnico(idQuarto).TipoQuarto.valor;
@@ -270,15 +273,21 @@ namespace ProjectHotelWeb.Controllers
             double periodo = Convert.ToDouble(Request.Params.Get("Quantidade"));
             DateTime dataLibert = abertura.AddDays(periodo);
             string responsavel = Request.Params.Get("group3");
-            int idPacote = CadastrarPacoteHopedagem();
+            if (SuperClasses.quantidadePacote == 0)
+            {
+                SuperClasses.pacoteatual = CadastrarPacoteHopedagem();
+                
+                SuperClasses.quantidadePacote++;
+            }
 
-            int idHosp = CadastrarHospedagem(idQuarto, valorHospedagemTotal, dataLibert, idPacote);
 
-            CadastrarControleCliente(pessoasSelect, idPacote, idHosp, Convert.ToInt32(responsavel));
+            int idHosp = CadastrarHospedagem(idQuarto, valorHospedagemTotal, dataLibert, SuperClasses.pacoteatual);
+
+            CadastrarControleCliente(pessoasSelect, SuperClasses.pacoteatual, idHosp, Convert.ToInt32(responsavel));
 
             AtualizarQuartoParaOcupado(idQuarto);
 
-            AtualizarValoresPacoteHospedagem(valorHospedagemTotal, idPacote);
+            AtualizarValoresPacoteHospedagem(valorHospedagemTotal, SuperClasses.pacoteatual);
 
             foreach (var item in pessoasSelect)
             {
@@ -287,6 +296,9 @@ namespace ProjectHotelWeb.Controllers
 
             removerQuartos(idQuarto, pessoasSelect.Length);
 
+            PacoteHospedagem pacote = IPacoteHospedagens.ResultadoUnico(SuperClasses.pacoteatual);
+
+            TempData["Pacote"] = pacote;
 
             return RedirectToAction("Checkin");
         }

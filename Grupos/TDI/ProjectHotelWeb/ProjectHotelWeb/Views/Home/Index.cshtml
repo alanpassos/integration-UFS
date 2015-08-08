@@ -1,14 +1,8 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-@{var controler = "Home";}
-@{var metodo = "Index";}
 
-
-
-
-
-@using (Html.BeginForm(metodo, controler))
+@using (Html.BeginForm())
 {
 
     <div class="row">
@@ -22,7 +16,7 @@
 
 
                     <div class="col s1">
-                        <a class="btn-floating btn-large waves-effect waves-light blue" onclick="RealizarCheckin()">
+                        <a class="btn-floating btn-large waves-effect waves-light blue"  onclick="RealizarCheckin()">
                             <i class="material-icons">call_made</i>
 
                         </a>
@@ -135,51 +129,56 @@
 
                         }
                     }
+                    <div class="card-panel teal">
+
+                        <h6 class="center ; white-text"> Hospedagens</h6>
+                    </div>
                     @if (ViewBag.Hospedagens != null)
                     {
-                        <div class="card-panel teal">
 
-                            <h6 class="center ; white-text"> Hospedagens</h6>
-                        </div>
                         <div class="row">
 
                             @foreach (var h in ViewBag.Hospedagens)
                             {
+                                
+                                <div class="row">
 
+                                    
 
-                                if (h.Quarto.status.Equals("O"))
-                                {
-                                    <div class="col s2.3">
-                                        <div class="card small">
-                                            <div class="card red">
-                                                <div class="card-content white-text">
-                                                    <span class="card-title">
-                                                        <input type="checkbox" class="filled-in" id="@(h.idHospedagem+"#"+h.Quarto.idQuarto)" />
-                                                        <label for="@(h.idHospedagem+"#"+h.Quarto.idQuarto)"><font color="white"><b>@h.Quarto.descricao</b></font></label>
-                                                    </span>
-                                                    @foreach (var cc in h.ControleCliente)
-                                                    {
-                                                        foreach (var c in ViewBag.Clientes)
+                                    @if (h.Quarto.status.Equals("O"))
+                                    {
+                                        <div class="col s2.3">
+                                            <div class="card small">
+                                                <div class="card red">
+                                                    <div class="card-content white-text">
+                                                        <span class="card-title">
+                                                            <input type="checkbox" class="filled-in" id="@(h.idHospedagem+"#"+h.Quarto.idQuarto)" />
+                                                            <label for="@(h.idHospedagem+"#"+h.Quarto.idQuarto)"><font color="white"><b>@h.Quarto.descricao</b></font></label>
+                                                        </span>
+                                                        @foreach (var cc in h.ControleCliente)
                                                         {
-                                                            <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
+                                                            foreach (var c in ViewBag.Clientes)
+                                                            {
+                                                                <p><h6> @(cc.idCliente == c.idPessoa ? @c.nome : "")</h6></p>
+                                                            }
                                                         }
-                                                    }
-                                                    <p>@h.Quarto.TipoQuarto.descricao</p>
-                                                    <p>Total:   @h.valorHospedagem</p>
+                                                        <p>@h.Quarto.TipoQuarto.descricao</p>
+                                                        <p>Total:   @h.valorHospedagem</p>
+
+
+                                                    </div>
 
 
                                                 </div>
-
-
                                             </div>
                                         </div>
-                                    </div>
-                                }
+                                    }
+                                </div>
                             }
 
                         </div>
                     }
-                    
+
                 </div>
 
             </form>
@@ -223,6 +222,6 @@
 
 }
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

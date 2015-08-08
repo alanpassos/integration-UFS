@@ -18,6 +18,8 @@ namespace ProjectHotelWeb
             Entidade.hospedagemGlobal = null;
             SuperClasses.pessoasAdicionadas = new List<Pessoa>();
             SuperClasses.quartosListados = new List<Quarto>();
+            SuperClasses.pacoteatual = 0;
+            SuperClasses.quantidadePacote = 0;
             #endregion
 
             AreaRegistration.RegisterAllAreas();
