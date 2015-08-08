@@ -38,7 +38,7 @@
         </div>
         <div class="row">
             <div class="input-field col s5">
-                <label for="input_text">Nome de Usuário</label>
+                <label for="input_text" data-error="Tamanho Insuficiente" data-sucess="LEgal">Nome de Usuário</label>
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
@@ -46,7 +46,7 @@
 
         <div class="row">
             <div class="input-field col s5">
-                <label for="input_text">Senha</label>
+                <label for="input-text">Senha</label>
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
