@@ -121,7 +121,7 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult AtualizarCliente()
         {
             string consulta = Request.Params.Get("Consulta");
-            string filtro = Request.Params.Get("group1");
+            string filtro = Request.Params.Get("Filtro");
             adicionarPessoas(consulta, filtro);
             return View("Checkin");
         }
