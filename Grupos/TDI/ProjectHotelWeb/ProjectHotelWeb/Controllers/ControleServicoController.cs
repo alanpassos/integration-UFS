@@ -19,7 +19,8 @@ namespace ProjectHotelWeb.Controllers
         public IHospedagens IHospedagens { get; set; }
         public IQuartos IQuartos { get; set; }
         public IServicos IServicos { get; set; }
-   
+        public List<Servico> listaDeServicos = new List<Servico>();
+
 
         // GET: ControleServico
         public ActionResult Index()
@@ -27,34 +28,43 @@ namespace ProjectHotelWeb.Controllers
             return View();
         }
 
-        
+
         public ActionResult VincularServicoHospedagem(string idHospedagem)
         {
             Hospedagem hospedagem;
             ControleCliente cliente;
             Pessoa pessoaCliente;
             Quarto quarto;
-            if (idHospedagem != null)
-           {
-                hospedagem = IHospedagens.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('#')[0]));
-                cliente = ICliente.ResultadoUnicoHospedagem(hospedagem.idHospedagem);
-                List<Servico> servicos = IServicos.Listar().ToList<Servico>();
-                pessoaCliente = IPessoas.ResultadoUnico(cliente.Pessoa.idPessoa);
-                quarto = IQuartos.ResultadoUnico(hospedagem.idQuarto);
 
-                ViewBag.Hospedagem = hospedagem;
-                ViewBag.Cliente = cliente;
-                ViewBag.Servicos = servicos;
-                ViewBag.Pessoa = pessoaCliente;
-                ViewBag.Quarto = quarto;
+            hospedagem = IHospedagens.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('#')[0]));
+            cliente = ICliente.ResultadoUnicoHospedagem(hospedagem.idHospedagem);
+            List<Servico> servicos = IServicos.Listar().ToList<Servico>();
+            pessoaCliente = IPessoas.ResultadoUnico(cliente.Pessoa.idPessoa);
+            quarto = IQuartos.ResultadoUnico(hospedagem.idQuarto);
 
-                return View();
+            ViewBag.Hospedagem = hospedagem;
+            ViewBag.Cliente = cliente;
+            ViewBag.Servicos = servicos;
+            ViewBag.Pessoa = pessoaCliente;
+            ViewBag.Quarto = quarto;
 
-           }
 
-            return RedirectToAction("Home", "Home");
+            return View();
+
+
 
         }
-        
+
+        [HttpPost]
+        public ActionResult AdicionarServico()
+        {
+
+            string idServico = Request.Params.Get("listaServico");
+            Servico servico = IServicos.ResultadoUnico(Convert.ToInt32(idServico));
+            return PartialView(servico);
+
+        }
+
+
     }
 }

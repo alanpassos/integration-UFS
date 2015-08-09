@@ -8,150 +8,177 @@
 @{var servicos = ViewBag.Servicos;}
 @{var cliente = ViewBag.Cliente;}
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 <h4 class="center">Vincular Serviço à Hospedagem</h4>
 <hr />
 <br>
 
-
-@Html.AntiForgeryToken()
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<div class="form-horizontal">
-
-    <div class="row">
-        <div class="col s6">
-            <div class="card-panel teal">
-
-                <h5 class="center ; white-text">@quarto.descricao</h5>
-
-            </div>
-            <div class="card-panel teal">
-                <span class="white-text">
-                    <b>
-                        Cliente:
-                    </b>
-                    @pessoa.nome
-                </span>
-            </div>
-            <div class="card-panel teal">
-                <span class="white-text">
-                    <b>Telefone</b>: @pessoa.telefoneMovel
-                </span>
-            </div>
-
-            <div class="card-panel teal">
-                <span class="white-text">
-                    <b>Valor Total</b>: @hospedagem.valorHospedagem
-                </span>
-            </div>
-        </div>
-        <div class="input-field col s6" style="height: 400px; overflow: auto;">
-            <ul class="collection">
-                @foreach (var servico in servicos)
-                {
-                    <li class="collection-item">
-
-                        <input name="group1" type="radio" id=@servico.idServico value=@servico.idServico required />
-                        <label for=@servico.idServico></label>
-
-                        <span class="title">Descrição: @servico.descricao</span>
-                        <p style="margin-left : 10px">Valor: @servico.valor</p>
-                        @if (@servico.ativo)
-                        {
-                            <p style="margin-left : 10px">Situação: Ativo</p>
-                        }
-                        else
-                        {
-                            <p style="margin-left : 10px">
-                                Situação: Inativo
-                            </p>
-                        }
-
-                        <p style="margin-left : 10px">Observacao: @servico.observacao</p>
-
-                    </li>
-
+<script type="text/javascript">
+    $(function () {
+        $('#form').submit(function () {
+            var postData = $(this).serializeArray();
+            $.ajax({
+                type: 'POST',
+                url: '/ControleServico/AdicionarServico',
+                dataType: 'html',
+                cache: false,
+                async: true,
+                data: postData,
+                success: function (result) {
+                    $('#divServicosDaHospedagem').html(result);
                 }
-            </ul>
+            });
+
+            return false;
+        });
+    });
+
+</script>
 
 
+<form id="form" name="form">
+    <div class="form-horizontal">
+
+        <div class="row">
+            <div class="col s6">
+                <div class="card-panel teal">
+
+                    <h5 class="center ; white-text">@quarto.descricao</h5>
+
+                </div>
+                <div class="card-panel teal">
+                    <span class="white-text">
+                        <b>
+                            Cliente:
+                        </b>
+                        @pessoa.nome
+                    </span>
+                </div>
+                <div class="card-panel teal">
+                    <span class="white-text">
+                        <b>Telefone</b>: @pessoa.telefoneMovel
+                    </span>
+                </div>
+
+                <div class="card-panel teal">
+                    <span class="white-text">
+                        <b>Valor Total</b>: @hospedagem.valorHospedagem
+                    </span>
+                </div>
+            </div>
+            <div class="input-field col s6" style="height: 400px;  overflow:auto;">
+                <ul class="collection">
+                    @foreach (var servico in servicos)
+                    {
+                        <li class="collection-item">
+
+                            <input name="listaServico" type="radio" id=@servico.idServico value=@servico.idServico required />
+                            <label for=@servico.idServico></label>
+
+                            <span class="title">Descrição: @servico.descricao</span>
+                            <p style="margin-left : 10px">Valor: @servico.valor</p>
+                            @if (@servico.ativo)
+                            {
+                                <p style="margin-left : 10px">Situação: Ativo</p>
+                            }
+                            else
+                            {
+                                <p style="margin-left : 10px">
+                                    Situação: Inativo
+                                </p>
+                            }
+
+
+                            <p style="margin-left : 10px">Observacao: @servico.observacao</p>
+
+
+                        </li>
+
+                    }
+                </ul>
+
+
+            </div>
+            <div class="col s6 offset-s10 grid-example">
+                <input id="adicionar" type="submit" value="Adicionar" class="btn btn-default" />
+            </div>
         </div>
-        <div class="col s6 offset-s10 grid-example">
-            <input type="submit" value="Salvar" class="btn btn-default" />
-        </div>
+
+        <input name="idhospedagem" type="radio" id="idhospedagem" value="@hospedagem.idHospedagem" disabled="disabled" />
     </div>
+</form>
 
-    <input name="idhospedagem" type="radio" id="idhospedagem" value="@hospedagem.idHospedagem" disabled="disabled" />
-</div>
+<div id="divServicosDaHospedagem" class="col s12"></div>
 
 @using (Html.BeginForm("CancelarItem", "Item"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="row">
-        <div class="input-field col s12">
-            <table class="hoverable">
-                <tr>
+{ @Html.AntiForgeryToken()  @Html.ValidationSummary(true, "", new { @class = "text-danger" })  <div class="row">
+    <div class="input-field col s12">
+        <table class="striped">
+            <tr>
 
-                    <th>
-                        Código
-                    </th>
-                    <th>
-                        Produto
-                    </th>
-                    <th>
-                        Quantidade
-                    </th>
-                    <th>
-                        Valor Total
-                    </th>
-                    <th>
-                        Selecionar
-                    </th>
-                    <th>
-                        Opções
-                    </th>
-                    <th></th>
-                </tr>
+                <th>
+                    Código
+                </th>
+                <th>
+                    Produto
+                </th>
+                <th>
+                    Quantidade
+                </th>
+                <th>
+                    Valor Total
+                </th>
+                <th>
+                    Selecionar
+                </th>
+                <th>
+                    Opções
+                </th>
+                <th></th>
+            </tr>
 
-                @if (@ViewBag.Item != null)
+            @if (@ViewBag.Item != null)
+            {
+
+                foreach (var item in @ViewBag.Item)
                 {
+                    <tr>
 
-                    foreach (var item in @ViewBag.Item)
-                    {
-                        <tr>
+                        <td>
+                            @item.idItem
+                        </td>
 
-                            <td>
-                                @item.idItem
-                            </td>
+                        <td>
+                            @item.Produto.descricao
+                        </td>
+                        <td>
+                            @item.quantidade
+                        </td>
+                        <td>
+                            @item.valorTotal
+                        </td>
 
-                            <td>
-                                @item.Produto.descricao
-                            </td>
-                            <td>
-                                @item.quantidade
-                            </td>
-                            <td>
-                                @item.valorTotal
-                            </td>
-
-                            <td>
-                                <input type="checkbox" class="filled-in" id="@item.idItem @item.idHospedagem" value="@item.idItem @item.idHospedagem" name="checkCancelar" />
-                                <label for="@item.idItem @item.idHospedagem"></label>
-                            </td>
-                            <td>
-                                @Html.ActionLink("Atualizar", "Atualizar", new { id = item.idItem }) |
-                                @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idItem }) |
-                                @Html.ActionLink("Excluir", "Excluir", new { id = item.idItem })
-                            </td>
-                        </tr>
-                    }
+                        <td>
+                            <input type="checkbox" class="filled-in" id="@item.idItem @item.idHospedagem" value="@item.idItem @item.idHospedagem" name="checkCancelar" />
+                            <label for="@item.idItem @item.idHospedagem"></label>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Atualizar", "Atualizar", new { id = item.idItem }) |
+                            @Html.ActionLink("Detalhar", "Detalhar", new { id = item.idItem }) |
+                            @Html.ActionLink("Excluir", "Excluir", new { id = item.idItem })
+                        </td>
+                    </tr>
                 }
-            </table>
-        </div>
-        <div class="col s6 offset-s10 grid-example">
-            <input type="submit" value="Cancelar" class="btn btn-default" />
-        </div>
+            }
+        </table>
     </div>
+    <div class="col s6 offset-s10 grid-example">
+        <input type="submit" value="Cancelar" class="btn btn-default" />
+    </div>
+</div>
 
 }
 
