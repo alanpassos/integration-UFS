@@ -16,6 +16,8 @@
             $.ajax({
                 type: 'POST',
                 url: '/Reserva/Consultar',
+                beforeSend: mostraBarra,
+                complete: ocultaBarra,
                 dataType: 'html',
                 cache: false,
                 async: true,
@@ -24,11 +26,14 @@
                     $('#divResultadoConsulta').html(result);
                 }
             });
-
+  
             return false;
         });
-    });
+        
 
+        
+    });
+   
 </script>
 
 <form id="formConsulta" name="formConsulta">
@@ -73,6 +78,7 @@
         </div>
     </div>
     <hr>
+ 
 </form>
 
 <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
@@ -88,6 +94,8 @@
                 type: 'POST',
                 url: '/Reserva/ReservaCliente',
                 dataType: 'html',
+                beforeSend: mostraBarra,
+                complete: ocultaBarra,
                 cache: false,
                 async: true,
                 data: postData,
@@ -95,7 +103,7 @@
                     $('#divResultadoConsultaCliente').html(result);
                 }
             });
-
+   
             return false;
         });
     });
@@ -149,10 +157,15 @@
     </div>
     <div id="divResultadoConsulta"> </div>
     <div id="divCarregando" class="progresso">
-        <br /> <div class="indeterminate">Carregando...</div>
-    </div>
-    <hr>
 
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+
+    </div>
+
+    
+    <hr>
 </form>
 
 <div id="divResultadoConsultaCliente"> </div>

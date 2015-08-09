@@ -27,10 +27,8 @@
             text-align: center;
             font-size: 16px;
             font-weight: bold;
-            background-color: white;
-            border: 1px solid black;
-            height: 90px;
-            width: 120px;
+            height: 60px;
+            width: 180px;
         }
     </style>
 
@@ -145,6 +143,16 @@
             v_obj = o
             v_fun = f
             setTimeout("execmascara()", 1)
+        }
+
+        function mostraBarra() {
+            $('#divCarregando').show();
+
+        }
+
+        function ocultaBarra() {
+            $('#divCarregando').hide();
+
         }
 
         function execmascara() {
@@ -264,6 +272,8 @@
 
             if (selecionou) {
                 $.post("/Item/Cadastrar", { idHospedagem: valor }, function (data) {
+                    var url = '@Url.Action("Cadastrar", "Item")';
+                    window.location.href = url;
                     $("html").html(data);
                 });
             } else {
