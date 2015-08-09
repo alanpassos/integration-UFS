@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   
 
-   
+
+
 
 
 </head>
@@ -93,7 +93,7 @@
         $(".dropdown-button").dropdown();
 
 
-        
+
 
         $(document).ready(function () {
             $('ul.tabs').tabs();
@@ -206,7 +206,7 @@
                 alert("Selecione uma hospedagem");
             }
         }
-       
+
         function RealizarCheckout() {
             var tamanho = document.forms[0].elements.length;
             var selecionou = false;
@@ -252,7 +252,7 @@
             }
         }
 
-        function VincularServico() {
+        function VincularServico(idH) {
             var tamanho = document.forms[0].elements.length;
             var selecionou = false;
             var valor = null;
@@ -266,10 +266,16 @@
             }
 
             if (selecionou) {
+
                 
-                $.post("/ControleServico/VincularServicoHospedagem", { idHospedagem: valor }, function (data) {
-                    $("html").html(data);
-                });
+                // $.post("/ControleServico/VincularServicoHospedagem", { idHospedagem: valor }, function (data) {
+
+               //IMPORTANTE MANTER O )?<VARIAVEL>=<VALOR>
+                var url = '@Url.Action("VincularServicoHospedagem", "ControleServico")?idHospedagem=' + valor;
+                window.location.href = url;
+
+                //   $("html").html(data);
+                //});
             } else {
                 alert("Selecione uma hospedagem");
             }
