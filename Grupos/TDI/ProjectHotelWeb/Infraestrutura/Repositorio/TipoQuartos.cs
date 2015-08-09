@@ -124,21 +124,22 @@ namespace Infraestrutura.Repositorio
             return indicesQuartos;
         }
 
-        public ICollection<QuartosLivresReserva> ListaTiposReservadosCliente(int idCliente)
+        public ICollection<QuartosLivresReserva> ListaTiposReservadosPacote(int idPacoteHospedagem)
         {
             List<QuartosLivresReserva> quartosReservados = new List<QuartosLivresReserva>();
 
             IQueryable<QuartosLivresReserva> consultaReservasCliente = from _hospedagem in hospedagem
-                                                                       join _cliente in cliente on _hospedagem.idHospedagem equals _cliente.idHospedagem
+                                                                       join pacote_hospedagem in pacoteHospedagem on _hospedagem.idPacoteHospedagem equals pacote_hospedagem.idPacoteHospedagem
                                                                        join quarto in quartos on _hospedagem.idQuarto equals quarto.idQuarto
                                                                        join tipo_quarto in tipoQuartos on quarto.idTipoQuarto equals tipo_quarto.idTipoQuarto
-                                                                       where quarto.reservado && _cliente.idCliente == idCliente
+                                                                       where quarto.reservado && pacote_hospedagem.idPacoteHospedagem == idPacoteHospedagem
                                                                        select new QuartosLivresReserva
                                                                        {
                                                                            idTipoQuarto = tipo_quarto.idTipoQuarto,
                                                                            descricao = tipo_quarto.descricao,
                                                                            capacidade = quarto.capacidade,
                                                                            valor = _hospedagem.valorHospedagem,
+                                                                           valorTotal = pacote_hospedagem.valorTotal,
                                                                            dataFim = _hospedagem.dataLiberacao,
                                                                            dataInicio = _hospedagem.dataAbertura
                                                                        };

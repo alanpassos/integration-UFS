@@ -16,6 +16,6 @@ namespace Dominio.Interfaces
         TipoQuarto ResultadoUnico(int idTipoQuarto);
         ICollection<QuartosLivresReserva> ListaLivres(string tipoQuartoPesquisa, string pessoasPesquisa, DateTime dataInicio, DateTime dataFim);
         ICollection<int> ListaQuartosTipo(string tipoQuartoPesquisa, string pessoasPesquisa);
-        ICollection<QuartosLivresReserva> ListaTiposReservadosCliente(int idCliente);
+        ICollection<QuartosLivresReserva> ListaTiposReservadosPacote(int idPacote);
     }
 }
