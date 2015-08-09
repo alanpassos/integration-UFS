@@ -262,6 +262,8 @@
 
             if (selecionou) {
                 $.post("/Item/Cadastrar", { idHospedagem: valor }, function (data) {
+                    var url = '@Url.Action("Cadastrar", "Item")';
+                    window.location.href = url;
                     $("html").html(data);
                 });
             } else {
