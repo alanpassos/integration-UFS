@@ -8,6 +8,7 @@ using Dominio.Classes;
 using Dominio.Interfaces;
 using Infraestrutura.Database;
 using ProjectHotelWeb.ClassesEspeciais;
+using Dominio.Classes_Especiais;
 
 
 namespace ProjectHotelWeb.Controllers
@@ -38,7 +39,7 @@ namespace ProjectHotelWeb.Controllers
             Pessoa pessoaCliente;
             Quarto quarto;
 
-            hospedagem = IHospedagens.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('#')[0]));
+            hospedagem = IHospedagens.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('/')[0]));
             cliente = ICliente.ResultadoUnicoHospedagem(hospedagem.idHospedagem);
             List<Servico> servicos = IServicos.Listar().ToList<Servico>();
             pessoaCliente = IPessoas.ResultadoUnico(cliente.Pessoa.idPessoa);
@@ -75,8 +76,7 @@ namespace ProjectHotelWeb.Controllers
         {
             
             Hospedagem hospedagem = (Hospedagem) TempData["hospedagem"];
-            
-
+           
             int codigoServico = Convert.ToInt32(idServico.Trim());
             int quantidade = Convert.ToInt32(Request.Params.Get("quantidade")); 
             
@@ -100,11 +100,13 @@ namespace ProjectHotelWeb.Controllers
                 IControleServicos.Cadastrar(controleServico);
             }
 
+            TempData["hospedagem"] = hospedagem;
             
-           return PartialView();
+            List<ServicoHospedagem> servicosHospedagens = IControleServicos.ListarServicoHospedagem(hospedagem.idHospedagem).ToList();
+
+            return PartialView(servicosHospedagens);
 
         }
-
         
     }
 }
