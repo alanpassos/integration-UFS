@@ -1,0 +1,144 @@
+﻿@model Dominio.Classes.Servico
+
+@{var hospedagem = ViewBag.Hospedagem;}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    function sync() {
+
+        var quant = document.getElementById('quantidade');
+        var valor = document.getElementById('valor');
+        var preco = valor.value.replace(',', '.').replace('R$', '');
+        var total = document.getElementById('total');
+        total.value = 'R$' + parseFloat(preco) * parseFloat(quant.value);
+
+    }
+</script>
+
+<script>
+    $(function () {
+        sync();
+    });
+</script>
+
+<script>
+    function getIdServico() {
+        var linha = document.getElementById("Servico");
+        var idServico = linha.getElementsByTagName("td");
+        idServico = idServico[0].innerHTML;
+        return idServico
+    }
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#formAdicionados').submit(function () {
+            var postData = $(this).serializeArray();
+            var idServico = getIdServico();
+            $.ajax({
+                type: 'POST',
+                url: '/ControleServico/VincularServico?idServico=' + idServico,
+                dataType: 'html',
+                cache: false,
+                async: true,
+                data: postData,
+                success: function (result) {
+                    $('#divServicosDaHospedagem').html(result);
+                }
+            });
+
+            return false;
+        });
+    });
+
+</script>
+
+<br />
+<br />
+<h6>Serviços selecionados</h6>
+<hr />
+<br>
+<form id="formAdicionados" class="col s12">
+    <div class="row">
+        <div class="col s12">
+            <table class="striped">
+                <tr>
+                    <th>
+                        Código
+                    </th>
+
+                    <th>
+                        Serviço
+                    </th>
+                    <th>
+                        Observação
+                    </th>
+
+                    <th>
+                        Data Início
+                    </th>
+
+                    <th>
+                        Data Fim
+                    </th>
+                    <th>
+                        Valor
+                    </th>
+                    <th>
+                        Quantidade
+                    </th>
+                    <th>
+                        Valor total
+                    </th>
+                    <th></th>
+                </tr>
+
+                <tr id="Servico">
+                    <td>
+                        @Html.DisplayFor(model => model.idServico)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.observacao)
+                    </td>
+                    <td>
+                        <input id="dataInicio" name="dataInicio" size="5" value="" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
+                        <label for="dataInicio"></label>
+                    </td>
+
+                    <td>
+                        <input id="dataFim" name="dataFim" size="5" value="" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
+                        <label for="dataFim"></label>
+                    </td>
+                    <td>
+                        <div class="input-field"></div>
+                        <input id="valor" name="valor" value="R$ @Model.valor" size="1" type="text" class="validate" onkeyup="sync()" maxlength="5" readonly required>
+                        <label for="valor"></label>
+
+                    </td>
+                    <td>
+                        <div class="input-field"></div>
+                        <input id="quantidade" name="quantidade" value="1" size="1" type="text" class="validate" onkeyup="sync()" maxlength="3" onkeypress="return isNumberKey(event)" required>
+                        <label for="quantidade"></label>
+                    </td>
+                    <td>
+                        <div class="input-field"></div>
+                        <input id="total" name="total" size="1" type="text" maxlength="100" readonly required>
+                        <label for="total"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s10 grid-example">
+            <input id="confirmar" type="submit" value="Confirmar" class="btn btn-default" />
+        </div>
+    </div>
+
+</form>

@@ -13,5 +13,6 @@ namespace Dominio.Interfaces
         void Atualizar(ControleCliente controleCLiente);
         void Remover(ControleCliente controleCliente);
         ControleCliente ResultadoUnico(int idCliente);
+        ControleCliente ResultadoUnicoHospedagem(int idHospedagem);
     }
 }

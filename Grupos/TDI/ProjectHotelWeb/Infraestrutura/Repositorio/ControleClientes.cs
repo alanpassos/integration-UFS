@@ -46,6 +46,11 @@ namespace Infraestrutura.Repositorio
             return controleClientes.SingleOrDefault(c => c.idCliente == idControleCliente);
         }
 
+        public ControleCliente ResultadoUnicoHospedagem(int idHospedagem)
+        {
+            return controleClientes.SingleOrDefault(c => c.idHospedagem == idHospedagem);
+        }
+
         public ICollection<ControleCliente> Listar()
         {
             return controleClientes.OrderBy(p => p.idHospedagem).ToList();

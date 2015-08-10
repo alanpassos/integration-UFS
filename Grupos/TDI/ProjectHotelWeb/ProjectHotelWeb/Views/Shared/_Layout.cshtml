@@ -12,9 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   
 
-   
     <style type="text/css">
         .progresso {
             display: none;
@@ -141,7 +139,7 @@
         $(".dropdown-button").dropdown();
 
 
-        
+
 
         $(document).ready(function () {
             $('ul.tabs').tabs();
@@ -264,7 +262,7 @@
                 alert("Selecione um ou mais quartos");
             }
         }
-       
+
         function RealizarCheckout() {
             var tamanho = document.forms[0].elements.length;
             var selecionou = false;
@@ -309,6 +307,35 @@
 
                     $("html").html(data);
                 });
+            } else {
+                alert("Selecione uma hospedagem");
+            }
+        }
+
+        function VincularServico(idH) {
+            var tamanho = document.forms[0].elements.length;
+            var selecionou = false;
+            var valor = null;
+
+            for (var i = 0; i < tamanho ; i++) {
+
+                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
+                    valor = document.forms[0].elements[i].id.toString();
+                    selecionou = true;
+                }
+            }
+
+            if (selecionou) {
+
+                
+                // $.post("/ControleServico/VincularServicoHospedagem", { idHospedagem: valor }, function (data) {
+
+               //IMPORTANTE MANTER O )?<VARIAVEL>=<VALOR>
+                var url = '@Url.Action("VincularServicoHospedagem", "ControleServico")?idHospedagem=' + valor;
+                window.location.href = url;
+
+                //   $("html").html(data);
+                //});
             } else {
                 alert("Selecione uma hospedagem");
             }
