@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ProjectHotelWeb.Models;
-using ExemploWEB.App_Start;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
