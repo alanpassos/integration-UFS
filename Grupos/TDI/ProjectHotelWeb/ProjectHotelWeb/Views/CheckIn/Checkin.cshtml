@@ -6,6 +6,8 @@
 }
 
 
+
+
 <h2>Checkin</h2>
 <hr />
 @using (Html.BeginForm("AtualizarCliente", "Checkin"))
@@ -13,35 +15,19 @@
     @Html.AntiForgeryToken()
     <form class="col s12">
         <div class="row">
-            <div class="input-field col s3" style="height: 230px; overflow: auto;">
-                <ul class="collection">
+            <div class="input-field col s2">
+                <select name="filtro" required>
+                    <option value="" disabled selected>Filtro</option>
+                    <option value="1">CPF</option>
+                    <option value="2">CNPJ</option>
+                    <option value="3">Nome</option>
+                    <option value="4">Telefone</option>
 
-
-                    <li href="#cpf" class="collection-item">
-                        <input name="group1" type="radio" id="cpf" value="1" required />
-                        <label for=cpf></label>
-                        <span class="title">CPF</span>
-                    </li>
-                    <li class="collection-item">
-                        <input name="group1" type="radio" id="cnpj" value="2" required />
-                        <label for=cnpj></label>
-                        <span class="title">CNPJ</span>
-                    </li>
-                    <li class="collection-item">
-                        <input name="group1" type="radio" checked id="nome" value="3" required />
-                        <label for=nome></label>
-                        <span class="title">NOME</span>
-                    </li>
-                    <li class="collection-item">
-                        <input name="group1" type="radio" id="telefone" value="4" required />
-                        <label for=telefone></label>
-                        <span class="title">TELEFONE</span>
-                    </li>
-
-
-                </ul>
+                </select>
 
             </div>
+
+
 
 
             <div class="input-field col s6">
@@ -265,26 +251,19 @@
 
 
                 <div class="input-field col s4" style="height: 250px; overflow: auto;">
-                    <ul class="collection">
+
+                    <select name="quarto" required>
+                        <option value="" disabled selected>Quarto</option>
+                        
                         @foreach (var item in ViewBag.Quartos)
                         {
+                            <option value="@item.idQuarto">@(item.descricao + " - Capacidade: " + item.capacidade)</option>
 
 
-                            <li class="collection-item">
-
-                                <input name="group2" type="radio" id=@item.idQuarto value=@item.idQuarto required />
-                                <label for=@item.idQuarto></label>
-
-                                <span class="title">@item.descricao</span>
-                                <p style="margin-left : 38px">
-                                    Capacidade: @item.capacidade<br>
-
-                                </p>
-
-                            </li>
 
                         }
-                    </ul>
+                    </select>
+
 
                 </div>
                 <div class="input-field col s4">

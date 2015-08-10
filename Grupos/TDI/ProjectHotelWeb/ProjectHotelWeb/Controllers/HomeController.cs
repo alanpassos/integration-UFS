@@ -36,10 +36,7 @@ namespace ProjectHotelWeb.Controllers
                     ListarLivres();
                     ListarOcupados();
                     break;
-
-
             }
-
 
             return View();
         }

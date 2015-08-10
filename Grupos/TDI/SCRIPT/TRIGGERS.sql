@@ -46,23 +46,24 @@ AS
 		END
    
 GO
-CREATE TRIGGER TG_ATUALIZA_VALOR_PACOTE_HOSPEDAGEM
+alter TRIGGER TG_ATUALIZA_VALOR_PACOTE_HOSPEDAGEM
 ON HOSPEDAGEM
-AFTER INSERT, update
+AFTER INSERT
 AS
 	DECLARE @IDPACOTEHOSPEDAGEM INT, @VALORHOSPEDAGEM NUMERIC(10,2)
 	SELECT @IDPACOTEHOSPEDAGEM  = (SELECT IDPACOTEHOSPEDAGEM FROM INSERTED)
 	SELECT @VALORHOSPEDAGEM = (select sum(valorhospedagem) from hospedagem where idPacotehospedagem = @idpacotehospedagem )
-	UPDATE pacotehospedagem set valorTotal = 0 ,subTotal = 0 where idPacoteHospedagem = @IDPACOTEHOSPEDAGEM
+	-- UPDATE pacotehospedagem set valorTotal = 0 ,subTotal = 0 where idPacoteHospedagem = @IDPACOTEHOSPEDAGEM
 	UPDATE pacotehospedagem set valorTotal = valorTotal + @VALORHOSPEDAGEM,subTotal = subTotal + @VALORHOSPEDAGEM where idPacoteHospedagem = @IDPACOTEHOSPEDAGEM
 GO
-CREATE TRIGGER TG_ATUALIZA_VALOR_HOSPEDAGEM
+alter TRIGGER TG_ATUALIZA_VALOR_HOSPEDAGEM
 ON item
-after insert, update
+after insert
 as 
 	DECLARE @IDhospedagem INT, @VALORtotal NUMERIC(10,2)
 	SELECT @IDHOSPEDAGEM  = (SELECT IDHOSPEDAGEM FROM INSERTED)
 	SELECT @VALORtotal = (select sum(valortotal) from item where idhospedagem = @idhospedagem )
+	
 	UPDATE Hospedagem set valorHospedagem = 0  where idHospedagem = @IDHOSPEDAGEM
 	UPDATE Hospedagem set valorHospedagem = valorHospedagem + @VALORtotal where idHospedagem = @IDHOSPEDAGEM
 

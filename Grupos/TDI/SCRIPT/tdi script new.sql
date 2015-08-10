@@ -287,6 +287,7 @@ go
 DROP TABLE  ControleServico 
 go
 CREATE TABLE ControleServico (
+idControleServico INT IDENTITY(1,1) NOT NULL,
   idHospedagem INT NOT NULL,
   idServico INT NOT NULL,
   idFuncionario INT NOT NULL,
@@ -294,10 +295,14 @@ CREATE TABLE ControleServico (
   dataLiberacao DATETIME NULL,
   dataCadastro DATETIME NOT NULL,
   cancelado BIT NOT NULL DEFAULT 0)
+   go
+ alter table ControleServico add constraint pk_controle_servico
+ primary key (idControleServico)
 go
  create index idx_fk_hospedagem on ControleServico (idHospedagem )
  create index idx_fk_funcionario on ControleServico (idFuncionario )
  create index idx_fk_servico on ControleServico (idServico )
+ create index idx_Pk_controle_servico on ControleServico (idControleServico )
  go 
  alter table ControleServico 
  add constraint fk_hospedagemquarto

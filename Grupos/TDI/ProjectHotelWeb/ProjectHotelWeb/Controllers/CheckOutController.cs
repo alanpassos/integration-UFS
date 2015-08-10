@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProjectHotelWeb.ClassesEspeciais;
+using Dominio.Classes_Especiais;
 
 
 namespace ProjectHotelWeb.Controllers
@@ -17,6 +18,7 @@ namespace ProjectHotelWeb.Controllers
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
         public IPessoas IPessoas { get; set; }
         public IHospedagens IHospedagens { get; set; }
+        public IControleServicos IControleServico { get; set; }
         // GET: CheckOut
         public ActionResult Index()
         {
@@ -60,15 +62,16 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-        public ActionResult Checkout(string[] hospedagens)
+        public ActionResult Checkout(string hospedagensSelect)
         {
-            
-            
-            if (hospedagens != null)
+
+
+            if (hospedagensSelect != null)
             {
+                string[] hospedagens = hospedagensSelect.Split(',');
                 foreach (var item in hospedagens)
                 {
-                    string[] ids = item.Split('#');
+                    string[] ids = item.Split('/');
                     int idHospedagem = Convert.ToInt32(ids[0]);
                     Hospedagem hospedagem = new Hospedagem();
                     hospedagem = IHospedagens.ResultadoUnico(idHospedagem);
@@ -154,13 +157,23 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult ListarServicos(int idHospedagem)
         {
-            Hospedagem hospedagem = IHospedagens.ResultadoUnico(idHospedagem);
-            SuperCheckout.controleServicosSelecionados = new List<ControleServico>();
-            SuperCheckout.controleServicosSelecionados.AddRange(hospedagem.ControleServico);
 
+            List<ServicoHospedagem> sericosHospedagens = IControleServico.ListarServicoHospedagem(idHospedagem).ToList();
 
-
-            return RedirectToAction("Checkout");
+            return PartialView(sericosHospedagens);
         }
+
+        public ActionResult pagar()
+        {
+
+            SuperCheckout.hospedagensIniciais = new List<Hospedagem>();
+            SuperCheckout.hospedagemSeleionada = new List<Hospedagem>();
+            SuperCheckout.pessoasSelecionadas = new List<Pessoa>();
+            SuperCheckout.controleServicosSelecionados = new List<ControleServico>();
+            
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }
