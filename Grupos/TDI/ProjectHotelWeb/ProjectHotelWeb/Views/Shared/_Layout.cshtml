@@ -73,7 +73,25 @@
 
 
     <script>
+        $('.datepicker').pickadate({
+            format: 'dd/mm/yyyy',
+            selectMonths: true,
+            labelMonthNext: 'Póximo Mês',
+            selectYear: true,
+            selectYears: 120,
+            labelMonthPrev: 'Mês Anterior',
+            labelMonthSelect: 'Selecione um Mês',
+            labelYearSelect: 'Selecione um Ano',
+            monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Aug', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+            weekdaysLetter: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
 
+            clear: 'Limpar',
+            today: 'Hoje',
+            close: 'Fechar'
+        });
         $(document).ready(function () {
             $('select').material_select();
         });
@@ -224,11 +242,11 @@
             }
 
             if (selecionou) {
-                $.post("/Checkin/Checkin", { quartos: valor }, function (data) {
-                    $("html").html(data);
-                });
+                var url = '@Url.Action("Checkin", "Checkin")?quartosSelect=' + valor;
+                window.location.href = url;
+               
             } else {
-                alert("Selecione uma hospedagem");
+                alert("Selecione um ou mais quartos");
             }
         }
 
@@ -247,9 +265,9 @@
             }
 
             if (selecionou) {
-                $.post("/Checkout/Checkout", { hospedagens: valor }, function (data) {
-                    $("html").html(data);
-                });
+                var url = '@Url.Action("Checkout", "Checkout")?hospedagensSelect=' + valor;
+                window.location.href = url;
+                
             } else {
                 alert("Selecione uma hospedagem");
             }

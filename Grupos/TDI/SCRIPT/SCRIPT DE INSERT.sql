@@ -74,4 +74,4 @@ INSERT INTO ControleCliente VALUES
 (1,1,NULL,GETDATE(),1)
 
 
-delete PacoteHospedagem
+SELECT * FROM CONTROLECLIENTE

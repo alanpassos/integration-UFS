@@ -62,14 +62,14 @@ namespace ProjectHotelWeb.Controllers
             IPacoteHospedagens.Atualizar(pacoteHospedagem);
             return RedirectToAction("Index");
         }
-     
-        public ActionResult Checkin(string[] quartos)
+
+        public ActionResult Checkin(string quartosSelect)
         {
             if (SuperCheckin.pessoasAdicionadas != null)
                 ViewBag.Pessoas = SuperCheckin.pessoasAdicionadas;
-            if (quartos != null)
+            if (quartosSelect != null)
             {
-                SuperCheckin.quartosListados.AddRange(carregarQuartos(quartos));
+                SuperCheckin.quartosListados.AddRange(carregarQuartos(quartosSelect));
 
             }
             ViewBag.Quartos = SuperCheckin.quartosListados;
@@ -78,9 +78,9 @@ namespace ProjectHotelWeb.Controllers
             return View();
         }
 
-        private List<Quarto> carregarQuartos(string[] quartos)
+        private List<Quarto> carregarQuartos(string quartosSelect)
         {
-
+            string[] quartos = quartosSelect.Split(',');
             Quarto quarto;
             List<Quarto> ListQuartos = new List<Quarto>();
             foreach (var item in quartos)
@@ -121,7 +121,7 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult AtualizarCliente()
         {
             string consulta = Request.Params.Get("Consulta");
-            string filtro = Request.Params.Get("group1");
+            string filtro = Request.Params.Get("filtro");
             adicionarPessoas(consulta, filtro);
             return View("Checkin");
         }
@@ -264,7 +264,7 @@ namespace ProjectHotelWeb.Controllers
         {
 
             string[] pessoasSelect = Request.Params.Get("checkPessoa").Split(',');
-            int idQuarto = Convert.ToInt32(Request.Params.Get("group2"));
+            int idQuarto = Convert.ToInt32(Request.Params.Get("quarto"));
             decimal valorHospedagemTotal = IQuartos.ResultadoUnico(idQuarto).TipoQuarto.valor;
             DateTime abertura = DateTime.Now;
             double periodo = Convert.ToDouble(Request.Params.Get("Quantidade"));
