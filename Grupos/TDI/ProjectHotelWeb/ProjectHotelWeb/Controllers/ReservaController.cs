@@ -27,6 +27,24 @@ namespace ProjectHotelWeb.Controllers
             return View(pacoteHospedagens);
         }
 
+        public ActionResult ConsultaReservaParametro()
+        {
+            string pesquisa = Request.Params.Get("pesquisa");
+
+            string parametroPesquisa = Request.Params.Get("parametroPesquisa");
+            List<PacoteHospedagem> pacoteHospedagens = null;
+            pesquisa = pesquisa.Replace(".", "").Replace("-","");
+            if(parametroPesquisa.Equals("nome"))
+                pacoteHospedagens = IPacoteHospedagem.ListarReservaPorCliente(pesquisa).ToList<PacoteHospedagem>();
+            if (parametroPesquisa.Equals("cpf"))
+                pacoteHospedagens = IPacoteHospedagem.ListarReservaPorCpf(pesquisa).ToList<PacoteHospedagem>();
+            if (parametroPesquisa.Equals("dataInicio"))
+                pacoteHospedagens = IPacoteHospedagem.ListarReservaPorDataInicio(pesquisa).ToList<PacoteHospedagem>();
+            if (parametroPesquisa.Equals("dataFim"))
+                pacoteHospedagens = IPacoteHospedagem.ListarReservaPorDataFim(pesquisa).ToList<PacoteHospedagem>();
+            return PartialView(pacoteHospedagens);
+        }
+
         public ActionResult Detalhar(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnicoReserva(id);
@@ -127,7 +145,7 @@ namespace ProjectHotelWeb.Controllers
             TempData["idPacote"] = idPacoteHospedagem;   
             TempData["dadosView"] = dadosView;
 
-            List<QuartosLivresReserva> reservasCliente = ITipoQuarto.ListaTiposReservadosPacote(idPacoteHospedagem).ToList();
+            List<QuartosLivresReserva> reservasCliente = IPacoteHospedagem.ListaTiposReservadosPacote(idPacoteHospedagem).ToList();
             return PartialView(reservasCliente);
             //return RedirectToAction("Cadastrar");
         }
@@ -209,7 +227,7 @@ namespace ProjectHotelWeb.Controllers
             string numeroPessoas = Request.Params.Get("pessoas");
             string numeroQuartos = Request.Params.Get("quartos");
 
-            List<QuartosLivresReserva> quartosLivresReserva = ITipoQuarto.ListaLivres(tipoQuarto, numeroPessoas, dataInicio, dataFim).ToList<QuartosLivresReserva>();
+            List<QuartosLivresReserva> quartosLivresReserva = IPacoteHospedagem.ListaLivres(tipoQuarto, numeroPessoas, dataInicio, dataFim).ToList<QuartosLivresReserva>();
             List<DateTime> dataInicioFim = new List<DateTime>();
             dataInicioFim.Add(dataInicio);
             dataInicioFim.Add(dataFim);

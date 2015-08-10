@@ -14,8 +14,6 @@ namespace Dominio.Interfaces
         void Atualizar(TipoQuarto tipoQuarto);
         void Remover(TipoQuarto tipoQuarto);
         TipoQuarto ResultadoUnico(int idTipoQuarto);
-        ICollection<QuartosLivresReserva> ListaLivres(string tipoQuartoPesquisa, string pessoasPesquisa, DateTime dataInicio, DateTime dataFim);
         ICollection<int> ListaQuartosTipo(string tipoQuartoPesquisa, string pessoasPesquisa);
-        ICollection<QuartosLivresReserva> ListaTiposReservadosPacote(int idPacote);
     }
 }
