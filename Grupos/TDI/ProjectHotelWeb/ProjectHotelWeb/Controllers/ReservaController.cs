@@ -19,7 +19,7 @@ namespace ProjectHotelWeb.Controllers
         public IControleClientes IControleCliente { get; set; }
         public IHospedagens IHospedagem { get; set; }
         public IQuartos IQuarto { get; set; }
-
+    
         // GET: Reserva
         public ActionResult Index()
         {
@@ -46,33 +46,43 @@ namespace ProjectHotelWeb.Controllers
 
             if(TempData["dadosView"] != null)
             {
+                int idPacoteHospedagem = Convert.ToInt32(TempData["idPacote"]);
                 List<object> objetosCliente = (List<object>) TempData["dadosView"];
                 ViewBag.dadosView = objetosCliente;
-                ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(Convert.ToInt32(objetosCliente[3]));
+            //    ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(Convert.ToInt32(objetosCliente[3]));
+                ViewBag.idPacoteHospedagem = idPacoteHospedagem;
+
             }
-            //ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(2);
+           
             return View();
 
         }
 
-        [ActionName("CadastrarReserva")]
-        public ActionResult Cadastrar(PacoteHospedagem _pacoteHospedagem)
+        public ActionResult ReservaCliente(PacoteHospedagem _pacoteHospedagem)
         {
             string cpf = Request.Params.Get("cpf");
             string nomeCliente = Request.Params.Get("nome");
             string telefone = Request.Params.Get("telefone");
-
+            string idPacote = Request.Params.Get("idPacote");
             List<object> dadosView = new List<object>();
             dadosView.Add(cpf);
             dadosView.Add(nomeCliente);
-            dadosView.Add(telefone);
-           
-
+            dadosView.Add(telefone);           
             cpf = cpf.Replace(".", "").Replace("-", "");
-
             CultureInfo culture = new CultureInfo("pt-BR");
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"));
             DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"));
+            int idPacoteHospedagem = 0;
+            if (TempData["idPacote"] == null)
+            {
+                idPacoteHospedagem = CadastraPacoteHospedagem(dataInicio, dataFim);
+ 
+            }
+            else
+            {
+                idPacoteHospedagem = Convert.ToInt32(TempData["idPacote"]);
+            }
+    
             List<int> idsQuartos;
             string[] comboBoxQuantidadeQuartos = Request.Params.Get("quantidade").Split(',', ' ');
             string[] checkBoxQuartosSelecionados = Request.Params.Get("checkQuartos").Split(',', ' ');
@@ -84,7 +94,7 @@ namespace ProjectHotelWeb.Controllers
             }
             idCliente = IPessoas.ListarPorCpfCnpj(cpf).ToList()[0].idPessoa;
             dadosView.Add(idCliente);
-            int idPacoteHospedagem = CadastraPacoteHospedagem(dataInicio, dataFim);
+            
             double periodo = (dataFim - dataInicio).TotalDays;
             for (int i = 0; i < checkBoxQuartosSelecionados.Count(); i += 2)
             {
@@ -114,8 +124,12 @@ namespace ProjectHotelWeb.Controllers
                     }
                 }
             }
+            TempData["idPacote"] = idPacoteHospedagem;   
             TempData["dadosView"] = dadosView;
-            return RedirectToAction("Cadastrar");
+
+            List<QuartosLivresReserva> reservasCliente = ITipoQuarto.ListaTiposReservadosPacote(idPacoteHospedagem).ToList();
+            return PartialView(reservasCliente);
+            //return RedirectToAction("Cadastrar");
         }
 
         private void AtualizaQuartoReservado(int indiceQuarto)
@@ -191,7 +205,7 @@ namespace ProjectHotelWeb.Controllers
 
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"), culture);
             DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"), culture);
-            string tipoQuarto = "SIMPLES";//Request.Params.Get("tipoQuarto");
+            string tipoQuarto = Request.Params.Get("tipoQuarto");
             string numeroPessoas = Request.Params.Get("pessoas");
             string numeroQuartos = Request.Params.Get("quartos");
 
@@ -204,9 +218,10 @@ namespace ProjectHotelWeb.Controllers
             TempData["quartos"] = quartosLivresReserva;
             TempData["datas"] = dataInicioFim;
 
+            ViewBag.dataInicioFim = dataInicioFim;
+
             return PartialView(quartosLivresReserva);
 
-            //return RedirectToAction("Cadastrar");
         }
 
         public ActionResult Atualizar(int id)

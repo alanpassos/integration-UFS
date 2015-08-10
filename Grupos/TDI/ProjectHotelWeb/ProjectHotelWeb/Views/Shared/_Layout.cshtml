@@ -13,9 +13,22 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
-
-
+    <style type="text/css">
+        .progresso {
+            display: none;
+            position: fixed;
+            top: 360px;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -100px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            height: 60px;
+            width: 180px;
+        }
+    </style>
 
 </head>
 
@@ -64,6 +77,8 @@
         $(document).ready(function () {
             $('select').material_select();
         });
+
+        $('select').material_select('destroy');
 
         $('.fixed-action-btn').openFAB();
 
@@ -126,6 +141,16 @@
             v_obj = o
             v_fun = f
             setTimeout("execmascara()", 1)
+        }
+
+        function mostraBarra() {
+            $('#divCarregando').show();
+
+        }
+
+        function ocultaBarra() {
+            $('#divCarregando').hide();
+
         }
 
         function execmascara() {
@@ -245,6 +270,8 @@
 
             if (selecionou) {
                 $.post("/Item/Cadastrar", { idHospedagem: valor }, function (data) {
+                    var url = '@Url.Action("Cadastrar", "Item")';
+                    window.location.href = url;
                     $("html").html(data);
                 });
             } else {

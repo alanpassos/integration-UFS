@@ -14,6 +14,7 @@ namespace Dominio.Classes_Especiais
         public string descricao { get; set; }
         public int capacidade { get; set; }
         public decimal valor { get; set; }
+        public decimal valorTotal { get; set; }
         public DateTime? dataInicio { get; set; }
         public DateTime? dataFim { get; set; }
     }
