@@ -18,6 +18,7 @@ namespace ProjectHotelWeb.Controllers
         public IPacoteHospedagens IPacoteHospedagens { get; set; }
         public IPessoas IPessoas { get; set; }
         public IHospedagens IHospedagens { get; set; }
+        public IControleServicos IControleServico { get; set; }
         // GET: CheckOut
         public ActionResult Index()
         {
@@ -70,7 +71,7 @@ namespace ProjectHotelWeb.Controllers
                 string[] hospedagens = hospedagensSelect.Split(',');
                 foreach (var item in hospedagens)
                 {
-                    string[] ids = item.Split('#');
+                    string[] ids = item.Split('/');
                     int idHospedagem = Convert.ToInt32(ids[0]);
                     Hospedagem hospedagem = new Hospedagem();
                     hospedagem = IHospedagens.ResultadoUnico(idHospedagem);
@@ -156,17 +157,10 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult ListarServicos(int idHospedagem)
         {
-            Hospedagem hospedagem = IHospedagens.ResultadoUnico(idHospedagem);
-           
 
-            
-           
+            List<ServicoHospedagem> sericosHospedagens = IControleServico.ListarServicoHospedagem(idHospedagem).ToList();
 
-            ServicoHospedagem servicosInnerjoin = new ServicoHospedagem();
-            
-            
-
-            return PartialView();
+            return PartialView(sericosHospedagens);
         }
 
         public ActionResult pagar()

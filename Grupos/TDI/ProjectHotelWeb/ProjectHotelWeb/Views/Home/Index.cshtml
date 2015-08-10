@@ -152,8 +152,8 @@
                                                 <div class="card red">
                                                     <div class="card-content white-text">
                                                         <span class="card-title">
-                                                            <input type="checkbox" class="filled-in" id="@(h.idHospedagem + "#" + h.idPacoteHospedagem)" />
-                                                            <label for="@(h.idHospedagem + "#" + h.idPacoteHospedagem)"><font color="white"><b>@h.Quarto.descricao</b></font></label>
+                                                            <input type="checkbox" class="filled-in" id="@(h.idHospedagem + "/" + h.idPacoteHospedagem)" />
+                                                            <label for="@(h.idHospedagem + "/" + h.idPacoteHospedagem)"><font color="white"><b>@h.Quarto.descricao</b></font></label>
                                                         </span>
                                                         @foreach (var cc in h.ControleCliente)
                                                         {

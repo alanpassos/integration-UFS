@@ -10,7 +10,7 @@ namespace Dominio.Classes_Especiais
     {
 
         public string quarto { get; set; }
-        public DateTime dataAbertura { get; set; }
+        public DateTime? dataAbertura { get; set; }
         public string servico { get; set; }
         public int quantidade { get; set; }
         public decimal valor { get; set; }
