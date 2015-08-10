@@ -87,7 +87,6 @@ namespace ProjectHotelWeb.Controllers
             {
                 DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"));
                 controleServico.dataLiberacao = dataFim;
-            
             }
             controleServico.idHospedagem = hospedagem.idHospedagem;
             controleServico.idServico = codigoServico;
