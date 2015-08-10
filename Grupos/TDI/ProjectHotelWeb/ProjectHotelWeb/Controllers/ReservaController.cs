@@ -48,6 +48,8 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult Detalhar(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnicoReserva(id);
+            List<QuartosLivresReserva> reservasCliente = IPacoteHospedagem.ListaTiposReservadosPacote(id).ToList();
+            ViewBag.reservasPacote = reservasCliente;
             return View(pacoteHospedagem);
         }
 
@@ -94,13 +96,11 @@ namespace ProjectHotelWeb.Controllers
             if (TempData["idPacote"] == null)
             {
                 idPacoteHospedagem = CadastraPacoteHospedagem(dataInicio, dataFim);
- 
             }
             else
             {
                 idPacoteHospedagem = Convert.ToInt32(TempData["idPacote"]);
             }
-    
             List<int> idsQuartos;
             string[] comboBoxQuantidadeQuartos = Request.Params.Get("quantidade").Split(',', ' ');
             string[] checkBoxQuartosSelecionados = Request.Params.Get("checkQuartos").Split(',', ' ');
@@ -144,10 +144,8 @@ namespace ProjectHotelWeb.Controllers
             }
             TempData["idPacote"] = idPacoteHospedagem;   
             TempData["dadosView"] = dadosView;
-
             List<QuartosLivresReserva> reservasCliente = IPacoteHospedagem.ListaTiposReservadosPacote(idPacoteHospedagem).ToList();
             return PartialView(reservasCliente);
-            //return RedirectToAction("Cadastrar");
         }
 
         private void AtualizaQuartoReservado(int indiceQuarto)

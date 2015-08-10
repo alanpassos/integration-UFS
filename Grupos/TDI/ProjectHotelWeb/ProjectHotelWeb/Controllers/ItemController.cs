@@ -32,7 +32,7 @@ namespace ProjectHotelWeb.Controllers
         {
             if(idHospedagem != null)
             {
-                Entidade.hospedagemGlobal = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('#')[0]));
+                Entidade.hospedagemGlobal = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('/')[0]));
             }
             else
             {
