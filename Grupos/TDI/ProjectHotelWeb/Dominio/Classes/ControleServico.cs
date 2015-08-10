@@ -13,7 +13,7 @@ namespace Dominio.Classes
        public int idServico { get; set; }
        public int idFuncionario { get; set; }
        public DateTime dataAbertura { get; set; }
-       public DateTime dataLiberacao { get; set; }
+       public DateTime? dataLiberacao { get; set; }
        public DateTime dataCadastro { get; set; }
        public bool cancelado { get; set; }
        
