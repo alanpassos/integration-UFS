@@ -71,7 +71,8 @@ namespace Infraestrutura.Repositorio
                 join cs in controleServicos on h.idHospedagem equals cs.idHospedagem
                 join s in servico on cs.idServico equals s.idServico
                 where cs.idHospedagem == idHospedagem && !cs.cancelado
-                group h by new { 
+                group h by new {
+                    cs.idServico,
                     q.descricao,
                     data = DbFunctions.TruncateTime(
                     cs.dataAbertura),
@@ -79,6 +80,7 @@ namespace Infraestrutura.Repositorio
                     servico = s.descricao 
                 } into servicoHospedagem 
                 select new ServicoHospedagem{
+                    idServico = servicoHospedagem.Key.idServico,
                  dataAbertura = servicoHospedagem.Key.data,
                  quantidade = servicoHospedagem.Count(),
                  quarto = servicoHospedagem.Key.descricao,

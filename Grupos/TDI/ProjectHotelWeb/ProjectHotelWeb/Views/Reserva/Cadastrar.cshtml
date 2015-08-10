@@ -25,11 +25,12 @@
                 success: function (result) {
                     $('#divResultadoConsulta').html(result);
                 }
-            });
-  
+            }); 
             return false;
+
         });
         
+
     });
    
 </script>
@@ -100,16 +101,12 @@
                 success: function (result) {
                     $('#divResultadoConsultaCliente').html(result);
                 }
-            });
-   
+            });   
             return false;
         });
     });
 </script>
-
-
 <form id="form" name="form">
-
     <div class="row">
 
         <div class="input-field col s4">
@@ -154,21 +151,11 @@
 
     </div>
     <div id="divResultadoConsulta"> </div>
-    <div id="divCarregando" class="progresso">
-
-        <div class="progress">
-            <div class="indeterminate"></div>
-        </div>
-
-    </div>
-
-    
+   
     <hr>
 </form>
 
 <div id="divResultadoConsultaCliente"> </div>
-
-
 
 <div>
     @Html.ActionLink("Voltar", "Index")

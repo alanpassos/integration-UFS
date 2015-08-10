@@ -8,7 +8,7 @@ namespace Dominio.Classes
 {
    public class ControleServico
     {
-       public int idControleServico { get; set; }
+       
        public int idHospedagem { get; set; }
        public int idServico { get; set; }
        public int idFuncionario { get; set; }

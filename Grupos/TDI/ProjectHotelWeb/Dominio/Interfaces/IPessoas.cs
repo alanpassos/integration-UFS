@@ -20,9 +20,14 @@ namespace Dominio.Interfaces
         ICollection<Pessoa> ListarPorCpfCnpj(string cpfCnpj);
         ICollection<Pessoa> ListarPorNome(string nome);
         ICollection<Pessoa> ListarPorTelefone(string telefone);
-         
+
+        ICollection<Pessoa> ListarFuncionarioPorNome(string nome);
+        ICollection<Pessoa> ListarFuncionarioPorCpfCnpj(string cpfCnpj);
+        ICollection<Pessoa> ListarFuncionarioPorTelefone(string telefone);
+
+
         Pessoa ResultadoUnicoFuncionario(int idPessoa);
-        
-        
+
+
     }
 }

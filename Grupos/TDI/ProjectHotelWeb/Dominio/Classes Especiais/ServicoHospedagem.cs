@@ -8,7 +8,7 @@ namespace Dominio.Classes_Especiais
 {
     public class ServicoHospedagem
     {
-
+        public int idServico { get; set; }
         public string quarto { get; set; }
         public DateTime? dataAbertura { get; set; }
         public string servico { get; set; }

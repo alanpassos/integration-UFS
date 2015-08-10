@@ -51,25 +51,45 @@ namespace Infraestrutura.Repositorio
         public ICollection<Pessoa> Listar()
         {
             return pessoas.Where(p =>p.ativo == true).OrderBy(p=> p.nome).ToList();
-            //OrderBy(p => p.nome).ToList();
+            
         }
 
         public ICollection<Pessoa> ListarPorCpfCnpj(string cpfCnpj)
         {
-            return pessoas.Where(p => p.ativo == true && p.cpfCnpj == cpfCnpj).OrderBy(p => p.nome).ToList();
-            //OrderBy(p => p.nome).ToList();
+            return pessoas.Where(p => p.ativo == true && p.cpfCnpj.Contains(cpfCnpj)).OrderBy(p => p.nome).ToList();
+            
         }
 
         public ICollection<Pessoa> ListarPorNome(string nome)
         {
             
             return pessoas.Where(p => p.ativo == true && p.nome.Contains(nome)).OrderBy(p => p.nome).ToList();
-            //OrderBy(p => p.nome).ToList();
+            
         }
         public ICollection<Pessoa> ListarPorTelefone(string telefone)
         {
-            return pessoas.Where(p => p.telefoneMovel == telefone && p.ativo == true).ToList();
+            return pessoas.Where(p => p.telefoneMovel.Contains(telefone) && p.ativo == true).ToList();
         }
+
+        public ICollection<Pessoa> ListarFuncionarioPorCpfCnpj(string cpfCnpj)
+        {
+            return pessoas.Where(p => p.ativo == true && p.isFuncionario == true && p.cpfCnpj.Contains(cpfCnpj)).OrderBy(p => p.nome).ToList();
+            
+        }
+
+        public ICollection<Pessoa> ListarFuncionarioPorNome(string nome)
+        {
+
+            return pessoas.Where(p => p.ativo == true && p.isFuncionario == true && p.nome.Contains(nome)).OrderBy(p => p.nome).ToList();
+            
+        }
+        public ICollection<Pessoa> ListarFuncionarioPorTelefone(string telefone)
+        {
+            return pessoas.Where(p => p.telefoneMovel.Contains(telefone) && p.ativo == true && p.isFuncionario == true).ToList();
+        }
+
+
+
 
         public ICollection<Pessoa> ListarFuncionario()
         {
