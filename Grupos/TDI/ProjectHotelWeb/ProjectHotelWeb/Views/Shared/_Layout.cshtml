@@ -43,9 +43,16 @@
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a href="http://localhost:61055/Home/">Acapulco Hospedagens</a></li>
 
+                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                            <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                        }
+
+                        <li>@Html.Partial("_LoginPartial")</li>
                     </ul>
                 </div>
-
+               
             </nav>
         </div>
         <br>
@@ -252,7 +259,7 @@
             if (selecionou) {
                 var url = '@Url.Action("Checkin", "Checkin")?quartosSelect=' + valor;
                 window.location.href = url;
-               
+
             } else {
                 alert("Selecione um ou mais quartos");
             }
@@ -271,6 +278,7 @@
                     selecionou = true;
                 }
             }
+
 
             if (selecionou) {
                 var url = '@Url.Action("Checkout", "Checkout")?hospedagensSelect=' + valor;
@@ -298,6 +306,7 @@
                 $.post("/Item/Cadastrar", { idHospedagem: valor }, function (data) {
                     var url = '@Url.Action("Cadastrar", "Item")';
                     window.location.href = url;
+
                     $("html").html(data);
                 });
             } else {

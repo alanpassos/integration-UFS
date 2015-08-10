@@ -446,3 +446,21 @@ alter table Historico
 add constraint fk_usuario_hitorico
 foreign key (idUsuario)
 references   Usuario (idUsuario)
+
+
+--==================================== DROPS ============
+USE dbtdinewhotel
+DROP TABLE dbo.HISTORICO
+DROP TABLE dbo.HistoricoAcesso
+DROP TABLE DBO.Item;
+DROP TABLE DBO.ControleCliente;
+DROP TABLE DBO.ControleServico;
+DROP TABLE DBO.Servico
+DROP TABLE DBO.Pagamento
+DROP TABLE DBO.FormaPagamento;
+DROP TABLE DBO.Hospedagem
+DROP TABLE DBO.PacoteHospedagem
+DROP TABLE DBO.Quarto
+DROP TABLE DBO.TipoQuarto
+DROP TABLE DBO.Produto
+

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ProjectHotelWeb.Controllers
+namespace IdentitySample.Controllers
 {
     public class HomeController : Controller
     {
@@ -22,8 +22,9 @@ namespace ProjectHotelWeb.Controllers
 
         // GET: Home
         public ActionResult Index(string filtro)
-        {
 
+        {
+         
             switch (filtro)
             {
                 case "L":
@@ -74,6 +75,7 @@ namespace ProjectHotelWeb.Controllers
             List<TipoQuarto> quartosLivres = ITipoQuartos.Listar().ToList<TipoQuarto>();
             ViewBag.Hospedagens = null;
             ViewBag.Quartos = quartosLivres;
+
             return View();
         }
     }
