@@ -60,9 +60,9 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-        public ActionResult Checkout(string[] hospedagens)
+        public ActionResult Checkout(string hospedagensSelect)
         {
-            
+            string[] hospedagens = hospedagensSelect.Split(',');
             
             if (hospedagens != null)
             {
