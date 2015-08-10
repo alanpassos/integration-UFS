@@ -241,19 +241,19 @@
 
 
         function RealizarCheckin() {
-            var tamanho = document.forms[0].elements.length;
+            var tamanho = document.getElementById("itemForm").elements.length;
             var selecionou = false;
             var valor = [];
             var index = 0;
 
             for (var i = 0; i < tamanho ; i++) {
 
-                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
-                    valor[index++] = document.forms[0].elements[i].id.toString();
+                if (document.getElementById(document.getElementById("itemForm").elements[i].id).checked) {
+                    valor[index++]= document.getElementById("itemForm").elements[i].id;
                     selecionou = true;
                 }
             }
-
+            alert(valor);
             if (selecionou) {
                 var url = '@Url.Action("Checkin", "Checkin")?quartosSelect=' + valor;
                 window.location.href = url;
@@ -264,15 +264,15 @@
         }
 
         function RealizarCheckout() {
-            var tamanho = document.forms[0].elements.length;
+            var tamanho = document.getElementById("itemForm").elements.length;
             var selecionou = false;
             var valor = [];
             var index = 0;
             
             for (var i = 0; i < tamanho ; i++) {
 
-                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
-                    valor[index++] = document.forms[0].elements[i].id.toString();
+                if (document.getElementById(document.getElementById("itemForm").elements[i].id.toString()).checked) {
+                    valor[index++] = document.getElementById("itemForm").elements[i].id.toString();
                     selecionou = true;
                 }
             }
@@ -288,15 +288,15 @@
         }
 
         function AdicionarItem() {
-            var tamanho = document.forms[0].elements.length;
+            var tamanho = document.getElementById("itemForm").elements.length;
             var selecionou = false;
             var valor = null;
 
             for (var i = 0; i < tamanho ; i++) {
-
-                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
-                    valor = document.forms[0].elements[i].id.toString();
+                if (document.getElementById(document.getElementById("itemForm").elements[i].id.toString()).checked) {
+                    valor = document.getElementById("itemForm").elements[i].id.toString();
                     selecionou = true;
+                    break;
                 }
             }
 
@@ -312,22 +312,23 @@
             }
         }
 
-        function VincularServico(idH) {
-            var tamanho = document.forms[0].elements.length;
+        function VincularServico() {
+            
+            var tamanho = document.getElementById("itemForm").elements.length;
             var selecionou = false;
             var valor = null;
 
             for (var i = 0; i < tamanho ; i++) {
 
-                if (document.getElementById(document.forms[0].elements[i].id.toString()).checked) {
-                    valor = document.forms[0].elements[i].id.toString();
+                if (document.getElementById(document.getElementById("itemForm").elements[i].id.toString()).checked) {
+                    valor = document.getElementById("itemForm").elements[i].id.toString();
                     selecionou = true;
                 }
             }
 
             if (selecionou) {
 
-                
+
                 // $.post("/ControleServico/VincularServicoHospedagem", { idHospedagem: valor }, function (data) {
 
                //IMPORTANTE MANTER O )?<VARIAVEL>=<VALOR>

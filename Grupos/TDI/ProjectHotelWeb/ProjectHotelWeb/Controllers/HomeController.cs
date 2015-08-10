@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace IdentitySample.Controllers
+namespace ProjectWeb.Controllers
 {
     public class HomeController : Controller
     {
