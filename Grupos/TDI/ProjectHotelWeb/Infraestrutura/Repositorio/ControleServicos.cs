@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.Classes_Especiais;
+using System.Data.Entity;
+
+
+
 
 namespace Infraestrutura.Repositorio
 {
@@ -58,7 +62,7 @@ namespace Infraestrutura.Repositorio
         {
             return controleServicos.OrderBy(p => p.idHospedagem).ToList();
         }
-        /*
+
         public ICollection<ServicoHospedagem> ListarServicoHospedagem(int idHospedagem)
         {
             IQueryable<ServicoHospedagem> servicosHospedagem = 
@@ -66,22 +70,25 @@ namespace Infraestrutura.Repositorio
                 join q in quarto on h.idQuarto equals q.idQuarto
                 join cs in controleServicos on h.idHospedagem equals cs.idHospedagem
                 join s in servico on cs.idServico equals s.idServico
-                where cs.idHospedagem == idHospedagem
+                where cs.idHospedagem == idHospedagem && !cs.cancelado
                 group h by new { 
-
                     q.descricao,
-                    cs.dataAbertura.
+                    data = DbFunctions.TruncateTime(
+                    cs.dataAbertura),
+                    s.valor,
+                    servico = s.descricao 
+                } into servicoHospedagem 
+                select new ServicoHospedagem{
+                 dataAbertura = servicoHospedagem.Key.data,
+                 quantidade = servicoHospedagem.Count(),
+                 quarto = servicoHospedagem.Key.descricao,
+                 servico = servicoHospedagem.Key.servico,
+                valor = servicoHospedagem.Key.valor,
+                valorTotal = (servicoHospedagem.Key.valor * servicoHospedagem.Count())
+                };
 
-                } 
-
-
-
-
-
-
-            return 
+            return servicosHospedagem.ToList(); 
         }
-         */
         public bool ContemRegistro()
         {
             throw new NotImplementedException();
