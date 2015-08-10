@@ -22,11 +22,32 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult Index()
         {
 
-            List<Pessoa> pessoas = iPessoas.Listar().ToList<Pessoa>();
+            
             
 
-            return View(pessoas);
+            return View();
         }
+
+        public ActionResult Consultar()
+        {
+
+            string pesquisa = Request.Params.Get("pesquisa");
+
+            string parametroPesquisa = Request.Params.Get("parametroPesquisa");
+            List<Pessoa> pessoas = null;
+            pesquisa = pesquisa.Replace(".", "").Replace("-", "");
+            if (parametroPesquisa.Equals("nome"))
+                pessoas = iPessoas.ListarPorNome(pesquisa).ToList<Pessoa>();
+            if (parametroPesquisa.Equals("cpf"))
+                pessoas = iPessoas.ListarPorCpfCnpj(pesquisa).ToList<Pessoa>();
+            if (parametroPesquisa.Equals("telefone"))
+                pessoas = iPessoas.ListarPorTelefone(pesquisa).ToList<Pessoa>();
+            
+            return PartialView(pessoas);
+
+        }
+
+
 
         public ActionResult Cadastrar()
         {
