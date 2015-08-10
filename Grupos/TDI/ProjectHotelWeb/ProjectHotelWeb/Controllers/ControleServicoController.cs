@@ -22,8 +22,7 @@ namespace ProjectHotelWeb.Controllers
         public IQuartos IQuartos { get; set; }
         public IServicos IServicos { get; set; }
         //public UserManager<User> userManager; 
-        public List<Servico> listaDeServicos = new List<Servico>();
-
+      
 
         // GET: ControleServico
         public ActionResult Index()
@@ -72,28 +71,38 @@ namespace ProjectHotelWeb.Controllers
 
         }
         
-        public void VincularServico (string idServico)
+        public ActionResult VincularServico (string idServico)
         {
             
             Hospedagem hospedagem = (Hospedagem) TempData["hospedagem"];
             
 
             int codigoServico = Convert.ToInt32(idServico.Trim());
-            double valorTotal = Convert.ToDouble(Request.Params.Get("total").Remove(0, 2));
+            int quantidade = Convert.ToInt32(Request.Params.Get("quantidade")); 
+            
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"));
-            DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"));
+            string dataFinalizacao = Request.Params.Get("dataFim");
             ControleServico controleServico = new ControleServico();
+            if (dataFinalizacao != "")
+            {
+                DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"));
+                controleServico.dataLiberacao = dataFim;
+            
+            }
             controleServico.idHospedagem = hospedagem.idHospedagem;
             controleServico.idServico = codigoServico;
             controleServico.idFuncionario = 2;
             controleServico.dataAbertura = dataInicio;
-            controleServico.dataLiberacao = dataFim;
             controleServico.dataCadastro = DateTime.Now;
             controleServico.cancelado = false;
 
-            IControleServicos.Cadastrar(controleServico);
+            for (int i = 0; i < quantidade; i++ )
+            {
+                IControleServicos.Cadastrar(controleServico);
+            }
 
-           // return null;
+            
+           return PartialView();
 
         }
 

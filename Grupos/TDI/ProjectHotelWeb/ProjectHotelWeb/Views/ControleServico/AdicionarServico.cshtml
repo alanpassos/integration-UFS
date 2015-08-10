@@ -112,12 +112,12 @@
                     </td>
 
                     <td>
-                        <input id="dataFim" name="dataFim" size="5" value="" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10" required>
+                        <input id="dataFim" name="dataFim" size="5" value="" type="text" class="validate" onkeypress="javascript: mascara(this, date_mask); return isNumberKey(event)" maxlength="10">
                         <label for="dataFim"></label>
                     </td>
                     <td>
                         <div class="input-field"></div>
-                        <input id="valor" name="valor" value="R$ @Model.valor" size="1" type="text" class="validate" onkeyup="sync()" maxlength="5" required>
+                        <input id="valor" name="valor" value="R$ @Model.valor" size="1" type="text" class="validate" onkeyup="sync()" maxlength="5" readonly required>
                         <label for="valor"></label>
 
                     </td>
