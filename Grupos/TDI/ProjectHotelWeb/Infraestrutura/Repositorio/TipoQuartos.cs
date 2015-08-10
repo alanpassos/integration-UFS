@@ -59,54 +59,7 @@ namespace Infraestrutura.Repositorio
         public ICollection<TipoQuarto> Listar()
         {
             return tipoQuartos.OrderBy(p => p.descricao).ToList();
-        }
-
-        public ICollection<QuartosLivresReserva> ListaLivres(string tipoQuartoPesquisa, string pessoasPesquisa, DateTime dataInicio, DateTime dataFim)
-        {
-            List<QuartosLivresReserva> quartosLista = new List<QuartosLivresReserva>();
-
-            IQueryable<QuartosLivresReserva> ConsultaPacoteHospedagem = from tipo_quarto in tipoQuartos
-                                                                        join quarto in quartos on tipo_quarto.idTipoQuarto equals quarto.idTipoQuarto
-                                                                        where quarto.status.Equals("L") && tipo_quarto.descricao.Equals(tipoQuartoPesquisa)
-                                                                        && quarto.capacidade.ToString().Equals(pessoasPesquisa)
-                                                                        && !(
-                                                                            from _pacote_hospedagem in pacoteHospedagem
-                                                                            join _hospedagem in hospedagem on _pacote_hospedagem.idPacoteHospedagem equals _hospedagem.idPacoteHospedagem
-                                                                            join _quartos in quartos on _hospedagem.idQuarto equals _quartos.idQuarto
-                                                                            join _tipo_quarto in tipoQuartos on _quartos.idTipoQuarto equals _tipo_quarto.idTipoQuarto
-                                                                            where _quartos.idQuarto.Equals(quarto.idQuarto)
-                                                                            && (dataInicio <= _pacote_hospedagem.dataSaida && dataFim >= _pacote_hospedagem.dataEntrada)
-                                                                            && _pacote_hospedagem.tipoPacote.Equals("R")
-                                                                            && _quartos.reservado
-                                                                            select _quartos.idQuarto
-                                                                        ).Contains(quarto.idQuarto)
-                                                                        group tipo_quarto by new
-                                                                        {
-                                                                            tipo_quarto.idTipoQuarto,
-                                                                            tipo_quarto.descricao,
-                                                                            quarto.capacidade,
-                                                                            tipo_quarto.valor,
-                                                                            dataFim,
-                                                                            dataInicio
-
-                                                                        } into quartoLivre
-                                                                        select new QuartosLivresReserva
-                                                                        {
-                                                                            idTipoQuarto = quartoLivre.Key.idTipoQuarto,
-                                                                            descricao = quartoLivre.Key.descricao,
-                                                                            capacidade = quartoLivre.Key.capacidade,
-                                                                            valor = quartoLivre.Key.valor,
-                                                                            quantidade = quartoLivre.Count(),
-                                                                            dataFim = dataFim,
-                                                                            dataInicio = dataInicio
-                                                                        };
-
-
-            quartosLista = ConsultaPacoteHospedagem.OrderBy(p => p.descricao).ToList();
-
-            return quartosLista;
-        }
-
+        }    
 
         public ICollection<int> ListaQuartosTipo(string idTipoQuartoPesquisa, string pessoasPesquisa)
         {
@@ -123,31 +76,7 @@ namespace Infraestrutura.Repositorio
 
             return indicesQuartos;
         }
-
-        public ICollection<QuartosLivresReserva> ListaTiposReservadosPacote(int idPacoteHospedagem)
-        {
-            List<QuartosLivresReserva> quartosReservados = new List<QuartosLivresReserva>();
-
-            IQueryable<QuartosLivresReserva> consultaReservasCliente = from _hospedagem in hospedagem
-                                                                       join pacote_hospedagem in pacoteHospedagem on _hospedagem.idPacoteHospedagem equals pacote_hospedagem.idPacoteHospedagem
-                                                                       join quarto in quartos on _hospedagem.idQuarto equals quarto.idQuarto
-                                                                       join tipo_quarto in tipoQuartos on quarto.idTipoQuarto equals tipo_quarto.idTipoQuarto
-                                                                       where quarto.reservado && pacote_hospedagem.idPacoteHospedagem == idPacoteHospedagem
-                                                                       select new QuartosLivresReserva
-                                                                       {
-                                                                           idTipoQuarto = tipo_quarto.idTipoQuarto,
-                                                                           descricao = tipo_quarto.descricao,
-                                                                           capacidade = quarto.capacidade,
-                                                                           valor = _hospedagem.valorHospedagem,
-                                                                           valorTotal = pacote_hospedagem.valorTotal,
-                                                                           dataFim = _hospedagem.dataLiberacao,
-                                                                           dataInicio = _hospedagem.dataAbertura
-                                                                       };
-
-            quartosReservados = consultaReservasCliente.ToList();
-
-            return quartosReservados;
-        }
+   
 
         public bool ContemRegistro()
         {
