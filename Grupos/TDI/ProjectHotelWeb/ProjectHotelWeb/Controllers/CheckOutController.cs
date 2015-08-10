@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProjectHotelWeb.ClassesEspeciais;
+using Dominio.Classes_Especiais;
 
 
 namespace ProjectHotelWeb.Controllers
@@ -62,10 +63,11 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Checkout(string hospedagensSelect)
         {
-            string[] hospedagens = hospedagensSelect.Split(',');
-            
-            if (hospedagens != null)
+
+
+            if (hospedagensSelect != null)
             {
+                string[] hospedagens = hospedagensSelect.Split(',');
                 foreach (var item in hospedagens)
                 {
                     string[] ids = item.Split('#');
@@ -155,12 +157,29 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult ListarServicos(int idHospedagem)
         {
             Hospedagem hospedagem = IHospedagens.ResultadoUnico(idHospedagem);
-            SuperCheckout.controleServicosSelecionados = new List<ControleServico>();
-            SuperCheckout.controleServicosSelecionados.AddRange(hospedagem.ControleServico);
+           
 
+            
+           
 
+            ServicoHospedagem servicosInnerjoin = new ServicoHospedagem();
+            
+            
 
-            return RedirectToAction("Checkout");
+            return PartialView();
         }
+
+        public ActionResult pagar()
+        {
+
+            SuperCheckout.hospedagensIniciais = new List<Hospedagem>();
+            SuperCheckout.hospedagemSeleionada = new List<Hospedagem>();
+            SuperCheckout.pessoasSelecionadas = new List<Pessoa>();
+            SuperCheckout.controleServicosSelecionados = new List<ControleServico>();
+            
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }
