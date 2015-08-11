@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Dominio.Classes_Especiais.HospedagemMes>
+
+@{
+    ViewBag.Title = "RelatorioHospedagemMes";
+}
+
+<h2>RelatorioHospedagemMes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cpfcnpj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefonemovel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hospedagens)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valorTotal)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpfcnpj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefonemovel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hospedagens)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valorTotal)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<hr>
+<div class="row ">
+    <div class="input-field col s3">
+        <button onclick="location.href='@Url.Action("Report",new {id= "PDF"})'"> PDF</button>
+    </div>
+    <div class="input-field col s3 ">
+        <button onclick="location.href='@Url.Action("Report",new {id= "Excel"})'"> EXCEL</button>
+    </div>
+    <div class="input-field col s3 center">
+        <button onclick="location.href='@Url.Action("Report", new { id = "Word" })'"> WORD</button>
+    </div>
+    <div class="input-field col s3 center">
+        <button onclick="location.href='@Url.Action("Report", new { id = "Image" })'"> IMAGEM</button>
+    </div>
+</div>
