@@ -39,9 +39,18 @@ namespace ProjectHotelWeb.Controllers
         }
         
         // GET: ControleServico
-        public ActionResult Index()
+        public ActionResult Index(string idHospedagem)
         {
-            return View();
+            int hospedagem = Convert.ToInt32(idHospedagem.Split('/')[0]);
+            //List<ServicoHospedagem> servicosHospedagens = IControleServicos.ListarServicoHospedagem(hospedagem).ToList();
+            List<ControleServico> servicosDaHospedagem = IControleServicos.ListarServicosIndividualmente(hospedagem).ToList<ControleServico>();
+            ViewBag.Quarto = servicosDaHospedagem.ElementAt(0).Hospedagem.Quarto;
+            ViewBag.Cliente = ICliente.ResultadoUnicoHospedagem(hospedagem);
+            List<Pessoa> func = IPessoas.ListarFuncionario().ToList<Pessoa>();
+            ViewBag.Funcionarios = IPessoas.ListarFuncionario().ToList<Pessoa>();
+            ViewBag.Servicos = IServicos.Listar().ToList<Servico>();
+            ViewBag.Hospedagem = hospedagem;
+            return View(servicosDaHospedagem);
         }
 
 
@@ -115,6 +124,26 @@ namespace ProjectHotelWeb.Controllers
 
             return PartialView(servicosHospedagens);
 
+        }
+
+        public ActionResult RealizarServico (int idControleServico, int idHospedagem)
+        {
+            ControleServico servico = IControleServicos.ResultadoUnico(idControleServico);
+            servico.dataLiberacao = DateTime.Now;
+            IControleServicos.Atualizar(servico);
+            return RedirectToAction("Index", new { idHospedagem = idHospedagem });
+        }
+
+        public ActionResult CancelarServico(int idControleServico, int idHospedagem)
+        {
+            ControleServico servico = IControleServicos.ResultadoUnico(idControleServico);
+            if (servico.dataLiberacao == null)
+            {
+                servico.cancelado = true;
+                IControleServicos.Atualizar(servico);
+            }
+
+            return RedirectToAction("Index", new { idHospedagem = idHospedagem });
         }
         
     }
