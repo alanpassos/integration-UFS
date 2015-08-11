@@ -16,30 +16,40 @@ namespace ProjectHotelWeb.Controllers
         public ITipoQuartos ITipoQuarto { get; set; }
 
         // GET: TipoQuarto
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Index()
         {
             List<TipoQuarto> tipoQuartos = ITipoQuarto.Listar().ToList<TipoQuarto>();
             return View(tipoQuartos);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Detalhar(int id)
         {
             TipoQuarto tipoQuarto = ITipoQuarto.ResultadoUnico(id);
             return View(tipoQuarto);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Cadastrar()
         {
             return View();
         }
 
         [ActionName("CadastrarTipoQuarto")]
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Cadastrar(TipoQuarto tipoQuarto)
         {
             ITipoQuarto.Cadastrar(tipoQuarto);
             return RedirectToAction("Index");
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Atualizar(int id)
         {
             TipoQuarto tipoQuartos = ITipoQuarto.ResultadoUnico(id);
@@ -47,12 +57,15 @@ namespace ProjectHotelWeb.Controllers
         }
 
         [ActionName("AtualizarTipoQuarto")]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Atualizar(TipoQuarto tipoQuarto)
         {
             ITipoQuarto.Atualizar(tipoQuarto);
             return RedirectToAction("Index");
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Excluir(int id)
         {
             TipoQuarto tipoQuarto = ITipoQuarto.ResultadoUnico(id);
@@ -60,6 +73,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
         [ActionName("ExcluirTipoQuarto")]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Excluir(TipoQuarto tipoQuarto)
         {
             ITipoQuarto.Remover(tipoQuarto);

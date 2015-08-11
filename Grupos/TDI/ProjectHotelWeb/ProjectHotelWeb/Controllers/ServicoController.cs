@@ -17,6 +17,8 @@ namespace ProjectHotelWeb.Controllers
 
 
         // GET: Servico
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Index()
         {
             List<Servico> servicos = IServicos.Listar().ToList<Servico>();
@@ -24,12 +26,16 @@ namespace ProjectHotelWeb.Controllers
             return View(servicos);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Cadastrar()
         {
 
             return View();
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult CadastrarServico(Servico servico)
         {
 
@@ -40,6 +46,8 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Atualizar(int id)
         {
 
@@ -49,6 +57,8 @@ namespace ProjectHotelWeb.Controllers
             return View(servico);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult AtualizarServico(Servico servico)
         {
 
@@ -56,6 +66,9 @@ namespace ProjectHotelWeb.Controllers
             IServicos.Atualizar(servico);
             return RedirectToAction("Index");
         }
+
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Detalhar(int id)
         {
             Servico servico = IServicos.ResultadoUnico(id);

@@ -52,6 +52,7 @@ namespace ProjectHotelWeb.Controllers
 
         [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
 
+
         public ActionResult Cadastrar()
         {
 
@@ -108,6 +109,9 @@ namespace ProjectHotelWeb.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+
         public ActionResult Excluir(int id)
         {
             Pessoa pessoa = iPessoas.ResultadoUnico(id);
@@ -115,7 +119,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         [ActionName("ExcluirCliente")]
         public ActionResult Excluir(Pessoa pessoa)
         {
@@ -132,7 +136,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Detalhar(int id)
         {
             Pessoa pessoa = iPessoas.ResultadoUnico(id);

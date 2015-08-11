@@ -39,6 +39,7 @@ namespace ProjectHotelWeb.Controllers
         }
         
         // GET: ControleServico
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Index(string idHospedagem)
         {
             int hospedagem = Convert.ToInt32(idHospedagem.Split('/')[0]);
@@ -53,7 +54,7 @@ namespace ProjectHotelWeb.Controllers
             return View(servicosDaHospedagem);
         }
 
-
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult VincularServicoHospedagem(string idHospedagem)
         {
             Hospedagem hospedagem;
@@ -126,6 +127,7 @@ namespace ProjectHotelWeb.Controllers
 
         }
 
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult RealizarServico (int idControleServico, int idHospedagem)
         {
             ControleServico servico = IControleServicos.ResultadoUnico(idControleServico);
@@ -134,6 +136,8 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Index", new { idHospedagem = idHospedagem });
         }
 
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+        
         public ActionResult CancelarServico(int idControleServico, int idHospedagem)
         {
             ControleServico servico = IControleServicos.ResultadoUnico(idControleServico);
