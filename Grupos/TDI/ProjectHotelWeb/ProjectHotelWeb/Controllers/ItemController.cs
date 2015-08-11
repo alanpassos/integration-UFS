@@ -86,7 +86,7 @@ namespace ProjectHotelWeb.Controllers
 
         [HttpPost]
 
-        [Authorize(Roles = "Administrador, Gerente")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult CadastrarItem()
         {
             string id = Request.Params.Get("group1");
@@ -120,7 +120,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-        [Authorize(Roles = "Administrador, Gerente")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Atualizar(int id)
         {
             
@@ -130,7 +130,7 @@ namespace ProjectHotelWeb.Controllers
 
         [ActionName("AtualizarItem")]
 
-        [Authorize(Roles = "Administrador, Gerente")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Atualizar(Item item)
         {
             decimal valorNovo;

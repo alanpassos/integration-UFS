@@ -64,8 +64,11 @@
             <div class="input-field col s5">
                 <select name="nivel" required>
                     <option value="" disabled selected>Selecione a opção</option>
-                    <option value="A">Administrador</option>
-                    <option value="G">Gerente</option>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <option value="A">Administrador</option>
+                        <option value="G">Gerente</option>
+                    }
                     <option value="R">Recepcionista</option>
                     <option value="C">Convidado</option>
                 </select>

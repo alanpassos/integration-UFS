@@ -68,7 +68,8 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-        [Authorize(Roles = "Administrador, Gerente")]
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Detalhar(int id)
         {
             Servico servico = IServicos.ResultadoUnico(id);
