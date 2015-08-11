@@ -9,6 +9,11 @@ using Dominio.Interfaces;
 using Infraestrutura.Database;
 using ProjectHotelWeb.ClassesEspeciais;
 using Dominio.Classes_Especiais;
+using Microsoft.AspNet.Identity;
+using ProjectHotelWeb.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using IdentitySample.Models;
+
 
 
 namespace ProjectHotelWeb.Controllers
@@ -22,9 +27,17 @@ namespace ProjectHotelWeb.Controllers
         public IHospedagens IHospedagens { get; set; }
         public IQuartos IQuartos { get; set; }
         public IServicos IServicos { get; set; }
-        //public UserManager<User> userManager; 
-      
+       
+        public UserManager<User> userManager;
 
+        public ControleServicoController ()
+        {
+            UserDbContext db = new UserDbContext();
+            UserStore<User> userStore = new UserStore<User>(db);
+            userManager = new UserManager<User>(userStore);
+
+        }
+        
         // GET: ControleServico
         public ActionResult Index()
         {
@@ -90,7 +103,9 @@ namespace ProjectHotelWeb.Controllers
             }
             controleServico.idHospedagem = hospedagem.idHospedagem;
             controleServico.idServico = codigoServico;
-            controleServico.idFuncionario = 2;
+            string usuarioId = User.Identity.GetUserId();
+            User usuario = userManager.FindById(usuarioId);
+            controleServico.idFuncionario = usuario.idFuncionario;
             controleServico.dataAbertura = dataInicio;
             controleServico.dataCadastro = DateTime.Now;
             controleServico.cancelado = false;
