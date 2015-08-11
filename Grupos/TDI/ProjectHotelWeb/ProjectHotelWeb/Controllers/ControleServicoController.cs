@@ -45,7 +45,10 @@ namespace ProjectHotelWeb.Controllers
             int hospedagem = Convert.ToInt32(idHospedagem.Split('/')[0]);
             //List<ServicoHospedagem> servicosHospedagens = IControleServicos.ListarServicoHospedagem(hospedagem).ToList();
             List<ControleServico> servicosDaHospedagem = IControleServicos.ListarServicosIndividualmente(hospedagem).ToList<ControleServico>();
-            ViewBag.Quarto = servicosDaHospedagem.ElementAt(0).Hospedagem.Quarto;
+            if (servicosDaHospedagem.Count > 0)
+            {
+                ViewBag.Quarto = servicosDaHospedagem.ElementAt(0).Hospedagem.Quarto;
+            }
             ViewBag.Cliente = ICliente.ResultadoUnicoHospedagem(hospedagem);
             List<Pessoa> func = IPessoas.ListarFuncionario().ToList<Pessoa>();
             ViewBag.Funcionarios = IPessoas.ListarFuncionario().ToList<Pessoa>();

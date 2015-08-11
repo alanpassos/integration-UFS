@@ -61,12 +61,16 @@
             <nav>
                 <div class="nav-wrapper">
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                        <li>@Html.Partial("_LoginPartial")</li>
                         <li>
+
                             <a class="dropdown-button" href="#!" data-activates="dropdown1">
                                 Gerencia
                                 <i class="material-icons right">arrow_drop_down</i>
                             </a>
                         </li>
+
 
 
                     </ul>
@@ -80,10 +84,9 @@
                             <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
                         }
 
-                        <li>@Html.Partial("_LoginPartial")</li>
                     </ul>
                 </div>
-
+                
             </nav>
         </div>
         <br>
