@@ -332,7 +332,7 @@
                 // $.post("/ControleServico/VincularServicoHospedagem", { idHospedagem: valor }, function (data) {
 
                //IMPORTANTE MANTER O )?<VARIAVEL>=<VALOR>
-                var url = '@Url.Action("VincularServicoHospedagem", "ControleServico")?idHospedagem=' + valor;
+                var url = '@Url.Action("Index", "ControleServico")?idHospedagem=' + valor;
                 window.location.href = url;
 
                 //   $("html").html(data);
