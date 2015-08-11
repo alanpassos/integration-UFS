@@ -14,6 +14,7 @@ namespace Dominio.Interfaces
        void Atualizar(ControleServico controleServico);
        void Remover(ControleServico controleServico);
        ControleServico ResultadoUnico(int idServico);
+       ICollection<ControleServico> ListarServicosIndividualmente(int idHospedagem);
        ICollection<ServicoHospedagem> ListarServicoHospedagem(int id);
     }
 }
