@@ -94,13 +94,7 @@ namespace ProjectHotelWeb.Controllers
             int quantidade = Convert.ToInt32(Request.Params.Get("quantidade")); 
             
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"));
-            string dataFinalizacao = Request.Params.Get("dataFim");
             ControleServico controleServico = new ControleServico();
-            if (dataFinalizacao != "")
-            {
-                DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"));
-                controleServico.dataLiberacao = dataFim;
-            }
             controleServico.idHospedagem = hospedagem.idHospedagem;
             controleServico.idServico = codigoServico;
             string usuarioId = User.Identity.GetUserId();
