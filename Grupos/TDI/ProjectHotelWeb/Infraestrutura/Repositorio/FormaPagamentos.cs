@@ -45,6 +45,10 @@ namespace Infraestrutura.Repositorio
         {
             return formaPagamentos.SingleOrDefault(c => c.idFormaPagamento== idFormaPagamento);
         }
+        public List<FormaPagamento> ResultadoUnicoTipo(string tipo)
+        {
+            return formaPagamentos.Where(c => c.tipo== tipo).ToList();
+        }
 
         public ICollection<FormaPagamento> Listar()
         {

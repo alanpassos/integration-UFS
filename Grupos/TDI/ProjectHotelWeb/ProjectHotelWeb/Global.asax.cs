@@ -6,7 +6,7 @@ using System.Web.Routing;
 using ProjectHotelWeb.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
+using Dominio.Classes_Especiais;
 using ExemploWEB.App_Start;
 using System;
 using System.Collections.Generic;
@@ -35,6 +35,13 @@ namespace IdentitySample
             SuperCheckout.hospedagemSeleionada = new List<Hospedagem>();
             SuperCheckout.pessoasSelecionadas = new List<Pessoa>();
             SuperCheckout.controleServicosSelecionados = new List<ControleServico>();
+
+            PagamentoGlobal.superPagamento = new SuperPagamento();
+
+            PagamentoGlobal.pagamentos = new List<TipoPagamento>();
+
+            PagamentoGlobal.valorPago = 0;
+            
             #endregion
 
             AreaRegistration.RegisterAllAreas();

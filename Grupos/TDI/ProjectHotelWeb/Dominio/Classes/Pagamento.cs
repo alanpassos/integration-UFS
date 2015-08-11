@@ -13,7 +13,7 @@ namespace Dominio.Classes
        public int idPacoteHospedagem { get; set; }
        public DateTime dataCadastro { get; set; }
        public DateTime dataPrevista { get; set; }
-       public DateTime dataPagamento { get; set; }
+       public DateTime? dataPagamento { get; set; }
        public decimal valorParcela{ get; set; }
        public string status { get; set; }
 

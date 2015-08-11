@@ -1,4 +1,5 @@
 ﻿using Dominio.Classes;
+using Dominio.Classes_Especiais;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,4 +34,12 @@ namespace ProjectHotelWeb.ClassesEspeciais
         
 
     }
+    public static class PagamentoGlobal
+    {
+        public static SuperPagamento superPagamento { get; set; }
+        public static List<TipoPagamento> pagamentos {get;set;}
+        public static decimal valorPago { get; set; }
+    }
+
+
 }

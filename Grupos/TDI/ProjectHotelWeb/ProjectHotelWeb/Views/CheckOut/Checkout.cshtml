@@ -5,7 +5,29 @@
 }
 
 <h2 class="center">Check-out</h2>
+<script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="~/Content/js/materialize.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
+<script>
+
+    function pegarValor() {
+        var table = document.getElementById("hospedagens");
+
+        var ids = [];
+        var index = 0;
+        table.rows[0].cells[0].innerHTML;
+        for (var i = 1; i < table.rows.length; i++) {
+            ids[index++] = table.rows[i].cells[0].innerHTML.trim();
+        }
+        var url = '@Url.Action("Pagamento", "Pagamento")?hospedagensSelect=' + ids;
+        window.location.href = url;
+
+    }
+
+
+
+</script>
 <hr />
 @using (Html.BeginForm("acicionarQuartos", "Checkout"))
 {
@@ -52,9 +74,8 @@
     <hr />
 }
 
-@using (Html.BeginForm("Pagar", "Checkout"))
-{
-    <table class="hoverable">
+
+    <table class="striped" id="hospedagens">
         <tr>
             <th>
                 Quarto
@@ -92,7 +113,9 @@
 
 
                 <tr>
-
+                    <td style="display:none">
+                        @hospedagem.idHospedagem
+                    </td>
                     <td>
                         @hospedagem.Quarto.descricao
                     </td>
@@ -112,20 +135,17 @@
                         @hospedagem.valorHospedagem
                     </td>
                     <td>
-                        @Ajax.ActionLink("Serviços", "ListarServicos", new { idHospedagem = hospedagem.idHospedagem }, new AjaxOptions {
+                        @Ajax.ActionLink("Serviços", "ListarServicos", new { idHospedagem = hospedagem.idHospedagem }, new AjaxOptions
+                   {
                        UpdateTargetId = "divResultadoConsulta",
                        LoadingElementId = "divCarregando"
-                                        
+
                    })
                     </td>
                     <td>
                         @Html.ActionLink("Remover", "adicionarHospedagensExcluidas", new { idHospedagem = hospedagem.idHospedagem })
                     </td>
-                    <td>
-                        <input type="checkbox" class="filled-in" id="@(hospedagem.idHospedagem + "#" + hospedagem.valorHospedagem)" style="display:none" value="@hospedagem.idHospedagem" name="tabelaCheck" checked />
-                        <label style="display:none" for="@(hospedagem.idHospedagem + "#" + hospedagem.valorHospedagem)"><font color="#26a69a"><b>@hospedagem.Quarto.descricao</b></font></label>
 
-                    </td>
                 </tr>
             }
         }
@@ -156,10 +176,9 @@
             </button>
         </div>
         <div class="input-field col s4">
-            <button class="btn waves-effect waves-light" type="submit" name="action">
+            <button class="btn waves-effect waves-light" name="action" onclick="pegarValor()">
                 Check-out
             </button>
         </div>
     </div>
 
-}
