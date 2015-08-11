@@ -276,6 +276,7 @@ namespace IdentitySample.Controllers
                 user.ativo = true;
                 user.dataCadastro = DateTime.Now;
                 model.NivelDeAcesso = Convert.ToChar(Request.Params.Get("nivel"));
+                model.idFuncionario = user.idFuncionario;
                 IdentityResult resultado = userManager.Create(user, model.Password);
                 if (resultado.Succeeded)
                 {

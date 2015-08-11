@@ -18,7 +18,6 @@ namespace ProjectHotelWeb.Controllers
         public IHospedagens IHospedagem { get; set; }
         public IPessoas IPessoa { get; set; }
         public Hospedagem hospedagem { get; set; }
-      
 
         // GET: Item
         public ActionResult Index()
@@ -26,13 +25,12 @@ namespace ProjectHotelWeb.Controllers
             List<Item> itens = IItem.Listar().ToList<Item>();
             return View(itens);
         }
-
-
+        
         public ActionResult Cadastrar(string idHospedagem)
         {
             if(idHospedagem != null)
             {
-                Entidade.hospedagemGlobal = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('#')[0]));
+                Entidade.hospedagemGlobal = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('/')[0]));
             }
             else
             {
@@ -40,18 +38,20 @@ namespace ProjectHotelWeb.Controllers
                 Entidade.hospedagemGlobal = new Hospedagem();
                 Entidade.hospedagemGlobal = IHospedagem.ResultadoUnico(id);
             }
-
-
             List<Produto> produtos = IProduto.Listar().ToList<Produto>();
             ViewBag.Produto = produtos;
 
             List<Item> itens = IItem.ListarItemPorHspedagem(Entidade.hospedagemGlobal.idHospedagem).ToList<Item>();
-            ViewBag.Item = itens;
-
-            
+            ViewBag.Item = itens;          
             ClienteHospedagem();
 
             return View();
+        }
+        
+        public ActionResult Detalhar(int id)
+        {
+            Item item = IItem.ResultadoUnico(id);
+            return View(item);
         }
         
         public ActionResult Cadastro(string idHospedagem)
@@ -76,7 +76,6 @@ namespace ProjectHotelWeb.Controllers
             ViewBag.Cliente = cliente;
         }
 
-		
         [HttpPost]
         public ActionResult CadastrarItem()
         {
@@ -112,23 +111,34 @@ namespace ProjectHotelWeb.Controllers
 
         public ActionResult Atualizar(int id)
         {
-            hospedagem = IHospedagem.ResultadoUnico(1);
+            
             Item item = IItem.ResultadoUnico(id);
-            ClienteHospedagem();
-            return View(item);
+            return PartialView(item);
         }
 
         [ActionName("AtualizarItem")]
         public ActionResult Atualizar(Item item)
         {
-            hospedagem = IHospedagem.ResultadoUnico(1);
-            hospedagem.valorHospedagem += item.valorTotal;
-            IHospedagem.Atualizar(hospedagem);
-            IItem.Atualizar(item);
-            return RedirectToAction("Cadastrar");
+            decimal valorNovo;
+            decimal valorAntigo;
+            Hospedagem _hospedagem = IHospedagem.ResultadoUnico(item.idHospedagem);
+            Item _item = IItem.ResultadoUnico(item.idItem);
+
+            if(item.quantidade > _item.quantidade)
+            {
+                return RedirectToAction("Cadastrar", new { idHospedagem = _hospedagem.idHospedagem });
+            }
+
+            valorAntigo = _item.valorTotal;
+            _item.quantidade = item.quantidade;
+            valorNovo = (item.quantidade * _item.Produto.valor);
+            _item.valorTotal = valorNovo;
+            _hospedagem.valorHospedagem += (valorNovo - valorAntigo);
+            IHospedagem.Atualizar(_hospedagem);
+            IItem.Atualizar(_item);
+            return RedirectToAction("Cadastrar", new { idHospedagem = _hospedagem.idHospedagem});
         }
 
-        [HttpPost]
         public ActionResult CancelarItem()
         {
             string[] itensCancelados = Request.Params.Get("checkCancelar").Split(',', ' ');

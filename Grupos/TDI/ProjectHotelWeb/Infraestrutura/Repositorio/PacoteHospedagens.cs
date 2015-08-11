@@ -97,7 +97,6 @@ namespace Infraestrutura.Repositorio
         public ICollection<PacoteHospedagem> ListarReservaPorCliente(string nomeCliente)
         {
             List<PacoteHospedagem> listaReservas = pacoteHospedagens.Where(p => p.tipoPacote.Equals("R") && p.ativo == true).ToList();
-            string data = listaReservas[0].dataSaida.ToString().Replace("/", "").Substring(0, 8);
             return listaReservas.Where(p => p.Hospedagem[0].ControleCliente[0].Pessoa.nome.ToUpper().Contains(nomeCliente.ToUpper())).ToList(); 
         }
 

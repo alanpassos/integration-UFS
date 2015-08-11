@@ -8,6 +8,12 @@ using Dominio.Classes;
 using Dominio.Interfaces;
 using Infraestrutura.Database;
 using ProjectHotelWeb.ClassesEspeciais;
+using Dominio.Classes_Especiais;
+using Microsoft.AspNet.Identity;
+using ProjectHotelWeb.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using IdentitySample.Models;
+
 
 
 namespace ProjectHotelWeb.Controllers
@@ -21,13 +27,30 @@ namespace ProjectHotelWeb.Controllers
         public IHospedagens IHospedagens { get; set; }
         public IQuartos IQuartos { get; set; }
         public IServicos IServicos { get; set; }
-        //public UserManager<User> userManager; 
-      
+       
+        public UserManager<User> userManager;
 
-        // GET: ControleServico
-        public ActionResult Index()
+        public ControleServicoController ()
         {
-            return View();
+            UserDbContext db = new UserDbContext();
+            UserStore<User> userStore = new UserStore<User>(db);
+            userManager = new UserManager<User>(userStore);
+
+        }
+        
+        // GET: ControleServico
+        public ActionResult Index(string idHospedagem)
+        {
+            int hospedagem = Convert.ToInt32(idHospedagem.Split('/')[0]);
+            //List<ServicoHospedagem> servicosHospedagens = IControleServicos.ListarServicoHospedagem(hospedagem).ToList();
+            List<ControleServico> servicosDaHospedagem = IControleServicos.ListarServicosIndividualmente(hospedagem).ToList<ControleServico>();
+            ViewBag.Quarto = servicosDaHospedagem.ElementAt(0).Hospedagem.Quarto;
+            ViewBag.Cliente = ICliente.ResultadoUnicoHospedagem(hospedagem);
+            List<Pessoa> func = IPessoas.ListarFuncionario().ToList<Pessoa>();
+            ViewBag.Funcionarios = IPessoas.ListarFuncionario().ToList<Pessoa>();
+            ViewBag.Servicos = IServicos.Listar().ToList<Servico>();
+            ViewBag.Hospedagem = hospedagem;
+            return View(servicosDaHospedagem);
         }
 
 
@@ -38,7 +61,7 @@ namespace ProjectHotelWeb.Controllers
             Pessoa pessoaCliente;
             Quarto quarto;
 
-            hospedagem = IHospedagens.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('#')[0]));
+            hospedagem = IHospedagens.ResultadoUnico(Convert.ToInt32(idHospedagem.Split('/')[0]));
             cliente = ICliente.ResultadoUnicoHospedagem(hospedagem.idHospedagem);
             List<Servico> servicos = IServicos.Listar().ToList<Servico>();
             pessoaCliente = IPessoas.ResultadoUnico(cliente.Pessoa.idPessoa);
@@ -75,22 +98,17 @@ namespace ProjectHotelWeb.Controllers
         {
             
             Hospedagem hospedagem = (Hospedagem) TempData["hospedagem"];
-            
-
+           
             int codigoServico = Convert.ToInt32(idServico.Trim());
             int quantidade = Convert.ToInt32(Request.Params.Get("quantidade")); 
             
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"));
-            string dataFinalizacao = Request.Params.Get("dataFim");
             ControleServico controleServico = new ControleServico();
-            if (dataFinalizacao != "")
-            {
-                DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"));
-                controleServico.dataLiberacao = dataFim;
-            }
             controleServico.idHospedagem = hospedagem.idHospedagem;
             controleServico.idServico = codigoServico;
-            controleServico.idFuncionario = 2;
+            string usuarioId = User.Identity.GetUserId();
+            User usuario = userManager.FindById(usuarioId);
+            controleServico.idFuncionario = usuario.idFuncionario;
             controleServico.dataAbertura = dataInicio;
             controleServico.dataCadastro = DateTime.Now;
             controleServico.cancelado = false;
@@ -100,11 +118,33 @@ namespace ProjectHotelWeb.Controllers
                 IControleServicos.Cadastrar(controleServico);
             }
 
+            TempData["hospedagem"] = hospedagem;
             
-           return PartialView();
+            List<ServicoHospedagem> servicosHospedagens = IControleServicos.ListarServicoHospedagem(hospedagem.idHospedagem).ToList();
+
+            return PartialView(servicosHospedagens);
 
         }
 
+        public ActionResult RealizarServico (int idControleServico, int idHospedagem)
+        {
+            ControleServico servico = IControleServicos.ResultadoUnico(idControleServico);
+            servico.dataLiberacao = DateTime.Now;
+            IControleServicos.Atualizar(servico);
+            return RedirectToAction("Index", new { idHospedagem = idHospedagem });
+        }
+
+        public ActionResult CancelarServico(int idControleServico, int idHospedagem)
+        {
+            ControleServico servico = IControleServicos.ResultadoUnico(idControleServico);
+            if (servico.dataLiberacao == null)
+            {
+                servico.cancelado = true;
+                IControleServicos.Atualizar(servico);
+            }
+
+            return RedirectToAction("Index", new { idHospedagem = idHospedagem });
+        }
         
     }
 }
