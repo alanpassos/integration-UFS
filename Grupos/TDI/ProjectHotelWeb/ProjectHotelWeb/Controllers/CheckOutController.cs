@@ -20,24 +20,31 @@ namespace ProjectHotelWeb.Controllers
         public IHospedagens IHospedagens { get; set; }
         public IControleServicos IControleServico { get; set; }
         // GET: CheckOut
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Index()
         {
             List<PacoteHospedagem> pacoteHospedagens = IPacoteHospedagens.ListarCheckout().ToList<PacoteHospedagem>();
             return View(pacoteHospedagens);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Detalhar(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoCheckout(id);
             return View(pacoteHospedagem);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Cadastrar()
         {
             return View();
         }
 
         [ActionName("CadastrarCheckout")]
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Cadastrar(PacoteHospedagem pacoteHospedagem)
         {
             pacoteHospedagem.ativo = true;
@@ -46,6 +53,8 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Atualizar(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoCheckout(id);
@@ -53,6 +62,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
         [ActionName("AtualizarCheckout")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Atualizar(PacoteHospedagem pacoteHospedagem)
         {
             pacoteHospedagem.ativo = true;
@@ -62,6 +72,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Checkout(string hospedagensSelect)
         {
 
@@ -75,14 +86,14 @@ namespace ProjectHotelWeb.Controllers
                     int idHospedagem = Convert.ToInt32(ids[0]);
                     Hospedagem hospedagem = new Hospedagem();
                     hospedagem = IHospedagens.ResultadoUnico(idHospedagem);
-                    if(!SuperCheckout.hospedagemSeleionada.Contains(hospedagem))
+                    if (!SuperCheckout.hospedagemSeleionada.Contains(hospedagem))
                         SuperCheckout.hospedagemSeleionada.Add(hospedagem);
 
                 }
             }
 
 
-           
+
 
             List<Pessoa> clientes = new List<Pessoa>();
             foreach (var item in SuperCheckout.hospedagemSeleionada)
@@ -100,7 +111,7 @@ namespace ProjectHotelWeb.Controllers
             ViewBag.ControleServico = SuperCheckout.controleServicosSelecionados;
             return View(SuperCheckout.hospedagemSeleionada);
         }
-    
+
 
         public ActionResult acicionarQuartos()
         {
@@ -170,7 +181,7 @@ namespace ProjectHotelWeb.Controllers
             SuperCheckout.hospedagemSeleionada = new List<Hospedagem>();
             SuperCheckout.pessoasSelecionadas = new List<Pessoa>();
             SuperCheckout.controleServicosSelecionados = new List<ControleServico>();
-            
+
             return RedirectToAction("Index", "Home");
         }
 

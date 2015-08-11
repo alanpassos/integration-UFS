@@ -51,7 +51,7 @@ namespace IdentitySample.Controllers
 
         //
         // GET: /Account/Login
-
+        [Authorize(Roles="Administrador, Gerente")]
         public ActionResult Index ()
         {
             ViewBag.Funcionarios = IPessoas.ListarFuncionario();
@@ -59,12 +59,16 @@ namespace IdentitySample.Controllers
             return View(userManager.Users.ToList());
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Editar(string id)
         {
             User usuario = userManager.FindById(id);
             return View(usuario);
         }
+
         [ActionName("EditarUsuario")]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult EditarUsuario (string userId)
         {
             
@@ -99,6 +103,8 @@ namespace IdentitySample.Controllers
 
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Excluir(string id)
         {
             User usuario = userManager.FindById(id);
@@ -107,7 +113,8 @@ namespace IdentitySample.Controllers
             return View(usuario);
         }
 
-        
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult ExcluirUsuario (string userId)
         {
             User usuario = userManager.FindById(userId);
@@ -251,7 +258,8 @@ namespace IdentitySample.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Register()
         {
             ViewBag.Funcionarios = IPessoas.ListarFuncionario().ToList<Pessoa>();
@@ -261,7 +269,7 @@ namespace IdentitySample.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrador, Gerente")]
        // [ActionName("RegistrarUsuario")]
         [ValidateAntiForgeryToken]
         public ActionResult Register(Register model)

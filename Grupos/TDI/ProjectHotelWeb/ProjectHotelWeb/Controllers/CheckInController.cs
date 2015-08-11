@@ -22,24 +22,28 @@ namespace ProjectHotelWeb.Controllers
 
 
         // GET: CheckIn
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Index()
         {
             List<PacoteHospedagem> pacoteHospedagens = IPacoteHospedagens.ListarCheckin().ToList<PacoteHospedagem>();
             return View(pacoteHospedagens);
         }
 
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Detalhar(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoCheckin(id);
             return View(pacoteHospedagem);
         }
 
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Cadastrar()
         {
             return View();
         }
 
         [ActionName("CadastrarCheckin")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Cadastrar(PacoteHospedagem pacoteHospedagem)
         {
             pacoteHospedagem.ativo = true;
@@ -48,6 +52,7 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Atualizar(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoCheckin(id);
@@ -55,6 +60,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
         [ActionName("AtualizarCheckin")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Atualizar(PacoteHospedagem pacoteHospedagem)
         {
             pacoteHospedagem.ativo = true;
@@ -63,6 +69,8 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Index");
         }
 
+         [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+       
         public ActionResult Checkin(string quartosSelect)
         {
             if (SuperCheckin.pessoasAdicionadas != null)
