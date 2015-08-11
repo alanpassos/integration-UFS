@@ -39,12 +39,22 @@ namespace ProjectHotelWeb.Controllers
         }
         
         // GET: ControleServico
-        public ActionResult Index()
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+        public ActionResult Index(string idHospedagem)
         {
-            return View();
+            int hospedagem = Convert.ToInt32(idHospedagem.Split('/')[0]);
+            //List<ServicoHospedagem> servicosHospedagens = IControleServicos.ListarServicoHospedagem(hospedagem).ToList();
+            List<ControleServico> servicosDaHospedagem = IControleServicos.ListarServicosIndividualmente(hospedagem).ToList<ControleServico>();
+            ViewBag.Quarto = servicosDaHospedagem.ElementAt(0).Hospedagem.Quarto;
+            ViewBag.Cliente = ICliente.ResultadoUnicoHospedagem(hospedagem);
+            List<Pessoa> func = IPessoas.ListarFuncionario().ToList<Pessoa>();
+            ViewBag.Funcionarios = IPessoas.ListarFuncionario().ToList<Pessoa>();
+            ViewBag.Servicos = IServicos.Listar().ToList<Servico>();
+            ViewBag.Hospedagem = hospedagem;
+            return View(servicosDaHospedagem);
         }
 
-
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult VincularServicoHospedagem(string idHospedagem)
         {
             Hospedagem hospedagem;
@@ -94,13 +104,7 @@ namespace ProjectHotelWeb.Controllers
             int quantidade = Convert.ToInt32(Request.Params.Get("quantidade")); 
             
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"));
-            string dataFinalizacao = Request.Params.Get("dataFim");
             ControleServico controleServico = new ControleServico();
-            if (dataFinalizacao != "")
-            {
-                DateTime dataFim = Convert.ToDateTime(Request.Params.Get("dataFim"));
-                controleServico.dataLiberacao = dataFim;
-            }
             controleServico.idHospedagem = hospedagem.idHospedagem;
             controleServico.idServico = codigoServico;
             string usuarioId = User.Identity.GetUserId();
@@ -121,6 +125,29 @@ namespace ProjectHotelWeb.Controllers
 
             return PartialView(servicosHospedagens);
 
+        }
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+        public ActionResult RealizarServico (int idControleServico, int idHospedagem)
+        {
+            ControleServico servico = IControleServicos.ResultadoUnico(idControleServico);
+            servico.dataLiberacao = DateTime.Now;
+            IControleServicos.Atualizar(servico);
+            return RedirectToAction("Index", new { idHospedagem = idHospedagem });
+        }
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+        
+        public ActionResult CancelarServico(int idControleServico, int idHospedagem)
+        {
+            ControleServico servico = IControleServicos.ResultadoUnico(idControleServico);
+            if (servico.dataLiberacao == null)
+            {
+                servico.cancelado = true;
+                IControleServicos.Atualizar(servico);
+            }
+
+            return RedirectToAction("Index", new { idHospedagem = idHospedagem });
         }
         
     }

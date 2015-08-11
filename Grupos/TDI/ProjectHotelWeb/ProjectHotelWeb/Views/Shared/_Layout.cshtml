@@ -34,13 +34,46 @@
 
 <body>
     <main>
+
+
+
+        
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="http://localhost:61055/Funcionario"><h6>Funcionario</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/Cliente"><h6>Cliente</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/Cargo"><h6>Cargo</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/FormaPagamento"><h6>Forma de Pagamento</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/Produto"><h6>Produto</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/Quarto"><h6>Quarto</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/Servico"><h6>Serviço</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/TipoQuarto"><h6>Tipo de Quarto</h6></a></li>
+            
+        </ul>
+
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>
+                            <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                                Gerencia
+                                <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                        </li>
+
+
+                    </ul>
                     <a href="http://localhost:61055/Home/" class="brand-logo center"><img src="~/Content/img/hotel.png" /></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a href="http://localhost:61055/Home/">Acapulco Hospedagens</a></li>
-
+                     
                         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
@@ -86,6 +119,12 @@
 
 
     <script>
+        $(".dropdown-button").dropdown();
+        $(document).ready(function () {
+            $('.collapsible').collapsible({
+                accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            });
+        });
         $('.datepicker').pickadate({
             format: 'dd/mm/yyyy',
             selectMonths: true,
@@ -329,8 +368,9 @@
 
                 // $.post("/ControleServico/VincularServicoHospedagem", { idHospedagem: valor }, function (data) {
 
-                //IMPORTANTE MANTER O )?<VARIAVEL>=<VALOR>
-                var url = '@Url.Action("VincularServicoHospedagem", "ControleServico")?idHospedagem=' + valor;
+               //IMPORTANTE MANTER O )?<VARIAVEL>=<VALOR>
+                var url = '@Url.Action("Index", "ControleServico")?idHospedagem=' + valor;
+
                 window.location.href = url;
 
                 //   $("html").html(data);

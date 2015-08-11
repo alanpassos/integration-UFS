@@ -20,12 +20,16 @@ namespace ProjectHotelWeb.Controllers
         public Hospedagem hospedagem { get; set; }
 
         // GET: Item
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Index()
         {
             List<Item> itens = IItem.Listar().ToList<Item>();
             return View(itens);
         }
-        
+
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Cadastrar(string idHospedagem)
         {
             if(idHospedagem != null)
@@ -47,13 +51,17 @@ namespace ProjectHotelWeb.Controllers
 
             return View();
         }
-        
+
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Detalhar(int id)
         {
             Item item = IItem.ResultadoUnico(id);
             return View(item);
         }
-        
+
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Cadastro(string idHospedagem)
         {
             hospedagem = IHospedagem.ResultadoUnico(Convert.ToInt32(idHospedagem));
@@ -77,6 +85,8 @@ namespace ProjectHotelWeb.Controllers
         }
 
         [HttpPost]
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult CadastrarItem()
         {
             string id = Request.Params.Get("group1");
@@ -109,6 +119,8 @@ namespace ProjectHotelWeb.Controllers
 	
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Atualizar(int id)
         {
             
@@ -117,6 +129,8 @@ namespace ProjectHotelWeb.Controllers
         }
 
         [ActionName("AtualizarItem")]
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Atualizar(Item item)
         {
             decimal valorNovo;
@@ -139,6 +153,8 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Cadastrar", new { idHospedagem = _hospedagem.idHospedagem});
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult CancelarItem()
         {
             string[] itensCancelados = Request.Params.Get("checkCancelar").Split(',', ' ');

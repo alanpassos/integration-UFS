@@ -18,9 +18,9 @@ namespace ProjectHotelWeb.Models
         public string UserName { get; set; }
 
         [Required]
-        
         [DataType(DataType.Password)]
         [Display(Name="Senha de usuário")]
+        [MinLength(6, ErrorMessage="A senha deve ter no minímo 6 caracteres")]
         public string Password { get; set; }
 
         [Required]

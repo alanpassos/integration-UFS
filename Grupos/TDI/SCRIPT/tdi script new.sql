@@ -5,7 +5,7 @@ create database dbtdinewhotel
 go
 use dbtdinewhotel
 
- 
+ go
 -- -----------------------------------------------------
 -- Table PacoteHospedagem
 -- -----------------------------------------------------
@@ -178,7 +178,7 @@ CREATE TABLE FormaPagamento (
   descricao VARCHAR(45) NOT NULL,
   observacao VARCHAR(45) NULL,
   numeroMaximoParcela INT NOT NULL,
-  tipo varchar(30) not null,
+  tipo char(1) CHECK (tipo in ('A','C','D','X','V')), -- 'A' AVISTA, 'C' CREDITO, 'D' DEBITO, 'X' CHEQUE, 'V' DIVIDA
   ativo BIT NOT NULL DEFAULT 1)
 
 go 
@@ -334,7 +334,7 @@ CREATE TABLE Pagamento (
   dataPrevista DATETIME NOT NULL,
   dataPagamento DATETIME NULL,
   valorParcela NUMERIC(10,2) NOT NULL,
-  status CHAR(1) CHECK(status in ('P','E','C')))
+  status CHAR(1) CHECK(status in ('P','E','C','D'))) -- p pago, e extornado, c cancelado, d divida
   
  go
  alter table  Pagamento add constraint pk_pagamento primary key (numeroParcela, idFormapagamento, idPacoteHospedagem)
@@ -447,20 +447,4 @@ add constraint fk_usuario_hitorico
 foreign key (idUsuario)
 references   Usuario (idUsuario)
 
-
---==================================== DROPS ============
-USE dbtdinewhotel
-DROP TABLE dbo.HISTORICO
-DROP TABLE dbo.HistoricoAcesso
-DROP TABLE DBO.Item;
-DROP TABLE DBO.ControleCliente;
-DROP TABLE DBO.ControleServico;
-DROP TABLE DBO.Servico
-DROP TABLE DBO.Pagamento
-DROP TABLE DBO.FormaPagamento;
-DROP TABLE DBO.Hospedagem
-DROP TABLE DBO.PacoteHospedagem
-DROP TABLE DBO.Quarto
-DROP TABLE DBO.TipoQuarto
-DROP TABLE DBO.Produto
 

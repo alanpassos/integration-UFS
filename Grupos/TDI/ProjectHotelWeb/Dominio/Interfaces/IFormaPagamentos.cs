@@ -13,5 +13,6 @@ namespace Dominio.Interfaces
         void Atualizar(FormaPagamento formaPagamento);
         void Remover(FormaPagamento formaPagamento);
         FormaPagamento ResultadoUnico(int idFormaPagamento);
+        List<FormaPagamento> ResultadoUnicoTipo(string tipo);
     }
 }

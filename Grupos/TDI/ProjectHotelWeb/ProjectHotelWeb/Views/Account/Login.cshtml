@@ -25,7 +25,7 @@
         <div class="row">
             <div class="input-field col s5">
                 <label for="input-text">Senha</label>
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Length = "36" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>

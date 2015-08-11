@@ -53,14 +53,19 @@ namespace Infraestrutura.Repositorio
             unidadeTrabalho.Salvar();
         }
 
-        public ControleServico ResultadoUnico(int idServico)
+        public ControleServico ResultadoUnico(int idControleServico)
         {
-            return controleServicos.SingleOrDefault(c => c.idServico== idServico);
+            return controleServicos.SingleOrDefault(c => c.idControleServico== idControleServico);
         }
 
         public ICollection<ControleServico> Listar()
         {
             return controleServicos.OrderBy(p => p.idHospedagem).ToList();
+        }
+
+        public ICollection<ControleServico> ListarServicosIndividualmente(int idHospedagem)
+        {
+            return controleServicos.Where(p => p.idHospedagem == idHospedagem).OrderByDescending(p => p.dataAbertura).ToList();
         }
 
         public ICollection<ServicoHospedagem> ListarServicoHospedagem(int idHospedagem)

@@ -19,8 +19,10 @@ namespace ProjectHotelWeb.Controllers
         public IControleClientes IControleCliente { get; set; }
         public IHospedagens IHospedagem { get; set; }
         public IQuartos IQuarto { get; set; }
-    
+
         // GET: Reserva
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Index()
         {
             List<PacoteHospedagem> pacoteHospedagens = IPacoteHospedagem.ListarReserva().ToList<PacoteHospedagem>();
@@ -33,8 +35,8 @@ namespace ProjectHotelWeb.Controllers
 
             string parametroPesquisa = Request.Params.Get("parametroPesquisa");
             List<PacoteHospedagem> pacoteHospedagens = null;
-            pesquisa = pesquisa.Replace(".", "").Replace("-","");
-            if(parametroPesquisa.Equals("nome"))
+            pesquisa = pesquisa.Replace(".", "").Replace("-", "");
+            if (parametroPesquisa.Equals("nome"))
                 pacoteHospedagens = IPacoteHospedagem.ListarReservaPorCliente(pesquisa).ToList<PacoteHospedagem>();
             if (parametroPesquisa.Equals("cpf"))
                 pacoteHospedagens = IPacoteHospedagem.ListarReservaPorCpf(pesquisa).ToList<PacoteHospedagem>();
@@ -45,6 +47,8 @@ namespace ProjectHotelWeb.Controllers
             return PartialView(pacoteHospedagens);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Detalhar(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnicoReserva(id);
@@ -53,6 +57,8 @@ namespace ProjectHotelWeb.Controllers
             return View(pacoteHospedagem);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Cadastrar()
         {
             List<TipoQuarto> tipoQuartos = ITipoQuarto.Listar().ToList<TipoQuarto>();
@@ -64,20 +70,22 @@ namespace ProjectHotelWeb.Controllers
                 ViewBag.dataInicioFim = (List<DateTime>)TempData["datas"];
             }
 
-            if(TempData["dadosView"] != null)
+            if (TempData["dadosView"] != null)
             {
                 int idPacoteHospedagem = Convert.ToInt32(TempData["idPacote"]);
-                List<object> objetosCliente = (List<object>) TempData["dadosView"];
+                List<object> objetosCliente = (List<object>)TempData["dadosView"];
                 ViewBag.dadosView = objetosCliente;
-            //    ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(Convert.ToInt32(objetosCliente[3]));
+                //    ViewBag.listaReservaCliente = ITipoQuarto.ListaTiposReservadosCliente(Convert.ToInt32(objetosCliente[3]));
                 ViewBag.idPacoteHospedagem = idPacoteHospedagem;
 
             }
-           
+
             return View();
 
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult ReservaCliente(PacoteHospedagem _pacoteHospedagem)
         {
             string cpf = Request.Params.Get("cpf");
@@ -87,7 +95,7 @@ namespace ProjectHotelWeb.Controllers
             List<object> dadosView = new List<object>();
             dadosView.Add(cpf);
             dadosView.Add(nomeCliente);
-            dadosView.Add(telefone);           
+            dadosView.Add(telefone);
             cpf = cpf.Replace(".", "").Replace("-", "");
             CultureInfo culture = new CultureInfo("pt-BR");
             DateTime dataInicio = Convert.ToDateTime(Request.Params.Get("dataInicio"));
@@ -108,17 +116,17 @@ namespace ProjectHotelWeb.Controllers
             int idCliente;
             if (pessoaResultado.Count == 0)
             {
-                 CadastraCliente(cpf, nomeCliente, telefone);
+                CadastraCliente(cpf, nomeCliente, telefone);
             }
             idCliente = IPessoas.ListarPorCpfCnpj(cpf).ToList()[0].idPessoa;
             dadosView.Add(idCliente);
-            
+
             double periodo = (dataFim - dataInicio).TotalDays;
             for (int i = 0; i < checkBoxQuartosSelecionados.Count(); i += 2)
             {
                 string idTipoQuartoCheck = checkBoxQuartosSelecionados[i];
                 string capacidadeQuarto = checkBoxQuartosSelecionados[i + 1];
-                idsQuartos = ITipoQuarto.ListaQuartosTipo(idTipoQuartoCheck, capacidadeQuarto).ToList();              
+                idsQuartos = ITipoQuarto.ListaQuartosTipo(idTipoQuartoCheck, capacidadeQuarto).ToList();
                 for (int j = 0; j < comboBoxQuantidadeQuartos.Count(); j += 2)
                 {
                     string idTipoQuartoCombo = comboBoxQuantidadeQuartos[j];
@@ -142,7 +150,7 @@ namespace ProjectHotelWeb.Controllers
                     }
                 }
             }
-            TempData["idPacote"] = idPacoteHospedagem;   
+            TempData["idPacote"] = idPacoteHospedagem;
             TempData["dadosView"] = dadosView;
             List<QuartosLivresReserva> reservasCliente = IPacoteHospedagem.ListaTiposReservadosPacote(idPacoteHospedagem).ToList();
             return PartialView(reservasCliente);
@@ -155,6 +163,8 @@ namespace ProjectHotelWeb.Controllers
             IQuarto.Atualizar(quarto);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         private int CadastraHospedagem(DateTime dataInicio, DateTime dataFim, List<int> idsQuartos, decimal valorHospedagem, int idPacoteHospedagem, int indiceQuarto)
         {
             int idHospedagem = IHospedagem.Cadastrar(
@@ -170,6 +180,8 @@ namespace ProjectHotelWeb.Controllers
             return idHospedagem;
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         private void CadastraControleCliente(int idCliente, int idPacoteHospedagem, int idHospedagem)
         {
             ControleCliente controle = new ControleCliente()
@@ -183,6 +195,8 @@ namespace ProjectHotelWeb.Controllers
             IControleCliente.Cadastrar(controle);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         private void CadastraCliente(string cpf, string nome, string telefone)
         {
             Pessoa cliente;
@@ -194,9 +208,11 @@ namespace ProjectHotelWeb.Controllers
             cliente.isFuncionario = false;
             cliente.dataCadastro = DateTime.Now;
             cliente.estado = "";
-            IPessoas.Cadastrar(cliente);      
+            IPessoas.Cadastrar(cliente);
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         private int CadastraPacoteHospedagem(DateTime dataInicio, DateTime dataFim)
         {
             int idPacoteHospedagem = IPacoteHospedagem.Cadastrar(
@@ -214,6 +230,8 @@ namespace ProjectHotelWeb.Controllers
             return idPacoteHospedagem;
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Consultar()
         {
 
@@ -240,6 +258,8 @@ namespace ProjectHotelWeb.Controllers
 
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Atualizar(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnicoReserva(id);
@@ -247,6 +267,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
         [ActionName("AtualizarReserva")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Atualizar(PacoteHospedagem pacoteHospedagem)
         {
             pacoteHospedagem.ativo = true;
@@ -255,6 +276,8 @@ namespace ProjectHotelWeb.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Excluir(int id)
         {
             PacoteHospedagem pacoteHospedagem = IPacoteHospedagem.ResultadoUnicoReserva(id);
@@ -262,6 +285,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
         [ActionName("ExcluirReserva")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Excluir(PacoteHospedagem pacoteHospedagem)
         {
             IPacoteHospedagem.Remover(pacoteHospedagem);

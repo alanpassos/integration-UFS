@@ -21,6 +21,7 @@ namespace ProjectWeb.Controllers
 
 
         // GET: Home
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Index(string filtro)
 
         {

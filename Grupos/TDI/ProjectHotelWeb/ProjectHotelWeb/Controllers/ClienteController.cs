@@ -11,23 +11,25 @@ namespace ProjectHotelWeb.Controllers
 {
     public class ClienteController : Controller
     {
-        
+
         // GET: Funcionario
         public IProjectHotel IAcademic { get; set; }
 
         public IPessoas iPessoas { get; set; }
 
-        
+
         // GET: Cliente
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Index()
         {
 
-            
-            
+
+
 
             return View();
         }
 
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Consultar()
         {
 
@@ -42,24 +44,28 @@ namespace ProjectHotelWeb.Controllers
                 pessoas = iPessoas.ListarPorCpfCnpj(pesquisa).ToList<Pessoa>();
             if (parametroPesquisa.Equals("telefone"))
                 pessoas = iPessoas.ListarPorTelefone(pesquisa).ToList<Pessoa>();
-            
+
             return PartialView(pessoas);
 
         }
 
 
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+
 
         public ActionResult Cadastrar()
         {
 
-          
-            
-                return View();
-            
+
+
+            return View();
+
         }
 
 
         [ActionName("CadastrarCliente")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+
         public ActionResult Cadastrar(Pessoa pessoa)
         {
 
@@ -76,18 +82,23 @@ namespace ProjectHotelWeb.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+
         public ActionResult Atualizar(int id)
         {
 
 
             Pessoa pessoa = iPessoas.ResultadoUnico(id);
-            
+
             return View(pessoa);
         }
         [ActionName("AtualizarCliente")]
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+
         public ActionResult Atualizar(Pessoa pessoa)
         {
-            
+
             pessoa.ativo = Convert.ToBoolean(Request.Params.Get("ativo"));
             pessoa.isFuncionario = Convert.ToBoolean(Request.Params.Get("funcionario"));
             pessoa.dataNascimento = Convert.ToDateTime(Request.Params.Get("Nascimento"));
@@ -98,6 +109,9 @@ namespace ProjectHotelWeb.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
+
         public ActionResult Excluir(int id)
         {
             Pessoa pessoa = iPessoas.ResultadoUnico(id);
@@ -105,7 +119,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         [ActionName("ExcluirCliente")]
         public ActionResult Excluir(Pessoa pessoa)
         {
@@ -122,7 +136,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-
+        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
         public ActionResult Detalhar(int id)
         {
             Pessoa pessoa = iPessoas.ResultadoUnico(id);
