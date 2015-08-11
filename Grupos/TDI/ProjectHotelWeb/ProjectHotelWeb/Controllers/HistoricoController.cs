@@ -16,6 +16,7 @@ namespace ProjectHotelWeb.Controllers
         public IHistoricos IHistorico { get; set; }
 
         // GET: Historico
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             List<Historico> historicos = IHistorico.Listar().ToList<Historico>();

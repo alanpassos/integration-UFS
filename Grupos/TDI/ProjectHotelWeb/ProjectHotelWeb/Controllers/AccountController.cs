@@ -51,25 +51,30 @@ namespace IdentitySample.Controllers
 
         //
         // GET: /Account/Login
-
-        public ActionResult Index ()
+        [Authorize(Roles = "Administrador, Gerente")]
+        public ActionResult Index()
         {
             ViewBag.Funcionarios = IPessoas.ListarFuncionario();
             ViewBag.Roles = roleManager.Roles.ToList();
             return View(userManager.Users.ToList());
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Editar(string id)
         {
             User usuario = userManager.FindById(id);
             return View(usuario);
         }
+
         [ActionName("EditarUsuario")]
-        public ActionResult EditarUsuario (string userId)
+        [Authorize(Roles = "Administrador, Gerente")]
+        public ActionResult EditarUsuario(string userId)
         {
-            
-            
-            
+
+            bool userAdmin = User.IsInRole("Administrador");
+
+
             User usuario = userManager.FindById(userId);
 
             foreach (var role in userManager.GetRoles(usuario.Id))
@@ -78,11 +83,11 @@ namespace IdentitySample.Controllers
             }
 
             Char nivelDeAcesso = Convert.ToChar(Request.Params.Get("nivel"));
-            if (nivelDeAcesso.Equals('A'))
+            if (nivelDeAcesso.Equals('A') && userAdmin)
             {
                 userManager.AddToRole(usuario.Id, "Administrador");
             }
-            else if (nivelDeAcesso.Equals('G'))
+            else if (nivelDeAcesso.Equals('G') && userAdmin)
             {
                 userManager.AddToRole(usuario.Id, "Gerente");
             }
@@ -94,11 +99,13 @@ namespace IdentitySample.Controllers
             {
                 userManager.AddToRole(usuario.Id, "Convidado");
             }
-          
+
             return RedirectToAction("Index");
 
         }
 
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Excluir(string id)
         {
             User usuario = userManager.FindById(id);
@@ -107,14 +114,15 @@ namespace IdentitySample.Controllers
             return View(usuario);
         }
 
-        
-        public ActionResult ExcluirUsuario (string userId)
+
+        [Authorize(Roles = "Administrador, Gerente")]
+        public ActionResult ExcluirUsuario(string userId)
         {
             User usuario = userManager.FindById(userId);
             userManager.Delete(usuario);
             return RedirectToAction("Index");
         }
-        
+
 
 
 
@@ -251,7 +259,8 @@ namespace IdentitySample.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Register()
         {
             ViewBag.Funcionarios = IPessoas.ListarFuncionario().ToList<Pessoa>();
@@ -261,53 +270,56 @@ namespace IdentitySample.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
-       // [ActionName("RegistrarUsuario")]
+        [Authorize(Roles = "Administrador, Gerente")]
+        // [ActionName("RegistrarUsuario")]
         [ValidateAntiForgeryToken]
         public ActionResult Register(Register model)
         {
-           // if (ModelState.IsValid)
+            // if (ModelState.IsValid)
             //{
 
-                User user = new User();
+            bool userAdmin = User.IsInRole("Administrador");
 
-                user.idFuncionario = Convert.ToInt32(Request.Params.Get("funcionario"));
-                user.UserName = model.UserName;
-                user.ativo = true;
-                user.dataCadastro = DateTime.Now;
-                model.NivelDeAcesso = Convert.ToChar(Request.Params.Get("nivel"));
-                model.idFuncionario = user.idFuncionario;
-                IdentityResult resultado = userManager.Create(user, model.Password);
-                if (resultado.Succeeded)
+
+            User user = new User();
+
+            user.idFuncionario = Convert.ToInt32(Request.Params.Get("funcionario"));
+            user.UserName = model.UserName;
+            user.ativo = true;
+            user.dataCadastro = DateTime.Now;
+            model.NivelDeAcesso = Convert.ToChar(Request.Params.Get("nivel"));
+            model.idFuncionario = user.idFuncionario;
+            IdentityResult resultado = userManager.Create(user, model.Password);
+            if (resultado.Succeeded)
+            {
+                if (model.NivelDeAcesso.Equals('A') && userAdmin)
                 {
-                    if (model.NivelDeAcesso.Equals('A'))
-                    {
-                        userManager.AddToRole(user.Id, "Administrador");
-                    }
-                    else if (model.NivelDeAcesso.Equals('G'))
-                    {
-                        userManager.AddToRole(user.Id, "Gerente");
-                    }
-                    else if (model.NivelDeAcesso.Equals('R'))
-                    {
-                        userManager.AddToRole(user.Id, "Recepcionista");
-                    }
-                    else if (model.NivelDeAcesso.Equals('C'))
-                    {
-                        userManager.AddToRole(user.Id, "Convidado");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("Erro de permissão", "Não foi atribuido nenhum grau de permissão ao usuário");
-                    }
-
-
-                    return RedirectToAction("Login", "Account");
+                    userManager.AddToRole(user.Id, "Administrador");
+                }
+                else if (model.NivelDeAcesso.Equals('G') && userAdmin)
+                {
+                    userManager.AddToRole(user.Id, "Gerente");
+                }
+                else if (model.NivelDeAcesso.Equals('R'))
+                {
+                    userManager.AddToRole(user.Id, "Recepcionista");
+                }
+                else if (model.NivelDeAcesso.Equals('C'))
+                {
+                    userManager.AddToRole(user.Id, "Convidado");
                 }
                 else
                 {
-                    ModelState.AddModelError("ErroRegistro", "Erro ao tentar registrar um novo usuário");
+                    ModelState.AddModelError("Erro de permissão", "Não foi atribuido nenhum grau de permissão ao usuário");
                 }
+
+
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                ModelState.AddModelError("ErroRegistro", "Erro ao tentar registrar um novo usuário");
+            }
             return View(model);
         }
 

@@ -21,11 +21,12 @@ namespace ProjectHotelWeb.Controllers
         public ActionResult Index()
         {
 
-            
-           
+
+
 
             return View();
         }
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Consultar()
         {
 
@@ -44,6 +45,8 @@ namespace ProjectHotelWeb.Controllers
             return PartialView(pessoas);
 
         }
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Cadastrar()
         {
 
@@ -62,6 +65,7 @@ namespace ProjectHotelWeb.Controllers
 
 
         [ActionName("CadastrarFuncionario")]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Cadastrar(Pessoa pessoa)
         {
 
@@ -77,6 +81,8 @@ namespace ProjectHotelWeb.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Atualizar(int id)
         {
 
@@ -86,7 +92,9 @@ namespace ProjectHotelWeb.Controllers
             ViewBag.Cargos = iCargos.Listar();
             return View(pessoa);
         }
+
         [ActionName("AtualizarFuncionario")]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Atualizar(Pessoa pessoa)
         {
             pessoa.idCargo = Convert.ToInt32(Request.Params.Get("Cargo"));
@@ -100,6 +108,8 @@ namespace ProjectHotelWeb.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Excluir(int id)
         {
             Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);
@@ -109,6 +119,7 @@ namespace ProjectHotelWeb.Controllers
 
 
         [ActionName("ExcluirFuncionario")]
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Excluir(Pessoa pessoa)
         {
             Pessoa newPessoa = iPessoas.ResultadoUnicoFuncionario(pessoa.idPessoa);
@@ -124,7 +135,7 @@ namespace ProjectHotelWeb.Controllers
         }
 
 
-
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Detalhar(int id)
         {
             Pessoa pessoa = iPessoas.ResultadoUnicoFuncionario(id);

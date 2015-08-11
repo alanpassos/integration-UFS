@@ -15,6 +15,7 @@ namespace ProjectHotelWeb.Controllers
 
 
         // GET: HistoricoAcesso
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             List<HistoricoAcesso> historicoAcesso = IHistoricoAcessos.Listar().ToList<HistoricoAcesso>();
