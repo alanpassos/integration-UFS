@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.Classes_Especiais;
 
 namespace Dominio.Interfaces
 {
@@ -13,5 +14,6 @@ namespace Dominio.Interfaces
         void Atualizar(Hospedagem hospedagem);
         void Remover(Hospedagem hospedagem);
         Hospedagem ResultadoUnico(int idHospedagem);
+        ICollection<HospedagemMes> RelatorioHospedagemMes();
     }
 }

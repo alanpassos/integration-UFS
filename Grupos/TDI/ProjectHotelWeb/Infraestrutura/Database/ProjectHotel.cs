@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Database
 {
-  public  class ProjectHotel: UnidadeTrabalho, IProjectHotel
+    public class ProjectHotel : UnidadeTrabalho, IProjectHotel
     {
-      public ProjectHotel()
+        public ProjectHotel()
 
 
-          : base("name=dbtdinewhotelEntities")
-
+            : base("name=projeto_hotel_tdiEntities")
         {
 
         }
