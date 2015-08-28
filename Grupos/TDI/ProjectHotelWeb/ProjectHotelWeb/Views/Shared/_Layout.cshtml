@@ -54,6 +54,10 @@
             <li><a href="http://localhost:61055/Servico"><h6>Serviço</h6></a></li>
             <li class="divider"></li>
             <li><a href="http://localhost:61055/TipoQuarto"><h6>Tipo de Quarto</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/Reserva"><h6>Reserva</h6></a></li>
+            <li class="divider"></li>
+            <li><a href="http://localhost:61055/Relatorio/RelatorioHospedagemMes"><h6>Relatório</h6></a></li>
             
         </ul>
 
@@ -295,7 +299,7 @@
                     selecionou = true;
                 }
             }
-            alert(valor);
+            //alert(valor);
             if (selecionou) {
                 var url = '@Url.Action("Checkin", "Checkin")?quartosSelect=' + valor;
                 window.location.href = url;

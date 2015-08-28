@@ -21,7 +21,8 @@ namespace ProjectHotelWeb.Controllers
         public IControleClientes IControleCliente { get; set; }
         public IHospedagens IHospedagem { get; set; }
         public IQuartos IQuarto { get; set; }
-    
+
+        [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult RelatorioHospedagemMes()
         {
             List<HospedagemMes> relatorio = IHospedagem.RelatorioHospedagemMes().ToList<HospedagemMes>();
