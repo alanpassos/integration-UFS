@@ -9,7 +9,7 @@ namespace Dominio.Interfaces
 {
     public interface ICargos : IRepositorio<Cargo>
     {
-        void Cadastrar(Cargo cargo);
+        int Cadastrar(Cargo cargo);
         void Atualizar(Cargo cargo);
         void Remover(Cargo cargo);
         Cargo ResultadoUnico(int idCargo);

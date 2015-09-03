@@ -14,6 +14,12 @@ namespace Infraestrutura.Repositorio
         private IQueryable<Cargo> cargos;
         private IProjectHotel unidadeTrabalho;
 
+        public Cargos()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            this.cargos = unidadeTrabalho.Cargos;
+        }
+
         private Cargos(IQueryable<Cargo> Cargos, IProjectHotel unidadeTrabalho)
         {
             this.cargos = Cargos;
@@ -23,10 +29,11 @@ namespace Infraestrutura.Repositorio
         public Cargos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Cargos, unidadeTrabalho) { }
 
-        public void Cadastrar(Cargo Cargo)
+        public int Cadastrar(Cargo Cargo)
         {
             unidadeTrabalho.RegistrarNovo(Cargo);
             unidadeTrabalho.Salvar();
+            return cargos.Max(p => p.idCargo);
         }
 
         public void Atualizar(Cargo Cargo)
