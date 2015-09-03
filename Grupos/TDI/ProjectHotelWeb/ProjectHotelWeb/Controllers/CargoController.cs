@@ -1,6 +1,7 @@
 ﻿using Dominio.Classes;
 using Dominio.Interfaces;
 using Infraestrutura.Database;
+using ProjectHotelWeb.ExceptionClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,14 @@ namespace ProjectHotelWeb.Controllers
         [Authorize(Roles = "Administrador, Gerente")]
         public ActionResult Index()
         {
+            
             List<Cargo> car = cargos.Listar().ToList<Cargo>();
+
+            
+                
+
+            
+
             return View(car);
         }
 

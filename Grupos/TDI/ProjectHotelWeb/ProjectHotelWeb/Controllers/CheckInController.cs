@@ -21,54 +21,7 @@ namespace ProjectHotelWeb.Controllers
         public IControleClientes IControleCliente { get; set; }
 
 
-        // GET: CheckIn
-        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
-        public ActionResult Index()
-        {
-            List<PacoteHospedagem> pacoteHospedagens = IPacoteHospedagens.ListarCheckin().ToList<PacoteHospedagem>();
-            return View(pacoteHospedagens);
-        }
-
-        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
-        public ActionResult Detalhar(int id)
-        {
-            PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoCheckin(id);
-            return View(pacoteHospedagem);
-        }
-
-        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
-        public ActionResult Cadastrar()
-        {
-            return View();
-        }
-
-        [ActionName("CadastrarCheckin")]
-        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
-        public ActionResult Cadastrar(PacoteHospedagem pacoteHospedagem)
-        {
-            pacoteHospedagem.ativo = true;
-            pacoteHospedagem.tipoPacote = "C";
-            IPacoteHospedagens.Cadastrar(pacoteHospedagem);
-            return RedirectToAction("Index");
-        }
-
-        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
-        public ActionResult Atualizar(int id)
-        {
-            PacoteHospedagem pacoteHospedagem = IPacoteHospedagens.ResultadoUnicoCheckin(id);
-            return View(pacoteHospedagem);
-        }
-
-        [ActionName("AtualizarCheckin")]
-        [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
-        public ActionResult Atualizar(PacoteHospedagem pacoteHospedagem)
-        {
-            pacoteHospedagem.ativo = true;
-            pacoteHospedagem.tipoPacote = "C";
-            IPacoteHospedagens.Atualizar(pacoteHospedagem);
-            return RedirectToAction("Index");
-        }
-
+        
          [Authorize(Roles = "Administrador, Gerente, Recepcionista, Convidado")]
        
         public ActionResult Checkin(string quartosSelect)
