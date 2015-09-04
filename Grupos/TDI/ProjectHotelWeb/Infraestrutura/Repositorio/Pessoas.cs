@@ -22,6 +22,12 @@ namespace Infraestrutura.Repositorio
             this.pessoas = pessoas;
             this.unidadeTrabalho = unidadeTrabalho;
         }
+        public Pessoas()
+        {
+
+            this.unidadeTrabalho = new ProjectHotel();
+            this.pessoas = unidadeTrabalho.Clientes;
+        }
 
         public Pessoas(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Funcionarios, unidadeTrabalho) { }
