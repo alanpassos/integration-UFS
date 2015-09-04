@@ -13,12 +13,12 @@ namespace ProjectHotelWeb.Controllers
     public class ReservaController : Controller
     {
         public IProjectHotel IProjectHotel { get; set; }
-        public IPacoteHospedagens IPacoteHospedagem { get; set; }
-        public ITipoQuartos ITipoQuarto { get; set; }
-        public IPessoas IPessoas { get; set; }
-        public IControleClientes IControleCliente { get; set; }
-        public IHospedagens IHospedagem { get; set; }
-        public IQuartos IQuarto { get; set; }
+        public IGerenciadorPacoteHospedagens IPacoteHospedagem { get; set; }
+        public IGerenciadorTipoQuartos ITipoQuarto { get; set; }
+        public IGerenciadorPessoas IPessoas { get; set; }
+        public IGerenciadorControleClientes IControleCliente { get; set; }
+        public IGerenciadorHospedagens IHospedagem { get; set; }
+        public IGerenciadorQuartos IQuarto { get; set; }
 
         // GET: Reserva
 

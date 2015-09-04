@@ -11,7 +11,7 @@ namespace ProjectHotelWeb.Controllers
     public class HistoricoAcessoController : Controller
     {
         public IProjectHotel IProjectHotel { get; set; }
-        public IHistoricoAcessos IHistoricoAcessos { get; set; }
+        public IGerenciadorHistoricoAcessos IHistoricoAcessos { get; set; }
 
 
         // GET: HistoricoAcesso

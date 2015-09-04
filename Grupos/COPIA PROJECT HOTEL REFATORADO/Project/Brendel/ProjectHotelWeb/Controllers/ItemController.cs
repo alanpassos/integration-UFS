@@ -13,10 +13,10 @@ namespace ProjectHotelWeb.Controllers
     public class ItemController : Controller
     {
         public IProjectHotel IProjectHotel { get; set; }
-        public IItens IItem { get; set; }
-        public IProdutos IProduto { get; set; }
-        public IHospedagens IHospedagem { get; set; }
-        public IPessoas IPessoa { get; set; }
+        public IGerenciadorItens IItem { get; set; }
+        public IGerenciadorProdutos IProduto { get; set; }
+        public IGerenciadorHospedagens IHospedagem { get; set; }
+        public IGerenciadorPessoas IPessoa { get; set; }
         public HospedagemModel hospedagem { get; set; }
 
         // GET: Item

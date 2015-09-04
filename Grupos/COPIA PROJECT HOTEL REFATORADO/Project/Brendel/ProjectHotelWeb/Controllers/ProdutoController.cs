@@ -11,7 +11,7 @@ namespace ProjectHotelWeb.Controllers
     public class ProdutoController : Controller
     {
         public IProjectHotel IProjectHotel { get; set; }
-        public IProdutos IProduto { get; set; }
+        public IGerenciadorProdutos IProduto { get; set; }
 
         // GET: Produto
 

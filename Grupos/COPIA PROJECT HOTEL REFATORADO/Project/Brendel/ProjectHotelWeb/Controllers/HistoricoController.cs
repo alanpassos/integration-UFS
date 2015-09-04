@@ -13,7 +13,7 @@ namespace ProjectHotelWeb.Controllers
     {
 
         public IProjectHotel IProjectHotel { get; set; }
-        public IHistoricos IHistorico { get; set; }
+        public IGerenciadorHistoricos IHistorico { get; set; }
 
         // GET: Historico
         [Authorize(Roles = "Administrador")]

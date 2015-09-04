@@ -15,14 +15,14 @@ namespace ProjectHotelWeb.Controllers
     {
 
         public IProjectHotel IProjectHotel { get; set; }
-        public IPagamentos IPagamento { get; set; }
-        public IFormaPagamentos IFormaPagamentos { get; set; }
-        public IHospedagens IHospedagens { get; set; }
-        public IPacoteHospedagens IPacoteHospedagens { get; set; }
-        public IQuartos IQuartos { get; set; }
-        public IControleClientes IControleClientes { get; set; }
+        public IGerenciadorPagamentos IPagamento { get; set; }
+        public IGerenciadorFormaPagamentos IFormaPagamentos { get; set; }
+        public IGerenciadorHospedagens IHospedagens { get; set; }
+        public IGerenciadorPacoteHospedagens IPacoteHospedagens { get; set; }
+        public IGerenciadorQuartos IQuartos { get; set; }
+        public IGerenciadorControleClientes IControleClientes { get; set; }
 
-        public IPessoas IPessoas { get; set; }
+        public IGerenciadorPessoas IPessoas { get; set; }
         // GET: Pagamento
         public ActionResult Index()
         {

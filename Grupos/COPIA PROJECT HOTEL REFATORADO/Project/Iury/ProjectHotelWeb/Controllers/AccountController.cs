@@ -23,7 +23,7 @@ namespace IdentitySample.Controllers
 
         private UserManager<User> userManager;
         private RoleManager<UserRole> roleManager;
-        public IPessoas IPessoas { get; set; }
+        public IGerenciadorPessoas IPessoas { get; set; }
 
 
         public AccountController()

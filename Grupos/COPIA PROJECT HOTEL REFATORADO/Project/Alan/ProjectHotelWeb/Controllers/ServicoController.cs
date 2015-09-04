@@ -13,7 +13,7 @@ namespace ProjectHotelWeb.Controllers
     public class ServicoController : Controller
     {
 
-        public IServicos IServicos { get; set; }
+        public IGerenciadorServicos IServicos { get; set; }
 
 
         // GET: Servico

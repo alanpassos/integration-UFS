@@ -14,11 +14,11 @@ namespace ProjectHotelWeb.Controllers
     {
 
         public IProjectHotel IProjectHotel { get; set; }
-        public IPacoteHospedagens IPacoteHospedagens { get; set; }
-        public IHospedagens IHospedagens { get; set; }
-        public IPessoas IPessoas { get; set; }
-        public IQuartos IQuartos { get; set; }
-        public IControleClientes IControleCliente { get; set; }
+        public IGerenciadorPacoteHospedagens IPacoteHospedagens { get; set; }
+        public IGerenciadorHospedagens IHospedagens { get; set; }
+        public IGerenciadorPessoas IPessoas { get; set; }
+        public IGerenciadorQuartos IQuartos { get; set; }
+        public IGerenciadorControleClientes IControleCliente { get; set; }
 
 
         

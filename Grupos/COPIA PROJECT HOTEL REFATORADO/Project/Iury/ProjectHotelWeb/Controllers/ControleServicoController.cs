@@ -21,12 +21,12 @@ namespace ProjectHotelWeb.Controllers
     public class ControleServicoController : Controller
     {
         public IProjectHotel IProjectHotel { get; set; }
-        public IControleServicos IControleServicos { get; set; }
-        public IPessoas IPessoas { get; set; }
-        public IControleClientes ICliente { get; set; }
-        public IHospedagens IHospedagens { get; set; }
-        public IQuartos IQuartos { get; set; }
-        public IServicos IServicos { get; set; }
+        public IGerenciadorControleServicos IControleServicos { get; set; }
+        public IGerenciadorPessoas IPessoas { get; set; }
+        public IGerenciadorControleClientes ICliente { get; set; }
+        public IGerenciadorHospedagens IHospedagens { get; set; }
+        public IGerenciadorQuartos IQuartos { get; set; }
+        public IGerenciadorServicos IServicos { get; set; }
        
         public UserManager<User> userManager;
 

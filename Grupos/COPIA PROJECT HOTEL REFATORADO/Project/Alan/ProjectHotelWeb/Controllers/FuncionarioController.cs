@@ -14,9 +14,9 @@ namespace ProjectHotelWeb.Controllers
         // GET: Funcionario
         public IProjectHotel IAcademic { get; set; }
 
-        public IPessoas iPessoas { get; set; }
+        public IGerenciadorPessoas iPessoas { get; set; }
 
-        public ICargos iCargos { get; set; }
+        public IGerenciadorCargos iCargos { get; set; }
         // GET: Pessoa
         public ActionResult Index()
         {

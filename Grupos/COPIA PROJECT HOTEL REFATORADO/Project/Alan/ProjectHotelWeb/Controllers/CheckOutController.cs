@@ -15,10 +15,10 @@ namespace ProjectHotelWeb.Controllers
     public class CheckOutController : Controller
     {
         public IProjectHotel IProjectHotel { get; set; }
-        public IPacoteHospedagens IPacoteHospedagens { get; set; }
-        public IPessoas IPessoas { get; set; }
-        public IHospedagens IHospedagens { get; set; }
-        public IControleServicos IControleServico { get; set; }
+        public IGerenciadorPacoteHospedagens IPacoteHospedagens { get; set; }
+        public IGerenciadorPessoas IPessoas { get; set; }
+        public IGerenciadorHospedagens IHospedagens { get; set; }
+        public IGerenciadorControleServicos IControleServico { get; set; }
         // GET: CheckOut
         [Authorize(Roles = "Administrador, Gerente, Recepcionista")]
         public ActionResult Index()

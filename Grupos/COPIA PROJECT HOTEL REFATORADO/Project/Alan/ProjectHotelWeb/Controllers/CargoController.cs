@@ -13,7 +13,7 @@ namespace ProjectHotelWeb.Controllers
     {
 
         public IProjectHotel iiprojetoHotel { get; set; }
-        public ICargos cargos { get; set; }
+        public IGerenciadorCargos cargos { get; set; }
         // GET: Cargo
 
 

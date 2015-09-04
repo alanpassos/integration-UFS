@@ -11,9 +11,9 @@ namespace ProjectWeb.Controllers
     public class HomeController : Controller
     {
 
-        public ITipoQuartos ITipoQuartos { get; set; }
-        public IHospedagens IHospedagem { get; set; }
-        public IPessoas IPessoa { get; set; }
+        public IGerenciadorTipoQuartos ITipoQuartos { get; set; }
+        public IGerenciadorHospedagens IHospedagem { get; set; }
+        public IGerenciadorPessoas IPessoa { get; set; }
 
 
 

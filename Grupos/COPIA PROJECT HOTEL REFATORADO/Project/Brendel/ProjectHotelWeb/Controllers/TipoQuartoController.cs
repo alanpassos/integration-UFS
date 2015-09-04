@@ -13,7 +13,7 @@ namespace ProjectHotelWeb.Controllers
     {
 
         public IProjectHotel IProjectHotel { get; set; }
-        public ITipoQuartos ITipoQuarto { get; set; }
+        public IGerenciadorTipoQuartos ITipoQuarto { get; set; }
 
         // GET: TipoQuarto
 
