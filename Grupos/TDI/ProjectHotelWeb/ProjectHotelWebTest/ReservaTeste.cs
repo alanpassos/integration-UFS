@@ -18,7 +18,7 @@ namespace ProjectHotelWebTest
         }
 
         [TestMethod]
-        public void CadastrarTest()
+        public void CadastrarTeste()
         {
             int idPacoteHospedagem = 0;
             PacoteHospedagem pacoteHospedagem = new PacoteHospedagem();
@@ -30,14 +30,8 @@ namespace ProjectHotelWebTest
             pacoteHospedagem.ativo = true;
             pacoteHospedagem.tipoPacote = "R";
 
-            try
-            {
-                idPacoteHospedagem = IPacoteHospedagem.Cadastrar(pacoteHospedagem);
-            }
-            catch (Exception e)
-            {
-                Assert.IsInstanceOfType(e, typeof(Exception));
-            }
+            idPacoteHospedagem = IPacoteHospedagem.Cadastrar(pacoteHospedagem);
+
 
             PacoteHospedagem pacoteHospedagemCadastrado = IPacoteHospedagem.ResultadoUnicoReserva(idPacoteHospedagem);
             Assert.IsNotNull(pacoteHospedagemCadastrado);
@@ -55,14 +49,9 @@ namespace ProjectHotelWebTest
             hospedagem.dataLiberacao = DateTime.Now;
             hospedagem.idQuarto = idQuarto;
             hospedagem.valorHospedagem = 0;
-            try
-            {
-                idHospedagem = IHospedagem.Cadastrar(hospedagem);
-            }
-            catch (Exception e)
-            {
-                Assert.IsInstanceOfType(e, typeof(Exception));
-            }
+
+            idHospedagem = IHospedagem.Cadastrar(hospedagem);
+
 
             Hospedagem hospedagemCadastrada = IHospedagem.ResultadoUnico(idHospedagem);
             Assert.IsNotNull(hospedagemCadastrada);
@@ -88,14 +77,8 @@ namespace ProjectHotelWebTest
             controleCliente.isResponsavel = true;
             controleCliente.dataCadastro = DateTime.Now;
 
-            try
-            {
-                IControleCliente.Cadastrar(controleCliente);
-            }
-            catch (Exception e)
-            {
-                Assert.IsInstanceOfType(e, typeof(Exception));
-            }
+            IControleCliente.Cadastrar(controleCliente);
+
             ControleCliente controleClienteCadastrado = IControleCliente.ResultadoUnico(idCliente, idHospedagem);
             Assert.IsNotNull(controleClienteCadastrado);
             Assert.IsInstanceOfType(controleClienteCadastrado, typeof(ControleCliente));

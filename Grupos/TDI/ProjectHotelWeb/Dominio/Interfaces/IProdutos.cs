@@ -9,7 +9,7 @@ namespace Dominio.Interfaces
 {
     public interface IProdutos : IRepositorio<Produto>
     {
-        void Cadastrar(Produto produto);
+        int Cadastrar(Produto produto);
         void Atualizar(Produto produto);
         void Remover(Produto produto);
         Produto ResultadoUnico(int idProduto);
