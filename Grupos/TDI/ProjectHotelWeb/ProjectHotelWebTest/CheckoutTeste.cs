@@ -10,7 +10,12 @@ namespace ProjectHotelWebTest
     {
 
         private TestContext testContextInstance;
+        private PacoteHospedagens gPacoteHospedagem { get; set; }
         private PacoteHospedagem pacoteHospedagem { get; set; }
+        private Quartos gQuartos { get; set; }
+        private Quarto quarto { get; set; }
+        private Hospedagens gHospedagens { get; set; }
+        private Hospedagem hospedagem { get; set; }
 
         public TestContext TestContext
         {
@@ -22,8 +27,13 @@ namespace ProjectHotelWebTest
         public void ObtemPacoteHospedagem()
         {
             PacoteHospedagens gPacoteHospedagem = new PacoteHospedagens();
-            PacoteHospedagem pacoteHospedam = gPacoteHospedagem.ResultadoUnico(1);
+            Quartos gQuartos = new Quartos();
+
+            this.gPacoteHospedagem = gPacoteHospedagem;
+            PacoteHospedagem pacoteHospedagem = gPacoteHospedagem.ResultadoUnicoCheckin(1);
+            
             this.pacoteHospedagem = pacoteHospedagem;
+            
         }
 
         [TestMethod]

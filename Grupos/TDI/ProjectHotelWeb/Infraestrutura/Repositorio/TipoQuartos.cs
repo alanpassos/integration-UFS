@@ -19,6 +19,13 @@ namespace Infraestrutura.Repositorio
         private IQueryable<Hospedagem> hospedagem;
         private IQueryable<ControleCliente> cliente;
 
+        
+        public TipoQuartos()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            this.tipoQuartos = unidadeTrabalho.TipoQuartos;
+        }
+
         private TipoQuartos(IQueryable<TipoQuarto> TipoQuartos, IProjectHotel unidadeTrabalho)
         {
             this.tipoQuartos = TipoQuartos;

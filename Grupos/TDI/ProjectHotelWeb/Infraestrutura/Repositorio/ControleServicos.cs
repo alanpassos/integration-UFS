@@ -22,6 +22,12 @@ namespace Infraestrutura.Repositorio
         private IQueryable<Servico> servico;
         private IProjectHotel unidadeTrabalho;
         
+        
+        public ControleServicos()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            this.controleServicos = unidadeTrabalho.ControleServicos;
+        }
 
         private ControleServicos(IQueryable<ControleServico> controleServicos, IProjectHotel unidadeTrabalho)
         {

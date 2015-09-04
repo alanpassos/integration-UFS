@@ -14,6 +14,13 @@ namespace Infraestrutura.Repositorio
         private IQueryable<Pagamento> pagamentos;
         private IProjectHotel unidadeTrabalho;
 
+        
+        public Pagamentos()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            this.pagamentos = unidadeTrabalho.Pagamentos;
+        }
+
         private Pagamentos(IQueryable<Pagamento> Pagamentos, IProjectHotel unidadeTrabalho)
         {
             this.pagamentos = Pagamentos;

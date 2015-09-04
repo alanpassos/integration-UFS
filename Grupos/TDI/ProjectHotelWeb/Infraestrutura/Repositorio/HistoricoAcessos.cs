@@ -14,6 +14,13 @@ namespace Infraestrutura.Repositorio
         private IQueryable<HistoricoAcesso> historicoAcessos;
         private IProjectHotel unidadeTrabalho;
 
+
+        public HistoricoAcessoAcessos()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            this.historicoAcessos = unidadeTrabalho.HistoricoAcessos;
+        }
+
         private HistoricoAcessoAcessos (IQueryable<HistoricoAcesso> historicoAcessos, IProjectHotel unidadeTrabalho)
         {
             this.historicoAcessos = historicoAcessos;
