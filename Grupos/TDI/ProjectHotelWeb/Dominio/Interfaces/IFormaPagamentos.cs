@@ -9,7 +9,7 @@ namespace Dominio.Interfaces
 {
     public interface IFormaPagamentos : IRepositorio<FormaPagamento>
     {
-        void Cadastrar(FormaPagamento formaPagamento);
+        int Cadastrar(FormaPagamento formaPagamento);
         void Atualizar(FormaPagamento formaPagamento);
         void Remover(FormaPagamento formaPagamento);
         FormaPagamento ResultadoUnico(int idFormaPagamento);
