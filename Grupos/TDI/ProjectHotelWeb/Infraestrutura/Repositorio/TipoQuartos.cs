@@ -40,10 +40,11 @@ namespace Infraestrutura.Repositorio
             this(iHotelWeb.TipoQuartos, unidadeTrabalho) { }
 
 
-        public void Cadastrar(TipoQuarto TipoQuarto)
+        public int Cadastrar(TipoQuarto TipoQuarto)
         {
             unidadeTrabalho.RegistrarNovo(TipoQuarto);
             unidadeTrabalho.Salvar();
+            return tipoQuartos.Max(t => t.idTipoQuarto);
         }
 
         public void Atualizar(TipoQuarto TipoQuarto)
