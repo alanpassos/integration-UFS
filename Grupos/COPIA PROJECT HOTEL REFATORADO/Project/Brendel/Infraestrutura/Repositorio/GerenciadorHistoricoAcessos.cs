@@ -10,25 +10,25 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class HistoricoAcessoAcessos : IGerenciadorHistoricoAcessos
+    public class HistoricoAcesso: IGerenciadorHistoricoAcessos
     {
         private IQueryable<HistoricoAcessoModel> historicoAcessos;
         private IProjectHotel unidadeTrabalho;
 
 
-        public HistoricoAcessoAcessos()
+        public HistoricoAcesso()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.historicoAcessos = unidadeTrabalho.HistoricoAcessos;
         }
 
-        private HistoricoAcessoAcessos (IQueryable<HistoricoAcessoModel> historicoAcessos, IProjectHotel unidadeTrabalho)
+        private HistoricoAcesso (IQueryable<HistoricoAcessoModel> historicoAcessos, IProjectHotel unidadeTrabalho)
         {
             this.historicoAcessos = historicoAcessos;
             this.unidadeTrabalho = unidadeTrabalho;
         }
 
-        public HistoricoAcessoAcessos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public HistoricoAcesso(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.HistoricoAcessos, unidadeTrabalho) { }
 
         public void Cadastrar(HistoricoAcessoModel historicoAcesso)
