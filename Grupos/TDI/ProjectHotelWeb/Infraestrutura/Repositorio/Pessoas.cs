@@ -18,11 +18,7 @@ namespace Infraestrutura.Repositorio
         private IProjectHotel unidadeTrabalho;
 
         
-        public Pessoas()
-        {
-            this.unidadeTrabalho = new ProjectHotel();
-            //this.pessoas = unidadeTrabalho.Pessoas;
-        }
+      
 
         private Pessoas(IQueryable<Pessoa> pessoas, IProjectHotel unidadeTrabalho)
         {
@@ -33,7 +29,7 @@ namespace Infraestrutura.Repositorio
         {
 
             this.unidadeTrabalho = new ProjectHotel();
-            this.pessoas = unidadeTrabalho.Clientes;
+            this.pessoas = unidadeTrabalho.Funcionarios;
         }
 
         public Pessoas(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :

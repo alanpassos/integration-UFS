@@ -25,13 +25,7 @@ namespace Infraestrutura.Repositorio
             this.controleClientes = controleClientes;
             this.unidadeTrabalho = unidadeTrabalho;
         }
-        public ControleClientes()
-        {
-
-            this.unidadeTrabalho = new ProjectHotel();
-            this.controleClientes = unidadeTrabalho.ControleClientes;
-        }
-
+        
         public ControleClientes(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.ControleClientes, unidadeTrabalho) { }
 
