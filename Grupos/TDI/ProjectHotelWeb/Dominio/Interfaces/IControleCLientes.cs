@@ -12,7 +12,7 @@ namespace Dominio.Interfaces
         void Cadastrar(ControleCliente controleCliente);
         void Atualizar(ControleCliente controleCLiente);
         void Remover(ControleCliente controleCliente);
-        ControleCliente ResultadoUnico(int idCliente);
+        ControleCliente ResultadoUnico(int idCliente, int idHospedagem);
         ControleCliente ResultadoUnicoHospedagem(int idHospedagem);
     }
 }

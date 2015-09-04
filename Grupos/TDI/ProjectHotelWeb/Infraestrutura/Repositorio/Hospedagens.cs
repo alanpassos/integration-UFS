@@ -39,6 +39,7 @@ namespace Infraestrutura.Repositorio
             clientes = unidadeTrabalho.Clientes;
             pacoteHospedagens = unidadeTrabalho.PacoteHospedagens;
         }
+     
 
         public Hospedagens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Hospedagens, unidadeTrabalho) { }

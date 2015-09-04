@@ -18,16 +18,18 @@ namespace Infraestrutura.Repositorio
         private IProjectHotel unidadeTrabalho;
 
         
-        public Pessoas()
-        {
-            this.unidadeTrabalho = new ProjectHotel();
-            //this.pessoas = unidadeTrabalho.Pessoas;
-        }
+      
 
         private Pessoas(IQueryable<Pessoa> pessoas, IProjectHotel unidadeTrabalho)
         {
             this.pessoas = pessoas;
             this.unidadeTrabalho = unidadeTrabalho;
+        }
+        public Pessoas()
+        {
+
+            this.unidadeTrabalho = new ProjectHotel();
+            this.pessoas = unidadeTrabalho.Funcionarios;
         }
 
         public Pessoas(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :

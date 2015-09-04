@@ -3,6 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Infraestrutura.Repositorio;
 using Dominio.Classes;
 
+
+
+
 namespace ProjectHotelWebTest
 {
     [TestClass]
@@ -17,28 +20,32 @@ namespace ProjectHotelWebTest
             set { testContextInstance = value; }
         }
 
+        #region Atributos
+        Cargos gCargo = new Cargos();
+        Cargo cargoModelExpected;
+        #endregion
+
+
+
         [TestMethod]
-        public void CadastrarTest()
+        public void CadastrarCargoValidoTest()
         {
-            int idCargoModelExpected = 0;
-            Cargos gCargo = new Cargos();
-            Cargo cargoModelExpected = new Cargo();
+            cargoModelExpected = new Cargo();
+
+
             cargoModelExpected.descricao = "Atendente";
-            cargoModelExpected.ativo = true;
+            cargoModelExpected.ativo = false;
             cargoModelExpected.observacao = "Atendente do hotel";
-            try
-            {
-                idCargoModelExpected = gCargo.Cadastrar(cargoModelExpected);
-            }
-            catch (Exception e)
-            {
-                Assert.IsInstanceOfType(e, typeof(Exception));
-            }
-            Cargo cargoCadastrado = gCargo.ResultadoUnico(idCargoModelExpected);
-            Assert.IsNotNull(cargoCadastrado);
-            Assert.IsInstanceOfType(cargoCadastrado, typeof(Cargo));
-            Assert.AreEqual(cargoModelExpected, cargoCadastrado);
-            
+
+            cargoModelExpected.idCargo = gCargo.Cadastrar(cargoModelExpected);
+        }
+
+        [TestMethod]
+        public void AtualizarCargoValidoTest()
+        {   cargoModelExpected = new Cargo();
+            cargoModelExpected = gCargo.ResultadoUnico(1);
+            cargoModelExpected.descricao = "Cargo de testes";
+            gCargo.Atualizar(cargoModelExpected);
         }
     }
 }

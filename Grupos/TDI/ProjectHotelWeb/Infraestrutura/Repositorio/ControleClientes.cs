@@ -25,7 +25,7 @@ namespace Infraestrutura.Repositorio
             this.controleClientes = controleClientes;
             this.unidadeTrabalho = unidadeTrabalho;
         }
-
+        
         public ControleClientes(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.ControleClientes, unidadeTrabalho) { }
 
@@ -47,9 +47,9 @@ namespace Infraestrutura.Repositorio
             unidadeTrabalho.Salvar();
         }
 
-        public ControleCliente ResultadoUnico(int idControleCliente)
+        public ControleCliente ResultadoUnico(int idControleCliente, int idHospedagem)
         {
-            return controleClientes.SingleOrDefault(c => c.idCliente == idControleCliente);
+            return controleClientes.SingleOrDefault(c => c.idCliente == idControleCliente && c.idHospedagem == idHospedagem );
         }
 
         public ControleCliente ResultadoUnicoHospedagem(int idHospedagem)
