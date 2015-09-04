@@ -14,6 +14,13 @@ namespace Infraestrutura.Repositorio
         private IQueryable<Produto> produtos;
         private IProjectHotel unidadeTrabalho;
 
+        
+        public Produtos()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            this.produtos = unidadeTrabalho.Produtos;
+        }
+
         private Produtos(IQueryable<Produto> Produtos, IProjectHotel unidadeTrabalho)
         {
             this.produtos = Produtos;

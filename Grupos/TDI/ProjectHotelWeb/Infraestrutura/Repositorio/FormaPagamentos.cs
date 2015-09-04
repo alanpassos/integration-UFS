@@ -14,6 +14,13 @@ namespace Infraestrutura.Repositorio
         private IQueryable<FormaPagamento> formaPagamentos;
         private IProjectHotel unidadeTrabalho;
 
+        
+        public FormaPagamentos()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            this.formaPagamentos = unidadeTrabalho.FormaPagamentos;
+        }
+
         private FormaPagamentos(IQueryable<FormaPagamento> formaPagamentos, IProjectHotel unidadeTrabalho)
         {
             this.formaPagamentos = formaPagamentos;

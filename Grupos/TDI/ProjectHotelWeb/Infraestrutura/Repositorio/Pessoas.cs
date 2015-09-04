@@ -17,6 +17,13 @@ namespace Infraestrutura.Repositorio
         private IQueryable<Pessoa> pessoas;
         private IProjectHotel unidadeTrabalho;
 
+        
+        public Pessoas()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            //this.pessoas = unidadeTrabalho.Pessoas;
+        }
+
         private Pessoas(IQueryable<Pessoa> pessoas, IProjectHotel unidadeTrabalho)
         {
             this.pessoas = pessoas;

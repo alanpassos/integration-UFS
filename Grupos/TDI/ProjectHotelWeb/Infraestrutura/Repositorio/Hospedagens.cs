@@ -22,7 +22,11 @@ namespace Infraestrutura.Repositorio
         private IQueryable<Pessoa> clientes;
         private IQueryable<PacoteHospedagem> pacoteHospedagens;
 
-
+        public Hospedagens()
+        {
+            this.unidadeTrabalho = new ProjectHotel();
+            this.hospedagens = unidadeTrabalho.Hospedagens;
+        }
 
         private Hospedagens(IQueryable<Hospedagem> hospedagens, IProjectHotel unidadeTrabalho)
         {
