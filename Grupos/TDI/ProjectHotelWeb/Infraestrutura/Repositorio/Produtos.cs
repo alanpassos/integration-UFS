@@ -30,10 +30,11 @@ namespace Infraestrutura.Repositorio
         public Produtos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Produtos, unidadeTrabalho) { }
 
-        public void Cadastrar(Produto Produto)
+        public int Cadastrar(Produto Produto)
         {
             unidadeTrabalho.RegistrarNovo(Produto);
             unidadeTrabalho.Salvar();
+            return produtos.Max(p => p.idProduto);
         }
 
         public void Atualizar(Produto Produto)
