@@ -80,8 +80,9 @@ namespace ProjectHotelWebTest
 
             ControleClientes IControleCliente = new ControleClientes();
             ControleCliente controleCliente = new ControleCliente();
+            int idCliente = 1;
 
-            controleCliente.idCliente = 1;
+            controleCliente.idCliente = idCliente;
             controleCliente.idHospedagem = idHospedagem;
             controleCliente.idPacoteHospedagem = idPacoteHospedagem;
             controleCliente.isResponsavel = true;
@@ -95,7 +96,11 @@ namespace ProjectHotelWebTest
             {
                 Assert.IsInstanceOfType(e, typeof(Exception));
             }
-            //ControleCliente controleClienteCadastrado = IControleCliente.ResultadoUnico(i)
+            ControleCliente controleClienteCadastrado = IControleCliente.ResultadoUnico(idCliente, idHospedagem);
+            Assert.IsNotNull(controleClienteCadastrado);
+            Assert.IsInstanceOfType(controleClienteCadastrado, typeof(ControleCliente));
+            Assert.AreEqual(controleCliente, controleClienteCadastrado);
+
 
 
         }
