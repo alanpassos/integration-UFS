@@ -1,7 +1,6 @@
 ﻿using Dominio.Classes;
 using Dominio.Interfaces;
 using Infraestrutura.Database;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
