@@ -28,10 +28,11 @@ namespace Infraestrutura.Repositorio
         public Quartos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Quartos, unidadeTrabalho) { }
 
-        public void Cadastrar(Quarto Quarto)
+        public int Cadastrar(Quarto Quarto)
         {
             unidadeTrabalho.RegistrarNovo(Quarto);
             unidadeTrabalho.Salvar();
+            return quartos.Max(p => p.idQuarto);
         }
 
         public void Atualizar(Quarto Quarto)

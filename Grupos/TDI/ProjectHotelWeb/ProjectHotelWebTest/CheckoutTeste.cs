@@ -35,7 +35,7 @@ namespace ProjectHotelWebTest
             this.gQuartos = gQuartos;
             this.gHospedagens = gHospedagens;
 
-            PacoteHospedagem pacoteHospedagem = gPacoteHospedagem.ResultadoUnicoCheckin(1);
+            PacoteHospedagem pacoteHospedagem = gPacoteHospedagem.ResultadoUnico(4);
             this.pacoteHospedagem = pacoteHospedagem;
 
             idHospedagem = pacoteHospedagem.Hospedagem[0].idHospedagem;
@@ -109,45 +109,69 @@ namespace ProjectHotelWebTest
             Assert.AreEqual(pacoteHospedagemAtualizado.ativo, true);
             Assert.AreEqual(pacoteHospedagemAtualizado.ControleCliente, pacoteHospedagem.ControleCliente);
             Assert.AreEqual(pacoteHospedagemAtualizado.dataCadastro, pacoteHospedagem.dataCadastro);
-            Assert.AreEqual(pacoteHospedagemAtualizado.dataEntrada ,  pacoteHospedagem.dataEntrada);
-            Assert.AreEqual(pacoteHospedagemAtualizado.dataLiberacao ,  pacoteHospedagem.dataLiberacao);
-            Assert.AreEqual(pacoteHospedagemAtualizado.dataLiberacao ,  pacoteHospedagem.dataSaida);
-            Assert.AreEqual(pacoteHospedagemAtualizado.HistoricoAcesso ,  pacoteHospedagem.HistoricoAcesso);
+            Assert.AreEqual(pacoteHospedagemAtualizado.dataEntrada, pacoteHospedagem.dataEntrada);
+            Assert.AreEqual(pacoteHospedagemAtualizado.dataLiberacao, pacoteHospedagem.dataLiberacao);
+            Assert.AreEqual(pacoteHospedagemAtualizado.dataLiberacao, pacoteHospedagem.dataSaida);
+            Assert.AreEqual(pacoteHospedagemAtualizado.HistoricoAcesso, pacoteHospedagem.HistoricoAcesso);
             Assert.AreEqual(pacoteHospedagemAtualizado.Hospedagem, pacoteHospedagem.Hospedagem);
-            Assert.AreEqual(pacoteHospedagemAtualizado.idPacoteHospedagem ,  pacoteHospedagem.idPacoteHospedagem);
-            Assert.AreEqual(pacoteHospedagemAtualizado.observacao ,  pacoteHospedagem.observacao);
-            Assert.AreEqual(pacoteHospedagemAtualizado.Pagamento ,  pacoteHospedagem.Pagamento);
-            Assert.AreEqual(pacoteHospedagemAtualizado.tipoPacote ,  pacoteHospedagem.tipoPacote);
-            Assert.AreEqual(pacoteHospedagemAtualizado.TipoQuarto ,  pacoteHospedagem.TipoQuarto);
-            Assert.AreEqual(pacoteHospedagemAtualizado.subTotal ,  pacoteHospedagem.subTotal);
-            Assert.AreEqual(pacoteHospedagemAtualizado.valorTotal ,  pacoteHospedagem.valorTotal);
+            Assert.AreEqual(pacoteHospedagemAtualizado.idPacoteHospedagem, pacoteHospedagem.idPacoteHospedagem);
+            Assert.AreEqual(pacoteHospedagemAtualizado.observacao, pacoteHospedagem.observacao);
+            Assert.AreEqual(pacoteHospedagemAtualizado.Pagamento, pacoteHospedagem.Pagamento);
+            Assert.AreEqual(pacoteHospedagemAtualizado.tipoPacote, pacoteHospedagem.tipoPacote);
+            Assert.AreEqual(pacoteHospedagemAtualizado.TipoQuarto, pacoteHospedagem.TipoQuarto);
+            Assert.AreEqual(pacoteHospedagemAtualizado.subTotal, pacoteHospedagem.subTotal);
+            Assert.AreEqual(pacoteHospedagemAtualizado.valorTotal, pacoteHospedagem.valorTotal);
 
-            Assert.AreEqual(hospedagemAtualizado.aberto ,  false);
-            Assert.AreEqual(hospedagemAtualizado.ControleCliente ,  hospedagem.ControleCliente);
-            Assert.AreEqual(hospedagemAtualizado.ControleServico ,  hospedagem.ControleServico);
-            Assert.AreEqual(hospedagemAtualizado.dataAbertura ,  hospedagem.dataAbertura);
-            Assert.AreEqual(hospedagemAtualizado.dataLiberacao ,  hospedagem.dataLiberacao);
-            Assert.AreEqual(hospedagemAtualizado.idHospedagem ,  hospedagem.idHospedagem);
-            Assert.AreEqual(hospedagemAtualizado.idPacoteHospedagem ,  hospedagem.idPacoteHospedagem);
-            Assert.AreEqual(hospedagemAtualizado.idQuarto ,  hospedagem.idQuarto);
-            Assert.AreEqual(hospedagemAtualizado.Item ,  hospedagem.Item);
-            Assert.AreEqual(hospedagemAtualizado.observacao ,  hospedagem.observacao);
-            Assert.AreEqual(hospedagemAtualizado.PacoteHospedagem ,  hospedagem.PacoteHospedagem);
-            Assert.AreEqual(hospedagemAtualizado.placaVeiculo ,  hospedagem.placaVeiculo);
-            Assert.AreEqual(hospedagemAtualizado.Quarto ,  hospedagem.Quarto);
-            Assert.AreEqual(hospedagemAtualizado.valorHospedagem ,  hospedagem.valorHospedagem);
+            Assert.AreEqual(hospedagemAtualizado.aberto, false);
+            Assert.AreEqual(hospedagemAtualizado.ControleCliente, hospedagem.ControleCliente);
+            Assert.AreEqual(hospedagemAtualizado.ControleServico, hospedagem.ControleServico);
+            Assert.AreEqual(hospedagemAtualizado.dataAbertura, hospedagem.dataAbertura);
+            Assert.AreEqual(hospedagemAtualizado.dataLiberacao, hospedagem.dataLiberacao);
+            Assert.AreEqual(hospedagemAtualizado.idHospedagem, hospedagem.idHospedagem);
+            Assert.AreEqual(hospedagemAtualizado.idPacoteHospedagem, hospedagem.idPacoteHospedagem);
+            Assert.AreEqual(hospedagemAtualizado.idQuarto, hospedagem.idQuarto);
+            Assert.AreEqual(hospedagemAtualizado.Item, hospedagem.Item);
+            Assert.AreEqual(hospedagemAtualizado.observacao, hospedagem.observacao);
+            Assert.AreEqual(hospedagemAtualizado.PacoteHospedagem, hospedagem.PacoteHospedagem);
+            Assert.AreEqual(hospedagemAtualizado.placaVeiculo, hospedagem.placaVeiculo);
+            Assert.AreEqual(hospedagemAtualizado.Quarto, hospedagem.Quarto);
+            Assert.AreEqual(hospedagemAtualizado.valorHospedagem, hospedagem.valorHospedagem);
 
-            Assert.AreEqual(quartoAtualizado.ativo ,  quarto.ativo);
-            Assert.AreEqual(quartoAtualizado.capacidade ,  quarto.capacidade);
-            Assert.AreEqual(quartoAtualizado.descricao ,  quarto.descricao);
-            Assert.AreEqual(quartoAtualizado.Hospedagem ,  quarto.Hospedagem);
-            Assert.AreEqual(quartoAtualizado.idQuarto ,  quarto.idQuarto);
-            Assert.AreEqual(quartoAtualizado.idTipoQuarto ,  quarto.idTipoQuarto);
-            Assert.AreEqual(quartoAtualizado.observacao ,  quarto.observacao);
-            Assert.AreEqual(quartoAtualizado.reservado ,  quarto.reservado);
-            Assert.AreEqual(quartoAtualizado.status ,  "L");
-            Assert.AreEqual(quartoAtualizado.TipoQuarto ,  quarto.TipoQuarto);
- 
+            Assert.AreEqual(quartoAtualizado.ativo, quarto.ativo);
+            Assert.AreEqual(quartoAtualizado.capacidade, quarto.capacidade);
+            Assert.AreEqual(quartoAtualizado.descricao, quarto.descricao);
+            Assert.AreEqual(quartoAtualizado.Hospedagem, quarto.Hospedagem);
+            Assert.AreEqual(quartoAtualizado.idQuarto, quarto.idQuarto);
+            Assert.AreEqual(quartoAtualizado.idTipoQuarto, quarto.idTipoQuarto);
+            Assert.AreEqual(quartoAtualizado.observacao, quarto.observacao);
+            Assert.AreEqual(quartoAtualizado.reservado, quarto.reservado);
+            Assert.AreEqual(quartoAtualizado.status, "L");
+            Assert.AreEqual(quartoAtualizado.TipoQuarto, quarto.TipoQuarto);
+
         }
+
+        /*
+        public void CheckoutInvalido()
+        {
+            
+            PacoteHospedagem pacoteHospedagemBackup = pacoteHospedagem;
+            Hospedagem hospedagemBackup = hospedagem;
+            Quarto quartoBackup = quarto;
+
+            pacoteHospedagem.ativo = pacoteHospedagem.ativo;
+            pacoteHospedagem.ControleCliente = pacoteHospedagem.ControleCliente;
+            pacoteHospedagem.dataCadastro = pacoteHospedagem.dataCadastro;
+            pacoteHospedagem.dataEntrada = pacoteHospedagem.dataEntrada;
+            pacoteHospedagem.dataLiberacao = pacoteHospedagem.dataLiberacao;
+            pacoteHospedagem.dataSaida = pacoteHospedagem.dataSaida;
+            pacoteHospedagem.HistoricoAcesso = pacoteHospedagem.HistoricoAcesso;
+            pacoteHospedagem.Hospedagem = pacoteHospedagem.Hospedagem;
+            pacoteHospedagem.idPacoteHospedagem = -1;
+            pacoteHospedagem.observacao = 
+
+
+
+        }
+         * */
     }
 }

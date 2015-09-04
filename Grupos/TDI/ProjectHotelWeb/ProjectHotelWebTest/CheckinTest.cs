@@ -29,7 +29,7 @@ namespace ProjectHotelWebTest
 
             if (quarto.status.Equals("L"))
             {
-                PacoteHospedagens IPacote = new PacoteHospedagens();
+                PacoteHospedagens gPacote = new PacoteHospedagens();
                  
                 pacote = new PacoteHospedagem();
                 pacote.valorTotal = 0;
@@ -37,7 +37,7 @@ namespace ProjectHotelWebTest
                 pacote.dataCadastro = DateTime.Now;
                 pacote.ativo = true;
                 pacote.tipoPacote = "C";
-                pacote.idPacoteHospedagem = IPacote.Cadastrar(pacote);
+                pacote.idPacoteHospedagem = gPacote.Cadastrar(pacote);
             }
 
 
@@ -46,17 +46,17 @@ namespace ProjectHotelWebTest
 
 
         [TestMethod]
-        public void RealizarCheckin()
+        public void RealizarCheckinValido()
         {
             if (quarto.status.Equals("L"))
             {
-            PacoteHospedagens IPacote = new PacoteHospedagens();
-            Hospedagens IHospedagens = new Hospedagens();
-            ControleClientes IControleCliente = new ControleClientes();
-            Quartos IQuartos = new Quartos();
+            PacoteHospedagens gPacote = new PacoteHospedagens();
+            Hospedagens gHospedagens = new Hospedagens();
+            ControleClientes gControleCliente = new ControleClientes();
+            Quartos gQuartos = new Quartos();
             Hospedagem hospedagem = new Hospedagem();
             ControleCliente controleCliente = new ControleCliente();
-            Pessoas IPessoas = new Pessoas();
+            Pessoas gPessoas = new Pessoas();
             hospedagem.idPacoteHospedagem = pacote.idPacoteHospedagem;
             hospedagem.idQuarto = quarto.idQuarto;
             hospedagem.dataAbertura = DateTime.Now;
@@ -67,7 +67,7 @@ namespace ProjectHotelWebTest
           
                 try
                 {
-                    hospedagem.idHospedagem = IHospedagens.Cadastrar(hospedagem);
+                    hospedagem.idHospedagem = gHospedagens.Cadastrar(hospedagem);
                 }
                 catch (Exception e)
                 {
@@ -76,37 +76,38 @@ namespace ProjectHotelWebTest
                 }
 
 
-                Hospedagem hospedagemCadastrado = IHospedagens.ResultadoUnico(hospedagem.idHospedagem);
+                Hospedagem hospedagemCadastrado = gHospedagens.ResultadoUnico(hospedagem.idHospedagem);
                 Assert.IsNotNull(hospedagemCadastrado);
                 Assert.IsInstanceOfType(hospedagemCadastrado, typeof(Hospedagem));
                 Assert.AreEqual(hospedagem, hospedagemCadastrado);
 
                 controleCliente.idHospedagem = hospedagem.idHospedagem;
                 controleCliente.idPacoteHospedagem = pacote.idPacoteHospedagem;
-                controleCliente.idCliente = IPessoas.ResultadoUnico(1).idPessoa;
+                controleCliente.idCliente = gPessoas.ResultadoUnico(1).idPessoa;
                 controleCliente.isResponsavel = true;
                 controleCliente.dataCadastro = DateTime.Now;
                
                 try
                 {
-                    IControleCliente.Cadastrar(controleCliente);
+                    gControleCliente.Cadastrar(controleCliente);
                 }
                 catch (Exception e)
                 {
                     Assert.IsInstanceOfType(e, typeof(Exception));
 
                 }
-                ControleCliente newControleCliente = IControleCliente.ResultadoUnico(controleCliente.idCliente,controleCliente.idHospedagem);
+                ControleCliente newControleCliente = gControleCliente.ResultadoUnico(controleCliente.idCliente,controleCliente.idHospedagem);
                 Assert.IsNotNull(newControleCliente);
                 Assert.IsInstanceOfType(newControleCliente, typeof(ControleCliente));
                 Assert.AreEqual(controleCliente, newControleCliente);
 
-
+                quarto = new Quarto();
+               quarto = gQuartos.ResultadoUnico(hospedagem.idQuarto);
                 quarto.status = "O";
                 
                 try
                 {
-                    IQuartos.Atualizar(quarto);
+                    gQuartos.Atualizar(quarto);
                 }
                 catch (Exception e)
                 {
@@ -115,13 +116,14 @@ namespace ProjectHotelWebTest
                 }
 
 
-                Quarto QuartoAtual = IQuartos.ResultadoUnico(quarto.idQuarto);
-                Assert.AreEqual(QuartoAtual, quarto);
+                Quarto QuartoAtual = gQuartos.ResultadoUnico(quarto.idQuarto);
+                Assert.AreEqual(QuartoAtual.status, "O");
+                
 
                 pacote.valorTotal = pacote.subTotal = hospedagem.valorHospedagem;
                 try
                 {
-                    IPacote.Atualizar(pacote);
+                    gPacote.Atualizar(pacote);
                 }
                 catch (Exception e)
                 {
@@ -129,7 +131,7 @@ namespace ProjectHotelWebTest
 
                 }
                
-                PacoteHospedagem pacoteHospedagem = IPacote.ResultadoUnico(pacote.idPacoteHospedagem);
+                PacoteHospedagem pacoteHospedagem = gPacote.ResultadoUnico(pacote.idPacoteHospedagem);
                 Assert.IsNotNull(pacoteHospedagem);
                 Assert.IsInstanceOfType(pacoteHospedagem, typeof(PacoteHospedagem));
                 Assert.AreEqual(pacote, pacoteHospedagem);
@@ -138,5 +140,10 @@ namespace ProjectHotelWebTest
            
 
         }
+
+
+
+
+
     }
 }

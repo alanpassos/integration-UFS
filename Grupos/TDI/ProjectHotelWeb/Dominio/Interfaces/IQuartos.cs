@@ -9,7 +9,7 @@ namespace Dominio.Interfaces
 {
     public interface IQuartos : IRepositorio<Quarto>
     {
-        void Cadastrar(Quarto quarto);
+        int Cadastrar(Quarto quarto);
         void Atualizar(Quarto quarto);
         void Remover(Quarto quarto);
         Quarto ResultadoUnico(int idQuarto);
