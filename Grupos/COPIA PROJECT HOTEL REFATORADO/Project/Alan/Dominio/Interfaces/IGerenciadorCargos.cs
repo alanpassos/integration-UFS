@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface ICargos : IRepositorio<CargoModel>
+    public interface IGerenciadorCargos : IRepositorio<CargoModel>
     {
         int Cadastrar(CargoModel cargo);
         void Atualizar(CargoModel cargo);

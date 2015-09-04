@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class PacoteHospedagens : IPacoteHospedagens
+    public class GerenciadorPacoteHospedagens : IGerenciadorPacoteHospedagens
     {
         private IQueryable<PacoteHospedagemModel> pacoteHospedagens;
         private IProjectHotel unidadeTrabalho;
@@ -20,7 +20,7 @@ namespace Infraestrutura.Repositorio
         private IQueryable<ControleClienteModel> controleClientes;
         private IQueryable<PessoaModel> clientes;
 
-        private PacoteHospedagens(IQueryable<PacoteHospedagemModel> pacoteHospedagens, IProjectHotel unidadeTrabalho)
+        private GerenciadorPacoteHospedagens(IQueryable<PacoteHospedagemModel> pacoteHospedagens, IProjectHotel unidadeTrabalho)
         {
             this.pacoteHospedagens = pacoteHospedagens;
             this.unidadeTrabalho = unidadeTrabalho;
@@ -31,13 +31,13 @@ namespace Infraestrutura.Repositorio
             clientes = unidadeTrabalho.Clientes;
         }
 
-        public PacoteHospedagens()
+        public GerenciadorPacoteHospedagens()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.pacoteHospedagens = unidadeTrabalho.PacoteHospedagens;
         }
 
-        public PacoteHospedagens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorPacoteHospedagens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.PacoteHospedagens, unidadeTrabalho) { }
 
         public int Cadastrar(PacoteHospedagemModel pacoteHospedagem)

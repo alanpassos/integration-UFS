@@ -8,7 +8,7 @@ using Dominio.Classes_Especiais;
 
 namespace Dominio.Interfaces
 {
-   public interface IControleServicos : IRepositorio<ControleServicoModel>
+   public interface IGerenciadorControleServicos : IRepositorio<ControleServicoModel>
     {
        void Cadastrar(ControleServicoModel controleServico);
        void Atualizar(ControleServicoModel controleServico);

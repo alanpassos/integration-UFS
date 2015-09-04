@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface IPagamentos : IRepositorio<PagamentoModel>
+    public interface IGerenciadorPagamentos : IRepositorio<PagamentoModel>
     {
         void Cadastrar(PagamentoModel pagamento);
         void Atualizar(PagamentoModel pagamento);

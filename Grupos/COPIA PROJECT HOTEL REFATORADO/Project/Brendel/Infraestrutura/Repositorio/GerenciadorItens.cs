@@ -9,34 +9,35 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class Itens : IItens
+    public class GerenciadorItens : IGerenciadorItens
     {
         private IQueryable<ItemModel> itens;
         private IProjectHotel unidadeTrabalho;
 
         
-        public Itens()
+        public GerenciadorItens()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.itens = unidadeTrabalho.Itens;
         }
 
-        private Itens(IQueryable<ItemModel> itens, IProjectHotel unidadeTrabalho)
+        private GerenciadorItens(IQueryable<ItemModel> itens, IProjectHotel unidadeTrabalho)
         {
             this.itens = itens;
             this.unidadeTrabalho = unidadeTrabalho;
         }
 
-        public Itens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorItens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Itens, unidadeTrabalho) { }
 
-        public void Cadastrar(ItemModel historico)
+        public int Cadastrar(ItemModel historico)
         {
             unidadeTrabalho.RegistrarNovo(historico);
             unidadeTrabalho.Salvar();
+            return itens.Max(p => p.idItem);
         }
 
-        public void CadastrarNovo(ItemModel item)
+        public int CadastrarNovo(ItemModel item)
         {
             ItemModel itemAuxiliar = null;
             itemAuxiliar = ResultadoUnicoHospedagem(item.idHospedagem, item.idProduto);
@@ -53,6 +54,7 @@ namespace Infraestrutura.Repositorio
                 unidadeTrabalho.RegistrarNovo(item);
             }
             unidadeTrabalho.Salvar();
+            return itens.Max(p => p.idItem);
         }
 
         public void Atualizar(ItemModel historico)

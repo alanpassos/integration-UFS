@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface IControleClientes : IRepositorio<ControleClienteModel>
+    public interface IGerenciadorControleClientes : IRepositorio<ControleClienteModel>
     {
         void Cadastrar(ControleClienteModel controleCliente);
         void Atualizar(ControleClienteModel controleCLiente);

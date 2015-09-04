@@ -1,4 +1,5 @@
-﻿using Dominio.Classes;
+﻿
+using Dominio.Classes;
 using Dominio.Interfaces;
 using Infraestrutura.Database;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class HistoricoAcessoAcessos : IHistoricoAcessos
+    public class HistoricoAcessoAcessos : IGerenciadorHistoricoAcessos
     {
         private IQueryable<HistoricoAcessoModel> historicoAcessos;
         private IProjectHotel unidadeTrabalho;

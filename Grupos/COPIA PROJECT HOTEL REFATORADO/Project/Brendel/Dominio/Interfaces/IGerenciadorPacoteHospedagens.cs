@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface IPacoteHospedagens : IRepositorio<PacoteHospedagemModel>
+    public interface IGerenciadorPacoteHospedagens : IRepositorio<PacoteHospedagemModel>
     {
         int Cadastrar(PacoteHospedagemModel pacoteHospedagem);
         void Atualizar(PacoteHospedagemModel pacoteHospedagem);

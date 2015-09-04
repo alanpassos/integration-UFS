@@ -10,25 +10,25 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class Servicos : IServicos
+    public class GerenciadorServicos : IGerenciadorServicos
     {
         private IQueryable<ServicoModel> servicos;
         private IProjectHotel unidadeTrabalho;
 
         
-        public Servicos()
+        public GerenciadorServicos()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.servicos = unidadeTrabalho.Servicos;
         }
 
-        private Servicos(IQueryable<ServicoModel> servicos, IProjectHotel unidadeTrabalho)
+        private GerenciadorServicos(IQueryable<ServicoModel> servicos, IProjectHotel unidadeTrabalho)
         {
             this.servicos = servicos;
             this.unidadeTrabalho = unidadeTrabalho;
         }
 
-        public Servicos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) : 
+        public GerenciadorServicos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) : 
                this(iHotelWeb.Servicos, unidadeTrabalho) { }
 
         public void Cadastrar(ServicoModel servico)

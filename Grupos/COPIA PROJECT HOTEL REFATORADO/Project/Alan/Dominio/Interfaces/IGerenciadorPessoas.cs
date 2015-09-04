@@ -10,7 +10,7 @@ using Dominio.Interfaces;
 
 namespace Dominio.Interfaces
 {
-    public interface IPessoas : IRepositorio<PessoaModel>
+    public interface IGerenciadorPessoas : IRepositorio<PessoaModel>
     {
         void Cadastrar(PessoaModel pessoa);
         void Atualizar(PessoaModel pessoa);

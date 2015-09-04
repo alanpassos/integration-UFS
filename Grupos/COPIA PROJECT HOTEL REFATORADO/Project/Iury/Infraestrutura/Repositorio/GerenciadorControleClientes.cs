@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class ControleClientes : IControleClientes
+    public class GerenciadorControleClientes : IGerenciadorControleClientes
     {
         private IQueryable<ControleClienteModel> controleClientes;
         private IProjectHotel unidadeTrabalho;
 
-        public ControleClientes()
+        public GerenciadorControleClientes()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.controleClientes = unidadeTrabalho.ControleClientes;
         }
 
-        private ControleClientes(IQueryable<ControleClienteModel> controleClientes, IProjectHotel unidadeTrabalho)
+        private GerenciadorControleClientes(IQueryable<ControleClienteModel> controleClientes, IProjectHotel unidadeTrabalho)
         {
             this.controleClientes = controleClientes;
             this.unidadeTrabalho = unidadeTrabalho;
         }
         
-        public ControleClientes(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorControleClientes(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.ControleClientes, unidadeTrabalho) { }
 
         public void Cadastrar(ControleClienteModel controleCliente)

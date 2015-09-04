@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class Pessoas : IPessoas
+    public class GerenciadorPessoas : IGerenciadorPessoas
     {
         private IQueryable<PessoaModel> pessoas;
         private IProjectHotel unidadeTrabalho;
@@ -20,19 +20,19 @@ namespace Infraestrutura.Repositorio
         
       
 
-        private Pessoas(IQueryable<PessoaModel> pessoas, IProjectHotel unidadeTrabalho)
+        private GerenciadorPessoas(IQueryable<PessoaModel> pessoas, IProjectHotel unidadeTrabalho)
         {
             this.pessoas = pessoas;
             this.unidadeTrabalho = unidadeTrabalho;
         }
-        public Pessoas()
+        public GerenciadorPessoas()
         {
 
             this.unidadeTrabalho = new ProjectHotel();
             this.pessoas = unidadeTrabalho.Funcionarios;
         }
 
-        public Pessoas(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorPessoas(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Funcionarios, unidadeTrabalho) { }
 
         public void Cadastrar(PessoaModel pessoa)

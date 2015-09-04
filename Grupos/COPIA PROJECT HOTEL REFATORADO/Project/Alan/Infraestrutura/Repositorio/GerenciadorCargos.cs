@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class Cargos : ICargos
+    public class GerenciadorCargos : IGerenciadorCargos
     {
         private IQueryable<CargoModel> cargos;
         private IProjectHotel unidadeTrabalho;
 
-        public Cargos()
+        public GerenciadorCargos()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.cargos = unidadeTrabalho.Cargos;
         }
 
-        private Cargos(IQueryable<CargoModel> Cargos, IProjectHotel unidadeTrabalho)
+        private GerenciadorCargos(IQueryable<CargoModel> Cargos, IProjectHotel unidadeTrabalho)
         {
             this.cargos = Cargos;
             this.unidadeTrabalho = unidadeTrabalho;
         }
 
-        public Cargos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorCargos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Cargos, unidadeTrabalho) { }
 
         public int Cadastrar(CargoModel Cargo)

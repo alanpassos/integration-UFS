@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class Pagamentos : IPagamentos
+    public class GerenciadorPagamentos : IGerenciadorPagamentos
     {
         private IQueryable<PagamentoModel> pagamentos;
         private IProjectHotel unidadeTrabalho;
 
         
-        public Pagamentos()
+        public GerenciadorPagamentos()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.pagamentos = unidadeTrabalho.Pagamentos;
         }
 
-        private Pagamentos(IQueryable<PagamentoModel> Pagamentos, IProjectHotel unidadeTrabalho)
+        private GerenciadorPagamentos(IQueryable<PagamentoModel> Pagamentos, IProjectHotel unidadeTrabalho)
         {
             this.pagamentos = Pagamentos;
             this.unidadeTrabalho = unidadeTrabalho;
         }
 
-        public Pagamentos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorPagamentos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Pagamentos, unidadeTrabalho) { }
 
         public void Cadastrar(PagamentoModel Pagamento)

@@ -12,7 +12,7 @@ using System.Data.Entity;
 
 namespace Infraestrutura.Repositorio
 {
-    public class Hospedagens : IHospedagens
+    public class GerenciadorHospedagens : IGerenciadorHospedagens
     {
         private IQueryable<HospedagemModel> hospedagens;
         private IProjectHotel unidadeTrabalho;
@@ -22,13 +22,13 @@ namespace Infraestrutura.Repositorio
         private IQueryable<PessoaModel> clientes;
         private IQueryable<PacoteHospedagemModel> pacoteHospedagens;
 
-        public Hospedagens()
+        public GerenciadorHospedagens()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.hospedagens = unidadeTrabalho.Hospedagens;
         }
 
-        private Hospedagens(IQueryable<HospedagemModel> hospedagens, IProjectHotel unidadeTrabalho)
+        private GerenciadorHospedagens(IQueryable<HospedagemModel> hospedagens, IProjectHotel unidadeTrabalho)
         {
             this.hospedagens = hospedagens;
             this.unidadeTrabalho = unidadeTrabalho;
@@ -41,7 +41,7 @@ namespace Infraestrutura.Repositorio
         }
      
 
-        public Hospedagens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorHospedagens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Hospedagens, unidadeTrabalho) { }
 
         public int Cadastrar(HospedagemModel hospedagem)

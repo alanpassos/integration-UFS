@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface IServicos : IRepositorio<ServicoModel>
+    public interface IGerenciadorServicos : IRepositorio<ServicoModel>
     {
         void Cadastrar(ServicoModel servico);
         void Atualizar(ServicoModel servico);

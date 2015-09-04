@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface IHistoricos : IRepositorio<HistoricoModel>
+    public interface IGerenciadorHistoricos : IRepositorio<HistoricoModel>
     {
         void Cadastrar(HistoricoModel historico);
         void Atualizar(HistoricoModel historico);

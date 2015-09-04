@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface IItens : IRepositorio<ItemModel>
+    public interface IGerenciadorItens : IRepositorio<ItemModel>
     {
-        void Cadastrar(ItemModel item);
-        void CadastrarNovo(ItemModel item);
+        int Cadastrar(ItemModel item);
+        int CadastrarNovo(ItemModel item);
         void Atualizar(ItemModel item);
         void Remover(ItemModel item);
         ItemModel ResultadoUnico(int idItem);

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Dominio.Interfaces
 {
-    public interface IProdutos : IRepositorio<ProdutoModel>
+    public interface IGerenciadorProdutos : IRepositorio<ProdutoModel>
     {
-        void Cadastrar(ProdutoModel produto);
+        int Cadastrar(ProdutoModel produto);
         void Atualizar(ProdutoModel produto);
         void Remover(ProdutoModel produto);
         ProdutoModel ResultadoUnico(int idProduto);

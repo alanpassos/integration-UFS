@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infraestrutura.Repositorio
 {
-    public class TipoQuartos : ITipoQuartos
+    public class GerenciadorTipoQuartos : IGerenciadorTipoQuartos
     {
         private IQueryable<TipoQuartoModel> tipoQuartos;
         private IProjectHotel unidadeTrabalho;
@@ -20,13 +20,13 @@ namespace Infraestrutura.Repositorio
         private IQueryable<ControleClienteModel> cliente;
 
         
-        public TipoQuartos()
+        public GerenciadorTipoQuartos()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.tipoQuartos = unidadeTrabalho.TipoQuartos;
         }
 
-        private TipoQuartos(IQueryable<TipoQuartoModel> TipoQuartos, IProjectHotel unidadeTrabalho)
+        private GerenciadorTipoQuartos(IQueryable<TipoQuartoModel> TipoQuartos, IProjectHotel unidadeTrabalho)
         {
             this.tipoQuartos = TipoQuartos;
             this.unidadeTrabalho = unidadeTrabalho;
@@ -36,7 +36,7 @@ namespace Infraestrutura.Repositorio
             cliente = unidadeTrabalho.ControleClientes;
         }
 
-        public TipoQuartos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorTipoQuartos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.TipoQuartos, unidadeTrabalho) { }
 
 

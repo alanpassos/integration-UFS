@@ -8,7 +8,7 @@ using Dominio.Classes_Especiais;
 
 namespace Dominio.Interfaces
 {
-    public interface IHospedagens : IRepositorio<HospedagemModel>
+    public interface IGerenciadorHospedagens : IRepositorio<HospedagemModel>
     {
         int Cadastrar(HospedagemModel hospedagem);
         void Atualizar(HospedagemModel hospedagem);

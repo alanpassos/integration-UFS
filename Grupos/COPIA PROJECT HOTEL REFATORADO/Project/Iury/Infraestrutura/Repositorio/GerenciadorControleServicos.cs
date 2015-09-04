@@ -14,7 +14,7 @@ using System.Data.Entity;
 
 namespace Infraestrutura.Repositorio
 {
-    public class ControleServicos : IControleServicos
+    public class GerenciadorControleServicos : IGerenciadorControleServicos
     {
         private IQueryable<ControleServicoModel> controleServicos;
         private IQueryable<QuartoModel> quarto;
@@ -23,13 +23,13 @@ namespace Infraestrutura.Repositorio
         private IProjectHotel unidadeTrabalho;
         
         
-        public ControleServicos()
+        public GerenciadorControleServicos()
         {
             this.unidadeTrabalho = new ProjectHotel();
             this.controleServicos = unidadeTrabalho.ControleServicos;
         }
 
-        private ControleServicos(IQueryable<ControleServicoModel> controleServicos, IProjectHotel unidadeTrabalho)
+        private GerenciadorControleServicos(IQueryable<ControleServicoModel> controleServicos, IProjectHotel unidadeTrabalho)
         {
             this.controleServicos = controleServicos;
             this.unidadeTrabalho = unidadeTrabalho;
@@ -38,7 +38,7 @@ namespace Infraestrutura.Repositorio
             this.hospedagem = unidadeTrabalho.Hospedagens;
         }
 
-        public ControleServicos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
+        public GerenciadorControleServicos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.ControleServicos, unidadeTrabalho) { }
 
         public void Cadastrar(ControleServicoModel controleServico)
