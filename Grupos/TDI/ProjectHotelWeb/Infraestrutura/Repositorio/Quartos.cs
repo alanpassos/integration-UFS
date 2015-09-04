@@ -19,7 +19,12 @@ namespace Infraestrutura.Repositorio
             this.quartos = Quartos;
             this.unidadeTrabalho = unidadeTrabalho;
         }
-
+        private Quartos()
+        {
+         
+            this.unidadeTrabalho = new ProjectHotel();
+            this.quartos = unidadeTrabalho.Quartos;
+        }
         public Quartos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Quartos, unidadeTrabalho) { }
 
