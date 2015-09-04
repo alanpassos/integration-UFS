@@ -30,10 +30,11 @@ namespace Infraestrutura.Repositorio
         public FormaPagamentos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.FormaPagamentos, unidadeTrabalho) { }
 
-        public void Cadastrar(FormaPagamento formaPagamento)
+        public int Cadastrar(FormaPagamento formaPagamento)
         {
             unidadeTrabalho.RegistrarNovo(formaPagamento);
             unidadeTrabalho.Salvar();
+            return formaPagamentos.Max(p => p.idFormaPagamento);
         }
 
         public void Atualizar(FormaPagamento formaPagamento)

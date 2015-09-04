@@ -31,10 +31,11 @@ namespace Infraestrutura.Repositorio
         public Servicos(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) : 
                this(iHotelWeb.Servicos, unidadeTrabalho) { }
 
-        public void Cadastrar(Servico servico)
+        public int Cadastrar(Servico servico)
         {
             unidadeTrabalho.RegistrarNovo(servico);
             unidadeTrabalho.Salvar();
+            return servicos.Max(p => p.idServico);
         }
 
         public void Atualizar(Servico servico)

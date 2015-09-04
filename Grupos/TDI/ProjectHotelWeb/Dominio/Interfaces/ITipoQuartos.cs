@@ -10,7 +10,7 @@ namespace Dominio.Interfaces
 {
     public interface ITipoQuartos : IRepositorio<TipoQuarto>
     {
-        void Cadastrar(TipoQuarto tipoQuarto);
+        int Cadastrar(TipoQuarto tipoQuarto);
         void Atualizar(TipoQuarto tipoQuarto);
         void Remover(TipoQuarto tipoQuarto);
         TipoQuarto ResultadoUnico(int idTipoQuarto);

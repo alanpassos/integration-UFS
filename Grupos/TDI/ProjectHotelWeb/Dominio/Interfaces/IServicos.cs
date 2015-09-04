@@ -10,7 +10,7 @@ namespace Dominio.Interfaces
 {
     public interface IServicos : IRepositorio<Servico>
     {
-        void Cadastrar(Servico servico);
+        int Cadastrar(Servico servico);
         void Atualizar(Servico servico);
         void Remover(Servico servico);
         Servico ResultadoUnico(int idServico);
