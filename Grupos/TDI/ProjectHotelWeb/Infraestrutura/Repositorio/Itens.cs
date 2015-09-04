@@ -30,13 +30,14 @@ namespace Infraestrutura.Repositorio
         public Itens(IProjectHotel iHotelWeb, IProjectHotel unidadeTrabalho) :
             this(iHotelWeb.Itens, unidadeTrabalho) { }
 
-        public void Cadastrar(Item historico)
+        public int Cadastrar(Item historico)
         {
             unidadeTrabalho.RegistrarNovo(historico);
             unidadeTrabalho.Salvar();
+            return itens.Max(p => p.idItem);
         }
 
-        public void CadastrarNovo(Item item)
+        public int CadastrarNovo(Item item)
         {
             Item itemAuxiliar = null;
             itemAuxiliar = ResultadoUnicoHospedagem(item.idHospedagem, item.idProduto);
@@ -53,6 +54,7 @@ namespace Infraestrutura.Repositorio
                 unidadeTrabalho.RegistrarNovo(item);
             }
             unidadeTrabalho.Salvar();
+            return itens.Max(p => p.idItem);
         }
 
         public void Atualizar(Item historico)
