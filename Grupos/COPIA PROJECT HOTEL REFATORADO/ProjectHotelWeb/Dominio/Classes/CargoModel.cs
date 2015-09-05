@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Dominio.Classes
 {
-    public class CargoModel
+public    class CargoModel
     {
 
-        public int idCargo { get; set; }
-        [Required]
-        public string descricao { get; set; }
-        public string observacao { get; set; }
-        public bool ativo { get; set; }
+    public int idCargo { get; set; }
+    [Required]
+    public string descricao { get; set; }
+    public string observacao { get; set; }
+    public bool ativo { get; set; }
 
-        public virtual List<PessoaModel> Pessoa { get; set; }
+    public virtual List<PessoaModel> Pessoa { get; set; }
     }
 }
